@@ -1,0 +1,4 @@
+# robots.txt for www.fanhaobai.com 2017.06.18
+User-agent: *
+Disallow: /post
+Sitemap: http://www.fanhaobai.com/sitemap.xml

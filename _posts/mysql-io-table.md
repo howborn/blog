@@ -1,0 +1,38 @@
+---
+title: MySQL命令行导入和导出数据
+date: 2017-01-10 18:52:29
+tags:
+- MySQL
+categories:
+- DB
+- MySQL
+---
+
+
+在某些情况下，不方便使用第三方工具操作数据库，这时用 Mysql 客户端的命令行成为了必选。<!--more-->
+
+下面介绍了 4 种常用命令行下操作数据库的方法。
+
+# 导入表数据
+
+```
+source /home/root/example.sql
+```
+
+# 导出表数据
+
+```
+mysql> select * from table into outfile "/home/root/example.sql" where +条件
+```
+
+# 导入数据库
+
+```
+mysqldump -uroot -p --default-character-set=utf8 dbname tablename >  /home/root/example.sql
+```
+
+# 转载数据
+
+```
+mysql> load data local infile "/home/table.txt" into table `table`;
+```

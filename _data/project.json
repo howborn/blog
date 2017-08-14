@@ -1,0 +1,31 @@
+{
+    "define": {
+        "diy": "DIY",
+        "php": "PHP",
+        "c": "C"
+    },
+    "contents": {
+        "diy": [{
+            "title": "点阵打字机",
+            "cover": "/project/index/W44BkT8TENzNCoih07mEyLN-.jpg",
+            "review": "",
+            "link": "#"
+        }, {
+            "title": "智能车",
+            "cover": "/project/index/CVyYJnKtigzaHiRQOKmtfMZE.jpg",
+            "review": "",
+            "link": "#"
+        }, {
+            "title": "四旋翼",
+            "cover": "/project/index/6WaPq-7Kfi1wLVo5ZE2P1d0y.jpg",
+            "review": "",
+            "link": "#"
+        }],
+
+        "php": [
+        ],
+
+        "c": [
+        ]
+    }
+}
