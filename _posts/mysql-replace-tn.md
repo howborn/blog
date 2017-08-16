@@ -4,6 +4,7 @@ date: 2017-08-14 12:47:02
 tags:
 - MySQL
 categories:
+- DB
 - MySQL
 ---
 
@@ -11,9 +12,9 @@ categories:
 
 ## 问题描述
 
-使用 Vavicat 查看新导出的表 b 数据如下：
+使用 Navicat 查看新导出的表 b 数据如下：
 
-{% assset_img f78a979c-f979-4a39-b117-72989a05c658.png %}
+{% asset_img f78a979c-f979-4a39-b117-72989a05c658.png %}
 
 从表象上看并没有发现问题，执行查询：
 
