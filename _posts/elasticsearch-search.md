@@ -10,14 +10,14 @@ categories:
 随着公司房源数据的急剧增多，现搜索引擎 Solr 的搜索效率和建立索引效率显著降低，而 [Elasticsearch](https://github.com/elastic/elasticsearch) 是一个实时的分布式搜索和分析引擎，它是基于全文搜索引擎 [Apache Lucene](https://lucene.apache.org/) 之上，接入 Elasticsearch 是必然之选。本文是我学习使用 Elasticsearch 检索的笔记。
 {% asset_img 9a3accb9-0da1-47e4-ad58-428370464af6.jpg %}<!--more-->
 
-Elasticsearch 支持 RESTful API 方式检索，查询结果以 JSON 格式响应。
+Elasticsearch 支持 RESTful API 方式检索，查询结果以 JSON 格式响应，文中示例数据见 [这里](http://es.fanhaobai.com)。有关 Elasticsearch 详细使用说明，见  [官方文档](https://elasticsearch.cn/book/elasticsearch_definitive_guide_2.x/)。
 
 ## Url
 
-检索 url 中需包含 **索引名**，`_search`为查询关键字。例如`http://es.d.ziroom.com/room/_search`的 room 为索引名，此时表示无任何条件检索，检索结果为：
+检索 url 中需包含 **索引名**，`_search`为查询关键字。例如 [http://es.fanhaobai.com/rooms/_search](http://es.fanhaobai.com/rooms/_search) 的 rooms 为索引名，此时表示无任何条件检索，检索结果为：
 
 ```JS
-GET /room/_search
+GET /rooms/_search
 
 {
    "took": 6,
@@ -28,7 +28,7 @@ GET /room/_search
       "max_score": 1,
       "hits": [
          {
-            "_index": "room",
+            "_index": "rooms",
             "_type": "room_info",
             "_id": "3",
             "_score": 1,
@@ -73,7 +73,7 @@ GET /room/_search
 我们可以直接在 get 请求时的 url 后追加`q=`查询参数，这种方法常被称作 query string 搜索，因为我们像传递 url 参数一样去传递查询语句。例如查询小区 id 为 1111027374551 的房源信息：
 
 ```JS
-GET /room/_search?q=resblockId:1111027374551
+GET /rooms/_search?q=resblockId:1111027374551
 
 //查询结果,无关信息已省略
 {
@@ -96,7 +96,7 @@ GET /room/_search?q=resblockId:1111027374551
 DSL 查询以 JSON 请求体的形式出现，它允许构建更加复杂、强大的查询。DSL 方式查询上述 query string 查询条件则为：
 
 ```JS
-POST /room/_search
+POST /rooms/_search
 
 {
    "query": {
@@ -132,7 +132,7 @@ match_all 查询简单的匹配所有文档。在没有指定查询方式时，�
 
 ```SQL
 -- SQL表述
-SELECT * FROM room
+SELECT * FROM rooms
 ```
 
 match_all 查询为：
@@ -147,7 +147,7 @@ match 查询为全文搜索，类似于 SQL 的 LIKE 查询。查询小区名中
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE resblockName LIKE '%嘉%'
+SELECT * FROM rooms WHERE resblockName LIKE '%嘉%'
 ```
 
 match 查询为：
@@ -194,7 +194,7 @@ range 查询能检索出那些落在指定区间内的文档，类似于 SQL 的
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE price BETWEEN 2000 AND 2500 AND price != 2000
+SELECT * FROM rooms WHERE price BETWEEN 2000 AND 2500 AND price != 2000
 ```
 
 range 查询为：
@@ -216,7 +216,7 @@ term 查询用于精确值匹配，可能是数字、时间、布尔。例如查
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE houseId = 1087599828743
+SELECT * FROM rooms WHERE houseId = 1087599828743
 ```
 
 term 查询为：
@@ -231,7 +231,7 @@ terms 查询同 term 查询，但它允许指定多值进行匹配，类似于 S
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE houseId IN (1087599828743, 1087817932342)
+SELECT * FROM rooms WHERE houseId IN (1087599828743, 1087817932342)
 ```
 
 terms 查询为：
@@ -248,7 +248,7 @@ exists 查询和 missing 查询被用于查找那些指定字段中有值和无�
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE price IS NOT NULL
+SELECT * FROM rooms WHERE price IS NOT NULL
 ```
 exists 查询为：
 
@@ -271,7 +271,7 @@ exists 查询为：
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE (resblockName LIKE '%嘉%' OR houseId = 1087599828743) AND (cityCode = 110000)
+SELECT * FROM rooms WHERE (resblockName LIKE '%嘉%' OR houseId = 1087599828743) AND (cityCode = 110000)
 ```
 
 bool 查询为：
@@ -351,7 +351,7 @@ constant_score 查询将一个不变的常量评分应用于所有匹配的文�
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE resblockId = "1111027377528"
+SELECT * FROM rooms WHERE resblockId = "1111027377528"
 ```
 
 term 搜索为：
@@ -368,7 +368,7 @@ terms 搜索使用方式和 term 基本一致，而 terms 是搜索字段多值�
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE bizcircleCode IN (18335711, 611100314)
+SELECT * FROM rooms WHERE bizcircleCode IN (18335711, 611100314)
 ```
 
 terms搜索为：
@@ -383,7 +383,7 @@ terms搜索为：
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE size BETWEEN 10 AND 25
+SELECT * FROM rooms WHERE size BETWEEN 10 AND 25
 ```
 
 range 搜索为：
@@ -418,7 +418,7 @@ exists 和 missing 搜索是针对某些字段值存在和缺失的查询。查�
 
 ```SQL
 -- SQL表述
-SELECT * FROM room WHERE size IS NOT NULL
+SELECT * FROM rooms WHERE size IS NOT NULL
 ```
 
 exists 搜索为：
@@ -448,7 +448,7 @@ bool 过滤器的组成部分，同 bool 查询一致：
 类似于如下 SQL 查询条件：
 
 ```SQL
-SELECT * FROM room WHERE (bizcircleCode = 18335711 AND price BETWEEN 2000 AND 2500) OR (bizcircleCode = 611100314 AND price >= 2500)
+SELECT * FROM rooms WHERE (bizcircleCode = 18335711 AND price BETWEEN 2000 AND 2500) OR (bizcircleCode = 611100314 AND price >= 2500)
 ```
 
 使用 bool 过滤器实现为：
