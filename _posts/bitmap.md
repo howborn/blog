@@ -7,7 +7,7 @@ categories:
 - 算法
 ---
 
-> [伯乐专栏 玻璃猫](https://mp.weixin.qq.com/s?__biz=MjM5OTA1MDUyMA==&mid=2655438893&idx=2&sn=42383086a358b718d7de569c42b5fbf8&chksm=bd73045a8a048d4c4237d362d7007889740f4b75de565325ee28aeba183380e3e03d1dce37b8&mpshare=1&scene=23&srcid=0817azlyj8TR6xsyxW0KNolG##)
+> 转自 [伯乐专栏 玻璃猫](https://mp.weixin.qq.com/s?__biz=MjM5OTA1MDUyMA==&mid=2655438893&idx=2&sn=42383086a358b718d7de569c42b5fbf8&chksm=bd73045a8a048d4c4237d362d7007889740f4b75de565325ee28aeba183380e3e03d1dce37b8&mpshare=1&scene=23&srcid=0817azlyj8TR6xsyxW0KNolG##)
 
 本文的灵感来源于京东金融数据部张洪雨同学的项目经历，感谢这位大神的技术分享。
 
@@ -97,6 +97,7 @@ bitmap 不仅方便查询，还可以去除掉重复的整型数。
 
 {% asset_img 3c423c70-2ed7-4cc4-a6fa-ce56bf285a5b.jpg %}
 
+
 {% asset_img 63f0f0a2-22e4-49dd-bcec-47e43fc69787.jpg %}
 
 {% asset_img 1da4242d-018f-4cf4-82c3-e3421b4cf003.jpg %}
@@ -113,7 +114,7 @@ bitmap 不仅方便查询，还可以去除掉重复的整型数。
 
 {% asset_img 97c98774-03b3-47ed-852c-71d1a546a65c.jpg %}
 
-{% asset_Img d14eff84-5eb1-4268-87ae-4776c66af4a5.jpg %}
+{% asset_img d14eff84-5eb1-4268-87ae-4776c66af4a5.jpg %}
 
 {% asset_img 1605c694-bf55-4500-9531-9832df13b082.jpg %}
 
