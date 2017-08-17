@@ -1,6 +1,6 @@
 ---
 title: 漫画：什么是 Bitmap 算法？
-date: 2017-08-17 00:10:42
+date: 2017-08-16 23:10:42
 tags:
 - Bitmap
 categories:
@@ -9,6 +9,7 @@ categories:
 
 > [伯乐专栏 玻璃猫](https://mp.weixin.qq.com/s?__biz=MjM5OTA1MDUyMA==&mid=2655438893&idx=2&sn=42383086a358b718d7de569c42b5fbf8&chksm=bd73045a8a048d4c4237d362d7007889740f4b75de565325ee28aeba183380e3e03d1dce37b8&mpshare=1&scene=23&srcid=0817azlyj8TR6xsyxW0KNolG##)
 
+本文的灵感来源于京东金融数据部张洪雨同学的项目经历，感谢这位大神的技术分享。
 
 {% asset_img e897a05e-90c5-442f-8700-b07650c5bb79.png %}<!--more-->
 
@@ -90,17 +91,17 @@ bitmap 不仅方便查询，还可以去除掉重复的整型数。
 
 2.让每一个标签存储包含此标签的所有用户 ID，每一个标签都是一个独立的 bitmap。
 
-![img](http://mmbiz.qpic.cn/mmbiz_png/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8lKWgcehrkBuvqDc36Utnk1G0YPc96hLqH07O5RR85Rbn4657CU0Lfg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+{% asset_img 1dbec168-cbf6-4b42-bb56-ca143f559d06.jpg %}
 
 3.这样，实现用户的去重和查询统计，就变得一目了然。
 
-![img](http://mmbiz.qpic.cn/mmbiz_png/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8rPmoIBL7u7zeOELWW3qyyB8qJvHavlgtv0sNUNToWUz2KJCicopw3Mw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+{% asset_img 3c423c70-2ed7-4cc4-a6fa-ce56bf285a5b.jpg %}
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8ib9yxiaOicboy0NeniautjppllOD0p6JJUfFKib3Wq4z4Pp1JPAic0u9d2OA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
-
-{% asset_img a9997194-b4d8-4cf5-bb3e-33a68229729b.jpg %}
+{% asset_img 63f0f0a2-22e4-49dd-bcec-47e43fc69787.jpg %}
 
 {% asset_img 1da4242d-018f-4cf4-82c3-e3421b4cf003.jpg %}
+
+{% asset_img a9997194-b4d8-4cf5-bb3e-33a68229729b.jpg %}
 
 1.如何查找使用苹果手机的程序员用户？
 
@@ -110,21 +111,17 @@ bitmap 不仅方便查询，还可以去除掉重复的整型数。
 
 {% asset_img 45ef8692-b1d3-4b4b-a6ed-dbe105fb3f97.png %}
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8jJImp5SyxWa9uGrIP4ZdvY4zhib7FutyXzAzGdicGq1lsnDPWUibmWBrw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+{% asset_img 97c98774-03b3-47ed-852c-71d1a546a65c.jpg %}
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8Ej9eeJUrSzcx2ABtCjUWZOR3ls8Wrr3ZueJI3JbdvXzrqqBHrFrI1Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+{% asset_Img d14eff84-5eb1-4268-87ae-4776c66af4a5.jpg %}
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8NCMyicpRraPGuPUoA7uqxzfWCGCYchtE929R0fjltqBJWmFDwdibicRBw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+{% asset_img 1605c694-bf55-4500-9531-9832df13b082.jpg %}
 
-![img](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
+{% asset_img 24836d0b-efb2-450f-9307-d078722e2c72.jpg %}
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8vwqva08sLaDicgiaQsHhtiaRpIkyEFCfVSnuyAyILELPWUV2LfrBgl8cA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+{% asset_img e72e268a-facd-4480-85be-c779db24ee74.jpg %}
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/NtO5sialJZGoJyK40iarFL0JB0ReyeO5R8wMhr0IZlYNugSU9vVESJVwd55rYlGZsNp86UVbhia1GeTRiaAuH5DwLA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
-
-[说明]()：
-* 本文的灵感来源于京东金融数据部张洪雨同学的项目经历，感谢这位大神的技术分享。
-* 该项目最初的技术选型并非 MySQL，而是内存数据库 hana。本文为了便于理解，把最初的存储方案写成了 MySQL 数据库。
+[说明]()：该项目最初的技术选型并非 MySQL，而是内存数据库 hana。本文为了便于理解，把最初的存储方案写成了 MySQL 数据库。
 
 <strong>漫画算法系列 [»]()</strong>
 
