@@ -14,7 +14,7 @@ categories:
 
 ## pjax原理
 
-pjax 的实现是利用 HTML5 的 pushState() 和 replaceState() 新特性和 ajax 结合实现。pushState() 和 replaceState() 用来操作 State（状态）对象，即可添加和修改历史记录，进而更新 url 和提供前进、后退操作；ajax 实现数据的异步加载进而局部刷新。
+pjax 的实现是利用 HTML5 的 pushState() 和 replaceState() 新特性和 ajax 结合实现。pushState() 和 replaceState() 用来操作 State（状态）对象，即可添加和修改历史记录，进而更新 url 和提供前进、后退操作 ajax 实现数据的异步加载进而局部刷新。
 
 ### 工作流程图
 

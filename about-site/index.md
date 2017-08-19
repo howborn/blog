@@ -8,6 +8,7 @@ date: 2016-12-11 13:12:10
 在这里列出本站主要涉及的技术。
 
 # 更新说明
+* 2017.08.18：增加使用 RabbitMQ，[见这里](http://mq.fanhaobai.com)。
 * 2017.08.12：修改 Nginx [配置](#Nginx配置)。
 * 2017.08.11：增加使用 Elasticsearch，[见这里](http://es.fanhaobai.com)。
 * 2017.06.17：使用 GoAccess 分析日志，[见这里](https://www.fanhaobai.com/go-access.html)。
@@ -28,7 +29,7 @@ date: 2016-12-11 13:12:10
 
 # 所用技术
 
-<div class="row"><div class="col m3 s4">![](/about-site/index/O_tDRRtwdgwUJGleCTb-fJvl.png)</div><div class="col m3 s4">![](/about-site/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](/about-site/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](/about-site/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](/about-site/index/vvZnp6Cdl4KDz02shzLvJsfN.png)</div><div class="col m3 s4">![](/about-site/index/C6ADglLNRxwYUdhfid1qzI1u.jpg)</div><div class="col m3 s4">![](/about-site/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](/about-site/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](/about-site/index/ds31b8RAFgTPJ65AAY7esGe2.jpg)</div><div class="col m3 s4">![](/about-site/index/0f32aeff3ccf8e5dc3d196ee8fd4.png)</div></div>
+<div class="row"><div class="col m3 s4">![](/about-site/index/O_tDRRtwdgwUJGleCTb-fJvl.png)</div><div class="col m3 s4">![](/about-site/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](/about-site/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](/about-site/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](/about-site/index/vvZnp6Cdl4KDz02shzLvJsfN.png)</div><div class="col m3 s4">![](/about-site/index/C6ADglLNRxwYUdhfid1qzI1u.jpg)</div><div class="col m3 s4">![](/about-site/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](/about-site/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](/about-site/index/ds31b8RAFgTPJ65AAY7esGe2.jpg)</div><div class="col m3 s4">![](/about-site/index/0f32aeff3ccf8e5dc3d196ee8fd4.png)</div><div class="col m3 s4">![](/about-site/index/019c7ef7-d0a1-4585-ab37-02f850954bcb.jpg)</div></div>
 
 # 配置信息
 
