@@ -154,7 +154,7 @@ public static function validate($id)
 * 补全上步的新号码为 18 位，可以在原号码末尾直接追加 X；
 * 计算新号码的校验位并替换原校验位值；
 
-16 位身份证转化为 18 位的代码如下：
+15 位身份证转化为 18 位的代码如下：
 
 ```PHP
 public static function format18($id)
