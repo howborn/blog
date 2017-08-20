@@ -17,8 +17,9 @@ date: 2016-08-10
 
 * 熟悉：PHP, HTML, JS, C
 * 了解：Shell, Python, Node.js
-* 数据库：MySQL, MongoDB, PostgreSQL
+* 数据库：MySQL, MongoDB
 * 缓存：Redis
+* 搜索引擎：Solr, Elasticsearch
 
 点击 [这里](/project/)，查看更多信息。
 ## 版权说明

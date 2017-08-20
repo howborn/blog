@@ -1,5 +1,5 @@
 ---
-title: 漫画：什么是 Bitmap 算法？
+title: 漫画：什么是Bitmap算法？
 date: 2017-08-16 23:10:42
 tags:
 - Bitmap
