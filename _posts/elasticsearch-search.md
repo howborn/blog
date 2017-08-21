@@ -474,7 +474,7 @@ SELECT * FROM rooms WHERE (bizcircleCode = 18335711 AND price BETWEEN 2000 AND 2
 
 ### 聚合
 
-待补充。
+ 该部分较复杂，已单独使用文章进行说明，见 [Elasticsearch检索 — 聚合和LBS](https://www.fanhaobai.com/2017/08/elasticsearch-advanced-search.html#聚合) 部分。
 
 ### _source子句
 
