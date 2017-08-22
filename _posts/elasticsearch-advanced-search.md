@@ -7,7 +7,7 @@ categories:
 - Lucene
 ---
 
-上一篇文章 [Elasticsearch检索实战](https://www.fanhaobai.com/2017/08/elasticsearch-search.html) 已经讲述了 Elasticsearch 基本检索使用，已满足大部分检索场景，但是某些特定项目中会使用到 [聚合]() 和 [LBS]() 这类高级检索，以满足检索需求。这里将讲述 Elasticsearch 的聚合和 LBS 检索使用方法。
+文章 [Elasticsearch检索实战](https://www.fanhaobai.com/2017/08/elasticsearch-search.html) 已经讲述了 Elasticsearch 基本检索使用，已满足大部分检索场景，但是某些特定项目中会使用到 [聚合]() 和 [LBS]() 这类高级检索，以满足检索需求。这里将讲述 Elasticsearch 的聚合和 LBS 检索使用方法。
 
 {% asset_img d758139c-86ce-4472-89e8-7eb385cf7991.jpg %}<!--more-->
 
@@ -45,7 +45,7 @@ SELECT COUNT(field_name) FROM table GROUP BY field_name
 | 指标   | min              | 桶内对该字段值求最小值                 |
 | 指标   | max              | 桶内对该字段值求最大值                 |
 | 指标   | avg              | 桶内对该字段值求平均数                 |
-| 指标   | cardinality（ 基数） | 桶内对该字段不同值的数量（ *distinct* 值） |
+| 指标   | cardinality（ 基数） | 桶内对该字段不同值的数量（*distinct* 值） |
 
 #### 简单聚合
 
@@ -291,7 +291,7 @@ SELECT bizcircleCode, GROUP_CONCAT(price) FROM rooms WHERE cityCode = 110000 GRO
 
 从 Elasticsearch 5.0 之后，增加了一个新特性 field collapsing（字段折叠），字段折叠就是特定字段进行合并并去重，然后返回结果集，该功也能实现 agg top_hits 的聚合效果。
 
-例如， [增加文档信息](#增加文档信息) 的获取西二旗每个小区最便宜的房源信息，可以实现为：
+例如， [增加文档信息](#增加文档信息) 部分的获取西二旗每个小区最便宜的房源信息，可以实现为：
 
 ```Js
 {
@@ -439,7 +439,7 @@ LBS 检索的结果为：
 
 ```Js
 {
-  hits": [
+  "hits": [
     {
       "_index": "rooms",
       "_source": {
@@ -464,4 +464,4 @@ LBS 检索的结果为：
 
 ## 总结
 
-本文讲述了使用 Elasticsearch 进行 [聚合]() 和 [LBS]() 这类高级检索的方法，尽管文中只是以示例形式进行说明，会存在很多不全面的地方，还是希望对你我学习 Elasticsearch 能有所帮助。
+本文讲述了使用 Elasticsearch 进行 [聚合]() 和 [LBS]() 检索，尽管文中只是以示例形式进行说明，会存在很多不全面的地方，还是希望对你我学习 Elasticsearch 能有所帮助。
