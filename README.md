@@ -1,5 +1,11 @@
 # 我的博客
 
-![](https://www.fanhaobai.com/2016/02/win10-vm-network/ecF7lF_6lahMhFJAh94XBdmV.png)
+## 预览
+![](https://www.fanhaobai.com/view.png)
+
+## 文章.md
+
+本站所有文章的.md文件，请移步[这里](https://github.com/fan-haobai/blog/tree/master/_posts)。
+
 
 [樊浩柏'Blog](https://www.fanhaobai.com)
