@@ -1,7 +1,7 @@
 # 我的博客
 
 ## 预览
-![](https://www.fanhaobai.com/images/view.png)
+![](https://github.com/fan-haobai/blog/blob/master/images/view.png)
 
 ## 文章.md
 
