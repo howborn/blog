@@ -1,7 +1,7 @@
 # 我的博客
 
 ## 预览
-![](https://www.fanhaobai.com/view.png)
+![](https://www.fanhaobai.com/images/view.png)
 
 ## 文章.md
 
