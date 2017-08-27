@@ -1,5 +1,5 @@
 ---
-title: Gearman的基本使用
+title: Gearman的安装和使用
 date: 2017-08-27 10:42:43
 tags:
 - Gearman
@@ -324,4 +324,4 @@ ls	    0	0	0
 
 虽然 Gearman 出现的比较早，但是其支持跨语言调用特性，以及负载均衡的方式委派任务，在分布式系统下，可以更加合理高效地利用系统资源。在一些大型的密集型、异步后台系统也已有成功部署的案例，PHP 借助 Gearman 也能实现多任务处理方案。
 
-> 推荐文章：https://www.ibm.com/developerworks/cn/opensource/os-php-gearman/index.html
+> 推荐：[用 Gearman 分发 PHP 应用程序的工作负载](https://www.ibm.com/developerworks/cn/opensource/os-php-gearman/index.html)
