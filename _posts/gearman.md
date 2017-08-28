@@ -13,7 +13,7 @@ categories:
 
 ## 认识Gearman
 
-Gearman 只是一个分布式程序调用框架，其主要由三个角色组成，并通过暴露给使用方的 API 来完成任务委派和执行。 
+Gearman 只是一个分布式程序调用框架，其主要由三部分组成，并通过暴露给使用方的 API 来完成任务委派和执行。 
 
 ### 组成角色
 
@@ -21,6 +21,10 @@ Gearman 中存在三个重要的角色，分别为 Client、Job Server、Worker�
 * Client：任务的发起者（可以是 C、PHP、Java、Perl、MySQL 等）；
 * Job Server：任务调度者，负责将 Client 委派的任务转发给相应的 Worker（gearmand 进程管理）；
 * Worker：任务的实际执行者（可以是 C、PHP、Java、Perl 等）；
+
+Client、Job Server、Worker 典型的部署方案，如下图：
+
+![](/2017/08/gearman/441bacc1-54d1-4ac8-9aac-c67760ea97ff.png)
 
 那么，Gearman 是如何利用这三者进行任务的调度呢？
 
@@ -37,11 +41,13 @@ Gearman 中存在三个重要的角色，分别为 Client、Job Server、Worker�
 | 功能描述        | 方法（GearmanClient 类中）                     |
 | ----------- | ---------------------------------------- |
 | 注册一个 Client | addServer()，单个<br>addServers()，多个        |
-| 发起单个任务      | doNormal()，阻塞会等待<br>doBackground()，非阻塞<br>doLow()，低优先级任务<br>doHigh()，高优先级任务 |
-| 添加多个并行任务    | addTask()、addTaskBackground()<br>addTaskHigh()、addTaskHighBackground()<br>addTaskLow()、addTaskLowBackground() |
-| 发起并行任务列表任务  | runTasks()                               |
+| 发起一个 job      | doNormal()，阻塞会等待<br>doBackground()，非阻塞<br>doLow()，低优先级任务<br>doHigh()，高优先级任务 |
+| 添加 task（一组 job）| addTask()、addTaskBackground()<br>addTaskHigh()、addTaskHighBackground()<br>addTaskLow()、addTaskLowBackground() |
+| 发起 task  | runTasks()                               |
 | 获取最新操作的结果   | returnCode()                             |
 | 注册事件回调      | setCompleteCallback()、setFailCallback()  |
+
+> 说明：job 是单个任务，每个任务只会在一个 Worker 上执行，而 task 是一组 job，其子任务会在多个 Worker 上并行执行。
 
 * Worker 端常用 [API](http://php.net/manual/zh/class.gearmanworker.php) 列表：
 
@@ -57,7 +63,9 @@ Gearman 中存在三个重要的角色，分别为 Client、Job Server、Worker�
 | 功能描述         | 方法（GearmanJob 类中）                   |
 | ------------ | ----------------------------------- |
 | 获取任务携带的序列化数据 | workload()<br>workloadSize()，获取数据大小 |
-| 向运行的任务发送数据     | sendData()                                 |
+| 向运行的任务发送数据   | sendData()                          |
+
+> 说明：Gearman 各端之间数据交互时，数据需要进行序列化处理。
 
 ## 安装Gearman
 
@@ -145,7 +153,7 @@ libgearman version => 1.1.17
 
 ## 运行Gearman
 
-运行 Gearman ，实际上我们需要使用到 Client、 Job、Worker 这三个角色。Client 和  Worker 角色对应着 gearman 端，使用 PHP 时以扩展形式存在，而 Job 则对应着 gearmand 端。 
+运行 Gearman ，实际上我们需要使用到 Client、 Job、Worker 这三个角色。gearman 端实现了 Client 和  Worker 角色的功能 ，使用 PHP 时以扩展形式存在，gearmand 端则实现了 Job 角色的功能。 
 
 ### 启动Job
 
@@ -200,7 +208,7 @@ drwxr-xr-x. 21 www www 4.0K Jun 21 23:52 www
 
 ## PHP使用Gearman
 
-当启动 Job 服务后，PHP 就可以通过 Gearman 扩展，创建任务和绑定任务处理回调了。PHP 调用 Gearman 的 API 见 [外部API](#外部API) 部分。
+当启动 Job 服务后，PHP 就可以通过 Gearman 扩展，创建任务和绑定任务处理回调了。PHP 调用 Gearman 的 API 见 [外部API](#外部API) 部分，更多官方示例见 [这里](http://gearman.org/examples/)。
 
 ### 同步
 
@@ -213,9 +221,9 @@ Client 工作在同步阻塞模式，Client 发起任务后会等待至 Worker �
 $client= new GearmanClient();
 $client->addServer();
 
-$msg = 'Hello!';
+$msg = 'Hello World!';
 echo "Sending $msg\n";
-echo "Success:", $client->doNormal("reserve", $msg), "\n";
+echo "Success: ", $client->doNormal("reverse", $msg), "\n";
 ```
 
 * Worker 端
@@ -224,7 +232,7 @@ echo "Success:", $client->doNormal("reserve", $msg), "\n";
 //Worker.php
 $worker = new GearmanWorker();
 $worker->addServer();
-$worker->addFunction("reserve", "reverse_fn");
+$worker->addFunction("reverse", "reverse_fn");
 echo "Waiting for job...\n";
 while ($worker->work());
 
@@ -241,33 +249,36 @@ function reverse_fn($job) {
 
 ```PHP
 //Client
-Sending Hello!
-Success:!olleH
+Sending Hello World!
+Success: !dlroW olleH
 
 //Worker
 Waiting for job...
-Workload: Hello!
-Result: !olleH
+Workload: Hello World!
+Result: !dlroW olleH
 ```
+三端的交互流程图，如下：
+
+![](/2017/08/gearman/f960fa25-547c-4003-995a-f08e6b9d60ad.png)
 
 ### 异步
 
-异步方式时，Client 端不会产生 IO 阻塞，能实现异步执行，在实际应用中大多采用该方式。
+异步方式时，Client 端不会产生 IO 阻塞，能实现异步执行，在实际应用中可以结合 fastcgi_finish_request() 函数或者 MQ 来异步使用。
 
 * Client 端
 
 ```PHP
 $client= new GearmanClient();
 $client->addServer();
-$client->setDataCallback("reserve_data");
+$client->setDataCallback("reverse_data");
 
-$msg = 'Hello!';
+$msg = 'Hello World!';
 echo "Sending $msg\n";
-$task = $client->addTask("reserve", $msg);
+$task = $client->addTaskBackground("reverse", $msg);
 $client->runTasks();
 
-function reserve_data($task) {
-    echo "Data:" . $task->data() . "\n";
+function reverse_data($task) {
+    echo "Data: " . $task->data() . "\n";
 }
 ```
 
@@ -276,7 +287,7 @@ function reserve_data($task) {
 ```PHP
 $worker = new GearmanWorker();
 $worker->addServer();
-$worker->addFunction("reserve", "reverse_fn");
+$worker->addFunction("reverse", "reverse_fn");
 echo "Waiting for job...\n";
 while ($worker->work());
 
@@ -295,12 +306,12 @@ function reverse_fn($job)
 
 ```PHP
 //Client
-Sending Hello!
-Data:!olleH
+Sending Hello World!
+Data: !dlroW olleH
 //Worker
 Waiting for job...
-Workload: Hello!
-Result: !olleH
+Workload: Hello World!
+Result: !dlroW olleH
 ```
 
 ## Gearman的管理工具
@@ -322,6 +333,6 @@ ls	    0	0	0
 
 ## 总结
 
-虽然 Gearman 出现的比较早，但是其支持跨语言调用特性，以及负载均衡的方式委派任务，在分布式系统下，可以更加合理高效地利用系统资源。在一些大型的密集型、异步后台系统也已有成功部署的案例，PHP 借助 Gearman 也能实现多任务处理方案。
+虽然 Gearman 出现的比较早，但是其支持跨语言调用特性，以及负载均衡的方式委派任务，在分布式系统下，可以更加合理高效地利用系统资源。在一些大型的密集型、异步后台系统也已有成功部署的案例（数据抓取，库存数据更新、邮件和短信服务等），另 PHP 借助 Gearman 也能实现多任务处理方案。
 
 > 推荐：[用 Gearman 分发 PHP 应用程序的工作负载](https://www.ibm.com/developerworks/cn/opensource/os-php-gearman/index.html)
