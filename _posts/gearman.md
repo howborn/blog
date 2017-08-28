@@ -38,16 +38,16 @@ Client、Job Server、Worker 典型的部署方案，如下图：
 
 * Client 端常用 [API](http://php.net/manual/zh/class.gearmanclient.php) 列表：
 
-| 功能描述        | 方法（GearmanClient 类中）                     |
-| ----------- | ---------------------------------------- |
-| 注册一个 Client | addServer()，单个<br>addServers()，多个        |
-| 发起一个 job      | doNormal()，阻塞会等待<br>doBackground()，非阻塞<br>doLow()，低优先级任务<br>doHigh()，高优先级任务 |
-| 添加 task（一组 job）| addTask()、addTaskBackground()<br>addTaskHigh()、addTaskHighBackground()<br>addTaskLow()、addTaskLowBackground() |
-| 发起 task  | runTasks()                               |
-| 获取最新操作的结果   | returnCode()                             |
-| 注册事件回调      | setCompleteCallback()、setFailCallback()  |
+| 功能描述            | 方法（GearmanClient 类中）                     |
+| --------------- | ---------------------------------------- |
+| 注册一个 Client     | addServer()，单个<br>addServers()，多个        |
+| 发起一个 job        | doNormal()，阻塞会等待<br>doBackground()，非阻塞<br>doLow()，低优先级任务<br>doHigh()，高优先级任务 |
+| 添加 task（一组 job） | addTask()、addTaskBackground()<br>addTaskHigh()、addTaskHighBackground()<br>addTaskLow()、addTaskLowBackground() |
+| 发起 task         | runTasks()                               |
+| 获取最新操作的结果       | returnCode()                             |
+| 注册事件回调          | setCompleteCallback()、setFailCallback()  |
 
-> 说明：job 是单个任务，每个任务只会在一个 Worker 上执行，而 task 是一组 job，其子任务会在多个 Worker 上并行执行。
+> 说明：job 是单个任务，每个任务只会在一个 Worker 上执行，而 task 是一组 job，其多个子任务会分配到多个 Worker 上并行执行。
 
 * Worker 端常用 [API](http://php.net/manual/zh/class.gearmanworker.php) 列表：
 
@@ -275,6 +275,9 @@ $client->setDataCallback("reverse_data");
 $msg = 'Hello World!';
 echo "Sending $msg\n";
 $task = $client->addTaskBackground("reverse", $msg);
+$msg = 'I am Gearman!';
+echo "Sending $msg\n";
+$task = $client->addTaskBackground("reverse", $msg);
 $client->runTasks();
 
 function reverse_data($task) {
@@ -308,10 +311,14 @@ function reverse_fn($job)
 //Client
 Sending Hello World!
 Data: !dlroW olleH
-//Worker
+//Worker1
 Waiting for job...
 Workload: Hello World!
 Result: !dlroW olleH
+//Worker2
+Waiting for job...
+Workload: I am Gearman!
+Result: !namraeG ma I
 ```
 
 ## Gearman的管理工具
