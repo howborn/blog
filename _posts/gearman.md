@@ -208,7 +208,7 @@ drwxr-xr-x. 21 www www 4.0K Jun 21 23:52 www
 
 ## PHP使用Gearman
 
-当启动 Job 服务后，PHP 就可以通过 Gearman 扩展，创建任务和绑定任务处理回调了。PHP 调用 Gearman 的 API 见 [外部API](#外部API) 部分，更多官方示例见 [这里](http://gearman.org/examples/)。
+当启动 Job 服务后，PHP 就可以通过 Gearman 扩展，创建任务和绑定任务处理回调了。PHP 调用 Gearman 的 API 见 [外部 API](#外部API) 部分，更多官方示例见 [这里](http://gearman.org/examples/)。
 
 ### 同步
 
