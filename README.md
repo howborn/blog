@@ -6,6 +6,6 @@
 
 ![](https://github.com/fan-haobai/blog/blob/master/images/view.png)
 
-## 文章.md
+## 文章
 
-本站所有文章的.md文件，请移步 [这里](https://github.com/fan-haobai/blog/tree/master/_posts)。
+本站所有文章的 markdown 文件，请移步 [这里](https://github.com/fan-haobai/blog/tree/master/_posts)。
