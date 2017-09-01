@@ -1,5 +1,5 @@
 ---
-title: Redis使用管道提升性能
+title: 使用Redis管道提升性能
 date: 2017-08-31 14:10:35
 tags:
 - Redis
@@ -8,19 +8,24 @@ categories:
 - Redis
 ---
 
-Redis 的 [管道](https://redis.io/topics/pipelining) （pipelining）是用来打包多条无关命令，减少多个命令分别执行带来的网络交互时间，在一些批量操作数据的场景，使用管道可以显著提升 Redis 的读写性能。
+Redis 的 [管道](https://redis.io/topics/pipelining) （pipelining）是用来打包多条无关命令批量执行，以减少多个命令分别执行带来的网络交互时间。在一些批量操作数据的场景，使用管道可以显著提升 Redis 的读写性能。
 
 ![](/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)<!--more-->
 
 ## 原理演示
 
-Redis 的管道实质就是命令打包，多次网络交互减少到单次。我们使用 nc 命令来直观感受下 Redis 管道的使用过程：
+Redis 的管道实质就是命令打包批量执行，多次网络交互减少到单次。使用管道和不使用管道时的交互过程如下：
+
+![](/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)
+
+我们使用 nc 命令来直观感受下 Redis 管道的使用过程：
 
 ```Bash
 # 安装nc命令
 $ yum install nc
 # nc打包多个命令
 $ (printf "PING\r\nPING\r\nPING\r\n") | nc localhost 6379
+# 响应
 +PONG
 +PONG
 +PONG
@@ -82,7 +87,7 @@ echo '时间：', nowTime() - $start, 'ms', PHP_EOL;
 时间：39ms
 ```
 
-执行所用时间：39ms
+执行所用时间：[39ms]()
 
 
 ### 使用管道
@@ -93,7 +98,8 @@ echo '时间：', nowTime() - $start, 'ms', PHP_EOL;
 $start = nowTime();
 $redis->multi(Redis::PIPELINE);
 foreach (range(1, 1000) as $id) {
-    $redis->hgetAll($keyPrex . $id);   //返回资源id相同的socket资源，并未执行命令
+    //返回资源id相同的socket资源，并未执行命令
+    $redis->hgetAll($keyPrex.$id);  
 }
 $user = $redis->exec();
 echo '时间：', nowTime() - $start, 'ms', PHP_EOL;
@@ -101,7 +107,25 @@ echo '时间：', nowTime() - $start, 'ms', PHP_EOL;
 时间：6ms
 ```
 
-使用管道后，执行时间显著地减少为：6ms
+使用管道后，执行时间显著地减少为：[6ms]()。使用 tcpdump 抓取打包后的命令如下：
+
+```Tcp
+10:45:03.029049 IP localhost.58176 > localhost.6379: Flags [P.], seq 2255478840:2255479211, ack 3144685411, win 342, options [nop,nop,TS val 17640474 ecr 17640474], length 371
+E..../@.@.o..........@...o.8.p.c...V.......
+,.*2
+$7
+HGETALL
+$13
+user:hash:u:1
+*2
+$7
+HGETALL
+$13
+user:hash:u:2
+*2
+$7
+... ...
+``` 
 
 ## 总结
 
