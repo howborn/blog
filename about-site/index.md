@@ -3,9 +3,7 @@ title: 本站特性
 date: 2016-12-11 13:12:10
 ---
 
-本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server，本站的 [博客](https://www.fanhaobai.com) 运行于 NodeJS 环境，本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境，数据库采用开源的 MySQL ，内存缓存服务器采用 Redis 。
-
-在这里列出本站主要涉及的技术。
+本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server。本站的 [博客](https://www.fanhaobai.com) 基于开源的 Hexo 搭建，运行于 NodeJS 环境；本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境；数据库采用开源的 MySQL ，内存缓存服务器采用 Redis 。
 
 # 更新说明
 * 2017.09.02：增加使用 [Gearman](https://www.fanhaobai.com/2017/08/gearman.html) 分布式任务系统。
@@ -21,16 +19,22 @@ date: 2016-12-11 13:12:10
 * 2017.01.20：增加使用 MongoDB，运行于 Docker 环境，[见这里](https://www.fanhaobai.com/2017/01/mongo-docker-install.html)。
 * 2017.01.18：增加使用 [Docker](https://www.fanhaobai.com/post/docker-install.html)。
 * 2017.01.16：将 Nginx 配置增加 [防盗链]()。
-* 2017.01.14：统一流量入口，将 Nginx 配置增加 [fanhaobai.com]() 重定向到 [www.fanhaobai.com](https://www.fanhaobai.com)。
+* 2017.01.14：统一流量入口，Nginx 配置主站域名重定向到 [www.fanhaobai.com](https://www.fanhaobai.com)。
 * 2017.01.12：增加使用 [Robots](https://www.fanhaobai.com/2017/01/robots.html)，协议文件 [robots.txt](http://www.fanhaobai.com/robots.txt) ，网站地图文件  [XML格式](http://www.fanhaobai.com/sitemap.xml)。
 * 2016.12.13：增加多少评论的用户头像，将 HTTP 代理为 HTTPS， [见这里](https://www.fanhaobai.com/2017/03/install-hexo.html#多说头像HTTPS代理)。
 * 2016.12.11：将主站博客迁移到 [FireKylin](https://www.fanhaobai.com/2016/12/firekylin.html)。
 * 2016.12.08：增加使用 [HTTPS](https://www.fanhaobai.com/2016/12/firekylin.html)。
 * 2016.12.07：增加使用 [NodeJS ](https://www.fanhaobai.com/2016/12/nodejs-install.html)。
 
-# 所用技术
+# 站点导航
 
-<div class="row"><div class="col m3 s4">![](/about-site/index/O_tDRRtwdgwUJGleCTb-fJvl.png)</div><div class="col m3 s4">![](/about-site/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](/about-site/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](/about-site/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](/about-site/index/vvZnp6Cdl4KDz02shzLvJsfN.png)</div><div class="col m3 s4">![](/about-site/index/C6ADglLNRxwYUdhfid1qzI1u.jpg)</div><div class="col m3 s4">![](/about-site/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](/about-site/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](/about-site/index/ds31b8RAFgTPJ65AAY7esGe2.jpg)</div><div class="col m3 s4">![](/about-site/index/0f32aeff3ccf8e5dc3d196ee8fd4.png)</div><div class="col m3 s4">![](/about-site/index/019c7ef7-d0a1-4585-ab37-02f850954bcb.jpg)</div><div class="col m3 s4">![](/about-site/index/67d33f0b-45b1-4f3c-8f4e-c55dff9b4cc8.png)</div></div>
+* 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
+* Wiki 站，[wiki.fanhaobai.com](https://wiki.fanhaobai.com)
+* Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
+* Redis 管理工具 phpRedisAdmin，[admin.fanhaobai.com](https://admin.fanhaobai.com)
+* 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
+* 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
+* 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)
 
 # 配置信息
 

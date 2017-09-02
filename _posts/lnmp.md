@@ -574,3 +574,7 @@ $ git clone https://github.com/rasa/vmware-tools-patches.git
 $ cd vmware-tools-patches
 $ ./patched-open-vm-tools.sh
 ```
+
+**更新 [»]()**
+
+* [已使用 Docker 来部署开发环境](https://hub.docker.com/r/fanhaobai/lnmp/)（2017-08-26）
