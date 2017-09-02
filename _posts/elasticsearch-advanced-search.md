@@ -423,7 +423,7 @@ Elasticsearch 中支持 4 种地理坐标点过滤器，如下表：
 
 ```Js
 {
-  "filter": {              //过滤器
+  "filter": {              //过滤搜索子句
     "geo_distance": {
       "distance": "4km",
       "location": {

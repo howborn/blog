@@ -41,13 +41,13 @@ Client、Job Server、Worker 典型的部署方案，如下图：
 | 功能描述            | 方法（GearmanClient 类中）                     |
 | --------------- | ---------------------------------------- |
 | 注册一个 Client     | addServer()，单个<br>addServers()，多个        |
-| 发起一个 job        | doNormal()，阻塞会等待<br>doBackground()，非阻塞<br>doLow()，低优先级任务<br>doHigh()，高优先级任务 |
-| 添加 task（一组 job） | addTask()、addTaskBackground()<br>addTaskHigh()、addTaskHighBackground()<br>addTaskLow()、addTaskLowBackground() |
-| 发起 task         | runTasks()                               |
-| 获取最新操作的结果       | returnCode()                             |
-| 注册事件回调          | setCompleteCallback()、setFailCallback()  |
+| 发起 Job 任务       | doNormal()，阻塞会等待<br>doBackground()，非阻塞<br>doLow()，低优先级任务<br>doHigh()，高优先级任务 |
+| 添加 Tash（一组 Job）| addTask()、addTaskBackground()<br>addTaskHigh()、addTaskHighBackground()<br>addTaskLow()、addTaskLowBackground() |
+| 发起 Tash 任务      | runTasks()                               |
+| 获取最新操作的结果  | returnCode()                             |
+| 注册事件回调        | setCompleteCallback()、setFailCallback()  |
 
-> 说明：job 是单个任务，每个任务只会在一个 Worker 上执行，而 task 是一组 job，其多个子任务会分配到多个 Worker 上并行执行。
+> 说明：Job 是单个任务，每个任务只会在一个 Worker 上执行，而 Task 是一组 Job，其多个子任务会分配到多个 Worker 上并行执行。
 
 * Worker 端常用 [API](http://php.net/manual/zh/class.gearmanworker.php) 列表：
 
@@ -119,7 +119,7 @@ gearmand 1.1.17
 
 ### 安装PHP扩展
 
-从 PECL 下载最新 [gearman 扩展](http://pecl.php.net/package/gearman)，并解压缩安装：
+从 PECL 下载最新 [gearman 扩展](http://pecl.php.net/package/gearman)（php7 需下载 [最新源码包](https://github.com/wcgallego/pecl-gearman/archive/gearman-2.0.3.tar.gz)），并解压缩安装：
 
 ```Bash
 $ cd /usr/src
@@ -163,6 +163,8 @@ $ mkdir -p /usr/local/var/log
 $ touch /usr/local/var/log/gearmand.log
 $ gearmand -d --log-file=/usr/local/var/log/gearmand.log
 ```
+
+> 如果启动时出现 [Address family not supported by protocol](https://bugs.launchpad.net/gearmand/+bug/1134534) 错误，需要增加`-L 0.0.0.0`参数。
 
 查看启动信息：
 
