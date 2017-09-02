@@ -32,6 +32,8 @@ date: 2016-08-10
 
 ## 版权说明
 
-写这些博客在于记录博主学习和成长过程的点滴，虽然博主觉得自己只是一名知识搬运工，但是相信长期坚持这个习惯也定会受益匪浅。同时，更是希望有更多的人加入这个行列，来创作和分享更多优质的文章。
-
 主站 Blog 托管于 [Github](https://github.com/fan-haobai/blog)，所有文章的 [Markdown 源文件](https://github.com/fan-haobai/blog/tree/master/_posts) 均可以直接查看或下载，除非单独说明外，个人转载本站的原创内容，请遵循「[署名-非商业性使用-相同方式共享](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh)」的创作共享协议。
+
+## 其他
+
+写这些 [博客](https://www.fanhaobai.com/archives/) 在于记录博主学习和成长过程的点滴，相信长期坚持这个习惯定会受益匪浅，也希望更多的人加入这个行列，来创作和分享更多优质的文章。
