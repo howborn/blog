@@ -258,10 +258,22 @@ PhpStorm 中的 Git 工具，使得我们可以更加集中管理代码，推荐
 
 ### Xdebug
 
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/7f7c8948-5e61-4086-b52d-fa9ceab69d3b.png)
 
+PhpStorm 结合 Xdebug 进行远程调试，使得开发和调试变得非常方便，[见这里](https://www.fanhaobai.com/2017/09/xdebug-in-docker.html)。
 
 ### REST Client
+
+REST Client 工具用来调试 API，点击“Tools” >> "Test RESTful Web Service"，如下图所示：
+
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/4bc4c68f-6760-49bf-811d-e055d92de6bb.png)
+
+值得一提的是，REST Client 支持 Xdebug 断点调试，为调试 API 提供了便利。 
+
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/0e835fc8-3fd6-4531-8480-44cd33a83655.png)
 
 <strong>更新 [»]()</strong>
 * [Database](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Database)（2017-08-06）
 * [Git](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Git)（2017-08-06）
+* [Xdebug](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Xdebug)（2017-09-01）
+* [REST Client](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#REST Client)（2017-09-01）
