@@ -8,15 +8,15 @@ categories:
 - PHP
 ---
 
-在开发过程中，使用 PhpStrom 结合 Xdebug 进行代码断点调试，避免了使用 echo()、dump()、print_r() 等函数对变量埋点，同时也能追踪程序执行流程，方便调试代码和发现潜在问题。 博主将开发环境迁入 Docker 后，Xdebug 调试遇到了些问题，所以在这里整理出 Docker 中使用 Xdebug 的方法和注意事项。
+我们经常会使用 PhpStorm 结合 Xdebug 进行代码断点调试，这样能追踪程序执行流程，方便调试代码和发现潜在问题。博主将开发环境迁入 Docker 后，Xdebug 调试遇到了些问题，所以在这里整理出 Docker 中使用 Xdebug 的方法和注意事项。
 
-![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/983d5263-d1d0-453e-a7bf-19bcecbc7096.png)<!--more-->
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/07490b33-a2a3-491d-b325-cf8bfb9c9542.gif)<!--more-->
 
-环境说明：开发和调试环境为本地 Docker 中的 LNMP，IDE 环境为本地 Win10 下的 PhpStrom。这种情况下使用 Xdebug 属于远程调试，IDE 和本地  IP 为 192.168.1.101，Docker 中 LNMP 容器 IP 为 172.17.0.2。
+说明：开发和调试环境为本地 Docker 中的 LNMP，IDE 环境为本地 Win10 下的 PhpStorm。这种情况下 Xdebug 属于远程调试模式，IDE 和本地 IP 为 192.168.1.101，Docker 中 LNMP 容器 IP 为 172.17.0.2。
 
 ## 问题描述
 
-在 Docker 中安装并配置完 Xdebug ，并设置 PhpStrom 中对应的  Debug 参数后，但是 Debug 并不能正常工作。
+在 Docker 中安装并配置完 Xdebug ，并设置 PhpStorm 中对应的  Debug 参数后，但是 Debug 并不能正常工作。
 
 此时，`php.ini`中 Xdebug 配置如下：
 
@@ -25,12 +25,12 @@ xdebug.idekey = phpstorm
 xdebug.remote_enable = on
 xdebug.remote_host = *.*.*.*     //本地ip地址
 xdebug.remote_connect_back = on
-xdebug.remote_port = 9001        //PhpStrom监听本地9001端口
+xdebug.remote_port = 9001        //PhpStorm监听本地9001端口
 xdebug.remote_handler = dbgp
 xdebug.remote_log = /home/tmp/xdebug.log
 ```
 
-开始收集问题详细表述。首先，观察到 PhpStrom 的 Debug 控制台出现状态：
+开始收集问题详细表述。首先，观察到 PhpStorm 的 Debug 控制台出现状态：
 
 ```Bash
 Waiting for incoming connection with ide key ***
@@ -49,7 +49,7 @@ E: Could not connect to client. :-(
 
 ## 分析问题
 
-查看这些问题表述，基本上可以定位为 Xdebug 和 PhpStrom 之间的 [网络通信]() 问题，接下来一步步定位具体问题。
+查看这些问题表述，基本上可以定位为 Xdebug 和 PhpStorm 之间的 [网络通信]() 问题，接下来一步步定位具体问题。
 
 ### 排查本地9001端口
 
@@ -70,7 +70,7 @@ Connected to 192.168.1.101.
 Escape character is '^]'.
 ```
 
-说明容器同本地 9001 建立 TCP 连接正常，但是 Xdebug 为什么会报连接失败呢？此时，至少可以排除不会是因为 PhpStrom 端配置的问题。
+说明容器同本地 9001 建立 TCP 连接正常，但是 Xdebug 为什么会报连接失败呢？此时，至少可以排除不会是因为 PhpStorm 端配置的问题。
 
 ### 排查Xdebug问题
 
@@ -100,13 +100,13 @@ E..(.]@.@..M........#).........-P....B..
 
 1、IDE 所在机器 IP 确定/单个开发
 
-![](http://www.fanhaobai.com/2017/09/07490b33-a2a3-491d-b325-cf8bfb9c9542.gif)
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/07490b33-a2a3-491d-b325-cf8bfb9c9542.gif)
 
 图中，由于 IDE 的 IP 和监听 9000 端口都已知，所以 Xdebug 端可以很明确知道 DBGP 交互时 IDE 目标机器信息，所以 Xdebug只需配置 [xdebug.remote_host](https://xdebug.org/docs/all_settings#remote_host)、[xdebug.remote_port](https://xdebug.org/docs/all_settings#remote_port) 即可。
 
 2、IDE 所在机器 IP 未知/团队开发
 
-![](http://www.fanhaobai.com/2017/09/6d0a816e-54b9-4061-83a2-fd4e8a2f3d8f.gif)
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/6d0a816e-54b9-4061-83a2-fd4e8a2f3d8f.gif)
 
 由于 IDE 的 IP 未知或者 IDE 存在多个 ，那么 Xdebug 无法提前预知 DBGP 交互时的目标 IP，所以不能直接配置 xdebug.remote_host 项（remote_host 项可以确定），必须设置[xdebug.remote_connect_back](https://xdebug.org/docs/all_settings#remote_connect_back) 为 On 标识（[会忽略 xdebug.remote_host 项]()）。这时，Xdebug 会优先获取 HTTP_X_FORWARDED_FOR 和 REMOTE_ADDR 一个值作为通信时 IDE 端的目标 IP，通过上述`Xdebug.log`记录可以确认。
 
@@ -139,7 +139,7 @@ Accept-Encoding: gzip,deflate
 
 ### 定位根源
 
-最后，可以确定由于 HTTP_X_FORWARDED_FOR 未定义，因此 Xdebug 会取 REMOTE_ADDR 为 IDE 的源 IP，同时由于 Docker 特殊的网络转发规则，导致 REMOTE_ADDR 变更为网关 IP，所以 Xdebug 同 PhpStrom 进行 DBGP 交互会失败。
+最后，可以确定由于 HTTP_X_FORWARDED_FOR 未定义，因此 Xdebug 会取 REMOTE_ADDR 为 IDE 的源 IP，同时由于 Docker 特殊的网络转发规则，导致 REMOTE_ADDR 变更为网关 IP，所以 Xdebug 同 PhpStorm 进行 DBGP 交互会失败。
 
 ## 解决问题
 
@@ -169,7 +169,7 @@ E..<2.@.@..........e.|#).Nc|......r.nO.........
 
 再次使用 PhpStorm 的 REST Client 断点调试 API 时， Debug 控制台如下：
 
-![](http://www.fanhaobai.com/2017/09/7f7c8948-5e61-4086-b52d-fa9ceab69d3b.png)
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/7f7c8948-5e61-4086-b52d-fa9ceab69d3b.png)
 
 
 ## 其他注意事项
@@ -180,6 +180,6 @@ E..<2.@.@..........e.|#).Nc|......r.nO.........
 
 * 本地文件和远端文件映射关系
 
-![](http://www.fanhaobai.com/2017/09/cfe7ef04-4552-49c5-9ffb-6131f52afdb9.png)
+![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/cfe7ef04-4552-49c5-9ffb-6131f52afdb9.png)
 
-如上图，在使用 PhpStrom 时进行远程调试时，需要配置本地文件和远端文件的目录映射关系，这样 IDE 才能根据 Xdebug 传递的当前执行文件路径与本地文件做匹配，实现断点调试和单步调试等。
+如上图，在使用 PhpStorm 时进行远程调试时，需要配置本地文件和远端文件的目录映射关系，这样 IDE 才能根据 Xdebug 传递的当前执行文件路径与本地文件做匹配，实现断点调试和单步调试等。
