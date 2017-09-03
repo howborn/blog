@@ -8,22 +8,21 @@ categories:
 - PHP
 ---
 
-我们经常会使用 PhpStorm 结合 Xdebug 进行代码断点调试，这样能追踪程序执行流程，方便调试代码和发现潜在问题。博主将开发环境迁入 Docker 后，Xdebug 调试遇到了些问题，所以在这里整理出 Docker 中使用 Xdebug 的方法和注意事项。
+我们经常会使用 PhpStorm 结合 Xdebug 进行代码断点调试，这样能追踪程序执行流程，方便调试代码和发现潜在问题。博主将开发环境迁入 Docker 后，Xdebug 调试遇到了些问题，在这里整理出 Docker 中使用 Xdebug 的方法和注意事项。
 
 ![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/07490b33-a2a3-491d-b325-cf8bfb9c9542.gif)<!--more-->
 
-说明：开发和调试环境为本地 Docker 中的 LNMP，IDE 环境为本地 Win10 下的 PhpStorm。这种情况下 Xdebug 属于远程调试模式，IDE 和本地 IP 为 192.168.1.101，Docker 中 LNMP 容器 IP 为 172.17.0.2。
+> 说明：开发和调试环境为本地 Docker 中的 LNMP，IDE 环境为本地 Win10 下的 PhpStorm。这种情况下 Xdebug 属于远程调试模式，IDE 和本地 IP 为 192.168.1.101，Docker 中 LNMP 容器 IP 为 172.17.0.2。
 
 ## 问题描述
 
-在 Docker 中安装并配置完 Xdebug ，并设置 PhpStorm 中对应的  Debug 参数后，但是 Debug 并不能正常工作。
+在 Docker 中安装并配置完 Xdebug ，并设置 PhpStorm 中对应的 Debug 参数后，但是 Debug 并不能正常工作。
 
 此时，`php.ini`中 Xdebug 配置如下：
 
 ```PHP
 xdebug.idekey = phpstorm
 xdebug.remote_enable = on
-xdebug.remote_host = *.*.*.*     //本地ip地址
 xdebug.remote_connect_back = on
 xdebug.remote_port = 9001        //PhpStorm监听本地9001端口
 xdebug.remote_handler = dbgp
@@ -98,17 +97,17 @@ E..(.]@.@..M........#).........-P....B..
 
 首先，为了搞懂 Xdebug 和 PhpStorm 的交互过程，查了 [官方手册](https://xdebug.org/docs/remote) 得知，Xdebug 工作在远程调试模式时，有两种工作方式：
 
-1、IDE 所在机器 IP 确定/单个开发
+1、IDE 所在机器 IP 确定/单人开发
 
 ![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/07490b33-a2a3-491d-b325-cf8bfb9c9542.gif)
 
-图中，由于 IDE 的 IP 和监听 9000 端口都已知，所以 Xdebug 端可以很明确知道 DBGP 交互时 IDE 目标机器信息，所以 Xdebug只需配置 [xdebug.remote_host](https://xdebug.org/docs/all_settings#remote_host)、[xdebug.remote_port](https://xdebug.org/docs/all_settings#remote_port) 即可。
+图中，由于 IDE 的 IP 和监听端口都已知，所以 Xdebug 端可以很明确知道 DBGP 交互时 IDE 目标机器信息，所以 Xdebug 只需配置 [xdebug.remote_host](https://xdebug.org/docs/all_settings#remote_host)、[xdebug.remote_port](https://xdebug.org/docs/all_settings#remote_port) 即可。
 
 2、IDE 所在机器 IP 未知/团队开发
 
 ![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/6d0a816e-54b9-4061-83a2-fd4e8a2f3d8f.gif)
 
-由于 IDE 的 IP 未知或者 IDE 存在多个 ，那么 Xdebug 无法提前预知 DBGP 交互时的目标 IP，所以不能直接配置 xdebug.remote_host 项（remote_host 项可以确定），必须设置[xdebug.remote_connect_back](https://xdebug.org/docs/all_settings#remote_connect_back) 为 On 标识（[会忽略 xdebug.remote_host 项]()）。这时，Xdebug 会优先获取 HTTP_X_FORWARDED_FOR 和 REMOTE_ADDR 一个值作为通信时 IDE 端的目标 IP，通过上述`Xdebug.log`记录可以确认。
+由于 IDE 的 IP 未知或者 IDE 存在多个 ，那么 Xdebug 无法提前预知 DBGP 交互时的目标 IP，所以不能直接配置 xdebug.remote_host 项（remote_port 项可以确定），必须设置 [xdebug.remote_connect_back](https://xdebug.org/docs/all_settings#remote_connect_back) 为 On 标识（会忽略 xdebug.remote_host 项）。这时，Xdebug 会优先获取 [HTTP_X_FORWARDED_FOR]() 和 [REMOTE_ADDR]() 中的一个值作为通信时 IDE 端的目标 IP，通过`Xdebug.log`记录可以确认。
 
 ```PHP
 I: Checking remote connect back address.
@@ -135,11 +134,11 @@ Accept-Encoding: gzip,deflate
 
 可以看出，数据包的源地址为 [172.17.0.1](http://www.infoq.com/cn/articles/docker-network-and-pipework-open-source-explanation-practice/)，并非真正的源地址 192.168.1.101，HTTP 请求头中也无 HTTP_X_FORWARDED_FOR 项。
 
-> 说明：172.17.0.1 实际为 Docker 创建的虚拟网桥 docker0，也是所有容器的默认网关。Docker 网络通信方式默认为 Bridge 模式，通信时宿主机会对数据包进行 SNAT 转换，进而源地址变为 docker0，那么，[怎么在 Docker 里获取客户端真正 IP 呢？](https://github.com/moby/moby/issues/15086)。
+> 说明：172.17.0.1 实际为 Docker 创建的虚拟网桥 docker0 的地址 ，也是所有容器的默认网关。Docker 网络通信方式默认为 Bridge 模式，通信时宿主机会对数据包进行 SNAT 转换，进而源地址变为 docker0，那么，[怎么在 Docker 里获取客户端真正 IP 呢？](https://github.com/moby/moby/issues/15086)。
 
 ### 定位根源
 
-最后，可以确定由于 HTTP_X_FORWARDED_FOR 未定义，因此 Xdebug 会取 REMOTE_ADDR 为 IDE 的源 IP，同时由于 Docker 特殊的网络转发规则，导致 REMOTE_ADDR 变更为网关 IP，所以 Xdebug 同 PhpStorm 进行 DBGP 交互会失败。
+最后，可以确定由于 HTTP_X_FORWARDED_FOR 未定义，因此 Xdebug 会取 REMOTE_ADDR 为 IDE 的 IP，同时由于 Docker 特殊的网络转发规则，导致 REMOTE_ADDR 变更为网关 IP，所以 Xdebug 同 PhpStorm 进行 DBGP 交互会失败。
 
 ## 解决问题
 
@@ -171,6 +170,7 @@ E..<2.@.@..........e.|#).Nc|......r.nO.........
 
 ![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/7f7c8948-5e61-4086-b52d-fa9ceab69d3b.png)
 
+所以，使用 Xdebug 进行远程调试时，需要选择合适的调试模式，在 Docker 下建议使用远程模式 1。
 
 ## 其他注意事项
 
