@@ -256,6 +256,12 @@ Pull 和 Push 代码时，直接点击“Git >> Repository >> Pull/Push“。
 
 PhpStorm 中的 Git 工具，使得我们可以更加集中管理代码，推荐使用。
 
+### Xdebug
+
+
+
+### REST Client
+
 <strong>更新 [»]()</strong>
 * [Database](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Database)（2017-08-06）
 * [Git](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Git)（2017-08-06）
