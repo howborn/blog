@@ -1,6 +1,6 @@
 ---
 title: 在Docker中使用Xdebug
-date: 2017-09-03 10:23:55
+date: 2017-09-01 23:23:55
 tags:
 - PHP
 categories:
@@ -12,7 +12,7 @@ categories:
 
 ![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/983d5263-d1d0-453e-a7bf-19bcecbc7096.png)<!--more-->
 
-环境说明：开发和调试环境为本地 Docker 中的 LNMP，IDE 环境为本地 Win10 下的 PhpStrom。另外，这种情况下使用 Xdebug 属于远程调试，IDE 和本地  IP 为 192.168.1.101，Docker 中 LNMP 容器 IP 为 172.17.0.2。
+环境说明：开发和调试环境为本地 Docker 中的 LNMP，IDE 环境为本地 Win10 下的 PhpStrom。这种情况下使用 Xdebug 属于远程调试，IDE 和本地  IP 为 192.168.1.101，Docker 中 LNMP 容器 IP 为 172.17.0.2。
 
 ## 问题描述
 
