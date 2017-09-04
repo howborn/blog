@@ -264,7 +264,7 @@ PhpStorm 结合 Xdebug 进行远程调试，使得开发和调试变得非常方
 
 ### REST Client
 
-REST Client 工具用来调试 API，点击“Tools” >> "Test RESTful Web Service"，如下图所示：
+REST Client 工具用来调试 API，点击“Tools >> Test RESTful Web Service“，如下图所示：
 
 ![](https://www.fanhaobai.com/2017/05/phpstorm-posture/4bc4c68f-6760-49bf-811d-e055d92de6bb.png)
 
