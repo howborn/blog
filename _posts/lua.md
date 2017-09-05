@@ -22,7 +22,7 @@ Lua 作为通用型脚本语言，有 8 种基本数据类型：
 | boolean  | 两种值 false 和 true         | false                              |
 | number   | 实数（双精度浮点数）               | 520                                |
 | string   | 字符串，不区分单双引号              | “fhb”<br>'fhb'                     |
-| function | 函数                       | function haha() {<br>return 1<br>} |
+| function | 函数                       | function haha() <br>   return 1<br>end |
 | userdata | 将任意 C 数据保存在 Lua 变量       |                                    |
 | thread   | 区别独立的执行线程<br>用来实现协程      |                                    |
 | table    | 表，实现了一个关联数组<br>唯一一种数据结构  | {1, 2, 3}                          |
@@ -148,7 +148,7 @@ return sum
 ```Lua
  -- 结束条件为：变量<=循环结束值  
 for 变量=初值, 循环结束值, 步长 do
-	代码块
+   代码块
 end
 
 -- 1+...+10的和
@@ -177,7 +177,7 @@ return name
 ```Lua
 -- 结束条件为：循环条件==true
 repeat
-	代码块
+   代码块
 until 循环条件
 -- 1+...+10的和
 local sum = 0
@@ -351,9 +351,9 @@ g(3, 4, 5)       a=3, ...  --> 4 5
 
 ```Lua
 function f(...)
-	for k,v in ipairs({...}) do
-		print(k, v)
-	end
+   for k,v in ipairs({...}) do
+      print(k, v)
+   end
 end
 
 f(2,3,3) 
@@ -374,9 +374,7 @@ return a[3]        --> "new"
 
 ### 函数返回值
 
-Lua 函数允许返回多个值，中间用逗号隔开。
-
-函数返回值接受规则：
+Lua 函数允许返回多个值，中间用逗号隔开。函数返回值接收规则：
 
 * 若返回值个数大于接收变量的个数，多余的返回值会被忽略
 * 若返回值个数小于参数个数，从左向右，没有被返回值初始化的变量会被初始化为 nil
@@ -422,15 +420,15 @@ return {tab.x, #tab}             --> 2, 3
 
 | 元方法                                      | 事件              |
 | ---------------------------------------- | --------------- |
-| __add(table, value)<br>__sub(table, value) | + 和 - 操作        |
-| __mul(table, value)<br>__div(table, value) | * 和 / 操作        |
-| __mod(table, value)<br>__pow(table, value) | % 和 ^ 操作        |
-| __concat(table, value)                   | .. 操作           |
-| __len(table)                             | # 操作            |
-| __eq(table, value)<br>__lt(table, value)<br>__le(table, value) | == 、<、<= 操作     |
-| __index(table, index)<br>__newindex(table, index) | 取和赋值下标操作        |
-| __call(table, ...)                       | 调用一个值           |
-| __tostring(table)                        | 调用 tostring() 时 |
+| \_\_add(table, value)<br>\_\_sub(table, value) | + 和 - 操作        |
+| \_\_mul(table, value)<br>\_\_div(table, value) | * 和 / 操作        |
+| \_\_mod(table, value)<br>\_\_pow(table, value) | % 和 ^ 操作        |
+| \_\_concat(table, value)                   | .. 操作           |
+| \_\_len(table)                             | # 操作            |
+| \_\_eq(table, value)<br>\_\_lt(table, value)<br>\_\_le(table, value) | == 、<、<= 操作     |
+| \_\_index(table, index)<br>\_\_newindex(table, index) | 取和赋值下标操作        |
+| \_\_call(table, ...)                       | 调用一个值           |
+| \_\_tostring(table)                        | 调用 tostring() 时 |
 
 覆盖这些元方法，即可实现重载运算符操作。例如重载 tostring 事件：
 
@@ -447,6 +445,6 @@ print(tostring(hash))             --> "{ 2, 3 }"
 
 ## 总结
 
-Lua 是面向过程语言，使得可以简单易学，轻量级的特性，使得以脚本方式轻易地嵌入别的程序中，例如 PHP、JAVA、Redis、Nginx 等语言或应用。当然，Lua 也可以通过表实现面向对象编程。
+Lua 是面向过程语言，使得可以简单易学。轻量级的特性，使得以脚本方式轻易地嵌入别的程序中，例如 [PHP](https://pecl.php.net/package/lua)、JAVA、[Redis](https://redis.io/commands/eval)、Nginx 等语言或应用。当然，Lua 也可以通过表实现面向对象编程。
 
 
