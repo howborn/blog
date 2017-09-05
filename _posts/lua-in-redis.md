@@ -9,7 +9,7 @@ categories:
 - Lua
 ---
 
-[Lua](http://www.lua.org/) 是一个扩展式程序设计语言，作为一个强大、轻量的脚本语言，可以嵌入任何需要的程序中使用。Redis 从 2.6 版本起，也已开始支持 [Lua 脚本](https://redis.io/commands/eval)，我们可以更加得心应手地使用或扩展 Redis，特别是在高并发场景下 Lua 脚本提供了更高效、可靠的解决方式。
+Redis 从 2.6 版本起，也已开始支持 [Lua 脚本](https://redis.io/commands/eval)，我们可以更加得心应手地使用或扩展 Redis，特别是在高并发场景下 Lua 脚本提供了更高效、可靠的解决方式。
 
 ![](http://www.fanhaobai.com/2017/09/lua-in-redis/3916d13312c22d84d29d3860b59544a9.png)<!--more-->
 
@@ -50,47 +50,6 @@ Redis 中嵌入 Lua 脚本，所具有的几个特性为：
 
 ## Lua基本语法
 
-Lua 是一种动态类型语言，且语法相对较简单，这里只介绍其基本语法和使用方法，更多信息见 [Lua 5.1 参考手册](https://www.codingnow.com/2000/download/lua_manual.html)。
-
-### 数据类型
-
-Lua 作为通用型脚本语言，有 8 种基本数据类型：
-
-| 类型       | 说明                       | 示例                                 |
-| -------- | ------------------------ | ---------------------------------- |
-| nil      | 只有一种值 nil<br>标识和别的任何值的差异 | nil                                |
-| boolean  | 两种值 false 和 true         | false                              |
-| number   | 实数（双精度浮点数）               | 520                                |
-| string   | 字符串，不区分单双引号              | “fhb”<br>'fhb'                     |
-| function | 函数                       | function haha() {<br>return 1<br>} |
-| userdata | 将任意 C 数据保存在 Lua 变量       |                                    |
-| thread   | 区别独立的执行线程<br>用来实现协程      |                                    |
-| table    | 表，实现了一个关联数组<br>唯一一种数据结构  | {1, 2, 3}                          |
-
-使用库函数 [type()](https://www.codingnow.com/2000/download/lua_manual.html#pdf-type) 可以返回一个变量或标量的类型。有关数据类型需要说明的是：
-
-* **nil** 和 **false** 都能导致条件为假，而另外所有的值都被当作真
-* 在 number 和 string 类型参与比较或者运算时，会存在隐式类型转化，当然也可以显示转化（tonumber()）
-* 由于 table、 function、thread、userdata 的值是所谓的对象，变量本身只是一个对对象的引用，所以赋值、参数传递、函数返回，都是对这些对象的引用传递
-
-### 变量
-
-Lua 中有三类变量：全局变量、局部变量、还有 table 的域。[任何变量除非显式的以 local 修饰词定义为局部变量，否则都被定义为全局变量]()，局部变量作用范围为函数或者代码块内。说明，在变量的首次赋值之前，变量的值均为 nil。
-
-```Lua
---使用--符号注释
-globalVar = 'is global'
---if代码块
-if 1 > 0 then
-   local localVar = 'is local'  --
-   print(localVar)    --可以访问局部变量
-   print(globalVar)   --可以访问全局变量
-end
-print(localVar)       --不能访问局部变量
-print(globalVar)      --可以访问全局变量
-```
-
-### 语法约定
 
 
 ## Redis与Lua转换
