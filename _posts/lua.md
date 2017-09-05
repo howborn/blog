@@ -10,7 +10,7 @@ categories:
 
 Lua 是一个扩展式程序设计语言，作为一个强大、轻量的脚本语言，可以嵌入任何需要的程序中使用。Lua 被设计成一种动态类型语言，且它的语法相对较简单，这里只介绍其基本语法和使用方法，更多信息见 [Lua 5.1 参考手册](https://www.codingnow.com/2000/download/lua_manual.html)。
 
-![](http://www.fanhaobai.com/2017/09/lua/c391629e-be21-4038-ab25-b47fe368daeb.jpg)<!---more-->
+![](https://www.fanhaobai.com/2017/09/lua/c391629e-be21-4038-ab25-b47fe368daeb.jpg)<!---more-->
 
 ## 数据类型
 
@@ -61,13 +61,13 @@ Lua 中用到的名字（标识符）可以是任何非数字开头的字母、�
 
 下面这些是保留的关键字，不能用作名字：
 
-![](http://www.fanhaobai.com/2017/09/lua/fe33e61ca081f36909b9f2d16b5c9d4b.png)
+![](https://www.fanhaobai.com/2017/09/lua/fe33e61ca081f36909b9f2d16b5c9d4b.png)
 
 大部分的流程控制关键字将在 [流程控制](#流程控制) 部分说明。
 
 ### 操作符
 
-![](http://www.fanhaobai.com/2017/09/lua/84414e900ee77fc8fd1baf9fc9c7a7d7.png)
+![](https://www.fanhaobai.com/2017/09/lua/84414e900ee77fc8fd1baf9fc9c7a7d7.png)
 
 大部分运算操作符将在 [表达式](#表达式)  部分进行说明。
 
@@ -279,7 +279,7 @@ Lua 中还有两种特别的操作符，分别为字符串连接操作符（..�
 
 Lua 中操作符的优先级见下表，从低到高优先级顺序： 
 
-![](http://www.fanhaobai.com/2017/09/lua/fc34646b-5eaf-45ba-b89a-0d8fc3f1b71d.png)
+![](https://www.fanhaobai.com/2017/09/lua/fc34646b-5eaf-45ba-b89a-0d8fc3f1b71d.png)
 
 运算符优先级通常是这样，但是可以用括号来改变运算次序。
 
