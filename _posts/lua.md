@@ -1,5 +1,5 @@
 ---
-title: Lua
+title: 进入Lua的世界
 date: 2017-09-03 22:49:22
 tags:
 - Lua
@@ -45,12 +45,12 @@ Lua 中有三类变量：全局变量、局部变量、还有 table 的域。[�
 globalVar = 'is global'
 -- if代码块
 if 1 > 0 then
-   local localVar = 'is local'  --
-   print(localVar)    --可以访问局部变量
-   print(globalVar)   --可以访问全局变量
+   local localVar = 'is local'
+   print(localVar)    -- 可以访问局部变量
+   print(globalVar)   -- 可以访问全局变量
 end
-print(localVar)       --不能访问局部变量
-print(globalVar)      --可以访问全局变量
+print(localVar)       -- 不能访问局部变量
+print(globalVar)      -- 可以访问全局变量
 ```
 
 ## 标识符约定
@@ -293,18 +293,20 @@ Lua 中操作符的优先级见下表，从低到高优先级顺序：
 
 ```Lua
 -- arg为参数列表
-function function_name (arg)
+function function_name(arg)
 　　body
 end
 
 -- 阶乘函数
-local function fact(n)
+function fact(n)
     if n == 1 then
         return 1
     else
         return n * fact(n - 1)
     end
 end
+-- 调用函数
+return fact(4)
 ```
 
 可以用 local 关键字来修饰函数，表示局部函数。
@@ -315,7 +317,136 @@ local function foo(n)
 end
 ```
 
+在 Lua 中有一个概念，函数与所有类型值一样都是匿名的，即它们都没有名称。当讨论一个函数名时，实际上是在讨论一个持有某函数的变量：
+
+```Lua
+function f(x) return -x end
+-- 上述写法只是一种语法糖，是下述代码的简写形式
+f = function(x) return -x end
+```
+
 ### 函数参数
 
+Lua 中函数实参有两种传递方式，但大部分情况会进行值传递。
+
+#### 值传递
+
+当实参值为非 table 类型时，会采用值传递。几个传参规则如下：
+
+* 若实参个数大于形参个数，从左向右，多余的实参被忽略
+* 若实参个数小于形参个数，从左向右，没有被初始化的形参被初始化为 nil
+* 支持边长参数，用`...`表示
+
+```Lua
+-- 定义两个函数
+function f(a, b) end
+function g(a, ...) end
+-- 调用参数情况
+f(3)             a=3, b=nil
+f(3, 4, 5)       a=3, b=4
+g(3, 4, 5)       a=3, ...  --> 4 5
+```
+
+当函数为变长参数时，函数内使用`...`来获取变长参数，Lua 5.0 后`...`替换为名 arg 的隐含局部变量。
+
+```Lua
+function f(...)
+	for k,v in ipairs({...}) do
+		print(k, v)
+	end
+end
+
+f(2,3,3) 
+```
+
+#### 引用传递
+
+当实参为 table 类型时，传递的只是实参的引用而已。
+
+```Lua
+local function f(arg)
+   arg[3] = 'new'
+end
+local a = {1, 2}
+f(a)
+return a[3]        --> "new"
+```
+
 ### 函数返回值
+
+Lua 函数允许返回多个值，中间用逗号隔开。
+
+函数返回值接受规则：
+
+* 若返回值个数大于接收变量的个数，多余的返回值会被忽略
+* 若返回值个数小于参数个数，从左向右，没有被返回值初始化的变量会被初始化为 nil
+
+```Lua
+function f1() return "a" end
+function f2() return "a", "b" end
+
+x, y = f1()         --> x="a", y=nil
+x = f2()            --> x="a", "b"被丢弃
+-- table构造式可以接受函数所有返回值
+local tab = {f2()}  --> t={"a", "b"}
+-- ()会迫使函数返回一个结果
+printf((f2()))      --> "a"
+```
+
+Lua 中除了我们自定义函数外，已经实现了部分功能函数，见 [标准函数库](http://www.lua.org/manual/5.3/manual.html#6)。
+
+## 表
+
+### 定义和使用
+
+Lua 中最特别的数据类型就是表（table），可以用来实现数组、Hash、对象，全局变量也使用表来管理。
+
+```Lua
+-- array
+local array = { 1, 2, 3 }
+print(array[1], #array)          --> 1, 3
+-- hash
+local hash = { a=1, b=2, c=3 }
+print(hash.a, hash['b'], #hash)  --> 1, 2, 0
+-- array和hash
+local tab = {1, 2, 3}
+tab['x'] = function() return 'hash' end
+return {tab.x, #tab}             --> 2, 3
+```
+
+说明：当表表示数组时，索引从 1 开始。
+
+### 元表
+
+元表（metatable）中的键名称为事件，值称为元方法，它用来定义原始值在特定操作下的行为。可通过 [getmetatable()]() 来获取任一事件的元方法，同样可以通过 [setmetatable()]() 覆盖任一事件的元方法。Lua 支持的表事件：
+
+| 元方法                                      | 事件              |
+| ---------------------------------------- | --------------- |
+| __add(table, value)<br>__sub(table, value) | + 和 - 操作        |
+| __mul(table, value)<br>__div(table, value) | * 和 / 操作        |
+| __mod(table, value)<br>__pow(table, value) | % 和 ^ 操作        |
+| __concat(table, value)                   | .. 操作           |
+| __len(table)                             | # 操作            |
+| __eq(table, value)<br>__lt(table, value)<br>__le(table, value) | == 、<、<= 操作     |
+| __index(table, index)<br>__newindex(table, index) | 取和赋值下标操作        |
+| __call(table, ...)                       | 调用一个值           |
+| __tostring(table)                        | 调用 tostring() 时 |
+
+覆盖这些元方法，即可实现重载运算符操作。例如重载 tostring 事件：
+
+```Lua
+local hash = { x = 2, y = 3 }
+local operator = {
+    __tostring = function(self)
+        return "{ " .. self.x .. ", " .. self.y .. " }"
+    end
+}
+setmetatable(hash, operator)
+print(tostring(hash))             --> "{ 2, 3 }"
+```
+
+## 总结
+
+Lua 是面向过程语言，使得可以简单易学，轻量级的特性，使得以脚本方式轻易地嵌入别的程序中，例如 PHP、JAVA、Redis、Nginx 等语言或应用。当然，Lua 也可以通过表实现面向对象编程。
+
 
