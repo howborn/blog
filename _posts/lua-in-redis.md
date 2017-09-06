@@ -9,7 +9,7 @@ categories:
 - Lua
 ---
 
-Redis 从 2.6 版本起，也已开始支持 [Lua 脚本](https://redis.io/commands/eval)，我们可以更加得心应手地使用或扩展 Redis，特别是在高并发场景下 Lua 脚本提供了更高效、可靠的解决方式。
+Redis 从 2.6 版本起，也已开始支持 [Lua 脚本](https://redis.io/commands/eval)，我们可以更加得心应手地使用或扩展 Redis，特别是在高并发场景下 Lua 脚本提供了更高效、可靠的解决方案。
 
 ![](http://www.fanhaobai.com/2017/09/lua-in-redis/3916d13312c22d84d29d3860b59544a9.png)<!--more-->
 
@@ -54,21 +54,21 @@ Redis 中嵌入 Lua 脚本，所具有的几个特性为：
 
 ### 使用Lua解析器
 
-Redis 提供了 EVAL（直接执行脚本） 和 EVALSHA（执行 SHA1 值的脚本 ） 这两个命令，可以使用内置的 Lua 解析器执行 Lua 脚本。命令格式为：
+Redis 提供了 EVAL（直接执行脚本） 和 EVALSHA（执行 SHA1 值的脚本） 这两个命令，可以使用内置的 Lua 解析器执行 Lua 脚本。语法格式为：
 
 * [EVAL]()  script  numkeys  key [key ...]  arg [arg ...] 
 * [EVALSHA]()  sha1  numkeys  key [key ...]  arg [arg ...] 
 
 参数说明：
 
-* script / sha1：EVAL 命令的第一个参数为需要执行的 Lua 脚本字符，EVALSHA 命令的一个参数为 Lua 脚本的[SHA1 值](https://redis.io/commands/eval#bandwidth-and-evalsha)
+* script / sha1：EVAL 命令的第一个参数为需要执行的 Lua 脚本字符，EVALSHA 命令的一个参数为 Lua 脚本的 [SHA1 值](https://redis.io/commands/eval#bandwidth-and-evalsha)
 * numkeys：表示 key 的个数
 * key [key ...]：从第三个参数开始算起，表示在脚本中所用到的那些 Redis 键（key），这些键名参数可以在 Lua 中通过全局数组 KYES[i] 访问
-* arg [arg ...] ：附加参数，在 Lua 中通过全局数组 ARGV[i] 访问
+* arg [arg ...]：附加参数，在 Lua 中通过全局数组 ARGV[i] 访问
 
-EVAL 命令的使用：
+EVAL 命令的使用示例：
 
-```Redis
+```Lua
 > EVAL "return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}" 2 key1 key2 first second
 1) "key1"
 2) "key2"
@@ -78,7 +78,7 @@ EVAL 命令的使用：
 
 每次使用 EVAL 命令都会传递需执行的 Lua 脚本内容，这样增加了宽带的浪费。Redis 内部会永久保存被运行在脚本缓存中，所以使用 EVALSHA（建议使用） 命令就可以根据脚本 SHA1 值执行对应的 Lua 脚本。
 
-```Redis
+```Lua
 > SCRIPT LOAD "return 'hello'"
 "1b936e3fe509bcbc9cd0664897bbe8fd0cac101b"
 > EVALSHA 1b936e3fe509bcbc9cd0664897bbe8fd0cac101b 0
@@ -102,14 +102,14 @@ Redis 中有关脚本的命令除了 EVAL 和 EVALSHA 外，[其他常用命令]
 
 Lua 到 Redis 类型转换与 Redis 到 Lua 类型转换相同部分关系：
 
-| [Lua 类型](https://www.fanhaobai.com/2017/09/lua.html#数据类型) | [Redis 返回类型](http://www.redis.cn/topics/protocol.html) | 说明                     |
-| ---------------------------------------- | ---------------------------------------- | ---------------------- |
-| number                                   | integer                                  | 浮点数会转换为整数<br>3.333-->3 |
-| string                                   | bulk                                     |                        |
-| table（array）                             | multi bulk                               |                        |
-| boolean false                            | nil                                      |                        |
+| [Lua 类型](https://www.fanhaobai.com/2017/09/lua.html#数据类型) | [Redis 返回类型](http://www.redis.cn/topics/protocol.html) | 说明  |
+| --------------------- | ---------------- | ---------------------------- |
+| number                | integer          | 浮点数会转换为整数<br>3.333-->3 |
+| string                | bulk             |                        |
+| table（array）        | multi bulk       |                        |
+| boolean false         | nil              |                        |
 
-```Redis
+```Lua
 > EVAL "return 3.333" 0
 (integer) 3
 > EVAL "return 'fhb'" 0
@@ -128,12 +128,12 @@ Lua 到 Redis 类型转换与 Redis 到 Lua 类型转换相同部分关系：
 | ------------ | ---------- | ------ |
 | boolean true | integer    | 返回整型 1 |
 
-```Redis
+```Lua
 > EVAL "return true" 0
 (integer) 1
 ```
 
-总而言之，[类型转换原则]() 将一个 Redis 值转换成 Lua 值，之后再将转换所得的 Lua 值转换回 Redis 值，那么这个转换所得的 Redis 值应该和最初时的 Redis 值一样。
+总而言之，[类型转换的原则]() 是将一个 Redis 值转换成 Lua 值，之后再将转换所得的 Lua 值转换回 Redis 值，那么这个转换所得的 Redis 值应该和最初时的 Redis 值一样。
 
 ### 全局变量保护
 
@@ -149,7 +149,7 @@ return f(4);
 
 执行`redis-cli --eval function.lua`命令，会抛出尝试定义全局变量的错误：
 
-```Redis
+```Dos
 (error) ERR Error running script (call to f_0a602c93c4a2064f8dc648c402aa27d68b69514f): @enable_strict_lua:8: user_script:1: Script attempted to create global variable 'f'
 ```
 
@@ -166,7 +166,7 @@ Redis 创建了用于与 Lua 环境协作的组件—— 伪客户端，它负�
 * redis.call(command, [key ...], arg [arg ...] )
 * redis.pcall(command, [key ...], arg [arg ...] )
 
-```Redis
+```Lua
 > EVAL "return redis.call('SET', 'name', 'fhb')" 0
 > EVAL "return redis.pcall('GET', 'name')" 0
 "fhb"
@@ -180,7 +180,7 @@ redis.log(loglevel, message)
 
 loglevel 参数可以是 redis.LOG_DEBUG、redis.LOG_VERBOSE、redis.LOG_NOTICE、redis.LOG_WARNING 的任意值。
 
-查看 Redis.conf 日志配置信息：
+查看`redis.conf`日志配置信息：
 
 ```Bash
 # logleval必须一致才会记录
@@ -190,7 +190,7 @@ logfile "/home/logs/redis.log"
 
 Lua 写 Redis 日志示例：
 
-```Redis
+```Lua
 > EVAL "redis.log(redis.LOG_NOTICE, 'I am fhb')" 0
 113:M 04 Sep 13:12:36.229 * I am fhb
 ```
