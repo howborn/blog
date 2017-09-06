@@ -175,7 +175,7 @@ server {
     }
    
     #微信二维码https代理 
-    location /qrcode.php {
+    location ~ /qrcode.php {
 	proxy_set_header Host s.jiathis.com;
 	proxy_pass	 http://s.jiathis.com$request_uri;
 	expires max;
