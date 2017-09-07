@@ -8,7 +8,7 @@ categories:
 - Lua
 ---
 
-Lua 是一个扩展式程序设计语言，作为一个强大、轻量的脚本语言，可以嵌入任何需要的程序中使用。Lua 被设计成一种动态类型语言，且它的语法相对较简单，这里只介绍其基本语法和使用方法，更多信息见 [Lua 5.1 参考手册](https://www.codingnow.com/2000/download/lua_manual.html)。
+Lua 是一个扩展式程序设计语言，作为一个强大、轻量的脚本语言，可以嵌入任何需要的程序中使用。Lua 被设计成一种动态类型语言，且它的语法相对较简单，这里只介绍其基本语法和使用方法，更多信息见 [Lua 5.3 参考手册](http://cloudwu.github.io/lua53doc/manual.html)。
 
 ![](https://www.fanhaobai.com/2017/09/lua/c391629e-be21-4038-ab25-b47fe368daeb.jpg)<!---more-->
 
@@ -391,7 +391,7 @@ local tab = {f2()}  --> t={"a", "b"}
 printf((f2()))      --> "a"
 ```
 
-Lua 中除了我们自定义函数外，已经实现了部分功能函数，见 [标准函数库](http://www.lua.org/manual/5.3/manual.html#6)。
+Lua 中除了我们自定义函数外，已经实现了部分功能函数，见 [标准函数库](http://cloudwu.github.io/lua53doc/manual.html#6)。
 
 ## 表
 
