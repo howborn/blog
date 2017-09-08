@@ -13,7 +13,7 @@ categories:
 
 ![](jttps://www.fanhaobai.com/2017/09/lua-in-nginx/63113174-45d7-4a27-8472-d037675c2cbd.jpg)<!--more-->
 
-## 安装Lua模块
+## 安装Lua环境
 
 lua-nginx-module 依赖于 LuaJIT 和 ngx_devel_kit，LuaJIT 需要安装，ngx_devel_kit 只需下载源码包，在 Nginx 编译时指定 ngx_devel_kit 目录。
 
@@ -88,4 +88,67 @@ $ make install
 $ nginx -v
 ```
 
-## 
+### 配置Nginx环境
+
+现在只需配置 Nginx，即可嵌入 Lua 脚本。首先，在 http 部分配置 Lua 模块和第三方库路径：
+
+```Nignx
+# 第三方库（cjson）地址luajit-2.0/lib
+lua_package_path '/home/www/lua/?.lua;;';
+lua_package_cpath '/usr/local/include/luajit-2.0/lib/?.so;;';
+```
+
+接着，配置一个 Lua 脚本服务：
+
+```Nginx
+# hello world测试
+server {
+    location /lua_content {
+        #定义MIME类型
+        default_type 'text/plain';
+        content_by_lua_block {
+            ngx.say('Hello,world!')
+        }
+    }
+}
+```
+
+测试安装和配置是否正常：
+
+```Bash
+nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
+
+$ service nginx reload
+# 访问地址/lua_content输出
+Hello,world!
+```
+
+### 安装Lua第三方库
+
+* CJSON
+
+[CJSON](https://www.kyne.com.au/~mark/software/lua-cjson-manual.html#_installation) 实现 了 Lua 对 json 的操作支持。下载 [源码包](https://www.kyne.com.au/~mark/software/lua-cjson.php)，并编译：
+
+```Bash
+$ wget https://www.kyne.com.au/~mark/software/download/lua-cjson-2.1.0.tar.gz
+# 解压并进入目录，修改Makefile中的Lua库地址，这里安装的是luajit-2.0
+$ vim Makefile
+LUA_INCLUDE_DIR = $(PREFIX)/include/luajit-2.0  #之前为$(PREFIX)/include
+$ make install
+# 将lua第三方库放置于luajit-2.0/lib目录
+$ cp ./cjson.so /usr/local/include/luajit-2.0/lib
+```
+
+测试 CJSON 库：
+
+```Lua
+local cjson = require "cjson"
+local json = cjson.decode('{"name":"fhb"}')
+```
+
+## Lua调用Nginx
+
+
+
+## Nginx中嵌入Lua
+
