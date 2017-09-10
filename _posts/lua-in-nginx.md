@@ -9,7 +9,7 @@ categories:
 - Lua
 ---
 
-在特定场景下，Nginx 标准模块和配置不能灵活地适应系统要求，这时需要使用 Lua 扩展和定制 Nginx 服务。[OpenResty](http://openresty.org/en/) 集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项，可以方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关，所以这里选择 OpenResty 提供的 [lua-nginx-module](https://github.com/openresty/lua-nginx-module)  方案。
+当 Nginx 标准模块和配置不能灵活地适应系统要求时，可以使用 Lua 扩展和定制 Nginx 服务。[OpenResty](http://openresty.org/en/) 集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项，可以方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关，所以这里选择 OpenResty 提供的 [lua-nginx-module](https://github.com/openresty/lua-nginx-module) 方案。
 
 ![](https://www.fanhaobai.com/2017/09/lua-in-nginx/63113174-45d7-4a27-8472-d037675c2cbd.jpg)<!--more-->
 
@@ -124,8 +124,7 @@ Hello,world!
 
 ## Lua调用Nginx
 
-lua-nginx-module 模块中已经为 Lua 提供了丰富的 Nginx 调用 API，每个 API 都有各自的作用环境，详细描述见 [
-Nginx API for Lua](https://github.com/openresty/lua-nginx-module#nginx-api-for-lua)。这里只列举基本 API 的使用 。
+lua-nginx-module 模块中已经为 Lua 提供了丰富的 Nginx 调用 API，每个 API 都有各自的作用环境，详细描述见 [Nginx API for Lua](https://github.com/openresty/lua-nginx-module#nginx-api-for-lua)。这里只列举基本 API 的使用 。
 
 先配一个 Lua 脚本服务，配置文件如下：
 
@@ -151,7 +150,7 @@ ngx.say(ngx.var.request_uri)
 ngx.var.name = 'www.fanhaobai.com'
 ```
 
-* [ngx.req.get_headers()]https://github.com/openresty/lua-nginx-module#ngxreqget_headers()
+* [ngx.req.get_headers()](https://github.com/openresty/lua-nginx-module#ngxreqget_headers)
 
 该方法会以表的形式返回当前请求的头信息。查看请求的头信息：
 
@@ -279,10 +278,7 @@ end
 
 通过该方法可以将内容写入 Nginx 日志文件，日志文件级别需同 log 级别一致。
 
-* [ngx.md5()](https://github.com/openresty/lua-nginx-module#ngxmd5) | 
-  [ngx.encode_base64()](
-  https://github.com/openresty/lua-nginx-module#ngxencode_base64) | 
-  ngx.decode_base64()
+* [ngx.md5()](https://github.com/openresty/lua-nginx-module#ngxmd5) | [ngx.encode_base64()](https://github.com/openresty/lua-nginx-module#ngxencode_base64) | ngx.decode_base64()
 
 它们都是字符串编码方式。ngx.md5() 可以对字符串进行 md5 加密处理，而 ngx.encode_base64() 是对字符串 base64 编码， ngx.decode_base64() 为 base64 解码。
 
