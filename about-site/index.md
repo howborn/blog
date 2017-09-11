@@ -6,6 +6,7 @@ date: 2016-12-11 13:12:10
 本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server。本站的 [博客](https://www.fanhaobai.com) 基于开源的 Hexo 搭建，运行于 NodeJS 环境；本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境；数据库采用开源的 MySQL ，内存缓存服务器采用 Redis 。
 
 # 更新说明
+* 2017.09.10：升级 Nginx 并增加 [Lua 模块](https://www.fanhaobai.com/2017/09/lua-in-nginx.html)。
 * 2017.09.02：增加使用 [Gearman](https://www.fanhaobai.com/2017/08/gearman.html) 分布式任务系统。
 * 2017.08.18：增加使用 RabbitMQ，[见这里](http://mq.fanhaobai.com)。
 * 2017.08.12：修改 Nginx [配置](#Nginx配置)。
@@ -45,16 +46,13 @@ date: 2016-12-11 13:12:10
 ```Nginx
 user www www;
 worker_processes  4;
-
 error_log  /data/logs/error.log;
-#pid        logs/nginx.pid;
 #worker_rlimit_nofile 655350;
 
 events {
     use epoll;
     worker_connections 2048;
 }
-
 
 http {
     include       mime.types;
@@ -67,22 +65,17 @@ http {
     
     root /data/html/hexo/public;
     index index.html index.php;
-
     #错误页面
     error_page  404 500 502 503 504 = /404.html;
-
     #关闭错误页面的nginx版本号
     server_tokens off;
     sendfile        on;
     #tcp_nopush      on;
     keepalive_timeout  65;
     client_max_body_size 10m;
-
     fastcgi_temp_file_write_size 128k;
     fastcgi_intercept_errors on;
-
     charset utf-8;    
-    
     #开启gzip 
     gzip  on;
     gzip_min_length 1k;
@@ -91,7 +84,6 @@ http {
     gzip_comp_level 6;
     gzip_types text/plain application/x-javascript text/css application/xml application/json text/javascript application/x-httpd-php image/jpeg image/gif image/png;
     gzip_vary on;
-
     #https配置,全站同一个证书
     ssl_certificate /data/ssl/chained.pem;
     ssl_certificate_key /data/ssl/domain.key;
@@ -103,7 +95,6 @@ http {
     ssl_prefer_server_ciphers on;
     resolver                   114.114.114.114 valid=300s;
     resolver_timeout           10s;
-    
     #proxy设置
     proxy_connect_timeout  2s;
     proxy_read_timeout     2s;
@@ -112,13 +103,10 @@ http {
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_temp_path   /home/www/temp;
     proxy_cache_path  /home/www/cache levels=1:2 keys_zone=cache_one:50m inactive=2h max_size=10g;
-    
     #限流
     limit_req_zone $binary_remote_addr zone=one:10m rate=10r/s;
-    
     include        conf.d/*.conf; 
     #防止恶意解析
-    
     #autoindex on;
 }
 ```
@@ -129,7 +117,6 @@ http {
 if ($http_user_agent ~ "DNSPod") {
     return 200;
 }
-
 
 #https证书申请使用
 location /.well-known/acme-challenge/ {
@@ -160,7 +147,6 @@ location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
 server {
     listen 443;
     server_name fanhaobai.com www.fanhaobai.com;
-
     #https配置
     ssl on;
     root  /data/html/hexo/public;
@@ -173,14 +159,12 @@ server {
     if ($host ~ ^fanhaobai.com$) {
 	return 301 https://www.fanhaobai.com$request_uri;
     }
-   
     #微信二维码https代理 
     location ~ /qrcode.php {
 	proxy_set_header Host s.jiathis.com;
 	proxy_pass	 http://s.jiathis.com$request_uri;
 	expires max;
     }
-
     #豆瓣代理
     location ~ ^/douban/(.*)$ {
 	proxy_set_header Host img3.doubanio.com;
@@ -196,11 +180,9 @@ server {
     #https认证使用
     listen 80;
     server_name fanhaobai.com www.fanhaobai.com;
-
     if ($request_method !~ ^(GET|HEAD|POST)$ ) {
         return        444;
     }
-
     include conf.d/common;	
     #重定向到https
     return    301  https://www.fanhaobai.com$request_uri;
@@ -213,16 +195,11 @@ server {
 server {
     listen 443;
     server_name wiki.fanhaobai.com;
-
-    #https配置
     ssl on;
-    
     root  /data/html/wiki;
-
-    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+    if ($request_method !~ ^(GET|HEAD|POST)$) {
         return 444;
     }
-
     try_files $uri $uri/ @rewrite;
     location @rewrite {
         if (!-e $request_filename) {
@@ -230,7 +207,6 @@ server {
            break;
         }
     }
-
     location ~ \.php {
         fastcgi_pass  127.0.0.1:9000;
         fastcgi_index  index.php;
@@ -242,18 +218,37 @@ server {
 
     include conf.d/common;
 }
- 
-server {
-    #https认证使用
-    listen 80;
-    server_name wiki.fanhaobai.com;
-        
-    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
-        return        444;
-    }
+```
 
-    include conf.d/common;
-    return    301 https://$host$request_uri;
+### ES——es.conf
+
+```Nginx
+server {
+    listen 80;
+    server_name es.fanhaobai.com;
+    #携带es服务地址
+    location = / {
+        rewrite . /head/?base_uri=http://$server_name permanent;
+    }
+    #es-head
+    location ~ ^/head/ {
+	rewrite ^/head/(.*)$ /$1 break;
+	proxy_pass http://127.0.0.1:9100;
+    }
+    #es服务
+    location / {
+        #使用Lua做访问权限控制
+	set $allowed '115.171.226.212';
+	access_by_lua_block {
+	    if ngx.re.match(ngx.req.get_method(), "PUT|POST|DELETE") and not ngx.re.match(ngx.var.request_uri, "_search") then
+		start, _ = string.find(ngx.var.allowed, ngx.var.remote_addr)
+		if not start then
+		    ngx.exit(403)
+		end
+	    end
+	}
+	proxy_pass http://127.0.0.1:9200$request_uri;
+    }
 }
 ```
 

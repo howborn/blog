@@ -1,6 +1,6 @@
 ---
 title: Lua在Nginx的应用
-date: 2017-09-08 21:25:59
+date: 2017-09-09 21:25:59
 tags:
 - Nginx
 - Lua
@@ -9,13 +9,13 @@ categories:
 - Lua
 ---
 
-当 Nginx 标准模块和配置不能灵活地适应系统要求时，可以使用 Lua 扩展和定制 Nginx 服务。[OpenResty](http://openresty.org/en/) 集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项，可以方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关，所以这里选择 OpenResty 提供的 [lua-nginx-module](https://github.com/openresty/lua-nginx-module) 方案。
+当 Nginx 标准模块和配置不能灵活地适应系统要求时，就可以考虑使用 Lua 扩展和定制 Nginx 服务。[OpenResty](http://openresty.org/en/) 集成了大量精良的 Lua 库、第三方模块，可以方便地搭建能够处理超高并发、扩展性极高的 Web 服务，所以这里选择 OpenResty 提供的 [lua-nginx-module](https://github.com/openresty/lua-nginx-module) 方案。
 
 ![](https://www.fanhaobai.com/2017/09/lua-in-nginx/63113174-45d7-4a27-8472-d037675c2cbd.jpg)<!--more-->
 
 ## 安装Lua环境
 
-lua-nginx-module 依赖于 LuaJIT 和 ngx_devel_kit，LuaJIT 需要安装，ngx_devel_kit 只需下载源码包，在 Nginx 编译时指定 ngx_devel_kit 目录。
+lua-nginx-module 依赖于 LuaJIT 和 ngx_devel_kit。LuaJIT 需要安装，ngx_devel_kit 只需下载源码包，在 Nginx 编译时指定 ngx_devel_kit 目录。
 
 ### 系统依赖库
 
@@ -244,8 +244,7 @@ ngx.print(ngx.header.content_type)
 
 * [ngx.exit()](https://github.com/openresty/lua-nginx-module#ngxexit)
 
-以某个状态码返回响应内容，状态码常量对应关系见 [
-HTTP status constants](https://github.com/openresty/lua-nginx-module#http-status-constants) 部分，也支持数字形式的状态码。
+以某个状态码返回响应内容，状态码常量对应关系见 [HTTP status constants](https://github.com/openresty/lua-nginx-module#http-status-constants) 部分，也支持数字形式的状态码。
 
 ```Lua
 ngx.exit(403)
@@ -290,8 +289,8 @@ end
 
 这里只列举基本的 Lua 模块指令，更多信息参考 [Directives](https://www.nginx.com/resources/wiki/modules/lua/#directives) 部分。
 
-| 指令                                       | 所在阶段    | 使用范围                                     | 说明               |
-| ---------------------------------------- | ------- | ---------------------------------------- | ---------------- |
+| 指令    | 所在阶段 | 使用范围               | 说明             |
+| ------- | -------- | ---------------------- | ---------------- |
 | init_by_lua<br>init_by_lua_file          | 加载配置文件  | http                                     | 可以用于初始化全局配置      |
 | set_by_lua<br>set_by_lua_file            | rewrite | server<br>location<br>location if        | 复杂逻辑的变量赋值，注意是阻塞的 |
 | rewrite_by_lua<br>rewrite_by_lua_file    | rewrite | http<br>server<br>location<br>location if | 实现复杂逻辑的转发或重定向    |
@@ -363,7 +362,7 @@ location /lua {
 
 ```Lua
 if ngx.req.get_uri_args()["type"] == "app" then
-     ngx.req.set_uri("/m_h5", false);
+    ngx.req.set_uri("/m_h5", false);
 end
 ```
 
@@ -382,7 +381,7 @@ location /lua {  
 
 ```Lua
 if ngx.req.get_uri_args()["token"] == "fanhb" then
-     return ngx.exit(403)
+    return ngx.exit(403)
 end
 ```
 
@@ -392,7 +391,27 @@ end
 
 ## 案例
 
-### API访问频率控制
+### 访问权限控制
+
+使用 Lua 模块对本站的 ES 服务做受信操作控制，即非受信 IP 只能查询操作。`nginx.conf`配置如下：
+
+```Lua
+location / {
+    set $allowed '115.171.226.212';
+    access_by_lua_block {
+        if ngx.re.match(ngx.req.get_method(), "PUT|POST|DELETE") and not ngx.re.match(ngx.var.request_uri, "_search") then
+	    start, _ = string.find(ngx.var.allowed, ngx.var.remote_addr)
+	    if not start then
+		ngx.exit(403)
+	    end
+	end
+    }
+	
+    proxy_pass http://127.0.0.1:9200$request_uri;
+}
+```
+
+### 访问频率控制
 
 在 Nginx 配置文件的 location 部分配置 Lua 脚本基本参数，并配置 Lua 模块指令：
 
@@ -402,7 +421,7 @@ set rate_per 300
 access_by_lua_file /home/www/access.lua;
 ```
 
-Lua 脚本实现频率控制逻辑，使用 Redis 对单位时间内的访问次数做缓存，key 为访问 uri 拼接 token。具体内容如下：
+Lua 脚本实现频率控制逻辑，使用 Redis 对单位时间内的访问次数做缓存，key 为访问 uri 拼接 token 后的 md5 值。具体内容如下：
 
 ```Lua
 local redis = require "resty.redis"
