@@ -25,10 +25,9 @@ date: 2016-08-10
 
 ## 本站特性
 
+[本站特性]() 的更新历程和详细信息，[见这里](https://www.fanhaobai.com/about-site/)。
+
 <div class="row"><div class="col m3 s4">![](/about/index/O_tDRRtwdgwUJGleCTb-fJvl.png)</div><div class="col m3 s4">![](/about/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](/about/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](/about/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](/about/index/vvZnp6Cdl4KDz02shzLvJsfN.png)</div><div class="col m3 s4">![](/about/index/C6ADglLNRxwYUdhfid1qzI1u.jpg)</div><div class="col m3 s4">![](/about/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](/about/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](/about/index/ds31b8RAFgTPJ65AAY7esGe2.jpg)</div><div class="col m3 s4">![](/about/index/0f32aeff3ccf8e5dc3d196ee8fd4.png)</div><div class="col m3 s4">![](/about/index/019c7ef7-d0a1-4585-ab37-02f850954bcb.jpg)</div><div class="col m3 s4">![](/about/index/67d33f0b-45b1-4f3c-8f4e-c55dff9b4cc8.png)</div><div class="col m3 s4">![](/about/index/7fbbc22c-3a0f-466b-87bb-d8d27367c419.gif)</div></div>
-
-
-**本站特性及技术的更新历程和详细信息**，[见这里](https://www.fanhaobai.com/about-site/)。
 
 ## 版权说明
 
