@@ -569,4 +569,4 @@ GET /room/_validate/query
 
 ## 最后
 
-别的业务线已经投入 Elasticsearch 使用有段时间了，找房业务线正由 Solr 切换为 Elasticsearch，各个系统有一个探索和磨合的过程。当然，Elasticsearch 我们已经服务化了，对 DSL 语法也进行了一些简化，同时支持了定制化业务。  
+别的业务线已经投入 Elasticsearch 使用有段时间了，找房业务线正由 Solr 切换为 Elasticsearch，各个系统有一个探索和磨合的过程。当然，Elasticsearch 我们已经服务化了，对 DSL 语法也进行了一些简化，同时支持了定制化业务。另外，使用 [elasticsearch-sql](https://github.com/NLPchina/elasticsearch-sql) 插件可以让 Elasticsearch 也支持 SQL 操作。  
