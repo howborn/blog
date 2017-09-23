@@ -1,5 +1,5 @@
 ---
-title: 记录——Redis 与网关问题
+title: 记录 — Redis与接口签名问题
 date: 2017-09-21 13:09:59
 tags:
 - Redis
@@ -14,11 +14,11 @@ categories:
 
 ## 接口签名错误
 
-今天一大早就升级 IOS 11 尝鲜，并习惯性打开 [APP](https://static8.ziroom.com/card_clean)，点着点着就发现 [通勤找房] 功能异常。
+今天一大早就升级 IOS 11 尝鲜，并习惯性打开 [APP](https://static8.ziroom.com/card_clean)，点着点着就发现 [通勤找房]() 功能异常。
 
 ![](https://www.fanhaobai.com/2017/09/record-question-1/5727d810-6ea5-476c-8479-bcec444805d7.jpg)
 
-抓包查看接口信息：
+Charles 抓包查看接口信息：
 
 ```Js
 URL v7/commute/search.json
@@ -48,9 +48,9 @@ sign=00aca6ddf61da553e1d3a152d2531241&city_code=110000&zoom=2&transport=transit&
 
 首先，我们怀疑可能是 md5 加密方式问题，所以将相同的请求参数串和盐加密，两端对比发现是一致的。然后开始怀疑是网关加密解密导致 sign 不一致，同样 APP 打印传入网关的参数与服务端请求参数对比，发现也是保持一致。不过有了意外发现，APP 计算 sign 时参数和传入网关参数存在浮点数精度不一致问题。最后 APP 排查到是由于在 IOS 11 中使用了某个 JSON 方法，导致浮点数精度前后不一致。
 
-于是最后解决办法是，服务端针对该版本取消接口签名校验，APP 端下个版本进行修复。
+解决办法是，[服务端针对该版本取消接口签名校验]()，APP 端下个版本进行修复。
 
-## [VIP 漂移](http://www.cnblogs.com/mushroom/archive/2015/08/25/4752962.html)
+## [VIP漂移故障]()
 
 ### 初期方案
 

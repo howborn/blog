@@ -387,7 +387,7 @@ end
 
 * content_by_lua
 
-该指令在 [Lua调用Nginx](#Lua调用Nginx) 部分已经使用过了，用于输出响应内容。
+该指令在 [Lua 调用 Nginx](#Lua调用Nginx) 部分已经使用过了，用于输出响应内容。
 
 ## 案例
 
