@@ -213,8 +213,8 @@ $config = array(
     'db_name'   =>  'db_name',
     'db_user'   =>  'db_user',
     'db_pwd'    =>  'db_pwd',
-	//网站域名
-	'host'      =>  'https://www.fanhaobai.com',
+    //网站域名
+    'host'      =>  'https://www.fanhaobai.com',
     //网站地图配置
     'map_path'  =>  '/path/',
     'map_name'  =>  'map',

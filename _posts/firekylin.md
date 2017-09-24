@@ -17,7 +17,7 @@ FireKylin 是基于 ThinkJS 开发，所以本篇博客也默认你已安装好�
 
 # 安装前准备
 
-1）首先需要安装npm「[npm使用说明](http://www.runoob.com/nodejs/nodejs-npm.html)」
+1）首先需要安装 npm「[npm 使用说明](http://www.runoob.com/nodejs/nodejs-npm.html)」
 
 ```Bash
 $ yum install –y npm
@@ -252,4 +252,3 @@ s.message.replace(/src=\"http\:\/\//, "src=\"https://yoursite.com/proxy/") : s.m
 **更新 [»]()**
 
 * [本站Nginx配置](https://www.fanhaobai.com/about-site/)<span>（2017-01-16）</span>
-
