@@ -7,9 +7,9 @@ categories:
 - 工具
 ---
 
-[Supervisor](http://supervisord.org) 是一款使用 Python 开发的非常优秀的进程管理工具。它可以在类 UNIX 系统上让用户精确地监视与控制多组指定数量的服务进程。当监控的服务进程意外退出时，会尝试自动启动这些服务，当然它也支持 HTTP 协议来监控服务进程状态。
+[Supervisor](http://supervisord.org) 是一款使用 Python 开发的非常优秀的进程管理工具。它可以在类 UNIX 系统上让用户精确地监视与控制多组指定数量的服务进程。当监控的服务进程意外退出时，会尝试自动重启这些服务，以保持服务可用状态。
 
-![](https://www.fanhaobai.com/2017/09/supervisord/d42decd3-2342-4e8f-a34f-48b47fc6e557.png)<!--more-->
+![](https://www.fanhaobai.com/2017/09/supervisor/d42decd3-2342-4e8f-a34f-48b47fc6e557.png)<!--more-->
 
 ## 安装
 
@@ -161,7 +161,7 @@ stdout_logfile=/data/logs/work.log ; 进程的stdout的日志路径
 ;serverurl=AUTO                   ; 子进程的环境变量SUPERVISOR_SERVER_URL 
 ```
 
-通常将每个进程的配置信息配置成独立文件``，并通过 include 模块包含，这样方便修改和管理配置文件。
+> 通常将每个进程的配置信息配置成独立文件，并通过 include 模块包含，这样方便修改和管理配置文件。
 
 ## 启动
 
@@ -216,4 +216,4 @@ supervisorctl 常用命令列表如下；
 
 在配置中开启 inet_http_server 后，即可通过 Web 界面便捷地监控进程服务了。
 
-![](https://www.fanhaobai.com/2017/09/supervisord/9d28cc24-a0d8-11e7-abc4-cec278b6b50a.png)
+![](https://www.fanhaobai.com/2017/09/supervisor/9d28cc24-a0d8-11e7-abc4-cec278b6b50a.png)
