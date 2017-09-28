@@ -1,5 +1,5 @@
 ---
-title: 使用Supervisord管理进程
+title: 使用Supervisor管理进程
 date: 2017-09-23 17:56:57
 tags:
 - Supervisor
