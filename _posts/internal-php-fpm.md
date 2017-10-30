@@ -10,13 +10,13 @@ categories:
 
 > 原文：https://github.com/pangudashu/php7-internal/blob/master/1/fpm.md
 
-## 概述
+FPM（FastCGI Process Manager）是 PHP FastCGI 运行模式的一个进程管理器，从它的定义可以看出，FPM 的核心功能是进程管理，那么它用来管理什么进程呢？这个问题就需要从 FastCGI 说起了。{% asset_img 2ed1b400-61ae-cdbe-405a-8353ab28aa74.png %}<!--more-->
 
-FPM（FastCGI Process Manager）是 PHP FastCGI 运行模式的一个进程管理器，从它的定义可以看出，FPM 的核心功能是进程管理，那么它用来管理什么进程呢？这个问题就需要从 FastCGI 说起了。
+## 概述
 
 FastCGI 是 Web 服务器（如：Nginx、Apache）和处理程序之间的一种通信协议，它是与 Http 类似的一种应用层通信协议，注意：它只是一种协议！
 
-前面曾一再强调，PHP 只是一个脚本解析器，你可以把它理解为一个普通的函数，输入是PHP脚本。输出是执行结果，假如我们想用 PHP 代替 shell，在命令行中执行一个文件，那么就可以写一个程序来嵌入 PHP 解析器，这就是 cli 模式，这种模式下 PHP 就是普通的一个命令工具。接着我们又想：能不能让 PHP 处理 http 请求呢？这时就涉及到了网络处理，PHP 需要接收请求、解析协议，然后处理完成返回请求。在网络应用场景下，PHP 并没有像 Golang 那样实现 http 网络库，而是实现了 FastCGI 协议，然后与 web 服务器配合实现了http 的处理，web 服务器来处理 http 请求，然后将解析的结果再通过 FastCGI 协议转发给处理程序，处理程序处理完成后将结果返回给 web 服务器，web 服务器再返回给用户，如下图所示。
+前面曾一再强调，PHP 只是一个脚本解析器，你可以把它理解为一个普通的函数，输入是 PHP 脚本。输出是执行结果，假如我们想用 PHP 代替 shell，在命令行中执行一个文件，那么就可以写一个程序来嵌入 PHP 解析器，这就是 cli 模式，这种模式下 PHP 就是普通的一个命令工具。接着我们又想：能不能让 PHP 处理 http 请求呢？这时就涉及到了网络处理，PHP 需要接收请求、解析协议，然后处理完成返回请求。在网络应用场景下，PHP 并没有像 Golang 那样实现 http 网络库，而是实现了 FastCGI 协议，然后与 web 服务器配合实现了 http 的处理，web 服务器来处理 http 请求，然后将解析的结果再通过 FastCGI 协议转发给处理程序，处理程序处理完成后将结果返回给 web 服务器，web 服务器再返回给用户，如下图所示。
 
 {% asset_img 2ed1b400-61ae-cdbe-405a-8353ab28aa74.png %}
 
@@ -24,11 +24,11 @@ PHP 实现了 FastCGI 协议的解析，但是并没有具体实现网络处理�
 
 ## 基本实现
 
-概括来说，fpm 的实现就是创建一个 master 进程，在 master 进程中创建并监听 socket，然后 fork 出多个子进程，这些子进程各自accept 请求，子进程的处理非常简单，它在启动后阻塞在 accept 上，有请求到达后开始读取请求数据，读取完成后开始处理然后再返回，在这期间是不会接收其它请求的，也就是说 fpm 的子进程同时只能响应一个请求，只有把这个请求处理完成后才会 accept 下一个请求，这一点与 nginx 的事件驱动有很大的区别，nginx 的子进程通过 epoll 管理套接字，如果一个请求数据还未发送完成则会处理下一个请求，即一个进程会同时连接多个请求，它是非阻塞的模型，只处理活跃的套接字。
+概括来说，fpm 的实现就是创建一个 master 进程，在 master 进程中创建并监听 socket，然后 fork 出多个子进程，这些子进程各自 accept 请求，子进程的处理非常简单，它在启动后阻塞在 accept 上，有请求到达后开始读取请求数据，读取完成后开始处理然后再返回，在这期间是不会接收其它请求的，也就是说 fpm 的子进程同时只能响应一个请求，只有把这个请求处理完成后才会 accept 下一个请求，这一点与 nginx 的事件驱动有很大的区别，nginx 的子进程通过 epoll 管理套接字，如果一个请求数据还未发送完成则会处理下一个请求，即一个进程会同时连接多个请求，它是非阻塞的模型，只处理活跃的套接字。
 
 fpm 的 master 进程与 worker 进程之间不会直接进行通信，master 通过共享内存获取 worker 进程的信息，比如 worker 进程当前状态、已处理请求数等，当 master 进程要杀掉一个 worker 进程时则通过发送信号的方式通知 worker 进程。
 
-fpm 可以同时监听多个端口，每个端口对应一个worker pool，而每个 pool 下对应多个 worker 进程，类似 nginx 中 server 概念。
+fpm 可以同时监听多个端口，每个端口对应一个 worker pool，而每个 pool 下对应多个 worker 进程，类似 nginx 中 server 概念。
 
 {% asset_img cf7663c1-850b-43b3-abfa-566fcfc79b29.png %}
 
