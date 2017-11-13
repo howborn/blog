@@ -10,6 +10,8 @@ categories:
 
 [Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 是 360 公司推出的分布式配置管理服务，目前已经支持 c++、go、java、lua、php、python 等语言。
 
+![](https://www.fanhaobai.com/2017/11/qconf/bce19607-8181-41fd-8885-5572ee1de166.jpg)<!--more-->
+
 ## 安装
 
 ### 安装Zookeeper服务
@@ -224,9 +226,6 @@ zookeeper.test=127.0.0.1:2181
 ### getConf
 
 [getConf(path, idc, get_flag)]()
-
-**描述**
-
 返回配置节点的值，失败返回 NULL。
 
 **参数**
@@ -247,9 +246,6 @@ Qconf::getConf('/demo/confs/conf1', 'prod');
 ### getBatchKeys
 
 [getBatchKeys(path, idc, get_flag)]()
-
-**描述**
-
 获取该节点路径所有 [下一级]() 子节点的名称，失败返回 NULL。
 
 **参数**
@@ -272,9 +268,6 @@ array(3) {
 ### getBatchConf
 
 [getBatchConf(path, idc, get_flag)]()
-
-**描述**
-
 获取该节点路径所有 [下一级]() 子节点的名称和配置值，失败返回 NULL。
 
 **参数**
@@ -302,9 +295,6 @@ array(1) {
 ### getHost和getAllHost
 
 [getHost(path, idc, get_flag)]() 或 [getAllHost(path, idc, get_flag)]()
-
-**描述**
-
 返回该配置节点全部或一个可用服务，失败返回 NULL。
 
 **参数**
