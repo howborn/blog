@@ -76,8 +76,8 @@ $ netstat -tunpl | grep 2181
 
 使用 Zookeeper 提供的`zkCli.sh`脚本创建多个配置节点。
 
-```
-$ sh ./zkCli.sh
+```Bash
+$ sh bin/zkCli.sh
 
 [zk: localhost:2181(CONNECTED) 0] create /demo demo
 [zk: localhost:2181(CONNECTED) 1] create /demo/confs confs
@@ -150,3 +150,170 @@ conf3
 ```
 
 ### 安装PHP扩展
+
+PHP 使用 Qconf 需要安装客户端扩展，安装如下：
+
+```Bash
+# 进入Qconf源码目录
+$ QConf-1.2.2/driver/php
+$ /usr/local/php/bin/phpize
+# Qconf安装目录为/usr/local/qconf
+$ ./configure --with-php-config=/usr/local/php/bin/php-config --with-libqconf-dir=/usr/local/qconf/include --enable-static LDFLAGS=/usr/local/qconf/lib/libqconf.a
+$ make
+$ make install
+```
+
+修改`php.ini`配置文件使 Qconf 扩展生效。
+
+```Bash
+$ vim /usr/local/php/lib/php.ini
+# 追加如下配置
+extension=qconf.so
+```
+
+重启 php-fpm，并查看 Qconf 扩展是否安装成功。
+
+```Bash
+$ php --ri qconf
+
+qconf support => enabled
+qconf version => 1.2.2
+```
+
+## 配置Qconf
+
+Qconf 默认安装，其配置文件路径为`/usr/local/qconf/conf`。配置文件共有`agent.conf`、`idc.conf`、`localidc` 这三个，`agent.conf`为 Qconf 的 agent 相关配置，`idc.conf` 和 `localidc` 为与 Zookeeper 相关的连接信息配置。
+
+### 配置agent
+
+`agent.conf`的配置内容如下，一般不需要进行修改。
+
+```INI
+# 工作模式 0 => console mode; 1 => background mode. 
+daemon_mode=1
+# 日记级别 debug => 0; trace => 1; info => 2; warning => 3; error => 4; fatal_error => 5
+log_level=4
+# Zookeeper超时
+zookeeper_recv_timeout=30000
+# 执行执行超时
+script_execute_timeout=3000
+# Register the node on zookeeper server
+register_node_prefix=/qconf/__qconf_register_hosts
+# Zookeeper日志
+zk_log=zoo.err.log
+# 最大共享内存的读取次数
+max_repeat_read_times=100
+feedback_enable=0
+# 共享内存大小，采用lru策略
+shared_memory_size=100000
+```
+
+### 配置Zookeeper信息
+
+`idc.conf`配置文件指定 Zookeeper 的配置信息，并支持多个环境（测试环境、开发环境、生产环境）的配置。
+
+```INI
+zookeeper.prod=www.fanhaobai.com:2181
+zookeeper.test=127.0.0.1:2181
+```
+
+然后，将每个环境下的`localidc`配置文件内容配置为对应的环境名称。如测试环境则为 test，生产环境为 prod，这样就可以根据不同环境获取对应的配置信息。
+
+## API
+
+这里只通过 PHP 的 Qconf 客户端为例，来对 Qconf 的 API 使用进行说明。Qconf 为 PHP 封装的  API 操作类类名为 [Qconf](https://github.com/Qihoo360/QConf/wiki/QConf-PHP-Doc)。
+
+### getConf
+
+[getConf(path, idc, get_flag)]()
+
+**描述**
+
+返回配置节点的值，失败返回 NULL。
+
+**参数**
+
+* path - 配置节点路径
+* idc - 指定从那个 idc 获取配置信息，不指定则取 localidc 的值
+* get_flag - 如果设置为 0，QConf 在未命中共享内存的 path 时，会同步等待从 Zookeeper 拉取的操作，直到返回结果。否则未命中则直接返回 NULL
+
+```PHP
+# 从idc为test上获取/demo/confs/conf1节点的配置
+$ php -r "echo Qconf::getConf('/demo/confs/conf1');"
+888888
+# 从idc为prod上获取/demo/confs/conf1节点的配置
+Qconf::getConf('/demo/confs/conf1', 'prod');
+111111
+```
+
+### getBatchKeys
+
+[getBatchKeys(path, idc, get_flag)]()
+
+**描述**
+
+获取该节点路径所有 [下一级]() 子节点的名称，失败返回 NULL。
+
+**参数**
+
+参数见 [getConf](#getConf) 参数部分。
+
+```PHP
+Qconf::getBatchKeys('/demo/confs', 'test');
+
+array(3) {
+  [0] =>
+  string(5) "conf1"
+  [1] =>
+  string(5) "conf2"
+  [2] =>
+  string(5) "conf3"
+}
+```
+
+### getBatchConf
+
+[getBatchConf(path, idc, get_flag)]()
+
+**描述**
+
+获取该节点路径所有 [下一级]() 子节点的名称和配置值，失败返回 NULL。
+
+**参数**
+
+参数见 [getConf](#getConf) 参数部分。
+
+```PHP
+Qconf::getBatchConf('/demo/confs', 'test');
+array(3) {
+  'conf1' =>
+  string(6) "888888"
+  'conf2' =>
+  string(6) "999999"
+  'conf3' =>
+  string(6) "101010"
+}
+
+Qconf::getBatchConf('/demo', 'test');
+array(1) {
+  'confs' =>
+  string(5) "confs"
+}
+```
+
+### getHost和getAllHost
+
+[getHost(path, idc, get_flag)]() 或 [getAllHost(path, idc, get_flag)]()
+
+**描述**
+
+返回该配置节点全部或一个可用服务，失败返回 NULL。
+
+**参数**
+
+参数见 [getConf](#getConf) 参数部分。
+
+```PHP
+Qconf::getHost('demo/confs/conf1');
+```
+
