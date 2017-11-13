@@ -10,8 +10,6 @@ categories:
 
 [Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 是 360 公司推出的分布式配置管理服务，目前已经支持 c++、go、java、lua、php、python 等语言。
 
-分布式配置管理服务，[选型文章](http://www.cnblogs.com/zhangxh20/p/5464103.html)。
-
 ## 安装
 
 ### 安装Zookeeper服务
@@ -317,3 +315,8 @@ array(1) {
 Qconf::getHost('demo/confs/conf1');
 ```
 
+## 植入代码
+
+未完待续。(●'◡'●)
+
+> 配置中心选型参考：http://www.cnblogs.com/zhangxh20/p/5464103.html。
