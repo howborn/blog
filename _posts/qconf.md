@@ -323,4 +323,4 @@ Qconf::getHost('demo/confs/conf1');
 
 未完待续。(●'◡'●)
 
-> 配置中心选型参考：http://www.cnblogs.com/zhangxh20/p/5464103.html。
+> 选型参考：http://www.cnblogs.com/zhangxh20/p/5464103.html
