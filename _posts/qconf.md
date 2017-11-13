@@ -317,6 +317,10 @@ Qconf::getHost('demo/confs/conf1');
 
 ## 植入代码
 
+... ...
+
+## 管理后台
+
 未完待续。(●'◡'●)
 
 > 配置中心选型参考：http://www.cnblogs.com/zhangxh20/p/5464103.html。
