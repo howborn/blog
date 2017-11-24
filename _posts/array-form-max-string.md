@@ -93,6 +93,10 @@ function cmp($a, $b) {
  */
 function bubble_sort(array $Arr) {
     $length = count($Arr);
+	if ($length < 2) {
+        return $Arr;
+    }
+
     for ($i = 1, $change = true; $i <= $length && $change; $i++) {
         $change = false;
         for ($j = $length - 1; $j > $i - 1; $j--) {
@@ -173,7 +177,7 @@ function array_form_max_str(array $Arr, $method = 'quick') {
 ### 测试代码 ###
 
 ```PHP
-$Arr = [];
+$Arr = [20,913,223,91,20,3];
 echo '数组为[', implode(',', $Arr), ']', PHP_EOL;
 echo '最大排列组合为：', array_form_max_str($Arr), PHP_EOL;
 ```
