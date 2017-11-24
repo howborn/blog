@@ -159,9 +159,7 @@ libgearman version => 1.1.17
 
 ```Bash
 # 先创建日志目录
-$ mkdir -p /usr/local/var/log
-$ touch /usr/local/var/log/gearmand.log
-$ gearmand -d --log-file=/usr/local/var/log/gearmand.log
+$ gearmand -d --log-file=/var/log/gearmand.log
 ```
 
 > 如果启动时出现 [Address family not supported by protocol](https://bugs.launchpad.net/gearmand/+bug/1134534) 错误，需要增加`-L 0.0.0.0`参数。
