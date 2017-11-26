@@ -275,7 +275,7 @@ SELECT bizcircleCode, GROUP_CONCAT(price) FROM rooms WHERE cityCode = 110000 GRO
                 "resblockName": "领秀慧谷C区",
                 "size": 15.3,
                 "bizcircleName": [ "西二旗", "回龙观" ],
-                "location": "40.106349,116.31051",
+                "location": "40.106349,116.31051"
               },
               "sort": [ 3500 ]
            }
@@ -366,7 +366,7 @@ PUT /rooms   //索引名
 
 {
   "mappings": {
-    "restaurant": {
+    "room": {
       "properties": {
         ... ...
         "location": {          //空间位置检索字段
