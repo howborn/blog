@@ -7,8 +7,9 @@ categories:
 - 网络
 ---
 
->原文：[神秘的40毫秒延迟与 TCP_NODELAY - Jerry's Blog](http://jerrypeng.me/2013/08/mythical-40ms-delay-and-tcp-nodelay/)。最近排查 Redis 的 Redis server went away 问题时，发现 Redis 的 PHP 扩展里面特意使用 [setsockopt()]() 函数设置了 sock 套接字的 [TCP_NODELAY](https://en.wikipedia.org/wiki/Nagle%27s_algorithm) 项，用来禁用了Nagle’s Algorithm 算法，遂后搜索到该文章。
->![](https://www.fanhaobai.com/2017/11/40ms-delay-and-tcp-nodelay/d8706486-963b-4f46-ab68-be8390747898.png)<!--more-->
+>原文：[神秘的40毫秒延迟与 TCP_NODELAY - Jerry's Blog](http://jerrypeng.me/2013/08/mythical-40ms-delay-and-tcp-nodelay/)。最近排查 Redis 的 Redis server went away 问题时，发现 Redis 的 PHP 扩展里面特意使用 [setsockopt()]() 函数设置了 sock 套接字的 [TCP_NODELAY](https://en.wikipedia.org/wiki/Nagle%27s_algorithm) 项，用来禁用了 Nagle’s Algorithm 算法，遂后搜索到该文章。
+
+![](https://www.fanhaobai.com/2017/11/40ms-delay-and-tcp-nodelay/d8706486-963b-4f46-ab68-be8390747898.png)<!--more-->
 
 最近的业余时间几乎全部献给 [breeze](https://github.com/moonranger/breeze) 这个多年前挖 下的大坑—— 一个异步 HTTP Server。努力没有白费，项目已经逐渐成型了， 基本的框架已经有了，一个静态 文件模块也已经实现了。
 
@@ -139,8 +140,8 @@ Percentage of the requests served within a certain time (ms)
 
 Nagle’s Algorithm 是为了提高带宽利用率设计的算法，其做法是合并小的TCP 包为一个，避免了过多的小报文的 TCP 头所浪费的带宽。如果开启了这个算法 （默认），则协议栈会累积数据直到以下两个条件之一满足的时候才真正发送出去：
 
-1. 积累的数据量到达最大的 TCP Segment Size
-2. 收到了一个 Ack
+1. [积累的数据量到达最大的 TCP Segment Size]()
+2. [收到了一个 Ack]()
 
 TCP Delayed Acknoledgement 也是为了类似的目的被设计出来的，它的作用就 是延迟 Ack 包的发送，使得协议栈有机会合并多个 Ack，提高网络性能。
 
@@ -152,19 +153,21 @@ TCP Delayed Acknoledgement 也是为了类似的目的被设计出来的，它�
 
 维基百科上的有一段伪代码来介绍 Nagle’s Algorithm：
 
-> if there is new data to send
->   if the window size >= MSS and available data is >= MSS
->    send complete MSS segment now
->  else
->    if there is unconfirmed data still in the pipe
->      enqueue data in the buffer until an acknowledge is received
->    else
->      send data immediately
->    end if
->  end if
-> end if
+```C
+if there is new data to send
+   if the window size >= MSS and available data is >= MSS
+    send complete MSS segment now
+  else
+    if there is unconfirmed data still in the pipe
+      enqueue data in the buffer until an acknowledge is received
+    else
+      send data immediately
+    end if
+  end if
+end if
+```
 
-可以看到，当待发送的数据比 MSS 小的时候（外层的 else 分支），还要再判断 时候还有未确认的数据。只有当管道里还有未确认数据的时候才会进入缓冲区， 等待 Ack。
+可以看到，当待发送的数据比 MSS 小的时候（外层的 else 分支），还要再判断 时候还有未确认的数据。只有当管道里还有未确认数据的时候才会进入缓冲区，等待 Ack。
 
 所以发送端发送的第一个 write 是不会被缓冲起来，而是立刻发送的（进入内层 的else 分支），这时接收端收到对应的数据，但它还期待更多数据才进行处理， 所以不会往回发送数据，因此也没机会把 Ack 给带回去，根据Delayed Ack 机制， 这个 Ack 会被 Hold 住。这时发送端发送第二个包，而队列里还有未确认的数据 包，所以进入了内层 if 的 then 分支，这个 packet 会被缓冲起来。此时，发 送端在等待接收端的 Ack；接收端则在 Delay 这个 Ack，所以都在等待，直到接 收端 Deplayed Ack 超时（40ms），此 Ack 被发送回去，发送端缓冲的这个 packet 才会被真正送到接收端，从而继续下去。
 
