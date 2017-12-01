@@ -7,8 +7,9 @@ categories:
 - 网络
 ---
 
->原文：[神秘的40毫秒延迟与 TCP_NODELAY - Jerry's Blog](http://jerrypeng.me/2013/08/mythical-40ms-delay-and-tcp-nodelay/)。最近排查 Redis 的 Redis server went away 问题时，发现 Redis 的 PHP 扩展里面特意使用 [setsockopt()]() 函数设置了 sock 套接字的 [TCP_NODELAY](https://en.wikipedia.org/wiki/Nagle%27s_algorithm) 项，用来禁用了 Nagle’s Algorithm 算法，遂后搜索到该文章。
+>原文：[神秘的40毫秒延迟与 TCP_NODELAY - Jerry's Blog](http://jerrypeng.me/2013/08/mythical-40ms-delay-and-tcp-nodelay/)。
 
+最近排查 Redis 的 Redis server went away 问题时，发现 Redis 的 PHP 扩展里面特意使用 [setsockopt()]() 函数设置了 sock 套接字的 [TCP_NODELAY](https://en.wikipedia.org/wiki/Nagle%27s_algorithm) 项，用来禁用了 Nagle’s Algorithm 算法，遂后搜索到该文章。
 ![](https://www.fanhaobai.com/2017/11/40ms-delay-and-tcp-nodelay/d8706486-963b-4f46-ab68-be8390747898.png)<!--more-->
 
 最近的业余时间几乎全部献给 [breeze](https://github.com/moonranger/breeze) 这个多年前挖 下的大坑—— 一个异步 HTTP Server。努力没有白费，项目已经逐渐成型了， 基本的框架已经有了，一个静态 文件模块也已经实现了。
