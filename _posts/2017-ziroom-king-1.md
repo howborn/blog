@@ -13,7 +13,7 @@ categories:
 
 所有题目中第 4 题蓄水池问题，是困惑我时间比较长的，其他题目比较容易看出考察点，这里我给出了 7 道题目自己的 [实现方式](https://github.com/fan-haobai/2017-ziroom-king/tree/master/src)，仅作为解题参考，若你有更好的思路欢迎讨论交流。
 
-本章只叙述前 3 道相对简单的题目，后续题目及解题思路将在 [后续系列](https://www.fanhaobai/2017/12/2017-ziroom-king-2.html) 中列出。
+本章只叙述前 3 道相对简单的题目，后续题目及解题思路将在 [后续系列](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html) 中列出。
 
 ## 标准输入过滤
 
