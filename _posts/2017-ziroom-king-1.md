@@ -9,7 +9,7 @@ categories:
 ---
 
 本次王者编程大赛分为 3 个组别，分别为研发、测试、移动战场。这里只讨论研发战场所考的 [题目](https://github.com/fan-haobai/2017-ziroom-king)，解题所用语言不做限制，但是需要在 [在线验证平台](http://www.anycodes.cn/zh/) 使用标准输入并验证通过。本次大赛共有 7 道题，主要考查点为基础算法，最后成绩以正确性和答题时间为评定依据。
-![](https://ww.fanhaobai.com/2017/12/2017-ziroom-king-1/f9829b13-af2e-4c7b-b214-40bc78223c18.png)<!--more-->
+![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/f9829b13-af2e-4c7b-b214-40bc78223c18.png)<!--more-->
 
 所有题目中第 4 题蓄水池问题，是困惑我时间比较长的，其他题目比较容易看出考察点，这里我给出了 7 道题目自己的 [实现方式](https://github.com/fan-haobai/2017-ziroom-king/tree/master/src)，仅作为解题参考，若你有更好的思路欢迎讨论交流。
 
@@ -87,11 +87,11 @@ echo array_sum($card), PHP_EOL;
 
 为了获取 3 种连接符组成的 3^n-1 种组合情况，这里巧妙地运用 [3 进制运算]() 来实现。
 
-![](https://ww.fanhaobai.com/2017/12/2017-ziroom-king-1/25fc16ed-ebdd-4094-84a4-150ad9a31b1f.png)
+![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/25fc16ed-ebdd-4094-84a4-150ad9a31b1f.png)
 
 算法执行流程：
 
-![](https://ww.fanhaobai.com/2017/12/2017-ziroom-king-1/d4724b85-8491-451a-8b3c-d6c06842ec69.png)
+![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/d4724b85-8491-451a-8b3c-d6c06842ec69.png)
 
 ## 编码实现
 
@@ -186,7 +186,7 @@ array_walk($rank->run(), function($value) {
 
 ### 解题思路
 
-这道题是我司的笔试题目之一，我之前写的 [求非负元素数组所有元素能组合的最大字符串](https://www.fanhaobai.com/2017/04/array-form-max-string.html) 文章，已经有过实现过程的描述。当然这道题可能有很多种实现方式，但是我认为最合适的实现还是采用排序的方式，容易理解，实现也简洁。
+这道题是我司的笔试题目之一，我之前写的[《求非负元素数组所有元素能组合的最大字符串》](https://www.fanhaobai.com/2017/04/array-form-max-string.html)文章，已经有过实现过程的描述。当然这道题可能有很多种实现方式，但是我认为最合适的实现还是采用排序的方式，容易理解，实现也简洁。
 
 * 比较规则：分析 a 和 b 的排列，因为这 2 个数存在 2 种排列情况，既 [*a_b*]() 和 [*b_a*]()，若 [*a_b*]() 组合值大于 [*b_a*]() 组合，那么认为 a "大于" b，则 a 需要排列在 b 前面，反之则需要交换 a 和 b 的位置。同我们熟悉的排序算法唯一不同的是，这里不是直接通过比较 2 个元素值大小，而是需要通过排列后的 2 个新值进行大小比较。
 * 排序算法：由于只是比较规则的不用，所以常用的排序算法（冒泡、快速、堆）一样适用。
