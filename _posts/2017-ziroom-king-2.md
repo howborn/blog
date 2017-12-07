@@ -227,7 +227,7 @@ echo $pool->run(), PHP_EOL;
 
 ## 相似题目
 
-Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体水池（二维数组），Twitter 蓄水池笔试题是平面水池（一维数组），当然解题复杂度也就降低了，当然 Twitter 蓄水池笔试题也可以采用本次的思想来实现，但是时间复杂度为 $O(n^2)$，采用 [有趣的积水问题](http://blog.csdn.net/qq_33765907/article/details/51154814) 的实现时间复杂度为 $O(n)$。
+Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体水池（二维数组），Twitter 蓄水池笔试题是平面水池（一维数组），当然解题复杂度也就降低了，当然 Twitter 蓄水池笔试题也可以采用本题的思想来实现，但是时间复杂度为 $O(n^2)$，采用 [有趣的积水问题](http://blog.csdn.net/qq_33765907/article/details/51154814) 的实现时间复杂度为 $O(n)$。
 ![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2/b2f137ff-b91b-4036-b7d8-fc86f82fb980.png)
 
 实现思路如下：
@@ -249,4 +249,3 @@ Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体
 * [王者编程大赛之三 — 01背包](https://www.fanhaobai.com/2017/12/2017-ziroom-king-3.html) <span>（2017-12-05）</span>
 * [王者编程大赛之四 — 约瑟夫环](https://www.fanhaobai.com/2017/12/2017-ziroom-king-4.html) <span>（2017-12-06）</span>
 * [王者编程大赛之五 — 最短路径](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5.html) <span>（2017-12-06）</span>
-
