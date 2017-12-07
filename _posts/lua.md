@@ -447,4 +447,7 @@ print(tostring(hash))             --> "{ 2, 3 }"
 
 Lua 是面向过程语言，使得可以简单易学。轻量级的特性，使得以脚本方式轻易地嵌入别的程序中，例如 [PHP](https://pecl.php.net/package/lua)、JAVA、[Redis](https://redis.io/commands/eval)、Nginx 等语言或应用。当然，Lua 也可以通过表实现面向对象编程。
 
+<strong>相关文章 [»]()</strong>
 
+* [Lua在Redis的应用](https://www.fanhaobai.com/2017/09/lua-in-redis.html) <span>（2017-09-04）</span>
+* [Lua在Nginx的应用](https://www.fanhaobai.com/2017/09/lua-in-nginx.html) <span>（2017-09-09）</span>

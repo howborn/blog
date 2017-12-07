@@ -233,3 +233,7 @@ end
 return users
 ```
 
+<strong>相关文章 [»]()</strong>
+
+* [进入Lua的世界](https://www.fanhaobai.com/2017/09/lua.html) <span>（2017-09-03）</span>
+* [Lua在Nginx的应用](https://www.fanhaobai.com/2017/09/lua-in-nginx.html) <span>（2017-09-09）</span>
