@@ -1,5 +1,5 @@
 ---
-title: 自如2017王者编程大赛之一
+title: 王者编程大赛之一
 date: 2017-12-05 05:12:06
 tags:
 - 算法
@@ -237,7 +237,7 @@ echo array_form_max_str(explode(',', $input)), PHP_EOL;
 
 <strong>相关文章 [»]()</strong>
 
-* [自如2017王者编程大赛之二](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html) <span>（2017-12-05）</span>
-* [自如2017王者编程大赛之三](https://www.fanhaobai.com/2017/12/2017-ziroom-king-3.html) <span>（2017-12-05）</span>
-* [自如2017王者编程大赛之四](https://www.fanhaobai.com/2017/12/2017-ziroom-king-4.html) <span>（2017-12-06）</span>
-* [自如2017王者编程大赛之五](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5.html) <span>（2017-12-06）</span>
+* [王者编程大赛之二 — 蓄水池](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html) <span>（2017-12-05）</span>
+* [王者编程大赛之三 — 01背包](https://www.fanhaobai.com/2017/12/2017-ziroom-king-3.html) <span>（2017-12-05）</span>
+* [王者编程大赛之四 — 约瑟夫环](https://www.fanhaobai.com/2017/12/2017-ziroom-king-4.html) <span>（2017-12-06）</span>
+* [王者编程大赛之五 — 最短路径](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5.html) <span>（2017-12-06）</span>
