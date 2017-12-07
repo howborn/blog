@@ -287,7 +287,7 @@ Solr 的 geofilt 过滤器可以实现 LBS 检索，但要在`schema.xml`配置�
 
 | 名称     | 描述                 | 示例                   |
 | ------ | ------------------ | -------------------- |
-| d      | 检索距离，单位 km             | 2                    |
+| d      | 检索距离，单位 km         | 2                    |
 | pt     | 检索中心点坐标，格式：lat,lon | 40.074203,116.315445 |
 | sfield | 检索的索引字段            | location             |
 
@@ -428,3 +428,7 @@ $result = $client->select($query);
 ## 总结
 
 到这里，Solr 系列就整理完毕了，未涉及的部分后续接触时再补充。这两天利用休息时间充电，自己在 Solr 方面的技能也算是上了一个台阶了。
+
+<strong>相关文章 [»]()</strong>
+
+* [Solr的使用 — 部署和数据推送](https://www.fanhaobai.com/2017/08/solr-search.html) <span>（2017-08-12）</span>

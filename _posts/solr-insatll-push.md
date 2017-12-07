@@ -219,3 +219,7 @@ COMMITting Solr index changes to http://localhost:8983/solr/books/update..
 ## 总结
 
 本文仅仅叙述了 Solr 的 Docker 单节点部署和简单的数据推送实现，由于个人能力和时间限制，并未涉及到其生成环境的应用环节。后续的一篇文章将会记录 Solr 的检索语法和 PHP 作为客户端调用 Solr 服务的一种方案。
+
+<strong>相关文章 [»]()</strong>
+
+* [Solr的使用 — 检索](https://www.fanhaobai.com/2017/08/solr-search.html) <span>（2017-08-13）</span>

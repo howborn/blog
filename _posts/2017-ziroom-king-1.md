@@ -234,3 +234,10 @@ echo array_form_max_str(explode(',', $input)), PHP_EOL;
 ## 总结
 
 这 3 道题算是热身吧，第 2 题巧妙运用 3 进制运算来模拟排列情况，都相对较容易，只是实现方式你是否会在意优雅而已。虽然简单，但是也不建议一上来就开始编码，首先要想清楚解题思路，然后编码实现即可。
+
+<strong>相关文章 [»]()</strong>
+
+* [自如2017王者编程大赛之二](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html) <span>（2017-12-05）</span>
+* [自如2017王者编程大赛之三](https://www.fanhaobai.com/2017/12/2017-ziroom-king-3.html) <span>（2017-12-05）</span>
+* * [自如2017王者编程大赛之四](https://www.fanhaobai.com/2017/12/2017-ziroom-king-4.html) <span>（2017-12-06）</span>
+* [自如2017王者编程大赛之五](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5.html) <span>（2017-12-06）</span>
