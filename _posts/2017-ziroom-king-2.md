@@ -1,6 +1,246 @@
 ---
-title: 2017-ziroom-king-2
-date: 2017-12-07 14:04:20
+title: 自如2017王者编程大赛之二——蓄水池问题
+date: 2017-12-05 05:12:06
 tags:
+- 算法
+- 数据结构
 categories:
+- 算法
 ---
+
+自如寓打算门口用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。那如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？
+![]()
+<!--more-->
+
+例如二维数组为：
+
+9 9 9 9
+3 0 0 9
+7 8 9 6
+时，答案是中间的 0,0 位置可以存储 3（因为其外面最低是 3 ）个单位的水，因此答案为 3 + 3 = 6。
+
+示例：
+输入：[1 1 1 1,1 0 0 1,1 1 1 1]
+输出：2
+输入：[12 11 12 0 13,12 9 8 12 12,13 10 0 3 15,19 4 4 7 15,19 4 3 0 15,12 13 10 15 13]
+输出：58
+
+## 解题思路
+
+这道题是所有题中困惑我时间最长的题，一开始思维禁锢在想直接通过找到每块砖的四周有效最低砖高度 $H_min$，然后这块砖所剩的水为 $w_ij = H_min-h_ij$($h_ij$ 为砖的高度，i 和 j 为砖的位置坐标)，因此蓄水池能蓄下的水为 $\sum_{i=1;j=1}^nn w_ij$。经过一番尝试，发现寻找某块砖四周最低有效砖逻辑比较复杂，且不易理解，又尝试过使用回溯算法寻找出池子中的所有连通图，但是也未有果。
+
+最后，发现基础平台一位同学的实现思路很清晰，我认为他的实现是最合适的，所以研究了一下。该实现中机智地采用逆向思维，[首先往池子注满水（最高砖的高度），然后再通过条件判定每块砖是否需要进行漏水，一直到没有砖需要进行漏水操作]()。
+
+实现思路如下：
+
+1. 找出高度最高的砖，高度记为 $H_max$；
+2. 对除去边界的砖进行注水操作，每块砖加水量为 $w_ij = H_max - h_ij$（$h_ij$ 为砖的高度）；
+3. 对某块砖进行漏水操作，只要这块砖有盛水且上下左右相邻的 4 块砖高度和盛水量之和大于这块砖高度和盛水量之和，则需要进行一次漏水，漏水条件可以描述为 $w_ij > 0 && h_ij + w_ij < h_ij-1 + w_ij-1$（该条件为左侧相邻砖的漏水条件，右、上、下同理可得）；
+4. 持续漏水操作，一直重复步骤 3 直至没有砖需要进行漏水操作；
+5. 求和砖的盛水量，$\sum_{i=1;j=1}^nn w_ij$ 即为水池的蓄水量；
+
+算法流程图示如下：
+
+![]()
+
+## 编码实现
+
+实现的类结构如下，特殊的方法已提取出，并将一一详细说明。
+
+```PHP
+<?php
+
+class Pool
+{
+    public $gridArray = array();
+    public $maxHeight = 0;
+    public $row = 0;
+    public $col = 0;
+
+    public function __construct(array $data)
+    {
+        $this->row = count($data);
+        $this->col = count($data[0]);
+
+        foreach ($data as $row => $rowArray) {
+            foreach ($rowArray as $col => $height) {
+                $height = (int)$height;
+                $this->gridArray[$row][$col]['height'] = $height;
+                $this->gridArray[$row][$col]['water'] = 0;
+                //获取最高砖的高度
+                if ($this->maxHeight < $height) {
+                    $this->maxHeight = $height;
+                }
+            }
+        }
+    }
+    
+    //判断是否是水池边界
+    public function isBorder($row, $col)
+    {
+        if ($row == 0
+            || $row == $this->row - 1
+            || $col == 0
+            || $col == $this->col - 1
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function run()
+    {
+        $this->addWater();
+
+        while ($this->removeWater()) ;
+
+        return $this->collect();
+    }
+}
+```
+
+注水操作：
+ 
+```PHP
+public function addWater()
+{
+    foreach ($this->gridArray as $row => $rowArray) {
+        foreach ($rowArray as $col => $grid) {
+            if (!$this->isBorder($row, $col)) {
+                $this->gridArray[$row][$col]['water'] = $this->maxHeight - $this->gridArray[$row][$col]['height'];
+            }
+        }
+    }
+}
+```
+
+漏水操作：
+
+```PHP
+public function removeWater()
+{
+    foreach ($this->gridArray as $row => $rowArray) {
+        foreach ($rowArray as $col => $grid) {
+            if ($this->canRemove($row, $col)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+```
+
+漏水条件实现如下：
+
+```PHP
+public function canRemove($row, $col)
+{
+    $can = false;
+
+    if ($this->gridArray[$row][$col]['water'] > 0) {
+        //上
+        if ($this->gridArray[$row][$col]['water'] + $this->gridArray[$row][$col]['height'] >
+            $this->gridArray[$row - 1][$col]['water'] + $this->gridArray[$row - 1][$col]['height']) {
+            $this->gridArray[$row][$col]['water'] =
+                $this->gridArray[$row - 1][$col]['water'] + $this->gridArray[$row - 1][$col]['height']
+                - $this->gridArray[$row][$col]['height'];
+            if ($this->gridArray[$row][$col]['water'] < 0) {
+                $this->gridArray[$row][$col]['water'] = 0;
+            }
+            $can = true;
+        }
+        //右
+        if ($this->gridArray[$row][$col]['water'] + $this->gridArray[$row][$col]['height'] >
+            $this->gridArray[$row][$col + 1]['water'] + $this->gridArray[$row][$col + 1]['height']) {
+            $this->gridArray[$row][$col]['water'] =
+                $this->gridArray[$row][$col + 1]['water'] + $this->gridArray[$row][$col + 1]['height']
+                - $this->gridArray[$row][$col]['height'];
+            if ($this->gridArray[$row][$col]['water'] < 0) {
+                $this->gridArray[$row][$col]['water'] = 0;
+            }
+            $can = true;
+        }
+        //下
+        if ($this->gridArray[$row][$col]['water'] + $this->gridArray[$row][$col]['height'] >
+            $this->gridArray[$row + 1][$col]['water'] + $this->gridArray[$row + 1][$col]['height']) {
+            $this->gridArray[$row][$col]['water'] =
+                $this->gridArray[$row + 1][$col]['water'] + $this->gridArray[$row + 1][$col]['height']
+                - $this->gridArray[$row][$col]['height'];
+            if ($this->gridArray[$row][$col]['water'] < 0) {
+                $this->gridArray[$row][$col]['water'] = 0;
+            }
+            $can = true;
+        }
+        //左
+        if ($this->gridArray[$row][$col]['water'] + $this->gridArray[$row][$col]['height'] >
+            $this->gridArray[$row][$col - 1]['water'] + $this->gridArray[$row][$col - 1]['height']) {
+            $this->gridArray[$row][$col]['water'] =
+                $this->gridArray[$row][$col - 1]['water'] + $this->gridArray[$row][$col - 1]['height']
+                - $this->gridArray[$row][$col]['height'];
+            if ($this->gridArray[$row][$col]['water'] < 0) {
+                $this->gridArray[$row][$col]['water'] = 0;
+            }
+            $can = true;
+        }
+    }
+
+    return $can;
+}
+```
+
+持续漏水操作：
+
+```PHP
+public function run()
+{
+    while ($this->removeWater()) ;
+}
+```
+
+求和砖的盛水量：
+
+```PHP
+public function collect()
+{
+    $sum = 0;
+    foreach ($this->gridArray as $row => $rowArray) {
+        foreach ($rowArray as $col => $grid) {
+            $sum += $grid['water'];
+        }
+    }
+
+    return $sum;
+}
+```
+
+接收标准输入处理并输出结果：
+
+```PHP
+$filter = function ($value) {
+    return explode(' ', $value);
+};
+
+$pool = new Pool(array_map($filter, explode(',', $input)));
+echo $pool->run(), PHP_EOL;
+```
+
+## 相似题目
+
+Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体水池（二维数组），Twitter 蓄水池笔试题是平面水池（一维数组），当然解题复杂度也就降低了，当然 Twitter 蓄水池笔试题也可以采用本次的思想来实现，但是时间复杂度为 $O(n^2)$，采用 [有趣的积水问题](http://blog.csdn.net/qq_33765907/article/details/51154814) 的实现时间复杂度为 O(n)。
+
+![](https://www.fanhaobai.com/2017/12/b2f137ff-b91b-4036-b7d8-fc86f82fb980.png)
+
+实现思路如下：
+
+1. 首先，用两个指针（left 和 right）分别指向数组的第一个元素和最后一个元素，左指针从左向右遍历，右指针从右向左遍历；
+2. 初始化数组中一个元素（a[0]）为左边遍历得到的最大值（max_left），最后一个元素（a[a.length-1]）为从右边遍历得到的最大值（max_right）；
+3. 开始遍历，遍历结束条件为 [左指针不小于右指针]()；
+4. 如果左边遍历的最大值小于右边遍历的最大值，说明只要有水沟（即小于左边最大值 max_left 的元素）就会有积水，因为右边的最大值可以保证左边水沟的积水不会流失掉；同样，如果左边遍历的最大值不小于右边遍历的最大值，只要右边有水沟（即小于右边最大值 max_right 的元素）就会有积水；
+
+具体实现，请直接参考 [有趣的积水问题](http://blog.csdn.net/qq_33765907/article/details/51154814) 文章。
+
+## 总结
+
+本题的蓄水池问题，如果理解了问题本质并逆向思维，将寻找某块砖四周最低有效砖高度（寻找有效砖涉及到边界扩散）转化为判断某块砖是否需要漏水条件，那么问题就简化很多了，那后续编码也就很容易实现了，本文算法的时间复杂度为 $O(n^3)$。
