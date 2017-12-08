@@ -8,4 +8,4 @@
 
 ## 文章
 
-本站所有的文章 markdown 文件，请移步 [这里](https://github.com/fan-haobai/blog/tree/master/_posts)。
+本站所有的文章 Markdown 文件，请移步 [这里](https://github.com/fan-haobai/blog/tree/master/_posts)。
