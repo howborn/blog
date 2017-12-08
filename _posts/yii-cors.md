@@ -2,7 +2,7 @@
 title: Yii支持多域名cors原理
 date: 2017-08-05 17:42:43
 tags:
-- cors
+- YII
 categories:
 - 语言
 - PHP

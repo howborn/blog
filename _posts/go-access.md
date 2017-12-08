@@ -155,7 +155,7 @@ tcp   0   0 0.0.0.0:7890      0.0.0.0:*     LISTEN      21136/goaccess
 在某些场景下，没有这样的实时性要求，可采用 crontab 机制实现定时更新 HTML 报表。
 
 ```Bash
-# 定时任务内容
+# 每天执行
 0 0 1 * * goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf -o /data/html/hexo/public/go-access.html 2> /data/logs/go-access.log
 ```
 

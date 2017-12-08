@@ -2,7 +2,7 @@
 title: 解决YII2验证码不刷新问题
 date: 2017-06-21 21:33:35
 tags:
-- Yii
+- YII
 categories:
 - 语言
 - PHP

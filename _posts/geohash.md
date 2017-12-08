@@ -2,7 +2,7 @@
 title: GeoHash核心原理解析
 date: 2017-08-22 19:37:35
 tags:
-- geohash
+- Geohash
 categories:
 - 算法
 ---

@@ -2,7 +2,7 @@
 title: 从foreach方法引出的PHP内存分析
 date: 2017-07-16 18:45:17
 tags:
-- array
+- 数据结构
 categories:
 - 语言
 - PHP
