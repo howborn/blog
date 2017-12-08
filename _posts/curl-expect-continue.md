@@ -2,7 +2,7 @@
 title: curl时设置Expect的必要性
 date: 2017-08-06 09:33:32
 tags:
-- HTTP
+- TCP/IP
 categories:
 - 语言
 - PHP
