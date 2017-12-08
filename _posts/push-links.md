@@ -2,9 +2,9 @@
 title: 如何向搜索引擎提交链接
 date: 2017-01-17 22:51:23
 tags:
-- SEO
+- 日常
 categories:
-- SEO
+- 日常
 ---
 
 > 文档：http://zhanzhang.baidu.com/college/courseinfo?id=267&page=2

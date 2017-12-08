@@ -2,10 +2,9 @@
 title: 常用Git命令清单
 date: 2017-04-18 23:02:22
 tags:
-- Git
+- 工具
 categories:
 - 工具
-- Git
 ---
 
 > 原文：http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html

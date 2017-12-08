@@ -2,9 +2,9 @@
 title: 安装LNMP开发环境
 date: 2016-05-24 22:55:50
 tags:
-- LNMP
+- 工具
 categories:
-- Linux
+- 工具
 ---
 
 > 本文主要介绍 LNMP 开发环境的安装，同时列出了 Phpstorm 的安装过程。源码包统一放置于`/usr/src`，软件统一安装于`/usr/local`。<!--more-->

@@ -2,7 +2,7 @@
 title: Gearman的安装和使用
 date: 2017-08-27 10:42:43
 tags:
-- Gearman
+- 分布式
 categories:
 - 分布式
 ---

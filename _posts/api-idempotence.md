@@ -6,7 +6,7 @@ categories:
 - PHP
 tags:
 - PHP
-- HTTP
+- HTTP/HTTPS
 ---
 
 > 原文：http://www.i3geek.com/archives/841

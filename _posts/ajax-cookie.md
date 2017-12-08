@@ -2,8 +2,7 @@
 title: 二级域名站点统一登陆入口问题
 date: 2016-12-25 01:11:49
 tags:
-- Ajax
-- Cookie
+- JS
 categories:
 - 语言
 - JS

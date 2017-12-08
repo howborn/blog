@@ -2,10 +2,9 @@
 title: CentOS6.5升级GCC-4.8
 date: 2016-12-08 01:18:46
 tags:
-- GCC
+- Linux
 categories:
 - Linux
-- CentOS
 ---
 
 CenOS6.5 系统中默认带有 gcc4.4.7 版本，在编译一些库时无法编译成功，所以需要进行升级。但由于 CentOS6.5 系统源中提供的 gcc 最新版本为 4.4.7，所以不能直接使用`yum upgrade gcc`命令完成自动完成更新。如下采用源码编译安装。<!--more-->

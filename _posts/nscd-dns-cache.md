@@ -2,9 +2,9 @@
 title: DNS缓存服务 — NSCD
 date: 2017-06-25 14:12:47
 tags:
-- NSCD
+- 系统原理
 categories:
-- Linux
+- 系统原理
 ---
 
 偶然发现，本站的阿里云服务器上运行着一个叫 nscd 的服务。搜索了一番，得知 nscd（Name Service Cache Daemon）是一种能够缓存 passwd、group、hosts 的本地缓存服务，分别对应三个源  `/etc/passwd`、`/etc/hosts`、`/etc/resolv.conf`。其最为明显的作用就是加快 DNS 解析速度，在接口调用频繁的内网环境建议开启。<!--more-->

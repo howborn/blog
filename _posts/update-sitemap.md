@@ -2,11 +2,9 @@
 title: 自动更新站点地图的部署
 date: 2017-01-16 18:56:24
 tags:
-- PHP
-- SEO
+- 日常
 categories:
-- 语言
-- PHP
+- 日常
 ---
 
 <style>

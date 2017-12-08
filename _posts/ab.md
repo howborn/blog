@@ -2,7 +2,7 @@
 title: AB压力测试工具
 date: 2016-02-17 08:00:00
 tags:
-- AB
+- 工具
 categories:
 - 工具
 ---

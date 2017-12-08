@@ -4,7 +4,7 @@ date: 2017-11-29 15:48:52
 tags:
 - TCP/IP
 categories:
-- 网络
+- 网络协议
 ---
 
 >原文：[神秘的40毫秒延迟与 TCP_NODELAY - Jerry's Blog](http://jerrypeng.me/2013/08/mythical-40ms-delay-and-tcp-nodelay/)。

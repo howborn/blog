@@ -2,10 +2,9 @@
 title: Composer安装和使用
 date: 2017-05-03 22:50:49
 tags:
-- Composer
+- 工具
 categories:
 - 工具
-- Composer
 ---
 
 [Composer](https://getcomposer.org/) 是一个 PHP 依赖包管理工具，我们通过在 composer.json 配置中申明项目依赖后，它会自动在的项目中安装完成项目所需依赖。一些常用的项目依赖包列表，[见这里](https://packagist.org/)。
