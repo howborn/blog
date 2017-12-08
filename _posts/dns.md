@@ -2,9 +2,9 @@
 title: DNS原理入门
 date: 2017-06-24 20:14:03
 tags:
-- DNS
+- 系统原理
 categories:
-- 协议
+- 系统原理
 ---
 
 > 原文：http://www.ruanyifeng.com/blog/2016/06/dns.html

@@ -2,8 +2,7 @@
 title: 启用Hexo开源博客系统
 date: 2017-03-01
 tags:
-- Hexo
-
+- 日常
 categories:
 - 日常
 ---

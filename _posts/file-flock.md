@@ -2,11 +2,10 @@
 title: PHP文件锁机制
 date: 2016-10-19 09:21:23
 categories:
-- 语言
 - PHP
 tags:
+- 语言
 - PHP
-- 锁机制
 ---
 >原文：http://www.lcode.cc/2016/10/15/php-flock.html
 

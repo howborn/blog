@@ -2,10 +2,9 @@
 title: 使用GoAccess分析Nginx日志
 date: 2017-06-17 15:23:46
 tags:
-- GoAccess
+- 工具
 categories:
 - 工具
-- GoAccess
 ---
 
 为了查看本站点的健康状况以及用户访问情况，就需要定期的分析服务器的 access 日志。但是由于没有使用日志分析工具，只能使用 cat、awk、sed 等命令做一些简单的日志分析统计，这样分析结果不理想也不全面，方法也极不高效。作为个人站点更适合引入轻量级的日志分析工具，例如 [GoAccess](https://goaccess.io) ，其使用简单且分析效果较好，[见这里](https://www.fanhaobai.com/go-access.html)。

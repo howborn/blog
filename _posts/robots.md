@@ -2,9 +2,9 @@
 title: Robots协议的那些事
 date: 2017-01-12 12:33:20
 tags:
-- SEO
+- 协议
 categories:
-- SEO
+- 协议
 ---
 
 由于本站文章搜索引擎搜索机器人（以下简称：爬虫）爬取效果不是很理想，出现了导航链接大量被爬取，而文章链接爬取较少。所以准备对本站加入 SEO，其实也就是引入了 [Robots协议](http://baike.baidu.com/link?url=2cB03FvdeTNWMUFlQEQxT4E6FxQ7DGXQr7Q6tAt702pNePMjVODT4Sj1vxp9W5ehdG9QP6dUZBrsiIJNYphnkPz6M9D8nHmbo7sdLNEydcg7QVqgnu4LUIGKTg5v-3ii0JqcHLrvxcBzN1UNBBH3fWBWmVlh3Jh0kSpoybswT7_) 。Robots 协议（也称为爬虫协议、机器人协议等）的全称是「[网络爬虫排除标准](http://baike.baidu.com/link?url=qZmXuLBjgnHeD9Q-gV4Rg1QAZOF04_MbuFOQRLaA_jZqIBgqVkbtVA-8YAzHo3mFwtrL2l0vrfmgw97OlU2R36hMv0KGgRTFOnl2lonhJ7J4Uspy3WCTiGCtpGK65BCc)」（Robots Exclusion Protocol）。网站通过 Robots 协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取，而 **robots.txt 文本文件** 就是 Robots 协议的表述。

@@ -2,10 +2,9 @@
 title: Git分支管理策略
 date: 2016-11-18 21:59:13
 tags:
-- Git
+- 工具
 categories:
 - 工具
-- Git
 ---
 
 > 原文：http://www.ruanyifeng.com/blog/2012/07/git.html

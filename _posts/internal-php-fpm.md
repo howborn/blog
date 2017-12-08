@@ -2,10 +2,10 @@
 title: 深入源码剖析PHP-FPM
 date: 2017-10-30 15:03:36
 tags:
-- php-fpm
+- PHP
 categories:
 - 语言
-- php
+- PHP
 ---
 
 > 原文：https://github.com/pangudashu/php7-internal/blob/master/1/fpm.md

@@ -2,7 +2,7 @@
 title: Vim快捷键整理
 date: 2016-06-21 00:00:00
 tags:
-- Vim
+- Linux
 categories:
 - Linux
 ---

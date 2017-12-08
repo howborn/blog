@@ -2,7 +2,7 @@
 title: 颜值超高的FireKylin博客系统
 date: 2016-12-11 17:57:59
 tags:
-- FireKylin
+- 日常
 categories:
 - 日常
 ---

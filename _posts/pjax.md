@@ -2,7 +2,7 @@
 title: pjax原理和使用
 date: 2017-07-12 23:16:24
 tags:
-- pjax
+- JS
 categories:
 - 语言
 - JS

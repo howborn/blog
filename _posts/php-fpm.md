@@ -2,11 +2,10 @@
 title: CGI与fastcgi和php-fpm与php-cgi的关系
 date: 2017-03-09 22:21:22
 categories:
-- 语言
 - PHP
 tags:
-- php-fpm
-- CGI
+- 语言
+- PHP
 ---
 
 > 原文：http://www.lcode.cc/2017/01/15/php-fpm.html

@@ -5,7 +5,6 @@ tags:
 - Linux
 categories:
 - Linux
-- CentOS
 ---
 
 > 原文：http://www.cnblogs.com/metoy/p/4320813.html

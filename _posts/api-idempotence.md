@@ -5,8 +5,7 @@ categories:
 - 语言
 - PHP
 tags:
-- PHP
-- HTTP
+- TCP/IP
 ---
 
 > 原文：http://www.i3geek.com/archives/841
