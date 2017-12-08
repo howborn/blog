@@ -227,7 +227,7 @@ echo $pool->run(), PHP_EOL;
 
 ## 相似题目
 
-Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体水池（二维数组），Twitter 蓄水池笔试题是平面水池（一维数组），解题复杂度也就降低了，当然 Twitter 蓄水池笔试题也可以采用本题的思想来实现，但是时间复杂度为 $O(n^2)$，采用 [有趣的积水问题](http://blog.csdn.net/qq_33765907/article/details/51154814) 的实现时间复杂度为 $O(n)$。
+Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体水池（二维数组），Twitter 蓄水池笔试题是平面水池（一维数组），解题复杂度也就降低了，当然 Twitter 蓄水池笔试题也可以采用本题的思想来实现，但是时间复杂度为 $O(n^2)$，采用 [我的Twitter技术面试失败了](http://blog.jobbole.com/50705/) 的实现时间复杂度为 $O(n)$。
 ![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2/b2f137ff-b91b-4036-b7d8-fc86f82fb980.png)
 
 实现思路如下：
@@ -237,7 +237,7 @@ Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体
 3. 开始遍历，遍历结束条件为 [左指针不小于右指针]()；
 4. 如果左边遍历的最大值小于右边遍历的最大值，说明只要有水沟（即小于左边最大值 max_left 的元素）就会有积水，因为右边的最大值可以保证左边水沟的积水不会流失掉；同样，如果左边遍历的最大值不小于右边遍历的最大值，只要右边有水沟（即小于右边最大值 max_right 的元素）就会有积水；
 
-具体实现，请直接参考 [有趣的积水问题](http://blog.csdn.net/qq_33765907/article/details/51154814) 文章。
+具体实现，请直接参考 [CuGBabyBeaR](https://github.com/CuGBabyBeaR/Interview-questions/blob/master/twitter-puddle/puddle.py) 文章。
 
 ## 总结
 
