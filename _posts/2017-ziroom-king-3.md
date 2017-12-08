@@ -26,6 +26,12 @@ categories:
 
 ## 解题思路
 
+本题是 01 背包问题，典型的 [动态规划](https://www.cnblogs.com/steven_oyj/archive/2010/05/22/1741374.html) 实现。动态规划
+
+https://www.cnblogs.com/Christal-R/p/Dynamic_programming.html
+
 ## 编码实现
 
 ## 总结
+
+动态规划的其他 [典型应用](https://www.cnblogs.com/wuyuegb2312/p/3281264.html)。
