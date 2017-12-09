@@ -1,110 +1,134 @@
 {
-    "define": {
-	"readed": "已读",
-        "reading": "在读",
-        "wanted": "想读"
-    },
-    "contents": {
-        "readed": [{
-          "title": "愿有人陪你颠沛流离",
-          "cover": "/douban/lpic/s27317967.jpg",
-          "review": "这本书是我离校时，一位学妹赠送的。卢思浩出品，可以跟随作者的脚步融入另一个世界，品味他的人生经历，我也喜欢自己的人生如书名一样，有人陪我颠沛流离。",
-          "score": "6.8",
-          "doubanLink": "https://book.douban.com/subject/25921293/"
-        }, {
-          "title": "数据结构（C语言版）",
-          "cover": "/douban/lpic/s26540471.jpg",
-          "review": "这本书绝对是经典，可以夯实基础的一本书籍，属计算机从业者必看类。",
-          "score": "6.4",
-          "doubanLink": "https://book.douban.com/subject/24699581/"
-        }, {
-          "title": "参与感",
-          "cover": "/douban/lpic/s27359667.jpg",
-          "review": "小米联合创始人黎万强所著，是小米营销方式的真实写照，通过这本书，可以了解到小米内部的真实运作情况。",
-          "score": "7.5",
-          "doubanLink": "https://book.douban.com/subject/25942507/"
-        }, {
-          "title": "打造facebook",
-          "cover": "/douban/lpic/s24581301.jpg",
-          "review": "有一群人，他们的驱动力是不断学习和不断创造，他们的理想是将世界变得更好，并投身于此，积极进取。他们是理想主义者，胸怀大志；他们也是实干家，为更好的世界每日添砖加瓦。他们每时每刻都在为世界创造真正的价值。这类人，酷一点的名字叫黑客（Hacker）或者极客（Geek），亲切一点的名字叫做工程师（Engineer）",
-          "score": "7.5",
-          "doubanLink": "https://book.douban.com/subject/20471120/"
-        }, {
-          "title": "20个月赚130亿",
-          "cover": "/douban/lpic/s6982859.jpg",
-          "review": "YouTube联合创始人陈士骏在书中以朴实亲切的口吻讲述了他的人生经历，以及对学业、事业、梦想、财富、生死等的种种感悟，同时也是很真实的硅谷开发者生活方式的介绍。",
-          "score": "7.6",
-          "doubanLink": "https://book.douban.com/subject/6920100/"
-        }, {
-          "title": "我们为什么会分手？",
-          "cover": "/douban/mpic/s27635418.jpg",
-          "review": "新年回家利用火车上的时间看完了这本访谈录性质的书，正如书中所言，同样的世界，在不同人的眼里竟是如此迥异的面貌。通过书中十五个分手的故事，你可以知道，恋人双方对爱会给出不同的诠释，而分手对双方又是如此的微妙。那么为什么会分手呢？请好好珍惜身边人吧。",
-          "score": "7.4",
-          "doubanLink": "https://book.douban.com/subject/26146992/"
-        }, {
-          "title": "图解HTTP",
-          "cover": "/douban/lpic/s27283822.jpg",
-          "review": "",
-          "score": "8.1",
-          "doubanLink": "https://book.douban.com/subject/25863515/"
-        }, {
-          "title": "富爸爸穷爸爸",
-          "cover": "/douban/lpic/s27274192.jpg",
-          "review": "",
-          "score": "8.5",
-          "doubanLink": "https://book.douban.com/subject/25816940/"
-        }],
-		
-	"reading": [{
-          "title": "高性能MySQL",
-          "cover": "/douban/lpic/s27783358.jpg",
-          "review": "",
-          "score": "9.3",
-          "doubanLink": "https://book.douban.com/subject/23008813/"
-        }, {
-          "title": "程序员面试笔试宝典",
-          "cover": "/douban/lpic/s23121995.jpg",
-          "review": "",
-          "score": "8.0",
-          "doubanLink": "https://book.douban.com/subject/20270192/"
-        }],
-
-	"wanted": [{
-	  "title": "程序是怎样跑起来的",
-          "cover": "/douban/lpic/s28047380.jpg",
-          "review": "",
-          "score": "8.0",
-          "doubanLink": "https://book.douban.com/subject/26365491/"
-        }, {
-          "title": "代码大全（第2版）",
-          "cover": "/douban/lpic/s1495029.jpg",
-          "review": "",
-          "score": "9.3",
-          "doubanLink": "https://book.douban.com/subject/1477390/"
-        }, {
-          "title": "剑指Offer",
-          "cover": "/douban/lpic/s27991506.jpg",
-          "review": "",
-          "score": "9.2",
-          "doubanLink": "https://book.douban.com/subject/25910559/"
-        }, {
-          "title": "代码整洁之道",
-          "cover": "/douban/lpic/s6268784.jpg",
-          "review": "",
-          "score": "9.1",
-          "doubanLink": "https://book.douban.com/subject/5442024/"
-        }, {
-          "title": "计算机程序的构造和解释",
-          "cover": "/douban/lpic/s1113106.jpg",
-          "review": "",
-          "score": "9.5",
-          "doubanLink": "https://book.douban.com/subject/1148282/"
-        }, {
-	  "title": "程序员的自我修养",
-	  "cover": "/douban/view/ark_article_cover/retina/public/1637944.jpg",
-	  "review": "",
-	  "score": "8.8",
-	  "doubanLink": "https://read.douban.com/ebook/1637944"
-	}]
-    }
+  "define": {
+    "readed": "已读",
+    "reading": "在读",
+    "wanted": "想读"
+  },
+  "contents": {
+    "readed": [
+      {
+        "title": "愿有人陪你颠沛流离",
+        "cover": "/douban/lpic/s27317967.jpg",
+        "review": "这本书是我离校时，一位学妹赠送的。卢思浩出品，可以跟随作者的脚步融入另一个世界，品味他的人生经历，我也喜欢自己的人生如书名一样，有人陪我颠沛流离。",
+        "score": "6.8",
+        "doubanLink": "https://book.douban.com/subject/25921293/"
+      },
+      {
+        "title": "数据结构（C语言版）",
+        "cover": "/douban/lpic/s26540471.jpg",
+        "review": "这本书绝对是经典，可以夯实基础的一本书籍，属计算机从业者必看类。",
+        "score": "6.4",
+        "doubanLink": "https://book.douban.com/subject/24699581/"
+      },
+      {
+        "title": "参与感",
+        "cover": "/douban/lpic/s27359667.jpg",
+        "review": "小米联合创始人黎万强所著，是小米营销方式的真实写照，通过这本书，可以了解到小米内部的真实运作情况。",
+        "score": "7.5",
+        "doubanLink": "https://book.douban.com/subject/25942507/"
+      },
+      {
+        "title": "打造facebook",
+        "cover": "/douban/lpic/s24581301.jpg",
+        "review": "有一群人，他们的驱动力是不断学习和不断创造，他们的理想是将世界变得更好，并投身于此，积极进取。他们是理想主义者，胸怀大志；他们也是实干家，为更好的世界每日添砖加瓦。他们每时每刻都在为世界创造真正的价值。这类人，酷一点的名字叫黑客（Hacker）或者极客（Geek），亲切一点的名字叫做工程师（Engineer）",
+        "score": "7.5",
+        "doubanLink": "https://book.douban.com/subject/20471120/"
+      },
+      {
+        "title": "20个月赚130亿",
+        "cover": "/douban/lpic/s6982859.jpg",
+        "review": "YouTube联合创始人陈士骏在书中以朴实亲切的口吻讲述了他的人生经历，以及对学业、事业、梦想、财富、生死等的种种感悟，同时也是很真实的硅谷开发者生活方式的介绍。",
+        "score": "7.6",
+        "doubanLink": "https://book.douban.com/subject/6920100/"
+      },
+      {
+        "title": "我们为什么会分手？",
+        "cover": "/douban/mpic/s27635418.jpg",
+        "review": "新年回家利用火车上的时间看完了这本访谈录性质的书，正如书中所言，同样的世界，在不同人的眼里竟是如此迥异的面貌。通过书中十五个分手的故事，你可以知道，恋人双方对爱会给出不同的诠释，而分手对双方又是如此的微妙。那么为什么会分手呢？请好好珍惜身边人吧。",
+        "score": "7.4",
+        "doubanLink": "https://book.douban.com/subject/26146992/"
+      },
+      {
+        "title": "图解HTTP",
+        "cover": "/douban/lpic/s27283822.jpg",
+        "review": "",
+        "score": "8.1",
+        "doubanLink": "https://book.douban.com/subject/25863515/"
+      },
+      {
+        "title": "富爸爸穷爸爸",
+        "cover": "/douban/lpic/s27274192.jpg",
+        "review": "",
+        "score": "8.5",
+        "doubanLink": "https://book.douban.com/subject/25816940/"
+      }
+    ],
+    "reading": [
+      {
+        "title": "淘宝技术这十年",
+        "cover": "https://img3.doubanio.com/lpic/s26713863.jpg",
+        "review": "",
+        "score": "7.3",
+        "doubanLink": "https://book.douban.com/subject/24335672/"
+      },
+      {
+        "title": "高性能MySQL",
+        "cover": "/douban/lpic/s27783358.jpg",
+        "review": "",
+        "score": "9.3",
+        "doubanLink": "https://book.douban.com/subject/23008813/"
+      },
+      {
+        "title": "程序员面试笔试宝典",
+        "cover": "/douban/lpic/s23121995.jpg",
+        "review": "",
+        "score": "8.0",
+        "doubanLink": "https://book.douban.com/subject/20270192/"
+      }
+    ],
+    "wanted": [
+      {
+        "title": "程序是怎样跑起来的",
+        "cover": "/douban/lpic/s28047380.jpg",
+        "review": "",
+        "score": "8.0",
+        "doubanLink": "https://book.douban.com/subject/26365491/"
+      },
+      {
+        "title": "代码大全（第2版）",
+        "cover": "/douban/lpic/s1495029.jpg",
+        "review": "",
+        "score": "9.3",
+        "doubanLink": "https://book.douban.com/subject/1477390/"
+      },
+      {
+        "title": "剑指Offer",
+        "cover": "/douban/lpic/s27991506.jpg",
+        "review": "",
+        "score": "9.2",
+        "doubanLink": "https://book.douban.com/subject/25910559/"
+      },
+      {
+        "title": "代码整洁之道",
+        "cover": "/douban/lpic/s6268784.jpg",
+        "review": "",
+        "score": "9.1",
+        "doubanLink": "https://book.douban.com/subject/5442024/"
+      },
+      {
+        "title": "计算机程序的构造和解释",
+        "cover": "/douban/lpic/s1113106.jpg",
+        "review": "",
+        "score": "9.5",
+        "doubanLink": "https://book.douban.com/subject/1148282/"
+      },
+      {
+        "title": "程序员的自我修养",
+        "cover": "/douban/view/ark_article_cover/retina/public/1637944.jpg",
+        "review": "",
+        "score": "8.8",
+        "doubanLink": "https://read.douban.com/ebook/1637944"
+      }
+    ]
+  }
 }
