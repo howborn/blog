@@ -45,8 +45,7 @@ n -> n-k
 
 这样，我们就得到一个递推关系式：[$p_n = (p_{n-1} + k) % n$]()，初始条件 $p_1 = 1$（1 个人时幸存者为自己），当然该提递推公式同样适用于 n < k 的情况。
 
-## 编码实现
-
+## [编码实现](https://github.com/fan-haobai/2017-ziroom-king/blob/master/src/6.php)
 
 约瑟夫环递推实现：
 
