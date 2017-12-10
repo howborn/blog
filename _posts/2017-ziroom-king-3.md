@@ -11,7 +11,7 @@ categories:
 服务目前每月会对搬家师傅进行评级，根据师傅的评级排名结果，我们将优先保证最优师傅的全天订单。
 
 假设师傅每天工作 8 个小时，给定一天 n 个订单，每个订单其占用时间长为 $T_i$，挣取价值为 $V_i$，现请您为师傅安排订单，并保证师傅挣取价值最大。
-![](https://www.fanhaobai.com/https://www.fanhaobai.com/2017/12/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)<!--more-->
+![](https://www.fanhaobai.com/2017/12/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)<!--more-->
 
 输入格式
 输入 n 组数据，每组以逗号分隔并且每一个订单的编号，时长，挣取价值，数字以空格分隔
@@ -48,15 +48,15 @@ categories:
 因此，可得 [动态方程]()：
 
 $$wv(i,j) = \begin{cases}
-wv(i-1,j) (j<w(i)，不安排第 i 个订单)  \\
-max(wv(i-1,j), wv(i-1, j-w(i)) + v(i)) (j>=w(i)，安排第 i 个订单)
+wv(i-1,j)(j<w(i),不安排第 i 个订单)  \\
+max(wv(i-1,j), wv(i-1, j-w(i)) + v(i))(j>=w(i),安排第 i 个订单)
 \end{cases}$$
 
 ### 确定边界
 
 可以确定边界条件 $wx(0,j) = wx(i, 0) = 0$，$wx(0,j)$ 表示一个订单都没安排，再怎么耗时价值都为 0，$wx(i,0)$ 表示没有耗时，安排多少订单价值都为 0。
 
-![](https://www.fanhaobai.com/https://www.fanhaobai.com/2017/12/18359c82-3ff9-48c7-825e-77fe17419621.png)
+![](https://www.fanhaobai.com/2017/12/18359c82-3ff9-48c7-825e-77fe17419621.png)
 
 ### 求解
 
@@ -66,7 +66,7 @@ max(wv(i-1,j), wv(i-1, j-w(i)) + v(i)) (j>=w(i)，安排第 i 个订单)
 2) 又如 i=1,j=2 时，有 $j=w(i)$，故 $wx(1,2) = max(wx(1-1,1), wx(1-1,2-w(1)) + v(1) = 100$；
 3) 如此下去，直至填到最后一个，i=5,j=8 时，有 $j<w(i)$，故 $wx(5,8) = max(wx(5-1,8), wx(5-1,8-w(5)) + v(5) = 730$；
 
-![](https://www.fanhaobai.com/https://www.fanhaobai.com/2017/12/366c6f00-35a1-46c6-ba98-76e3c7b3bae4.png)
+![](https://www.fanhaobai.com/2017/12/366c6f00-35a1-46c6-ba98-76e3c7b3bae4.png)
 
 4) 在耗时没有超过 8 小时的前提下，当前 5 个订单都被安排过时，$wx(5,8) = 730$ 即为所求的最大价值。
 
@@ -77,13 +77,13 @@ max(wv(i-1,j), wv(i-1, j-w(i)) + v(i)) (j>=w(i)，安排第 i 个订单)
 但是在求解的过程中不难发现，寻解方程满足如下定义：
 
 $$x(i) = \begin{cases}
-wv(i,j) = wv(i-1,j) (说明没有安排第 i 个订单)  \\
-wv(i,j) != wv(i-1,j)(说明安排了第 i 个订单) 
+wv(i,j) = wv(i-1,j) \\
+wv(i,j) != wv(i-1,j)
 \end{cases}$$
 
 从表格右下到左上为寻解方向，寻解过程如下：
 
-![](https://www.fanhaobai.com/https://www.fanhaobai.com/2017/12/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)
+![](https://www.fanhaobai.com/2017/12/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)
 
 1) i=5,j=8 时，有 $wv(5,8) != wv(4,8)$，故 $x(5) = 1$，此时 $j -= w(5)$，$j = 5$；
 2) i=4 时，无论 j 取何值，都有 $wv(4,j) == wv(3,j)$，故 $x(5) = 0$，此时 $j = 5$；
@@ -91,7 +91,7 @@ wv(i,j) != wv(i-1,j)(说明安排了第 i 个订单)
 3)  i=2,j=4时，有 $wv(2,4) != wv(1,4)$，故 $x(2) = 1$，此时 $j -= w(2)$，$j = 2$；
 3)  i=1,j=2时，有 $wv(1,2) != wv(1,2)$，故 $x(1) = 1$，此时 $j -= w(1)$，$j = 0$，寻解结束；
 
-## 编码实现
+## [编码实现](https://github.com/fan-haobai/2017-ziroom-king/blob/master/src/5.php)
 
 实现的类结构如下，特殊的方法已提取出，并将一一详细说明。
 
@@ -229,6 +229,6 @@ echo $knapsack->getMaxPrice(), ' ', implode(' ', array_column($goods, 0)), PHP_E
 
 ## 总结
 
-该题使用动态规划求解，算法的时间复杂度为$O(nc)$，当然也可以采用其他方式求解，例如先将订单按照价值排序，然后依次尝试被安排，直到剩余耗时不能再被安排订单。
+该题使用动态规划求解，算法的时间复杂度为$O(nc)$，当然也可以采用其他方式求解。例如先将订单按照价值排序，然后依次尝试进行安排订单，直至剩余耗时不能再被安排订单。
 
-有关动态规划的其他典型应用，请前往 [这里](https://www.cnblogs.com/wuyuegb2312/p/3281264.html)。
+有关动态规划的其他典型应用，请参考 [常见的动态规划问题分析与求解](https://www.cnblogs.com/wuyuegb2312/p/3281264.html) 一文。

@@ -42,7 +42,7 @@ categories:
 
 ![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2/53afcc7a-ff51-4191-aab0-5c9cc6850566.png)
 
-## 编码实现
+## [编码实现](https://github.com/fan-haobai/2017-ziroom-king/blob/master/src/4.php)
 
 实现的类结构如下，特殊的方法已提取出，并将一一详细说明。
 
