@@ -1,6 +1,6 @@
 ---
 title: 王者编程大赛之三 — 01背包
-date: 2017-12-06 13:22:00
+date: 2017-12-05 23:12:00
 tags:
 - 算法
 - 数据结构
@@ -49,9 +49,11 @@ categories:
 因此，可得 [动态方程]()：
 
 $$wv(i,j) = \begin{cases}
-wv(i-1,j)(j<w(i)) \\
-wv(i-1,j-w(i))+v(i)
+wv(i-1,j)(j < w(i)) \\
+max(wx(i-1,j),wv(i-1,j-w(i))+v(i))(j \geq w(i))
 \end{cases}$$
+
+说明：$j<w(i)$ 表示订单不被安排，$j \geq w(i)$ 表示订单被安排。
 
 ### 确定边界
 
@@ -232,3 +234,10 @@ echo $knapsack->getMaxPrice(), ' ', implode(' ', array_column($goods, 0)), PHP_E
 该题使用动态规划求解，算法的时间复杂度为 $O(nc)$，当然也可以采用其他方式求解。例如先将订单按照价值排序，然后依次尝试进行安排订单，直至剩余耗时不能再被安排订单。
 
 有关动态规划的其他典型应用，请参考 [常见的动态规划问题分析与求解](https://www.cnblogs.com/wuyuegb2312/p/3281264.html) 一文。
+
+<strong>相关文章 [»]()</strong>
+
+* [王者编程大赛之一](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1.html) <span>（2017-12-05）</span>
+* [王者编程大赛之二 — 蓄水池](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html) <span>（2017-12-05）</span>
+* [王者编程大赛之四 — 约瑟夫环](https://www.fanhaobai.com/2017/12/2017-ziroom-king-4.html) <span>（2017-12-06）</span>
+* [王者编程大赛之五 — 最短路径](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5.html) <span>（2017-12-06）</span>
