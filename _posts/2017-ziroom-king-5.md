@@ -41,44 +41,42 @@ Dijkstra 算法是运用了最短路径的最优子结构性质，最优子结�
 
 例如，求 CG 最短路径，算法过程可图示为：
 
-![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5/40beff35-47fc-4427-8805-e183233b598b.png)
-
 源顶点 $v_0$ = C，顶点与索引关系为 A→H = 0→7，初始时：
 
-* U =  {false, false, false, false, false, false, false, false}
+* U = {false, false, false, false, false, false, false, false}
 * D = {INF ,INF, **0**, INF, INF, INF, INF, INF}
-* P = {{}, {}, {C}, {}, {}, {}, {}, {}}
+* P = { {}, {}, {C}, {}, {}, {}, {}, {} }
 
 将顶点 C 包含至 U 中：
 
-* U =  {false, false, **true**, false, false, false, false, false}
+* U = {false, false, **true**, false, false, false, false, false}
 
 更新顶点 C 至任一节点的距离：
 
 * D = {**6**, **9**, **0**, **11**, INF, INF, INF, INF}
-* P = {{C,A}, {C,B}, {C}, {C,D}, {}, {}, {}, {}}
+* P = { {C,A}, {C,B}, {C}, {C,D}, {}, {}, {}, {} }
 
 ![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5/b7724f85-3855-410c-9cc7-1cfcee5d29e4.png)
 
 再选择不在 U 中的最短路径顶点 A，则将 A 包含至 U 中：
 
-* U =  {**true**, false, **true**, false, false, false, false, false}
+* U = {**true**, false, **true**, false, false, false, false, false}
 
 更新顶点 A 至任一节点的距离：
 
 * D = {**6**, **9**, **0**, **11**, INF, **25**, INF, INF}
-* P = {{C,A}, {C,B}, {C}, {C,D}, {}, {C,A,F}, {}, {}}
+* P = { {C,A}, {C,B}, {C}, {C,D}, {}, {C,A,F}, {}, {} }
 
 ![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5/c5f725fc-f801-4e93-9f32-5adb8a76e1a0.png)
 
 继续选择不在 U 中的最短路径顶点 B，则将 B 包含至 U 中：
 
-* U =  {**true**, **true**, **true**, false, false, false, false, false}
+* U = {**true**, **true**, **true**, false, false, false, false, false}
 
 更新顶点 B 至任一节点的距离：
 
 * D = {**6**, **9**, **0**, **11**, **16**, **25**, INF, INF}
-* P = {{C,A}, {C,B}, {C}, {C,D}, {C,B,E}, {C,A,F}, {}, {}}
+* P = { {C,A}, {C,B}, {C}, {C,D}, {C,B,E}, {C,A,F}, {}, {} }
 
 ![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5/45552677-bcd6-4d45-b627-a398f0cfe04d.png)
 
@@ -86,7 +84,7 @@ Dijkstra 算法是运用了最短路径的最优子结构性质，最优子结�
 
 * U =  {**true**, **true**, **true**, **true**, **true**, **true**, **true**, **true**}
 * D = {**6**, **9**, **0**, **11**, **16**, **21**, **33**, **16**}
-* P = {{C,A}, {C,B}, {C}, {C,D}, {C,B,E}, {C,B,E,F}, {C,B,E,F,G}, {C,D,H}}
+* P = { {C,A}, {C,B}, {C}, {C,D}, {C,B,E}, {C,B,E,F}, {C,B,E,F,G}, {C,D,H} }
 
 ![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-5/7eeefcb6-6b96-4719-9819-c96b31309449.png)
 
@@ -217,7 +215,7 @@ echo $path->getDistance(), ' ', implode('-', $path->getPath()), PHP_EOL;
 
 ## 总结
 
-本问题是求无向图源点的最短路径，时间复杂度为 $O(n^2)$，若求解有向图源点的最短路径，只需将相邻顶点的逆向路径置为 ∞，即修改初始图的矩阵。不得不说的是，比求单源点最短路径更加复杂的求某一对顶点的最短路径问题，也可以以每一个顶点为源点使用 Dijkstra 算法求解，但是有更加简洁的 Floyd 算法求解。
+本问题是求无向图源点的最短路径，时间复杂度为 $O(n^2)$，若求解有向图源点的最短路径，只需将相邻顶点的逆向路径置为 ∞，即修改初始图的矩阵。不得不说的是，比求单源点最短路径更加复杂的求某一对顶点的最短路径问题，也可以以每一个顶点为源点使用 Dijkstra 算法求解，但是有更加简洁的 [Floyd](https://zh.wikipedia.org/wiki/Floyd-Warshall%E7%AE%97%E6%B3%95) 算法求解。
 
 <strong>相关文章 [»]()</strong>
 
