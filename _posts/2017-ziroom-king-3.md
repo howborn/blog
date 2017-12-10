@@ -50,7 +50,7 @@ categories:
 
 $$wv(i,j) = \begin{cases}
 wv(i-1,j)(j<w(i)) \\
-\max(wv(i-1,j),wv(i-1,j-w(i))+v(i))(j>=w(i))
+wv(i-1,j-w(i))+v(i)
 \end{cases}$$
 
 ### 确定边界
