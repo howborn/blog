@@ -3,14 +3,32 @@ title: ELK+Beats集中式日志平台
 date: 2017-12-10 13:14:00
 tags:
 - 分布式
-- 平台架构
+- 日志
 categories:
 - 分布式
 ---
 
+![]()<!--more-->
+
 ## 日志平台架构
 
-## ELK+Filebeat安装
+ELK 指的是一套解决方案，是 Elasticsearch、Logstash 和 Kibana 三种软件产品的首字母缩写。 
+
+* E：代表 Elasticsearch，负责日志的存储和检索； 
+* L：代表 Logstash，负责日志的收集，过滤和格式化； 
+* K：代表 Kibana，负责日志的展示统计和数据可视化；
+* Filebeat：ELK 协议栈的新成员，是一个轻量级开源日志文件数据搜集器；
+
+![]()<!--more-->
+
+这种架构引入 Beats 作为日志搜集器。目前 Beats 包括四种：
+
+* Packetbeat（搜集网络流量数据）；
+* Metricbeat（搜集系统、进程和文件系统级别的 CPU 和内存使用情况等数据）；
+* Filebeat（搜集文件数据）； 
+* Winlogbeat（搜集 Windows 事件日志数据）;
+
+## 安装
 
 由于 ELK 需要 JAVA 8 以上的环境，安装 ELK 前请确保 JAVA 环境已经存在。
 
@@ -26,7 +44,7 @@ openjdk version "1.8.0_151"
 ```Bash
 $ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.0.tar.gz
 $ mkdir -p /usr/local/elasticsearch
-$ tar zxvf elasticsearch-5.2.0.tar.gz -C /usr/local/elasticsearch
+$ tar zxvf elasticsearch-5.2.0.tar.gz -C /usr/local/elk/elasticsearch
 ```
 
 一般启动前，需要修改配置文件`jvm.options`中 JVM 大小，否则可能启动失败。
@@ -42,10 +60,9 @@ Elasticsearch 新版本不允许以 root 身份启动，因此先创建 elk 用�
 
 ```Bash
 $ useradd elk
-$ chown -R elk:elk /usr/local/elasticsearch
-$ su elk
+$ chown -R elk:elk /usr/local/elk/elasticsearch
 # 守护进程
-$ nohup /usr/local/elasticsearch/bin/elasticsearch &
+$ sudo -u elk nohup /usr/local/elk/elasticsearch/bin/elasticsearch &
 # 端口
 $ netstat -tunpl | grep "9200"
 tcp   0   0 127.0.0.1:9200   0.0.0.0:*    LISTEN    27029/java
@@ -53,7 +70,7 @@ tcp   0   0 127.0.0.1:9200   0.0.0.0:*    LISTEN    27029/java
 $ curl 127.0.0.1:9200
 ```
 
-## kibana
+## Kibana
 
 有关 Kibana 详细的安装方法见 [官方手册](https://www.elastic.co/guide/en/kibana/current/install.html)。首先，下载 [Kibana](https://www.elastic.co/downloads/past-releases) 软件包，注意同 Elasticsearch 版本对应，然后解压：
 
@@ -113,9 +130,42 @@ $ yum install logstash
 # 默认安装在/usr/share
 $ ln -s /usr/share/logstash /usr/local/elk/logstash
 # 执行测试
-$ /usr/local/elk/logstash/bin/logstash logstash -e 'input { stdin { } } output { stdout {} }'
+$ /usr/local/elk/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'
 
 The stdin plugin is now waiting for input:
 elk
 2017-11-26T14:25:07.264Z fhb elk
+```
+
+### Beats
+
+#### Filebeat
+
+Filebeat 安装详细安装过程见 [官方手册](https://www.elastic.co/downloads/beats/filebeat)。
+
+```Bash
+# 更多版本见 https://artifacts.elastic.co/downloads/beats/filebeat
+$ wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.1-linux-x86_64.tar.gz
+$ tar zxvf filebeat-6.0.1-linux-x86_64.tar.gz
+$ mkdir -p /usr/local/elk/beats/filebeat
+$ mv filebeat-6.0.1-linux-x86_64/* /usr/local/elk/beats/filebeat
+```
+
+
+修改配置文件：
+
+```Bash
+#nginx模块需要安装ingest-geoip和ingest-user-agent插件
+$ sudo bin/elasticsearch-plugin install ingest-geoip
+$ sudo bin/elasticsearch-plugin install ingest-user-agent
+```
+
+```Yaml
+
+```
+
+启动 Filebeat，默认监听端口 xxx:
+
+```Bash
+$ /usr/local/elk/beats/filebeat/filebeat -e -c /usr/local/elk/beats/filebeat/filebeat.yml
 ```
