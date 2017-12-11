@@ -431,4 +431,4 @@ $result = $client->select($query);
 
 <strong>相关文章 [»]()</strong>
 
-* [Solr的使用 — 部署和数据推送](https://www.fanhaobai.com/2017/08/solr-search.html) <span>（2017-08-12）</span>
+* [Solr的使用 — 部署和数据推送](https://www.fanhaobai.com/2017/08/solr-install-push.html) <span>（2017-08-12）</span>
