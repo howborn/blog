@@ -188,6 +188,8 @@ gearmand 命令的一些参数说明：
 * -u –user：启动后，切换到指定用户
 * --mysql-host：--mysql 系列为 MySQL 持久化连接信息
 
+> 为了方便管理 gearmand，可以将 gearmand 注册为一个 [service 服务](https://github.com/fan-haobai/init-script/blob/master/gearmand/gearmand)。
+
 ### 启动Client和Worker
 
 通过 gearman 命令启动 Client 和 Worker 并不是必须的，这里仅仅是为了在命令行下测试工具。
