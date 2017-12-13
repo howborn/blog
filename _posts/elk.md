@@ -28,9 +28,9 @@ ELK 指的是一套解决方案，是 Elasticsearch、Logstash 和 Kibana 三种
 * Filebeat（搜集文件数据）； 
 * Winlogbeat（搜集 Windows 事件日志数据）;
 
-## 安装
+## 搭建平台
 
-由于 ELK 需要 JAVA 8 以上的环境，安装 ELK 前请确保 JAVA 环境已经存在。
+由于 ELK 需要 JAVA 8 以上的环境，若未安装则使用`yum install -y java`命令配置 JAVA 环境。
 
 ```Bash
 $ java -version
@@ -51,32 +51,62 @@ $ tar zxvf elasticsearch-5.6.5.tar.gz -C /usr/local/elk/elasticsearch
 
 ```Bash
 $ vim config/jvm.options
-# 根据实际情况修改，默认为2g
+# 根据实际情况修改
 -Xms256m
 -Xmx256m
 ```
 
-Elasticsearch 新版本不允许以 root 身份启动，因此先创建 elk 用户。切换用户后启动 ，Elasticsearch 默认监听 9200 端口。
+Elasticsearch 新版本不允许以 root 身份启动，因此先创建 elk 用户。这里使用 [service](https://github.com/fan-haobai/init-script/blob/master/elasticsearch/elasticsearch) 服务方式管理 Elasticsearch，修改启动用户和安装目录。
 
 ```Bash
 $ useradd elk
 $ chown -R elk:elk /usr/local/elk/elasticsearch
-# 守护进程
-$ sudo -u elk nohup /usr/local/elk/elasticsearch/bin/elasticsearch &
-# 端口
+
+$ vim /etc/init.d/elasticsearch
+ES_USER="elk"
+ES_GROUP="elk"
+
+ES_HOME="/usr/local/elk/elasticsearch"
+MAX_OPEN_FILES=65536
+MAX_MAP_COUNT=262144
+LOG_DIR="$ES_HOME/logs"
+DATA_DIR="$ES_HOME/data"
+CONF_DIR="$ES_HOME/config"
+```
+
+最后，安装后续使用到的插件：
+
+```Bash
+$ sudo bin/elasticsearch-plugin install ingest-geoip
+$ sudo bin/elasticsearch-plugin install ingest-user-agent
+$ sudo bin/elasticsearch-plugin install x-pack
+```
+
+设置开机启动服务并启动 Elasticsearch，其默认监听 9200 端口。
+
+```Bash
+# 开启服务
+$ chkconfig --add elasticsearch
+$ chkconfig elasticsearch on
+
+$ service elasticsearch start
+
 $ netstat -tunpl | grep "9200"
 tcp   0   0 127.0.0.1:9200   0.0.0.0:*    LISTEN    27029/java
 # 获取信息
 $ curl 127.0.0.1:9200
 ```
 
-## Kibana
+> 安装 x-pack 插件后，对 Elasticsearch 的操作都需要授权，默认用户名为 elastic，默认密码为 changeme。
+
+### Kibana
 
 有关 Kibana 详细的安装方法见 [官方手册](https://www.elastic.co/guide/en/kibana/current/install.html)。这里采用 yum 来完成安装，先下载并安装 GPG-KEY：
 
 ```Bash
 $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ```
+
 在`/etc/yum.repos.d`目录下新建`kibana.repo`文件，并添加如下内容：
 
 ```Bash
@@ -90,7 +120,7 @@ autorefresh=1
 type=rpm-md
 ```
 
-使用 yum 安装：
+使用 yum 命令安装：
 
 ```Bash
 $ yum install -y kibana
@@ -102,26 +132,42 @@ $ cd /usr/local/elk/kibana
 
 ```Bash
 $ vim kibana.yml
-# 基本配置
 server.port: 5601                           # 监听端口
 server.host: "0.0.0.0"                      # 绑定地址
 server.name: "elk.fanhaobai.com"            # 域名
 elasticsearch.url: "http://127.0.0.1:9200"  # es地址
 kibana.index: ".kibana"                     # 索引名
+elasticsearch.username: "elastic"           # 用户名
+elasticsearch.password: "changeme"          # 密码
 ```
 
-启动 Kibana：
+安装常用插件，例如 x-pack：
 
 ```Bash
+$ sudo bin/kibana-plugin install x-pack
+```
+
+修改 init 启动脚本，并启动 Kibana：
+
+```Bash
+vim /etc/init.d/kibana
+
+program=/usr/share/kibana/bin/kibana
+args=-c\\\ /usr/share/kibana/kibana.yml
+
 $ service kibana start
 
 $ netstat -tunpl | grep 5601
 tcp   0    0 0.0.0.0:5601    0.0.0.0:*      LISTEN     8390/node
 ```
 
-访问 [elk.fanhaobai.com](http://elk.fanhaobai.com/) 就可以看到 Kibana 强大的界面了。
+配置 web 服务后，访问 [elk.fanhaobai.com](http://elk.fanhaobai.com/) 就可以看到 Kibana 强大并绚丽的面目了。
 
-## Logstash
+> 安装 x-pack 插件后，访问 Kibana 同样需要授权，且任何 Elasticsearch 的用户名和密码组合都可被认证通过。
+
+### Logstash
+
+#### 安装
 
 Logstash 的详细安装过程见 [官方手册](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html#_yum)。
 
@@ -142,7 +188,7 @@ type=rpm-md
 
 ```Bash
 $ yum install -y logstash
-# 默认安装在/usr/share
+# 默认安装路径/usr/share
 $ ln -s /usr/share/logstash /usr/local/elk/logstash
 $ cd /usr/local/elk/logstash
 # 命令行测试
@@ -158,7 +204,71 @@ elk
 ```Bash
 $ bin/system-install /etc/logstash/startup.options sysv
 
+$ vim /etc/init.d/logstash
+
+home=/usr/share/logstash
+name=logstash
+program=$home/bin/logstash
+args=--path.settings\ $home/config
 ```
+
+安装 x-pack 插件，进行基本状态信息的监控:
+
+```Bash
+$ sudo bin/logstash-plugin install x-pack
+```
+
+#### 配置
+
+Logstash 主配置文件为`/usr/local/elk/logstash/config/logstash.yml`，配置如下：
+
+```Yaml
+path.data: /var/lib/logstash
+# 配置文件
+path.config: /usr/share/logstash/config/conf.d
+path.logs: /usr/share/logstash/logs
+xpack.monitoring.elasticsearch.username: elastic
+xpack.monitoring.elasticsearch.password: changeme
+```
+
+创建一个简单的处理器配置，为`conf.d/logstash.conf`，日志过滤处理后，直接推送到 Elasticsearch，其中 inputs → filters → outputs 处理器的配置如下：
+
+```Conf
+input {
+    beats {
+        port => 5044
+    }
+}
+
+filter {
+	if [fileset][name] =~ "access" {
+		mutate { replace => { type => "nginx_access" } }
+		grok {
+			match => {"message" => "%{COMBINEDAPACHELOG}"}
+		}
+		date {
+		    match => ["timestamp", "dd/MMM/yyyy:HH:mm:ss Z"]
+		}
+	} else if [fileset][name] =~ "error" {
+		mutate { replace => { type => "nginx_error" } }
+	} else {
+		drop {}
+	}
+}
+
+output {
+    elasticsearch {
+        hosts => "localhost:9200"
+        manage_template => false
+        index => "%{[@metadata][type]}-%{+YYYY.MM}"
+        document_type => "%{[@metadata][env]}"
+		user => elastic
+		password => changeme
+    }
+}
+```
+
+更详细的配置，见 [Logstash Configuration Examples])(https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
 
 ### Beats
 
@@ -171,20 +281,53 @@ $ yum install -y filebeat
 $ ln -s /usr/share/filebeat /usr/local/elk/filebeat
 ```
 
-修改配置文件：
+修改 init 启动脚本：
 
 ```Bash
-#nginx模块需要安装ingest-geoip和ingest-user-agent插件
-$ sudo bin/elasticsearch-plugin install ingest-geoip
-$ sudo bin/elasticsearch-plugin install ingest-user-agent
+$ vim /etc/init.d/filebeat
+
+home=/usr/share/filebeat
+pidfile=${PIDFILE-/var/run/filebeat.pid}
+agent=${BEATS_AGENT-$home/bin/filebeat}
+args="-c $home/filebeat.yml -path.home $home -path.config $home -path.data $home/bin/data -path.logs $home/bin/logs"
 ```
+
+修改 Filebeat 配置文件`filebeat.yml`，开启 nginx 日志采集模块，如下：
 
 ```Yaml
+filebeat.modules:
+- module: nginx
+  access:
+    enabled: true
+    var.paths: ["/data/logs/fanhaobai.com.access.log"]
+    prospector:
+      fields:
+        type: nginx-hexo-access
+  error:
+    enabled: true
+    var.paths: ["/usr/local/nginx/logs/error.log"]
+    prospector:
+      fields:
+        type: nginx-all-error
+        
+fields:
+  env: prod
+queue_size: 1000
+bulk_queue_size: 0
 
+output.logstash:
+  enabled: true
+  hosts: ["localhost:5044"]  
+  worker: 1  
+  loadbalance: true
+  index: 'filebeat'
 ```
 
-启动 Filebeat，默认监听端口 xxx:
+配置自启服务并启动 Filebeat：
 
 ```Bash
-$ 
+$ chkconfig --add filebeat
+$ chkconfig filebeat on
+$ service filebeat start
 ```
+
