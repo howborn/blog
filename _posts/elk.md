@@ -39,6 +39,8 @@ openjdk version "1.8.0_151"
 
 ### Elasticsearch
 
+#### 安装
+
 通过 [官方地址](https://www.elastic.co/downloads/past-releases) 下载选择合适的版本（这里为 5.6.5），下载并解压：
 
 ```Bash
@@ -98,6 +100,34 @@ $ curl 127.0.0.1:9200
 ```
 
 > 安装 x-pack 插件后，对 Elasticsearch 的操作都需要授权，默认用户名为 elastic，默认密码为 changeme。
+
+#### 配置
+
+* [创建索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
+
+建立一个名为`logstash`的索引模板，这个模板将应用于所有以`logstash`为起始的索引，作为 Logstash 推送日志时索引的模板。
+
+```Josn
+PUT /_template/logstash
+{
+    "order": 1,
+    "template": "logstash*",            //应用于所有以`logstash`为起始的索引
+    "settings": {
+        "index": {
+            "number_of_shards": "3",    //主分片数
+            "number_of_replicas": "0"   //副分片数
+        }
+    },
+    "mappings": {
+        "_default_": {
+            "_all": {
+                "enabled": false
+            }
+        }
+    },
+    "aliases": {}
+}
+```
 
 ### Kibana
 
@@ -220,18 +250,23 @@ $ sudo bin/logstash-plugin install x-pack
 
 #### 配置
 
-Logstash 主配置文件为`/usr/local/elk/logstash/config/logstash.yml`，配置如下：
+* 主配置文件
+
+Logstash 主配置文件为`config/logstash.yml`，配置如下：
 
 ```Yaml
 path.data: /var/lib/logstash
-# 配置文件
-path.config: /usr/share/logstash/config/conf.d
 path.logs: /usr/share/logstash/logs
+# 处理器配置
+path.config: /usr/share/logstash/config/conf.d
+# elasticsearch 用户名和密码
 xpack.monitoring.elasticsearch.username: elastic
 xpack.monitoring.elasticsearch.password: changeme
 ```
 
-创建一个简单的处理器配置，为`conf.d/logstash.conf`，日志过滤处理后，直接推送到 Elasticsearch，其中 inputs → filters → outputs 处理器的配置如下：
+* 配置处理器
+
+创建一个简单的 inputs → filters → outputs 处理器，例如`conf.d/logstash.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 处理器中配置其用户名和密码，同时指定以索引模板形式建立索引。
 
 ```Conf
 input {
@@ -262,8 +297,9 @@ output {
         manage_template => false
         index => "%{[@metadata][type]}-%{+YYYY.MM}"
         document_type => "%{[@metadata][env]}"
-		user => elastic
-		password => changeme
+		user => "elastic"            #用户名     
+		password => "changeme"       #密码
+		template_name => "logstash"  #索引模板名
     }
 }
 ```
@@ -273,6 +309,8 @@ output {
 ### Beats
 
 #### Filebeat
+
+##### 安装
 
 Filebeat 安装详细安装过程见 [官方手册](https://www.elastic.co/downloads/beats/filebeat)，这里直接使用 yum 安装即可。
 
@@ -291,6 +329,16 @@ pidfile=${PIDFILE-/var/run/filebeat.pid}
 agent=${BEATS_AGENT-$home/bin/filebeat}
 args="-c $home/filebeat.yml -path.home $home -path.config $home -path.data $home/bin/data -path.logs $home/bin/logs"
 ```
+
+配置启动服务，然后启动 Filebeat：
+
+```Bash
+$ chkconfig --add filebeat
+$ chkconfig filebeat on
+$ service filebeat start
+```
+
+##### 配置
 
 修改 Filebeat 配置文件`filebeat.yml`，开启 nginx 日志采集模块，如下：
 
@@ -322,12 +370,3 @@ output.logstash:
   loadbalance: true
   index: 'filebeat'
 ```
-
-配置自启服务并启动 Filebeat：
-
-```Bash
-$ chkconfig --add filebeat
-$ chkconfig filebeat on
-$ service filebeat start
-```
-
