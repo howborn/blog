@@ -15,8 +15,8 @@ date: 2016-08-10
 
 ### 专业技能
 
-* 熟悉：PHP, HTML, JS, C
-* 了解：Shell, Lua, Node.js
+* 熟悉：PHP, HTML, JS
+* 了解：Shell, Lua, C, Node.js
 * 数据库：MySQL, MongoDB
 * 缓存：Redis
 * 搜索引擎：Solr, Elasticsearch
