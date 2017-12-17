@@ -44,17 +44,6 @@ PUT /_template/logstash
 
 上述查询中，`@timestamp`指定查询字段，`format`指定时间的 [格式](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/mapping-date-format.html) 为`date_time`，`now-7d`表示当前时间往前推移 7 天的时间。
 
-
-
-* y，代表一年
-* M，代表一个月
-* w，代表一周
-* d，代表一天
-* h，代表一个小时
-* m，代表一分钟
-* s，代表一秒钟
-* ms，代表毫秒
-
 配置定期清理过期日志的任务：
 
 ```Bash
