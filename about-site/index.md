@@ -107,6 +107,10 @@ http {
     proxy_cache_path  /home/www/cache levels=1:2 keys_zone=cache_one:50m inactive=2h max_size=10g;
     #限流
     limit_req_zone $binary_remote_addr zone=one:10m rate=10r/s;
+    #加载lua文件和库
+    lua_package_path '/usr/local/include/luajit-2.0/lib/?.lua;;';
+    lua_package_cpath '/usr/local/include/luajit-2.0/lib/?.so;;';
+
     include        conf.d/*.conf; 
     #防止恶意解析
     #autoindex on;
@@ -133,12 +137,13 @@ location ~ /sitemap\.(html|xml)$ {
 
 #防止图片盗链,30天的过期时间
 location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
-    valid_referers none blocked *.fanhaobai.com server_names ~\.google\. ~\.baidu\. ~\.len7.cc\.;
-    if ($invalid_referer) {
-	return  403;
-    }
     access_log   off;
     expires      30d;
+    
+    valid_referers none blocked *.fanhaobai.com server_names ~\.google\. ~\.baidu\. ~\.len7.cc\.;
+    if ($invalid_referer) {
+	    return  403;
+    }
 }
 
 ```
@@ -159,20 +164,20 @@ server {
 
     #fanhaobai.com重定向到www.fanhaobai.com
     if ($host ~ ^fanhaobai.com$) {
-	return 301 https://www.fanhaobai.com$request_uri;
+	    return 301 https://www.fanhaobai.com$request_uri;
     }
     #微信二维码https代理 
     location ~ /qrcode.php {
-	proxy_set_header Host s.jiathis.com;
-	proxy_pass	 http://s.jiathis.com$request_uri;
-	expires max;
+        proxy_set_header Host s.jiathis.com;
+        proxy_pass	 http://s.jiathis.com$request_uri;
+        expires max;
     }
     #豆瓣代理
     location ~ ^/douban/(.*)$ {
 	proxy_set_header Host img3.doubanio.com;
 	proxy_set_header Referer https://book.douban.com;
         proxy_pass       http://img3.doubanio.com/$1;
-	expires max;
+	    expires max;
     }
 
     include conf.d/common;
@@ -181,6 +186,7 @@ server {
 server {
     #https认证使用
     listen 80;
+    access_log off;
     server_name fanhaobai.com www.fanhaobai.com;
     if ($request_method !~ ^(GET|HEAD|POST)$ ) {
         return        444;
@@ -234,22 +240,22 @@ server {
     }
     #es-head
     location ~ ^/head/ {
-	rewrite ^/head/(.*)$ /$1 break;
-	proxy_pass http://127.0.0.1:9100;
+        rewrite ^/head/(.*)$ /$1 break;
+        proxy_pass http://127.0.0.1:9100;
     }
     #es服务
     location / {
         #使用Lua做访问权限控制
-	set $allowed '115.171.226.212';
-	access_by_lua_block {
-	    if ngx.re.match(ngx.req.get_method(), "PUT|POST|DELETE") and not ngx.re.match(ngx.var.request_uri, "_search") then
-		start, _ = string.find(ngx.var.allowed, ngx.var.remote_addr)
-		if not start then
-		    ngx.exit(403)
-		end
-	    end
-	}
-	proxy_pass http://127.0.0.1:9200$request_uri;
+        set $allowed '115.171.226.212';
+        access_by_lua_block {
+            if ngx.re.match(ngx.req.get_method(), "PUT|POST|DELETE") and not ngx.re.match(ngx.var.request_uri, "_search") then
+            start, _ = string.find(ngx.var.allowed, ngx.var.remote_addr)
+                if not start then
+                    ngx.exit(403)
+                end
+            end
+        }
+        proxy_pass http://127.0.0.1:9200$request_uri;
     }
 }
 ```
