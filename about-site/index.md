@@ -142,7 +142,7 @@ location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
     
     valid_referers none blocked *.fanhaobai.com server_names ~\.google\. ~\.baidu\. ~\.len7.cc\.;
     if ($invalid_referer) {
-	    return  403;
+        return  403;
     }
 }
 
@@ -164,7 +164,7 @@ server {
 
     #fanhaobai.com重定向到www.fanhaobai.com
     if ($host ~ ^fanhaobai.com$) {
-	    return 301 https://www.fanhaobai.com$request_uri;
+        return 301 https://www.fanhaobai.com$request_uri;
     }
     #微信二维码https代理 
     location ~ /qrcode.php {
@@ -177,7 +177,7 @@ server {
 	proxy_set_header Host img3.doubanio.com;
 	proxy_set_header Referer https://book.douban.com;
         proxy_pass       http://img3.doubanio.com/$1;
-	    expires max;
+        expires max;
     }
 
     include conf.d/common;
