@@ -30,18 +30,6 @@ date: 2016-12-11 13:12:10
 * 2016.12.08：增加使用 [HTTPS](https://www.fanhaobai.com/2016/12/firekylin.html)。
 * 2016.12.07：增加使用 [NodeJS ](https://www.fanhaobai.com/2016/12/nodejs-install.html)。
 
-# 站点导航
-
-* 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
-* Wiki 站，[wiki.fanhaobai.com](https://wiki.fanhaobai.com)
-* Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
-* Redis 管理工具 phpRedisAdmin，[admin.fanhaobai.com](https://admin.fanhaobai.com)
-* 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
-* 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
-* 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)
-* Supervisor 管理面板，[supervisor.fanhaobai.com](http://supervisor.fanhaobai.com)
-* ELK 集中式日志平台，[elk.fanhaobai.com](http://elk.fanhaobai.com)
-
 # 配置信息
 
 ## Nginx配置
