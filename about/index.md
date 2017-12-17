@@ -37,9 +37,9 @@ date: 2016-08-10
 * Redis 管理工具 phpRedisAdmin，[admin.fanhaobai.com](https://admin.fanhaobai.com)
 * 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
 * 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
-* 消息队列 RabbitMQ（用户名 guest，密码 guest），[mq.fanhaobai.com](http://mq.fanhaobai.com)
-* Supervisor 管理面板（用户名 admin，密码 fhb），[supervisor.fanhaobai.com](http://supervisor.fanhaobai.com)
-* ELK 集中式日志平台（用户名 elastic，密码 changeme），[elk.fanhaobai.com](http://elk.fanhaobai.com)
+* 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）
+* Supervisor 管理面板，[supervisor.fanhaobai.com](http://supervisor.fanhaobai.com)（用户名 admin，密码 fhb）
+* ELK 集中式日志平台，[elk.fanhaobai.com](http://elk.fanhaobai.com)（用户名 elastic，密码 changeme）
 
 ## 版权说明
 
