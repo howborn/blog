@@ -83,5 +83,5 @@ ELK 集中式日志平台，总体上来说，部署在应用服务器上的数�
 
 <strong>相关文章 [»]()</strong>
 
-* [ELK集中式日志平台之一 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-17）</span>
-* [ELK集中式日志平台之一 — 进阶]((https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-17）</span>
+* [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-17）</span>
+* [ELK集中式日志平台之三 — 进阶]((https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-17）</span>
