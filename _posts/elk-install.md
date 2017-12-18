@@ -10,9 +10,14 @@ categories:
 
 ![]()<!--more-->
 
-由于 ELK 需要 JAVA 8 以上的环境，若未安装则使用`yum install -y java`命令配置 JAVA 环境。
+ELK 需要 JAVA 8 以上的运行环境，若未安装则按如下步骤进行安装：
 
 ```Bash
+# 查看已安装
+$ rpm -qa | grep java
+# 批量卸载
+$ rpm -qa | grep java | xargs rpm -e --nodeps
+$ yum install -y java-1.8.0-openjdk*
 $ java -version
 openjdk version "1.8.0_151"
 ```
@@ -21,7 +26,7 @@ openjdk version "1.8.0_151"
 
 ### 安装
 
-通过 [官方地址](https://www.elastic.co/downloads/past-releases) 下载选择合适的版本（这里为 5.6.5），下载并解压：
+通过 [官方地址](https://www.elastic.co/downloads/past-releases) 下载选择合适的版本（例如 5.6.5），下载并解压：
 
 ```Bash
 $ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.5.tar.gz
@@ -246,7 +251,7 @@ xpack.monitoring.elasticsearch.password: changeme
 
 * 配置处理器
 
-创建一个简单的 inputs → filters → outputs 处理器，例如`conf.d/logstash.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 处理器中配置其用户名和密码，同时指定以索引模板形式建立索引。
+创建一个简单的 inputs → filters → outputs 处理器，例如`conf.d/filebeat.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 处理器中配置其用户名和密码，同时指定以索引模板形式建立索引。
 
 ```Conf
 input {
