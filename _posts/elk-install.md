@@ -86,35 +86,66 @@ $ curl 127.0.0.1:9200
 
 > 安装 x-pack 插件后，对 Elasticsearch 的操作都需要授权，默认用户名为 elastic，默认密码为 changeme。
 
-#### 配置
+### 配置
 
 * [创建索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
 
 建立一个名为`logstash`的索引模板，这个模板将应用于所有以`logstash`为起始的索引，作为 Logstash 推送日志时索引的模板。
 
 ```Josn
-PUT /_template/logstash
+PUT _template/logstash
 {
-    "order": 1,
-    "template": "*",            //应用于所有索引
+    "template": "*",           //应用于所有索引
     "settings": {
         "index": {
-            "number_of_shards": "3",    //主分片数
-            "number_of_replicas": "0"   //副分片数
+            "number_of_shards": "3",   //主分片数
+            "number_of_replicas": "0"  //副分片数
         }
     },
     "mappings": {
         "_default_": {
             "_all": {
-                "enabled": false
+                "enabled": true
+            },
+            "dynamic_templates": [
+                {
+                    "string_fields": {
+                        "match": "*",
+                        "match_mapping_type": "string",
+                        "mapping": {
+                            "type": "string",
+                            "index": "not_analyzed",
+                            "omit_norms": true,
+                            "doc_values": true,
+                            "fields": {
+                                "raw": {
+                                    "type": "string",
+                                    "index": "not_analyzed",
+                                    "ignore_above": 256,
+                                    "doc_values": true
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "geoip": {
+                    "type": "object",
+                    "dynamic": true,
+                    "properties": {
+                        "location": {
+                            "type": "geo_point"    //地理坐标
+                        }
+                    }
+                }
             }
         }
-    },
-    "aliases": {}
+    }
 }
 ```
 
-### Kibana
+## Kibana
 
 有关 Kibana 详细的安装方法见 [官方手册](https://www.elastic.co/guide/en/kibana/current/install.html)。这里采用 yum 来完成安装，先下载并安装 GPG-KEY：
 
@@ -180,9 +211,9 @@ tcp   0    0 0.0.0.0:5601    0.0.0.0:*      LISTEN     8390/node
 
 > 安装 x-pack 插件后，访问 Kibana 同样需要授权，且任何 Elasticsearch 的用户名和密码组合都可被认证通过。
 
-### Logstash
+## Logstash
 
-#### 安装
+### 安装
 
 Logstash 的详细安装过程见 [官方手册](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html#_yum)。
 
@@ -233,9 +264,9 @@ args=--path.settings\ $home/config
 $ sudo bin/logstash-plugin install x-pack
 ```
 
-#### 配置
+### 配置
 
-* 主配置文件
+#### 主配置文件
 
 Logstash 主配置文件为`config/logstash.yml`，配置如下：
 
@@ -249,7 +280,7 @@ xpack.monitoring.elasticsearch.username: elastic
 xpack.monitoring.elasticsearch.password: changeme
 ```
 
-* 配置处理器
+#### 配置处理器
 
 创建一个简单的 inputs → filters → outputs 处理器，例如`conf.d/filebeat.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 处理器中配置其用户名和密码，同时指定以索引模板形式建立索引。
 
@@ -291,11 +322,11 @@ output {
 
 更详细的配置，见 [Logstash Configuration Examples])(https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
 
-### Beats
+## Beats
 
-#### Filebeat
+### Filebeat
 
-##### 安装
+#### 安装
 
 Filebeat 安装详细安装过程见 [官方手册](https://www.elastic.co/downloads/beats/filebeat)，这里直接使用 yum 安装即可。
 
