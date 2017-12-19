@@ -8,11 +8,12 @@ categories:
 - 分布式
 ---
 
+
 ![]()<!--more-->
 
 ## 安装前准备
 
-### JAVA运行环境
+### JAVA环境
 
 ELK 需要 JAVA 8 以上的运行环境，若未安装则按如下步骤进行安装：
 
@@ -28,7 +29,7 @@ openjdk version "1.8.0_151"
 
 ### 安装GPG-KEY
 
-由于采用 yum 安装，所以需要下载并安装 GPG-KEY：
+由于后续将采用 yum 安装，所以需要下载并安装 GPG-KEY：
 
 ```Bash
 $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
