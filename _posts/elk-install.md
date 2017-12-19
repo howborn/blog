@@ -10,6 +10,10 @@ categories:
 
 ![]()<!--more-->
 
+## 安装前准备
+
+### JAVA运行环境
+
 ELK 需要 JAVA 8 以上的运行环境，若未安装则按如下步骤进行安装：
 
 ```Bash
@@ -20,6 +24,14 @@ $ rpm -qa | grep java | xargs rpm -e --nodeps
 $ yum install -y java-1.8.0-openjdk*
 $ java -version
 openjdk version "1.8.0_151"
+```
+
+### 安装GPG-KEY
+
+由于采用 yum 安装，所以需要下载并安装 GPG-KEY：
+
+```Bash
+$ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ```
 
 ## Elasticsearch
@@ -119,10 +131,9 @@ PUT _template/logstash
                             "doc_values": true,
                             "fields": {
                                 "raw": {
-                                    "type": "string",
                                     "index": "not_analyzed",
                                     "ignore_above": 256,
-                                    "doc_values": true
+                                    "type": "string"
                                 }
                             }
                         }
@@ -145,13 +156,7 @@ PUT _template/logstash
 }
 ```
 
-## Kibana
-
-有关 Kibana 详细的安装方法见 [官方手册](https://www.elastic.co/guide/en/kibana/current/install.html)。这里采用 yum 来完成安装，先下载并安装 GPG-KEY：
-
-```Bash
-$ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
-```
+## [Kibana](https://www.elastic.co/guide/en/kibana/current/install.html)
 
 在`/etc/yum.repos.d`目录下新建`kibana.repo`文件，并添加如下内容：
 
