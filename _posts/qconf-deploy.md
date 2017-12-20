@@ -1,5 +1,5 @@
 ---
-title: Qconf部署与应用
+title: 配置中心部署Qconf
 date: 2017-11-13 17:32:27
 tags:
 - 分布式
@@ -7,9 +7,9 @@ categories:
 - 分布式
 ---
 
-[Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 作为分布式配置管理中心，目前已经支持 c++、go、java、lua、php、python 等语言，本文主要内容为 Qconf 的部署。
+[Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 作为分布式配置管理，目前已经支持 c++、go、java、lua、php、python 等语言，本文主要内容为 Qconf 的部署。
 
-![](https://www.fanhaobai.com/2017/11/qconf/bce19607-8181-41fd-8885-5572ee1de166.jpg)<!--more-->
+![](https://www.fanhaobai.com/2017/11/qconf-deploy/bce19607-8181-41fd-8885-5572ee1de166.jpg)<!--more-->
 
 ## 安装
 
