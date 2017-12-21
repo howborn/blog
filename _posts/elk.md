@@ -10,7 +10,7 @@ categories:
 
 随着微服务化的推广，我们的应用都会采取分布式方式部署，这就会导致应用日志比较分散，应用监控和排查问题都比较困难，同时效率还低下，集中式日志平台就是为了解决这个问题。
 
-![](https://www.fanhaobai.com/2017/12/elk/4b4a7b8a-c26e-48b2-af45-27655e06f397.png)<!--more-->
+![](https://www.fanhaobai.com/2017/12/elk/c0625948-b690-48ad-a178-63fc08b0cefb.png)<!--more-->
 
 ## 背景
 
@@ -84,4 +84,4 @@ ELK 集中式日志平台，总体上来说，部署在应用服务器上的数�
 <strong>相关文章 [»]()</strong>
 
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-17）</span>
-* [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-17）</span>
+* [ELK集中式日志平台之三 — 进阶]((https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-17）</span>
