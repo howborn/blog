@@ -14,7 +14,61 @@ categories:
 
 ### grok
 ### mutate
-### 索引模板
+### [索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
+
+建立一个名为`logstash`的索引模板，这个模板将应用于所有索引，作为 Logstash 推送日志时索引的模板。
+
+```Josn
+PUT _template/logstash
+{
+    "template": "*",           //应用于所有索引
+    "settings": {
+        "index": {
+            "number_of_shards": "3",   //主分片数
+            "number_of_replicas": "0"  //副分片数
+        }
+    },
+    "mappings": {
+        "_default_": {
+            "_all": {
+                "enabled": true
+            },
+            "dynamic_templates": [
+                {
+                    "string_fields": {
+                        "match": "*",
+                        "match_mapping_type": "string",
+                        "mapping": {
+                            "type": "string",
+                            "index": "not_analyzed",
+                            "omit_norms": true,
+                            "doc_values": true,
+                            "fields": {
+                                "raw": {
+                                    "index": "not_analyzed",
+                                    "ignore_above": 256,
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "geoip": {
+                    "type": "object",
+                    "dynamic": true,
+                    "properties": {
+                        "location": {
+                            "type": "geo_point"    //地理坐标
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
 
 ## 清理过期日志文档
 
