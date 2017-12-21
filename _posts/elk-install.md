@@ -268,9 +268,9 @@ output {
         hosts => "localhost:9200"
         manage_template => false
         index => "%{[@metadata][type]}-%{+YYYY.MM}"  #索引名称
-		document_type => "%{[fields][env]}"          #文档类型
-		user => "elastic"                            #用户名     
-		password => "changeme"                       #密码
+        document_type => "%{[fields][env]}"          #文档类型
+        user => "elastic"                            #用户名     
+        password => "changeme"                       #密码
     }
 }
 ```
