@@ -249,18 +249,18 @@ input {
 }
 
 filter {
-	if [fileset][name] =~ "access" {
-		grok {
-			match => {"message" => "%{COMBINEDAPACHELOG}"}
-		}
-		date {
-		    match => ["timestamp", "dd/MMM/YYYY:H:m:s Z"]
-		}
-	} else if [fileset][name] =~ "error" {
-
-	} else {
-		drop {}
-	}
+    if [fileset][name] =~ "access" {
+        grok {
+            match => {"message" => "%{COMBINEDAPACHELOG}"}
+        }
+        date {
+            match => ["timestamp", "dd/MMM/YYYY:H:m:s Z"]
+        }
+    } else if [fileset][name] =~ "error" {
+    
+    } else {
+        drop {}
+    }
 }
 
 output {
@@ -405,3 +405,8 @@ Filebeat 推送到 Logstash 过滤后，Elasticsearch 存储的数据格式为�
 在 Kibana 中呈现效果为：
 
 ![](https://www.fanhaobai.com/2017/12/elk-install/a1ff2131-8dd8-4ad1-8ba3-c2d2ebeffc91.png)
+
+<strong>相关文章 [»]()</strong>
+
+* [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html) <span>（2017-12-16）</span>
+* [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-22）</span>
