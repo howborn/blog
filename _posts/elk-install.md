@@ -368,7 +368,38 @@ Filebeat 启动后，会侦测待采集文件内容是否有增加或更新，�
 Filebeat 推送到 Logstash 过滤后，Elasticsearch 存储的数据格式为：
 
 ```Josn
-
+{
+    "_index": "nginx-www-access-2017.12",
+    "_type": "prod",
+    "_source": {
+        "response_code": "200",
+        "ip": "106.11.152.143",
+        "offset": 81989257,
+        "method": "GET",
+        "user_name": "-",
+        "input_type": "log",
+        "http_version": "1.1",
+        "read_timestamp": "2017-12-21T18:12:53.604Z",
+        "source": "/data/logs/fanhaobai.com.access.log",
+        "fileset": {
+            "name": "access",
+            "module": "nginx"
+        },
+        "type": "nginx-www-access",
+        "url": "/2017/11/qconf-deploy.html",
+        "referrer": "-",
+        "@timestamp": "2017-12-21T18:12:53.000Z",
+        "@version": "1",
+        "beat": {
+            "name": "fhb",
+            "hostname": "fhb",
+            "version": "5.6.5"
+        },
+        "host": "fhb",
+        "body_sent": { "bytes": "44067" },
+        "fields": { "env": "prod" }
+    }
+}
 ```
 
 在 Kibana 中呈现效果为：
