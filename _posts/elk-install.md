@@ -8,20 +8,38 @@ categories:
 - 分布式
 ---
 
+
 ![]()<!--more-->
 
-由于 ELK 需要 JAVA 8 以上的环境，若未安装则使用`yum install -y java`命令配置 JAVA 环境。
+## 安装前准备
+
+### JAVA环境
+
+ELK 需要 JAVA 8 以上的运行环境，若未安装则按如下步骤进行安装：
 
 ```Bash
+# 查看已安装
+$ rpm -qa | grep java
+# 批量卸载
+$ rpm -qa | grep java | xargs rpm -e --nodeps
+$ yum install -y java-1.8.0-openjdk*
 $ java -version
 openjdk version "1.8.0_151"
+```
+
+### 安装GPG-KEY
+
+由于后续将采用 yum 安装，所以需要下载并安装 GPG-KEY：
+
+```Bash
+$ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ```
 
 ## Elasticsearch
 
 ### 安装
 
-通过 [官方地址](https://www.elastic.co/downloads/past-releases) 下载选择合适的版本（这里为 5.6.5），下载并解压：
+通过 [官方地址](https://www.elastic.co/downloads/past-releases) 下载选择合适的版本（例如 5.6.5），下载并解压：
 
 ```Bash
 $ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.5.tar.gz
@@ -81,41 +99,65 @@ $ curl 127.0.0.1:9200
 
 > 安装 x-pack 插件后，对 Elasticsearch 的操作都需要授权，默认用户名为 elastic，默认密码为 changeme。
 
-#### 配置
+### 配置
 
 * [创建索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
 
 建立一个名为`logstash`的索引模板，这个模板将应用于所有以`logstash`为起始的索引，作为 Logstash 推送日志时索引的模板。
 
 ```Josn
-PUT /_template/logstash
+PUT _template/logstash
 {
-    "order": 1,
-    "template": "*",            //应用于所有索引
+    "template": "*",           //应用于所有索引
     "settings": {
         "index": {
-            "number_of_shards": "3",    //主分片数
-            "number_of_replicas": "0"   //副分片数
+            "number_of_shards": "3",   //主分片数
+            "number_of_replicas": "0"  //副分片数
         }
     },
     "mappings": {
         "_default_": {
             "_all": {
-                "enabled": false
+                "enabled": true
+            },
+            "dynamic_templates": [
+                {
+                    "string_fields": {
+                        "match": "*",
+                        "match_mapping_type": "string",
+                        "mapping": {
+                            "type": "string",
+                            "index": "not_analyzed",
+                            "omit_norms": true,
+                            "doc_values": true,
+                            "fields": {
+                                "raw": {
+                                    "index": "not_analyzed",
+                                    "ignore_above": 256,
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "geoip": {
+                    "type": "object",
+                    "dynamic": true,
+                    "properties": {
+                        "location": {
+                            "type": "geo_point"    //地理坐标
+                        }
+                    }
+                }
             }
         }
-    },
-    "aliases": {}
+    }
 }
 ```
 
-### Kibana
-
-有关 Kibana 详细的安装方法见 [官方手册](https://www.elastic.co/guide/en/kibana/current/install.html)。这里采用 yum 来完成安装，先下载并安装 GPG-KEY：
-
-```Bash
-$ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
-```
+## [Kibana](https://www.elastic.co/guide/en/kibana/current/install.html)
 
 在`/etc/yum.repos.d`目录下新建`kibana.repo`文件，并添加如下内容：
 
@@ -175,13 +217,13 @@ tcp   0    0 0.0.0.0:5601    0.0.0.0:*      LISTEN     8390/node
 
 > 安装 x-pack 插件后，访问 Kibana 同样需要授权，且任何 Elasticsearch 的用户名和密码组合都可被认证通过。
 
-### Logstash
+## Logstash
 
-#### 安装
+### 安装
 
 Logstash 的详细安装过程见 [官方手册](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html#_yum)。
 
-在`/etc/yum.repos.d`目录下新建`logstash.repo`文件，并添加如下内容：
+在`/etc/yum.repos.d`目录下创建`logstash.repo`文件，并添加如下内容：
 
 ```Bash
 [logstash-5.x]
@@ -228,9 +270,9 @@ args=--path.settings\ $home/config
 $ sudo bin/logstash-plugin install x-pack
 ```
 
-#### 配置
+### 配置
 
-* 主配置文件
+#### 主配置文件
 
 Logstash 主配置文件为`config/logstash.yml`，配置如下：
 
@@ -244,9 +286,9 @@ xpack.monitoring.elasticsearch.username: elastic
 xpack.monitoring.elasticsearch.password: changeme
 ```
 
-* 配置处理器
+#### 配置处理器
 
-创建一个简单的 inputs → filters → outputs 处理器，例如`conf.d/logstash.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 处理器中配置其用户名和密码，同时指定以索引模板形式建立索引。
+创建一个简单的 inputs → filters → outputs 处理器，例如`conf.d/filebeat.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 处理器中配置其用户名和密码，同时指定以索引模板形式建立索引。
 
 ```Conf
 input {
@@ -286,11 +328,11 @@ output {
 
 更详细的配置，见 [Logstash Configuration Examples])(https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
 
-### Beats
+## Beats
 
-#### Filebeat
+### Filebeat
 
-##### 安装
+#### 安装
 
 Filebeat 安装详细安装过程见 [官方手册](https://www.elastic.co/downloads/beats/filebeat)，这里直接使用 yum 安装即可。
 

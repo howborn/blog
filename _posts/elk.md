@@ -1,5 +1,5 @@
 ---
-title: ELK+Beats集中式日志平台之一 —  平台架构
+title: ELK集中式日志平台之一 — 平台架构
 date: 2017-12-16 13:14:00
 tags:
 - 分布式
@@ -10,7 +10,7 @@ categories:
 
 随着微服务化的推广，我们的应用都会采取分布式方式部署，这就会导致应用日志比较分散，应用监控和排查问题都比较困难，同时效率还低下，集中式日志平台就是为了解决这个问题。
 
-![](https://www.fanhaobai.com/2017/12/elk/4b4a7b8a-c26e-48b2-af45-27655e06f397.png)<!--more-->
+![](https://www.fanhaobai.com/2017/12/elk/c0625948-b690-48ad-a178-63fc08b0cefb.png)<!--more-->
 
 ## 背景
 
@@ -40,6 +40,8 @@ ELK 指的是一套解决方案，是 [Elasticsearch](https://www.elastic.co/cn/
 * Packetbeat：负责收集网络流量数据；
 * Metricbeat：负责收集系统级的 CPU 使用率、内存、文件系统、磁盘 IO 和网络 IO 统计数据；
 * Winlogbeat：负责收集 Windows 事件日志数据;
+
+![](https://www.fanhaobai.com/2017/12/elk/de986f14-1b7a-46f0-bf81-e477dda1e157.png)
 
 在该日志平台系统中，就使用了 Filebeat 作为日志文件收集工具，Filebeat 可以很方便地收集 Nginx、Mysql、Redis、Syslog 等应用的日志文件。
 
@@ -81,5 +83,5 @@ ELK 集中式日志平台，总体上来说，部署在应用服务器上的数�
 
 <strong>相关文章 [»]()</strong>
 
-* [ELK+Beats集中式日志平台之一 —  部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-17）</span>
-* [ELK+Beats集中式日志平台之一 —  进阶]((https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-17）</span>
+* [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-17）</span>
+* [ELK集中式日志平台之三 — 进阶]((https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-17）</span>

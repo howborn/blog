@@ -1,5 +1,5 @@
 ---
-title: 分布式配置管理服务Qconf
+title: 分布式配置管理Qconf
 date: 2017-11-03 17:32:27
 tags:
 - 分布式
@@ -7,309 +7,166 @@ categories:
 - 分布式
 ---
 
-[Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 是 360 公司推出的分布式配置管理服务，目前已经支持 c++、go、java、lua、php、python 等语言。
+> 原文：[从配置文件到分布式配置管理QConf](http://catkang.github.io/2015/06/23/qconf.html)
 
-![](https://www.fanhaobai.com/2017/11/qconf/bce19607-8181-41fd-8885-5572ee1de166.jpg)<!--more-->
+QConf 是奇虎 360 广泛使用的配置管理服务，现已开源 [QConf Source Code](https://github.com/Qihoo360/QConf)，欢迎大家关注使用。本文从设计初衷，架构实现，使用情况及相关产品比较四个方面进行介绍。
 
-## 安装
+![](https://www.fanhaobai.com/2017/11/qconf/d7fec4ae-e55a-11e7-80c1-9a214cf093ae.jpg)<!--more-->
 
-### 安装Zookeeper服务
+## 设计初衷
 
-因为 Qconf 使用 Zookeeper 作为配置服务端，若没有安装 Zookeeper，则先安装。
+在分布式环境中，出于负载、容错等种种原因，几乎所有的服务都需要在不同的机器节点上部署多个实例。同时，业务项目中总少不了各种类型的配置文件。这种情况下，有时仅仅是一个配置内容的修改，便需要重新进行代码提交 git，打包，分发上线的流程。当部署的机器有很多时，分发上线本身也是一个很繁杂的工作。而配置文件的修改频率又远远大于代码本身。追本溯源，我们认为所有的这些麻烦是由于我们对配置和代码在管理和发布过程中不加区分造成的。配置本身源于代码，是为了提高代码的灵活性而提取出来的一些经常变化的或需要定制的内容，而正是配置的这种天生的变化特征给我们带了很大的麻烦。因此，我们开发了分布式配置管理系统 QConf，并依托 QConf 在 360 内部提供了一整套配置管理服务，QConf 致力于将配置内容从代码中完全分离出来，及时可靠高效地提供配置访问和更新服务。
 
-#### 安装JAVA环境
+## 整体认识
 
-在这里，直接通过 yum 命令来安装。
+为了让大家对之后的内容有个直观的认识，先来介绍一下如果需要在自己的项目中使用 QConf 应该怎么做：
 
-```Bash
-$ yum install java-1.8.0-openjdk*
-# 默认安装目录为/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
-$ java -version
-openjdk version "1.8.0_151"
-```
-
-配置环境变量，在文件`/etc/profile`后追加如下内容：
+- 首先，**部署 QConf**，QConf 采用 cmake 构建，依次执行如下命令。
 
 ```Bash
-# 指向安装目录
-JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
-export PTAH=$JAVA_HOME/bin:$PATH
-CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export JAVA_HOME CLASSPATH
+cmake
+..
+make && make install
 ```
 
-执行`source /etc/profile`，使修改生效。
+- 之后，通过 Zookeeper 客户端或 **QConf 管理界面** 在 Zookeeper 上建立自己的节点结构，节点完整路径作为 QConf 的 key 值，以 360 公司内部 QConf 管理界面为例：
 
+![](https://www.fanhaobai.com/2017/11/qconf/8bb7c9c6-c0e9-40d5-96c8-81b40613e9bc.jpg)
 
-#### 下载Zookeeper
+- 最后，选择所需语言版本的 QConf 库，并在需要获得配置内容的代码位置，直接调用 Qconf 客户端接口，并放心每次取得的都是最新鲜出炉的配置内容。
 
-首先，从 Zookeeper [官方地址](http://mirror.bit.edu.cn/apache/zookeeper/)，下载最新版本源码包。
+需要说明的是，使用 QConf 后已经没有所谓的配置文件的概念，你要做的就是在需要的地方获取正确的内容，QConf 认为，这才是你真正想要的。
 
-```Bash
-$ wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.3.6/zookeeper-3.3.6.tar.gz
-$ tar zxvf zookeeper-3.3.6.tar.gz
-$ cd zookeeper-3.3.6
-```
+## 架构介绍
 
-#### 配置并启动Zookeeper
+了解了 QConf 的设计初衷和使用方式，相信大家已经对 QConf 有一个整体的认识并且对其实现有了大概的猜想。在介绍架构之前，还需要申明一下 QConf 对配置信息的定位，因为这个定位直接决定了其结构设计和组件选择。
 
-由于编译包解压后无需再编译安装，所以，只需修改配置文件：
+- 单条数据量小
+- 更新频繁（较代码而言）
+- 配置总数可能巨大，但单台机器关心配置数有限
+- 读多写少
 
-```Bash
-# 创建data目录
-$ mkdir -p /tmp/zookeeper
-$ cd conf/
-$ mv zoo_sample.cfg zoo.cfg
-```
+进入主题，开始介绍 QConf 的架构实现：
 
-使用`zkServer.sh`脚本启动 Zookeeper 服务：
+![](https://www.fanhaobai.com/2017/11/qconf/d29ccf16-e559-11e7-80c1-9a214cf093ae.png)
 
-```Bash
-$ cd ..
-$ sh bin/zkServer.sh start
-# 查看端口监听
-$ netstat -tunpl | grep 2181
-```
+上图展示的是 QConf 的基本结构，从角色上划分主要包括 QConf 客户端，QConf 服务端和 QConf 管理端。
 
-#### 创建配置节点
+### QConf服务端
 
-使用 Zookeeper 提供的`zkCli.sh`脚本创建多个配置节点。
+QConf 使用 ZooKeeper 集群作为服务端提供服务。众所周知，ZooKeeper 是一套分布式应用程序协调服务，根据上面提到的对配置内容的定位，我们认为可以将单条配置内容直接存储在 ZooKeeper 的一个 ZNode 上，并利用 ZooKeeper 的 Watch 监听功能实现配置变化时对客户端的及时通知。按照 ZooKeeper 的设计目标，其只提供最基础的功能，包括顺序一致，原子性，单一系统镜像，可靠性和及时性。另外 Zookeeper 还有如下特点：
 
-```Bash
-$ sh bin/zkCli.sh
+- 类文件系统的节点组织
+- 稳定，无单点问题
+- 订阅通知机制
 
-[zk: localhost:2181(CONNECTED) 0] create /demo demo
-[zk: localhost:2181(CONNECTED) 1] create /demo/confs confs
-[zk: localhost:2181(CONNECTED) 2] create /demo/confs/conf1 111111
-[zk: localhost:2181(CONNECTED) 3] create /demo/confs/conf2 222222
-```
+关于 Zookeeper，更多见 <https://zookeeper.apache.org/>
 
-同样，可以获取配置的配置节点信息：
+### QConf客户端
 
-```Bash
-[zk: localhost:2181(CONNECTED) 0] get /demo/confs/conf1
+但在接口方面，ZooKeeper 本身只提供了非常基本的操作，并且其客户端接口原始，所以我们需要在 QConf 的客户端部分 **解决如下问题**：
 
-111111
-cZxid = 0x4
-... ...
-```
+- 降低与 ZooKeeper 的链接数原生的 ZooKeeper 客户端中，所有需要获取配置的进程都需要与 ZooKeeper 保持长连接，在生产环境中每个客户端机器可能都会有上百个进程需要访问数据，这对 ZooKeeper 的压力非常大而且也是不必要的。
+- 本地缓存当然我们不希望客户端进程每次需要数据都走网络获取，所以需要维护一份客户端缓存，仅在配置变化时更新。
+- 容错当进程退出、网络中断、机器重启等异常情况发生时，我们希望能尽可能的提供可靠的配置获取服务
+- 多语言版本接口目前提供的语言版本包括：c，php，java，python，go，lua，shell
+- 配置更新及时，可以秒级同步到所有客户端机器
+- 高效的配置读取，内存级的访问速度
 
-### 安装Qconf
+下面来看下 QConf 客户端的架构：
 
-#### 下载并安装
+![](https://www.fanhaobai.com/2017/11/qconf/1a2c6f9e-e55a-11e7-80c1-9a214cf093ae.png)
 
-首先，从 Qconf [官方地址](https://github.com/Qihoo360/QConf/archive/v1.2.2.tar.gz)，下载源码包。
+可以看到 QConf 客户端主要有：agent、各种语言接口、连接他们的消息队列和共享内存。在 QConf 中，配置以 key-value 的形式存在，业务进程给出 key 获得对应 value，这与传统的配置文件方式是一致的。
 
-```Bash
-$ wget -O qconf.tar.gz https://github.com/Qihoo360/QConf/archive/v1.2.2.tar.gz
-# 解压文件带有版本号
-$ tar zxvf qconf.tar.gz
-$ cd QConf-1.2.2
-$ mkdir build && cd build
-$ cmake ..
-$ make
-$ make install
-```
+下面通过两个主要场景的数据流动来说明他们各自的功能和角色：
 
-默认安装于`/usr/local/qconf`目录，查看版本信息：
+- 业务进程请求数据
 
-```
-$ qconf version
-Version : 1.2.2
-```
+![](https://www.fanhaobai.com/2017/11/qconf/31cbf598-e55a-11e7-80c1-9a214cf093ae.png)
 
-#### 配置并启动
+1. 业务进程调用某一种语言的 QConf **接口**，从 **共享内存** 中查找需要的配置信息；
+2. 如果存在，直接获取，否则会向 **消息队列** 中加入该配置 key；
+3. **agent** 从 **消息队列** 中感知需要获取的配置 key；
+4. **agent** 向 **ZooKeeper** 查询数据并注册监听；
+5. **agent** 将获得的配置 value 序列化后放入 **共享内存**；
+6. 业务进程从 **共享内存** 中获得最新值。    
 
-Qconf 配置文件位于安装目录下`conf`目录，主要修改`idc.conf`的 Zookeeper 配置信息：
+- 配置信息更新
 
-```Bash
-$ vim idc.conf
-# 修改为Zookeeper地址
-zookeeper.test=127.0.0.1:2181
-```
+![](https://www.fanhaobai.com/2017/11/qconf/5aade6d8-e55a-11e7-80c1-9a214cf093ae.png)
 
-使用`agent-cmd.sh`脚本启动 Qconf 服务：
+1. **ZooKeeper **通知 **agent** 某配置项发生变化；
+2. **agent **从 **ZooKeeper **查询新值并更新 watcher；
+3. **agent **用新值更新 **共享内存 **中的该配置项。
 
-```Bash
-$ cd bin/
-$ sh ./agent-cmd.sh start
-```
+通过上面的说明，可以看出 QConf 的整体结构和流程非常简单。QConf 中各个组件或线程之间仅通过有限的中间数据结构通信，耦合性非常小，各自只负责自己的本职工作和一亩三分地，而不感知整体结构。下面通过几个点来详细介绍：
 
-然后，测试并获取 Zookeeper 配置节点信息：
+- 无锁根据上文提到的配置信息的特征，我们认为在 QConf 客户端进行的是多进程并行读取的过程，对配置数据来说读操作远多于写操作。为了尽可能的提高读效率，整个 QConf 客户端在操作共享内存时采用的是无锁的操作，同时为了保证数据的正确，采取了如下两个措施：
+- 单点写，将写操作集中到单一线程，其他线程通过中间数据结构与之通信，写操作排队，用这种方法牺牲掉一些写效率。在 QConf 客户端，需要对共享内存进行写操作的场景有：    
+1. 用户进程通过消息队列发送的需获取 key；
+2. ZooKeeper 配置修改删除等触发 Watcher 通知，需更新；
+3. 为了消除 watcher 丢失造成的不一致，需要定时对共享内存中的所有配置重新注册 watcher，此时可能会需要更新；
+4. 发生 agent 重启、网络中断、ZooKeeper 会话过期等异常情况之后，需重新拉数据，此时可能需要更新。
+- 读验证，无锁的读写方式，会存在读到未写入完全数据的危险，但考虑到在绝对的读多写少环境中这种情况发生的概率较低，所以我们允许其发生，通过读操作时的验证来发现。共享内存数据在序列化时会带其 md5 值，业务进程从共享内存中读取时，利用预存的 md5 值验证是否正确读取。
+- 异常处理 QConf 中采取了一些处理来应对不可避免的异常情况
+- 采用父子进程 keepalive 的方式，应对 agent 进程异常退出的情况；
+- 维护一份落盘数据，应对断网情况下共享内存又被清空的状况；
+- 网络中断恢复后，对共享内存中所有数据进行检查，并重新注册 watcher；
+- 定时扫描共享内存；
+- 数据序列化 QConf 客户端中有多处需要将数据序列化通信或存储，包括共享内存，消息队列，落盘数据中的内容。采取如下协议：
 
-```Bash
-# 获取节点值
-$ qconf get_conf /demo/confs/conf1
-111111
-# 获取节点下的所有key
-$ qconf get_batch_keys /demo/confs
-conf1
-conf2
-conf3
-```
-
-### 安装PHP扩展
+![](https://www.fanhaobai.com/2017/11/qconf/b809d666-e55a-11e7-80c1-9a214cf093ae.jpg)
 
-PHP 使用 Qconf 需要安装客户端扩展，安装如下：
+- agent 任务通过上面的描述，大家应该大概了解了 agent 所做的一些事情，下面从 agent 的内部的线程分工的角度整理一下，如下图：
 
-```Bash
-# 进入Qconf源码目录
-$ QConf-1.2.2/driver/php
-$ /usr/local/php/bin/phpize
-# Qconf安装目录为/usr/local/qconf
-$ ./configure --with-php-config=/usr/local/php/bin/php-config --with-libqconf-dir=/usr/local/qconf/include --enable-static LDFLAGS=/usr/local/qconf/lib/libqconf.a
-$ make
-$ make install
-```
-
-修改`php.ini`配置文件使 Qconf 扩展生效。
-
-```Bash
-$ vim /usr/local/php/lib/php.ini
-# 追加如下配置
-extension=qconf.so
-```
+![](https://www.fanhaobai.com/2017/11/qconf/d7fec4ae-e55a-11e7-80c1-9a214cf093ae.jpg)
 
-重启 php-fpm，并查看 Qconf 扩展是否安装成功。
+- Send 线程：ZooKeeper 线程，处理网络数据包，进行协议包的解析与封装，并将 Zookeeper 的事件加入 WaitingEvent 队列等待处理；
+- Event 线程：ZooKeeper 线程，依次获取 WaitingEvent 队列中的事件，并进行相应处理，这里我们关注节点删除、节点值修改、子节点变化、会话过期等事件。对特定的事件会进行相应的操作，以节点值修改为例，agent 会按上边提到的方式序列化该节点 key，并将其加入到 WaitingWriting 队列，等待 Main 线程处理；
+- Msq 线程：之前讲数据流动场景的时候有提到，用户进程从共享内存中找不到对应配置后，会向消息队列中加入该配置，Msq 线程便是负责从消息队列中获取业务进程的取配置需求，并同样通过 WaitingWriting 队列发送给 Main 进程；
+- Scan 线程：扫描共享内存中的所有配置，发现与 Zookeeper 不一致的情况时，将key值加入 WaitingWriting 队列。Scan 线程会在 ZooKeeper 重连或轮询期到达时进行上述操作；
+- Main 线程：共享内存的唯一写入线程，从 Zookeeper 获得数据写入共享内存，维护共享内存中的内容；
+- Trigger 线程：该线程负责一些周边逻辑的调用，包括：    
+1. dump 操作：将共享内存的内容同步一份到本地，QConf 采用的 gdbm；
+2. feedback 操作：QConf 支持更新反馈的功能，可向用户指定 web 服务以一定的格式发送反馈；
+3. script 操作：在某些情况下，业务希望当配置变化时，做一些自定义的操作，QConf 支持配置变化时调用用户脚本，agent 按一种固定的约定在配置发生变化时调用对应的脚本。
 
-```Bash
-$ php --ri qconf
+### QConf管理端
 
-qconf support => enabled
-qconf version => 1.2.2
-```
+管理端是业务修改配置的页面入口，利用数据库提供一些如批量导入，权限管理，版本控制等上层功能。由于公司内的一些业务耦合和需求定制，当前开源的 QConf 管理端这边提供了一个简易的页面，和一套下层的 c++ 接口，如下图：
 
-## 配置Qconf
-
-Qconf 默认安装，其配置文件路径为`/usr/local/qconf/conf`。配置文件共有`agent.conf`、`idc.conf`、`localidc` 这三个，`agent.conf`为 Qconf 的 agent 相关配置，`idc.conf` 和 `localidc` 为与 Zookeeper 相关的连接信息配置。
-
-### 配置agent
-
-`agent.conf`的配置内容如下，一般不需要进行修改。
-
-```INI
-# 工作模式 0 => console mode; 1 => background mode. 
-daemon_mode=1
-# 日记级别 debug => 0; trace => 1; info => 2; warning => 3; error => 4; fatal_error => 5
-log_level=4
-# Zookeeper超时
-zookeeper_recv_timeout=30000
-# 执行执行超时
-script_execute_timeout=3000
-# Register the node on zookeeper server
-register_node_prefix=/qconf/__qconf_register_hosts
-# Zookeeper日志
-zk_log=zoo.err.log
-# 最大共享内存的读取次数
-max_repeat_read_times=100
-feedback_enable=0
-# 共享内存大小，采用lru策略
-shared_memory_size=100000
-```
+![](https://www.fanhaobai.com/2017/11/qconf/0cc54ae6-e55b-11e7-80c1-9a214cf093ae.jpg)
 
-### 配置Zookeeper信息
+之后计划进一步完善以及跟社区合作提供更友好的界面。
 
-`idc.conf`配置文件指定 Zookeeper 的配置信息，并支持多个环境（测试环境、开发环境、生产环境）的配置。
+QConf 的结构及实现大概就介绍到这，接下来…
 
-```INI
-zookeeper.prod=www.fanhaobai.com:2181
-zookeeper.test=127.0.0.1:2181
-```
+## One More Thing
 
-然后，将每个环境下的`localidc`配置文件内容配置为对应的环境名称。如测试环境则为 test，生产环境为 prod，这样就可以根据不同环境获取对应的配置信息。
+QConf 除了存储配置的基本功能外，还在公司内提供了一套简单的服务发现功能，该功能允许业务在 QConf 上配置一组服务，QConf 会监控其服务的存活。当业务进程调用获取服务的接口时，会根据用户需求，返回全部可用服务，或某一可用服务。不同于普通配置：
 
-## API
+- 结构上多一个 Monitor 的角色，来监控所有服务的存活, 如下图：
 
-这里只通过 PHP 的 Qconf 客户端为例，来对 Qconf 的 API 使用进行说明。Qconf 为 PHP 封装的  API 操作类类名为 [Qconf](https://github.com/Qihoo360/QConf/wiki/QConf-PHP-Doc)。
+![](https://www.fanhaobai.com/2017/11/qconf/2d146c96-e55b-11e7-80c1-9a214cf093ae.png)
 
-### getConf
+- 提供对应的客户端接口，get_host 获取某一可用服务，get_allhost 获取所有可用服务
+- 管理端页面对应的展示方式及操作，尤其是对指定服务的添加删除，上线下线
 
-[getConf(path, idc, get_flag)]()
-返回配置节点的值，失败返回 NULL。
+需要明确的是，目前 Monitor 事实上仅仅是通过查看服务端口的存活来判断的，在实际生产环境中，该功能多与实际服务提供者的监控结合，由服务提供者的监控调用 QConf 的相应接口实现服务的上下线。
 
-**参数**
+## 使用方式及使用场景
 
-* path - 配置节点路径
-* idc - 指定从那个 idc 获取配置信息，不指定则取 localidc 的值
-* get_flag - 如果设置为 0，QConf 在未命中共享内存的 path 时，会同步等待从 Zookeeper 拉取的操作，直到返回结果。否则未命中则直接返回 NULL
+目前 360 内部已经广泛的使用 QConf。覆盖云盘、大流程、系统部、dba、图搜、影视、地图、硬件、手机卫士、广告、好搜等大部分业务。部署国内外共 51 几个机房，客户端机器超两万台，稳定运行两年。
 
-```PHP
-# 从idc为test上获取/demo/confs/conf1节点的配置
-$ php -r "echo Qconf::getConf('/demo/confs/conf1');"
-888888
-# 从idc为prod上获取/demo/confs/conf1节点的配置
-Qconf::getConf('/demo/confs/conf1', 'prod');
-111111
-```
+使用的方式主要包括：
 
-### getBatchKeys
+- 简单配置公司内使用最广泛的用法，QConf 非常适合经常需要变动的配置使用，如开关信息、版本信息、推荐信息、超时时间等。
+- 服务方式这种方式多被服务提供者采用，如 dba，系统部等，采用上述的服务配置的方式，通过 QConf 向公司的所有业务提供存储，计算及 web 服务。
 
-[getBatchKeys(path, idc, get_flag)]()
-获取该节点路径所有 [下一级]() 子节点的名称，失败返回 NULL。
+QConf 因为其对配置信息的定位，使得整个结构非常简单，容易部署和使用。在 Github 可以找到完整代码，[QConf Source Code](https://github.com/Qihoo360/QConf) 欢迎关注。
 
-**参数**
+<strong>相关文章 [»]()</strong>
 
-参数见 [getConf](#getConf) 参数部分。
-
-```PHP
-Qconf::getBatchKeys('/demo/confs', 'test');
-
-array(3) {
-  [0] =>
-  string(5) "conf1"
-  [1] =>
-  string(5) "conf2"
-  [2] =>
-  string(5) "conf3"
-}
-```
-
-### getBatchConf
-
-[getBatchConf(path, idc, get_flag)]()
-获取该节点路径所有 [下一级]() 子节点的名称和配置值，失败返回 NULL。
-
-**参数**
-
-参数见 [getConf](#getConf) 参数部分。
-
-```PHP
-Qconf::getBatchConf('/demo/confs', 'test');
-array(3) {
-  'conf1' =>
-  string(6) "888888"
-  'conf2' =>
-  string(6) "999999"
-  'conf3' =>
-  string(6) "101010"
-}
-
-Qconf::getBatchConf('/demo', 'test');
-array(1) {
-  'confs' =>
-  string(5) "confs"
-}
-```
-
-### getHost和getAllHost
-
-[getHost(path, idc, get_flag)]() 或 [getAllHost(path, idc, get_flag)]()
-返回该配置节点全部或一个可用服务，失败返回 NULL。
-
-**参数**
-
-参数见 [getConf](#getConf) 参数部分。
-
-```PHP
-Qconf::getHost('demo/confs/conf1');
-```
-
-## 植入代码
-
-... ...
-
-## 管理后台
-
-未完待续。
-
-> 选型参考：http://www.cnblogs.com/zhangxh20/p/5464103.html
+* [配置中心部署Qconf](https://www.fanhaobai.com/2017/11/qconf-deploy.html) <span>（2017-11-13）</span>
+* [配置管理服务横向对比 ](http://www.cnblogs.com/zhangxh20/p/5464103.html)

@@ -27,7 +27,19 @@ date: 2016-08-10
 
 本站的更新历程，见 [本站特性](https://www.fanhaobai.com/about-site/)。
 
-<div class="row"><div class="col m3 s4">![](/about/index/O_tDRRtwdgwUJGleCTb-fJvl.png)</div><div class="col m3 s4">![](/about/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](/about/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](/about/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](/about/index/vvZnp6Cdl4KDz02shzLvJsfN.png)</div><div class="col m3 s4">![](/about/index/C6ADglLNRxwYUdhfid1qzI1u.jpg)</div><div class="col m3 s4">![](/about/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](/about/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](/about/index/ds31b8RAFgTPJ65AAY7esGe2.jpg)</div><div class="col m3 s4">![](/about/index/0f32aeff3ccf8e5dc3d196ee8fd4.png)</div><div class="col m3 s4">![](/about/index/019c7ef7-d0a1-4585-ab37-02f850954bcb.jpg)</div><div class="col m3 s4">![](/about/index/67d33f0b-45b1-4f3c-8f4e-c55dff9b4cc8.png)</div><div class="col m3 s4">![](/about/index/7fbbc22c-3a0f-466b-87bb-d8d27367c419.gif)</div></div>
+<div class="row"><div class="col m3 s4">![](/about/index/O_tDRRtwdgwUJGleCTb-fJvl.png)</div><div class="col m3 s4">![](/about/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](/about/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](/about/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](/about/index/vvZnp6Cdl4KDz02shzLvJsfN.png)</div><div class="col m3 s4">![](/about/index/C6ADglLNRxwYUdhfid1qzI1u.jpg)</div><div class="col m3 s4">![](/about/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](/about/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](/about/index/ds31b8RAFgTPJ65AAY7esGe2.jpg)</div><div class="col m3 s4">![](/about/index/0f32aeff3ccf8e5dc3d196ee8fd4.png)</div><div class="col m3 s4">![](/about/index/019c7ef7-d0a1-4585-ab37-02f850954bcb.jpg)</div><div class="col m3 s4">![](/about/index/67d33f0b-45b1-4f3c-8f4e-c55dff9b4cc8.png)</div><div class="col m3 s4">![](/about/index/7fbbc22c-3a0f-466b-87bb-d8d27367c419.gif)</div><div class="col m3 s4">![](/about/index/7e4fd599-07ac-4eac-8711-eae8a8f2efb9.png)</div><div class="col m3 s4">![](/about/index/fa0fed17-ed7c-4cd4-aff1-665423bc99b9.png)</div><div class="col m3 s4">![](/about/index/b1e2f482-5c77-4336-a083-e3a8dea6069b.png)</div></div>
+
+## 站点导航
+
+* 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
+* Wiki 站，[wiki.fanhaobai.com](https://wiki.fanhaobai.com)
+* Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
+* Redis 管理工具 phpRedisAdmin，[admin.fanhaobai.com](https://admin.fanhaobai.com)
+* 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
+* 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
+* 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）
+* Supervisor 管理面板，[supervisor.fanhaobai.com](http://supervisor.fanhaobai.com)（用户名 admin，密码 fhb）
+* ELK 集中式日志平台，[elk.fanhaobai.com](http://elk.fanhaobai.com)（用户名 elastic，密码 changeme）
 
 ## 版权说明
 

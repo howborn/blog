@@ -6,6 +6,8 @@ date: 2016-12-11 13:12:10
 本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server。本站的 [博客](https://www.fanhaobai.com) 基于开源的 Hexo 搭建，运行于 NodeJS 环境；本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境；数据库采用开源的 MySQL ，内存缓存服务器采用 Redis 。
 
 # 更新说明
+
+* 2017.12.16：搭建  [ELK](https://www.fanhaobai.com/2017/12/elk.html) 集中式日志平台。
 * 2017.09.23：增加使用 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html)。
 * 2017.09.10：升级 Nginx 并增加 [Lua 模块](https://www.fanhaobai.com/2017/09/lua-in-nginx.html)。
 * 2017.09.02：增加使用 [Gearman](https://www.fanhaobai.com/2017/08/gearman.html) 分布式任务系统。
@@ -27,17 +29,6 @@ date: 2016-12-11 13:12:10
 * 2016.12.11：将主站博客迁移到 [FireKylin](https://www.fanhaobai.com/2016/12/firekylin.html)。
 * 2016.12.08：增加使用 [HTTPS](https://www.fanhaobai.com/2016/12/firekylin.html)。
 * 2016.12.07：增加使用 [NodeJS ](https://www.fanhaobai.com/2016/12/nodejs-install.html)。
-
-# 站点导航
-
-* 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
-* Wiki 站，[wiki.fanhaobai.com](https://wiki.fanhaobai.com)
-* Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
-* Redis 管理工具 phpRedisAdmin，[admin.fanhaobai.com](https://admin.fanhaobai.com)
-* 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
-* 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
-* 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)
-* Supervisor 管理面板，[supervisor.fanhaobai.com](http://supervisor.fanhaobai.com/)
 
 # 配置信息
 
