@@ -21,18 +21,15 @@ categories:
 ```Josn
 PUT _template/logstash
 {
-    "index_patterns": "*",           //应用于所有索引
+    "index_patterns": ["*access*", "*error*"],
     "settings": {
         "index": {
-            "number_of_shards": "3",   //主分片数
-            "number_of_replicas": "0"  //副分片数
+            "number_of_shards": "3",
+            "number_of_replicas": "0"
         }
     },
     "mappings": {
         "_default_": {
-            "_all": {
-                "enabled": true
-            },
             "dynamic_templates": [
                 {
                     "string_fields": {
@@ -60,7 +57,7 @@ PUT _template/logstash
                     "dynamic": true,
                     "properties": {
                         "location": {
-                            "type": "geo_point"    //地理坐标
+                            "type": "geo_point"
                         }
                     }
                 }
