@@ -1,6 +1,6 @@
 ---
 title: ELK集中式日志平台之三 —  进阶
-date: 2017-12-10 13:14:00
+date: 2017-12-22 23:12:00
 tags:
 - 分布式
 - 日志
@@ -8,12 +8,109 @@ categories:
 - 分布式
 ---
 
-![]()<!--more-->
+按照 [ELK集中式日志平台之二](https://www.fanhaobai.com/2017/12/elk-install.html) 方法部署后，日志平台基本可以投入使用，但是其配置并不完善，且系统功能存在局限性，本文将介绍部署后遇到的一些常见问题以及解决办法。
 
-## 数据类型映射
+![](https://www.fanhaobai,com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
+
+## Logstash管道进阶
+
+### [Input](https://www.elastic.co/guide/en/logstash/current/input-plugins.html)
+
+Input 插件指定了 Logstash 事件的输入源，已经支持 [beats](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-beats.html)、[kafka](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-kafka.html)、[redis](https://www.elastic.co/guide/en/logstash/current/plugins-inputs-redis.html) 等源的输入。
+
+例如，配置 Beats 源为输入，且端口为 5044：
+
+```Yaml
+input {
+  beats { port => 5044 }
+}
+```
+
+### Filter
+
+#### date
+#### mutate
+#### grok
+
+### Output
+
+Output 插件配置 Logstash 输出对象，可以为 [elasticsearch](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html)、[email](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-email.html)、[file](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-file.html) 等介质。
+
+例如，配置过滤后存储在 Elasticsearch 中：
+
+```Yaml
+output {
+    elasticsearch {
+        hosts => "localhost:9200"
+        manage_template => false
+        index => "%{[@metadata][type]}-%{+YYYY.MM}"
+        document_type => "%{[fields][env]}"
+        template_name => "logstash"
+        user => "elastic"
+        password => "elastic"
+    }
+}
+```
+
+当然，Output 插件不只是可以将过滤数据输出到一种介质，还可以同时指定多种介质。 
+
+### 配置示例
+
+例如，基于 Nginx 日志进行过滤处理，并且通过 useragent 和 geoip 过滤器分别对用户 agent 和 ip 进行解析。配置如下：
+
+```Yaml
+input {
+    beats { port => 5044 }
+}
+filter {
+    if [fileset][module] == "nginx" {
+        if [fileset][name] == "access" {
+            grok {
+                match => { "message" => ["%{IPORHOST:[@metadata][remote_ip]} - %{DATA:[user_name]} \[%{HTTPDATE:[time]}\] \"%{WORD:[method]} %{DATA:[url]} HTTP/%{NUMBER:[http_version]}\" %{NUMBER:[response_code]} %{NUMBER:[body_sent][bytes]} \"%{DATA:[referrer]}\" \"%{DATA:[@metadata][agent]}\""] }
+                remove_field => "message"
+            }
+            if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
+                drop {}
+            }
+            mutate { add_field => { "read_timestamp" => "%{@timestamp}" } }
+            date { match => [ "[time]", "dd/MMM/YYYY:H:m:s Z" ] }
+            useragent {
+                source => "[@metadata][agent]"
+                target => "useragent"
+            }
+            geoip {
+                source => "[@metadata][remote_ip]"
+                target => "geoip"
+            }
+        } else if [fileset][name] == "error" {
+            grok {
+                match => { "message" => ["%{DATA:[time]} \[%{DATA:[level]}\] %{NUMBER:[pid]}#%{NUMBER:[tid]}: (\*%{NUMBER:[connection_id]} )?%{GREEDYDATA:[message]}"] }
+                remove_field => "message"
+            }
+            mutate { rename => { "@timestamp" => "read_timestamp" } }
+            date { match => [ "[time]", "YYYY/MM/dd H:m:s" ] }
+        }
+    }
+}
+output {
+    elasticsearch {
+        hosts => "localhost:9200"
+        manage_template => false
+        index => "%{[@metadata][type]}-%{+YYYY.MM}"
+        document_type => "%{[fields][env]}"
+        template_name => "logstash"
+        user => "elastic"
+        password => "elastic"
+    }
+}
+```
+
+## 数据存储类型映射
 
 ### grok
+
 ### mutate
+
 ### [索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
 
 建立一个名为`logstash`的索引模板，这个模板将应用于所有索引，作为 Logstash 推送日志时索引的模板。
@@ -67,7 +164,7 @@ PUT _template/logstash
 }
 ```
 
-## 清理过期日志文档
+## 清理过期数据
 
 随着时间的推移，日志平台会产生大量的索引文件，这样不但会占用磁盘空间，而且还会导致检索性能降低。对于那些已经失效的日志文档，长期存在并没有任何价值，所以应该定期对其清理。
 
