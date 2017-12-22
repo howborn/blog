@@ -21,7 +21,7 @@ categories:
 ```Josn
 PUT _template/logstash
 {
-    "template": "*",           //应用于所有索引
+    "index_patterns": "*",           //应用于所有索引
     "settings": {
         "index": {
             "number_of_shards": "3",   //主分片数
