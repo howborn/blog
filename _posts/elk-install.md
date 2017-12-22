@@ -44,8 +44,9 @@ $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
 ```Bash
 $ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.1.tar.gz
-$ mkdir -p /usr/local/elk/elasticsearch
-$ tar zxvf lasticsearch-6.1.1.tar.gz -C /usr/local/elk/elasticsearch
+$ mkdir -p /usr/local/elk
+$ tar zxvf elasticsearch-6.1.1.tar.gz -C /usr/local/elk
+$ mv /usr/local/elk/elasticsearch-6.1.1 /usr/local/elk/elasticsearch
 ```
 
 启动前，需要修改配置文件`jvm.options`中 JVM 大小，否则可能会内存溢出，导致启动失败。
@@ -122,7 +123,7 @@ type=rpm-md
 
 ```Bash
 $ yum install -y kibana
-$ mkdir -p /usr/local/elk/kibana
+$ mkdir -p /usr/local/elk
 $ ln -s /usr/share/kibana /usr/local/elk/kibana
 $ cd /usr/local/elk/kibana
 ```
@@ -164,7 +165,7 @@ $ chkconfig kibana on
 $ service kibana start
 ```
 
-配置 web 服务后，访问 [elk.fanhaobai.com](http://elk.fanhaobai.com/) 就可以看到 Kibana 强大又绚丽的界面。
+配置 Web 服务后，访问 [elk.fanhaobai.com](http://elk.fanhaobai.com/) 就可以看到 Kibana 强大又绚丽的界面。
 
 > 安装 x-pack 插件后，访问 Kibana 同样需要授权，且任何 Elasticsearch 的用户名和密码对都可被认证通过。
 
@@ -190,7 +191,7 @@ type=rpm-md
 ```Bash
 $ yum install -y logstash
 # 默认安装路径/usr/share
-$ mkdir -p /usr/local/elk/logstash
+$ mkdir -p /usr/local/elk
 $ ln -s /usr/share/logstash /usr/local/elk/logstash
 $ cd /usr/local/elk/logstash
 # 命令行测试
@@ -296,7 +297,7 @@ tcp   0      0 0.0.0.0:5044     0.0.0.0:*    LISTEN      10132/java
 
 ```Bash
 $ yum install -y filebeat
-$ mkdir -p /usr/local/elk/beats/filebeat
+$ mkdir -p /usr/local/elk/beats
 $ ln -s /usr/share/filebeat /usr/local/elk/beats/filebeat
 $ cd /usr/local/elk/beats/filebeat
 ```
