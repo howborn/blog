@@ -335,7 +335,7 @@ filebeat.modules:
         type: nginx-www-access               #Logstash的type字段
   error:
     enabled: true
-    var.paths: ["/usr/local/nginx/logs/error.log"]
+    var.paths: ["/data/logs/error.log"]
     prospector:
       fields:
         type: nginx-all-error

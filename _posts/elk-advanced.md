@@ -8,7 +8,7 @@ categories:
 - 分布式
 ---
 
-根据 [ELK集中式日志平台之二](https://www.fanhaobai.com/2017/12/elk-install.html) 的方法部署 ELK 后，日志平台就基本可以投入使用了，但是其配置并不完善，系统功能也存在局限性，本文将对 ELK 部署后的一些常见问题给出解决办法。
+根据 [ELK集中式日志平台之二](https://www.fanhaobai.com/2017/12/elk-install.html) 的方法部署 ELK 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
 
 ![](https://www.fanhaobai,com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
 
@@ -28,9 +28,119 @@ input {
 
 ### Filter
 
-#### date
-#### mutate
-#### grok
+Filter 插件主要功能是数据过滤和格式化，通过简洁的表达式就可以完成数据的处理。
+
+以下这些配置信息，为所有插件共有配置：
+
+| 配置项          | 类型    | 描述   |
+| ------------ | ----- | ---- |
+| add_field    | hash  | 添加字段 |
+| add_tag      | array | 添加标签 |
+| remove_field | array | 删除字段 |
+| remove_tag   | array | 添加字段 |
+
+#### Drop
+
+[Drop](https://www.elastic.co/guide/en/logstash/current/plugins-filters-drop.html) 插件用来过滤掉无价值的数据，例如过滤掉静态文件日志信息：
+
+```Yaml
+if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
+    drop {}
+}
+```
+
+#### Date
+
+我们可以用 [Date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) 插件来格式化时间字段。
+
+例如，将 time 字段值格式化为`dd/MMM/YYYY:H:m:s Z`形式：
+
+```Yaml
+date { match => [ "[time]", "dd/MMM/YYYY:H:m:s Z" ] }
+```
+
+#### Mutate
+
+[Mutate](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html) 插件用来对字段进行 [rename](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-rename)、[replace](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-replace) 、[merge](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-merge) 以及字段值 [convert](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-convert)、[split](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-split)、[join](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html#plugins-filters-mutate-join) 操作。
+
+例如，将字段`@timestamp`重命名（rename 或 replace）为 read_timestamp：
+
+```Yaml
+mutate { rename => { "@timestamp" => "read_timestamp" } }
+```
+
+以下是对字段值的操作，使用频率较高。
+
+* 字段值类型转换（convert）
+
+例如，将 response_code 字段值转换为整型：
+
+```Yaml
+mutate { convert => { "fieldname" => "integer" } }
+```
+
+* 字符串分割为数组（split）
+
+例如，将经纬度坐标用数组表示：
+
+```Yaml
+mutate { split => { "location" => "," } }
+```
+
+* 数组合并为字符串（join）
+
+例如，将经纬度坐标合并：
+
+```Yaml
+mutate { join => { "location" => "," } }
+```
+
+#### Kv
+
+[Kv](https://www.elastic.co/guide/en/logstash/current/plugins-filters-kv.html) 插件能够对 key=value 格式的字符进行格式化或过滤处理，这里只对 field_split 项配置进行说明，更多配置见 [Kv Filter Configuration Options](https://www.elastic.co/guide/en/logstash/current/plugins-filters-kv.html#plugins-filters-kv-options)。
+
+例如，获取形如`?name=cat&type=2`GET 请求的参数：
+
+```Yaml
+kv { field_split => "&?" }
+```
+
+处理后，将会获取到以下 2 个参数：
+
+* `name: cat`
+* `type: 2`
+
+#### Json
+
+[Json](https://www.elastic.co/guide/en/logstash/current/plugins-filters-json.html) 插件当然是用来解析 Json 字符串，而 [Json_encode](https://www.elastic.co/guide/en/logstash/current/plugins-filters-json_encode.html) 插件是对字段编码为 Json 字符串。例如，Nginx 日志为 Json 格式，则：
+
+```Yaml
+json { source => "message" }
+```
+
+#### Grok
+
+[Grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) 插件可以根据指定的表达式 [结构化]() 文本数据，表达式需形如`%{SYNTAX:SEMANTIC}`格式，SYNTAX 指定字段值类型，可以为 IP、WORD、DATA、NUMBER 等。
+
+例如，形如`55.3.244.1 GET /index.html 15824 0.043`的请求日志，则对应的表达式应为`%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}`，配置如下：
+
+```Yaml
+grok {
+    match => { "message" => "%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}" }
+}
+```
+
+经过 Grok 过滤后，输出为：
+
+* `client: 55.3.244.1`
+* `method: GET`
+* `request: /index.html`
+* `bytes: 15824`
+* `duration: 0.043`
+
+我们可以使用 [Grok Debug](http://grokdebug.herokuapp.com/) 在线调试 Grok 表达式，常用 Nginx、MySQL、Redis 日志的 Grok 表达式见 [Configuration Examples](https://www.elastic.co/guide/en/logstash/current/logstash-config-for-filebeat-modules.html) 部分。
+
+> [useragent](https://www.elastic.co/guide/en/logstash/current/plugins-filters-useragent.html) 插件用来解析用户客户端信息，[geoip](https://www.elastic.co/guide/en/logstash/current/plugins-filters-geoip.html) 插件可以根据 IP 地址解析出用户所在的地址位置，配置较简单，这里不做说明。
 
 ### Output
 
@@ -56,7 +166,7 @@ output {
 
 ### 配置示例
 
-例如，基于 Nginx 日志进行过滤处理，并且通过 useragent 和 geoip 过滤器分别对用户 agent 和 ip 进行解析。配置如下：
+实现基于 Nginx 日志进行过滤处理，并且通过 useragent 和 geoip 插件获取用户客户端和地理位置信息。详细配置如下：
 
 ```Yaml
 input {
@@ -105,36 +215,94 @@ output {
 }
 ```
 
-## 数据存储类型映射
+## [索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
+
+Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，但有时候我们需要定制化索引信息，Logstash 创建的索引就不符合我们的要求，此时就可以使用索引模板来解决。
+
+创建一个名为`logstash`的索引模板，并指定该索引模板的匹配模式，作为 Logstash 推送日志时索引的模板。
+
+```Json
+PUT _template/logstash
+{
+    "index_patterns": ["*access*", "*error*"],  //匹配模式，含有access和error字样的索引才会使用该模板
+    "settings": {
+        "index": {
+            "number_of_shards": "3",            //分片数        
+            "number_of_replicas": "0"           //副分片数
+        }
+    },
+    "mappings": {                               //字段映射规则
+        "_default_": {                          //_default_属性将在ES7移除
+            "properties": {
+              "@timestamp": {
+              "type": "date"
+            },
+            "@version": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+           }
+          //more
+        }
+    }
+}
+```
+
+[Mappings]() 可以配置更多的字段映射规则，已配置字段根据索引模板规则映射，未配置字段则动态映射。
+
+## 指定数据存储类型
+
+Logstash 推送数据到 Elasticsearch 时，可以通过以下几种方式指定字段存储类型。
 
 ### grok
 
+```Yaml
+grok {
+    match => { "message" => "%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}" }
+}
+```
+
+其中 IP、WORD、NUMBER 分别会映射为 Elasticsearch 的 IP、String、Number 类型。
+
 ### mutate
 
-### [索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
+通过 Mutate 过滤插件的 convert 配置项，可以转换字段值类型。
 
-建立一个名为`logstash`的索引模板，这个模板将应用于所有索引，作为 Logstash 推送日志时索引的模板。
+```Yaml
+mutate { convert => { "fieldname" => "integer" } }
+```
 
-```Josn
-PUT _template/logstash
-{
-    "index_patterns": ["*access*", "*error*"],
-    "settings": {
-        "index": {
-            "number_of_shards": "3",
-            "number_of_replicas": "0"
-        }
-    },
-    "mappings": {
-        "_default_": {
-            "properties": {
-                "geoip": {
-                    "type": "object",
-                    "dynamic": true,
-                    "properties": {
-                        "location": {
-                            "type": "geo_point"
-                        }
+### 索引模板
+
+若想要根据用户 IP 地址解析后的地理位置信息，得出访问用户的地理分布情况，就需要在 Elasticsearch 中将用户地理坐标存储为 [geo_point]() 类型，而 Logstash 并不能自动完成这个步骤，我们可以在索引模板中指定 location 字段的类型为 geo_point。
+
+Elasticsearch 待存储的地理位置数据，格式如下：
+
+```Json
+"geoip": {
+  "location": { 
+    "lat":     40.722,
+    "lon":    -73.989
+  }
+}
+```
+
+索引模板的 [Mappings](#索引模板) 部分，应设置为：
+
+```Json
+"mappings": {
+    "_default_": {
+        "properties": {
+            "geoip": {
+                "type": "object",
+                "dynamic": true,
+                "properties": {
+                    "location": {
+                        "type": "geo_point"
                     }
                 }
             }
@@ -145,7 +313,7 @@ PUT _template/logstash
 
 ## 清理过期数据
 
-随着时间的推移，日志平台会产生大量的索引文件，这样不但会占用磁盘空间，而且还会导致检索性能降低。对于那些已经失效的日志文档，长期存在并没有任何价值，所以应该定期对其清理。
+日志平台会产生大量的索引文件，这样不但会占用磁盘空间，而且还会导致检索性能降低，对于那些已经失效的日志文档，应该定期对其清理。
 
 ### [设置索引过期时间](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/mapping-ttl-field.html)
 
@@ -345,3 +513,42 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 > 该方式不但直接通过配置即可方便实现过期索引的清理，而且可以在复杂场景轻松地管理索引、快照等，故推荐该方式。
 
 ## 数据报表
+
+上述一切准备步骤做好后，我们就可以利用 Kibana 对大量的日志数据进行报表分析，进而实现应用监控和流量分析。
+
+### 创建索引模式
+
+选择 Kibana 的 ”Managemant  >> Kibana >> Index Patterns" 项 ，创建一个名为`nginx-www-access*`的索引模式，并设为默认索引，如图：
+
+![](https://www.fanhaobai.com/2017/12/elk-advanced/d82824ed-15eb-47c5-9ec6-925f2d3f7758.png)
+
+### 创建数据图表
+
+选择 Kibana 的 ”Visualize" 项，创建一个数据图表，Kibana 已经支持了丰富的图标类型，这里选择 Line 类型图表制作一个用户访问量的图表。
+
+图表的 Metrics（指标） 和 Buckets（桶）属性，Metrics 用来表示 PV 和 UV，而 Buckets 则是时间维度，UV 需要根据 location 去重后统计。
+
+图表的 Metrics 部分，如下图：
+
+![](https://www.fanhaobai.com/2017/12/elk-advanced/f2c9321a-e7e4-11e7-80c1-9a214cf093ae.png)
+
+图表的 Buckets 部分，如下图：
+
+![](https://www.fanhaobai.com/2017/12/elk-advanced/3f97da38-e7e5-11e7-80c1-9a214cf093ae.png)
+
+最后，生成的用户访问量图表，如图：
+
+![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+
+### 创建实时监控面板
+
+当我们创建了各种指标的数据图表后，就可以将这些数据图表组合成一个实时监控面板。选择 Kibana 的 ”Dashboard" 项，创建一个监控面板，并添加所需监控指标的数据图表，拖拽调整各图表到合适位置并保存，一个实时监控面板就呈现在眼前了。
+
+下面是我针对主站 [Blog](https://www.fanhaobai.com) 健康监控和流量分析做出的实时 [数据报表](http://elk.fanhaobai.com) 展示，基本上满足了实时监控要求。
+
+![](https://www.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
+
+<strong>相关文章 [»]()</strong>
+
+* [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html) <span>（2017-12-16）</span>
+* [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-22）</span>
