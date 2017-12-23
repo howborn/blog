@@ -368,7 +368,7 @@ Filebeat 启动后，会侦测待采集文件内容是否有增加或更新，�
 
 Filebeat 推送到 Logstash 过滤后，Elasticsearch 存储的数据格式为：
 
-```Josn
+```Json
 {
     "_index": "nginx-www-access-2017.12",
     "_type": "prod",

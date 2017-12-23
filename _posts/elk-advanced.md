@@ -8,9 +8,9 @@ categories:
 - 分布式
 ---
 
-根据 [ELK集中式日志平台之二](https://www.fanhaobai.com/2017/12/elk-install.html) 的方法部署 ELK 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
+部署 [ELK](https://www.fanhaobai.com/2017/12/elk-install.html) 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
 
-![](https://www.fanhaobai,com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
+![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
 
 ## Logstash管道进阶
 
@@ -30,7 +30,7 @@ input {
 
 Filter 插件主要功能是数据过滤和格式化，通过简洁的表达式就可以完成数据的处理。
 
-以下这些配置信息，为所有插件共有配置：
+以下这些配置信息，为插件共有配置：
 
 | 配置项          | 类型    | 描述   |
 | ------------ | ----- | ---- |
@@ -222,7 +222,7 @@ Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，�
 创建一个名为`logstash`的索引模板，并指定该索引模板的匹配模式，作为 Logstash 推送日志时索引的模板。
 
 ```Json
-PUT _template/logstash
+//PUT _template/logstash
 {
     "index_patterns": ["*access*", "*error*"],  //匹配模式，含有access和error字样的索引才会使用该模板
     "settings": {
@@ -283,18 +283,18 @@ mutate { convert => { "fieldname" => "integer" } }
 Elasticsearch 待存储的地理位置数据，格式如下：
 
 ```Json
-"geoip": {
+{"geoip": {
   "location": { 
     "lat":     40.722,
     "lon":    -73.989
   }
-}
+}}
 ```
 
 索引模板的 [Mappings](#索引模板) 部分，应设置为：
 
 ```Json
-"mappings": {
+{"mappings": {
     "_default_": {
         "properties": {
             "geoip": {
@@ -308,7 +308,7 @@ Elasticsearch 待存储的地理位置数据，格式如下：
             }
         }
     }
-}
+}}
 ```
 
 ## 清理过期数据
@@ -320,7 +320,7 @@ Elasticsearch 待存储的地理位置数据，格式如下：
 最简单的办法就是给每个索引设定 TTLs（过期时间），在索引模板中定义失效时间为 7 天：
 
 ```Json
-PUT /_template/logstash
+//PUT /_template/logstash
 {
     "template": "*",  
     "mappings": {
@@ -429,7 +429,7 @@ $ rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 $ yum install -y elasticsearch-curator
 
 # 获取所有索引
-$ curator_cli --http_auth user:password --host es.fanhaobai.com --port 80 show_indices --verbose
+$ curator_cli --http_auth elastic:elastic --host es.fanhaobai.com --port 80 show_indices --verbose
 
 .kibana     open   15.7KB       3   1   0 2017-12-15T06:15:07Z
 ```
@@ -498,7 +498,6 @@ test-2017.11.16      open   162.0B       0   3   0 2017-12-17T06:10:04Z
 test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 $ curator --config /etc/curator/curator.yml /etc/curator/delete-index.yml
-
 #删除过期索引后
 $ curator_cli --config /etc/curator/curator.yml show_indices --verbose | grep test-
 test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
