@@ -11,6 +11,7 @@ categories:
 部署 [ELK](https://www.fanhaobai.com/2017/12/elk-install.html) 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
 
 ![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
+![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
 
 ## Logstash管道进阶
 
@@ -234,19 +235,20 @@ Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，�
     "mappings": {                               //字段映射规则
         "_default_": {                          //_default_属性将在ES7移除
             "properties": {
-              "@timestamp": {
-              "type": "date"
-            },
-            "@version": {
-              "type": "text",
-              "fields": {
-                "keyword": {
-                  "type": "keyword",
-                  "ignore_above": 256
+                "@timestamp": {
+                  "type": "date"
+                },
+                "@version": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
                 }
-              }
-           }
-          //more
+            //more
+            }
         }
     }
 }
