@@ -36,7 +36,7 @@ Filter 插件主要功能是数据过滤和格式化，通过简洁的表达式�
 | add_field    | hash  | 添加字段 |
 | add_tag      | array | 添加标签 |
 | remove_field | array | 删除字段 |
-| remove_tag   | array | 添加字段 |
+| remove_tag   | array | 删除标签 |
 
 #### Drop
 
@@ -223,15 +223,15 @@ Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，�
 ```Json
 //PUT _template/logstash
 {
-    "index_patterns": ["*access*", "*error*"],  //匹配模式，含有access和error字样的索引才会使用该模板
+    "index_patterns": ["*access*", "*error*"],
     "settings": {
         "index": {
-            "number_of_shards": "3",            //分片数        
-            "number_of_replicas": "0"           //副分片数
+            "number_of_shards": "3",       
+            "number_of_replicas": "0"
         }
     },
-    "mappings": {                               //字段映射规则
-        "_default_": {                          //_default_属性将在ES7移除
+    "mappings": {
+        "_default_": {
             "properties": {
                 "@timestamp": {
                   "type": "date"
@@ -245,14 +245,13 @@ Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，�
                         }
                     }
                 }
-            //more
             }
         }
     }
 }
 ```
 
-[Mappings]() 可以配置更多的字段映射规则，已配置字段根据索引模板规则映射，未配置字段则动态映射。
+其中 [index_patterns]() 为匹配模式，表示含有 access 和 error 的索引才会使用该模板。[mappings]()  为字段映射规则，可以配置更多的字段映射规则，已配置字段根据索引模板规则映射，未配置字段则动态映射。
 
 ## 指定数据存储类型
 
@@ -348,10 +347,10 @@ Elasticsearch 待存储的地理位置数据，格式如下：
 配置定期清理过期日志的任务：
 
 ```Bash
-$ 0 0 * * * /usr/bin/curl -u elastic:elastic  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
+$ 0 0 * * * /usr/bin/curl -u elastic:changeme  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
 ```
 
-其中，`elastic`为 Elasticsearch 的用户名和密码，`query`为待清理日志的查询条件，`path.log`为日志文件路径。
+其中，`elastic`和`changeme`分别为 Elasticsearch 的用户名和密码，`query`为待清理日志的查询条件，`path.log`为日志文件路径。
 
 > 该方式只是删除了过期的日志文档，并不会删除过期的索引信息，适用于对特定索引下的日志文档进行定期清理的场景。
 
@@ -369,8 +368,8 @@ SEARCH_PREG="nginx-www-access-20[0-9][0-9](\.[0-9]{2})+"
 KEEP_DAYS=7
 URL=http://es.fanhaobai.com
 PORT=
-USER=user
-PASSWORD=password
+USER=elastic
+PASSWORD=changeme
 
 date2stamp () {
     date --utc --date "$1" +%s
@@ -429,7 +428,7 @@ $ rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 $ yum install -y elasticsearch-curator
 
 # 获取所有索引
-$ curator_cli --http_auth elastic:elastic --host es.fanhaobai.com --port 80 show_indices --verbose
+$ curator_cli --http_auth elastic:changeme --host es.fanhaobai.com --port 80 show_indices --verbose
 
 .kibana     open   15.7KB       3   1   0 2017-12-15T06:15:07Z
 ```
@@ -445,7 +444,7 @@ client:
   hosts:
     - es.fanhaobai.com         #集群配置形如["10.0.0.1", "10.0.0.2"]
   port: 80
-  http_auth: elastic:elastic   #授权信息
+  http_auth: elastic:changeme  #授权信息
   url_prefix:
   use_ssl: false
   certificate:
@@ -535,7 +534,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 ![](https://www.fanhaobai.com/2017/12/elk-advanced/3f97da38-e7e5-11e7-80c1-9a214cf093ae.png)
 
-最后，生成的用户访问量图表如文章开始所示。
+最后，生成的用户访问量图表如文章起始所示。
 
 ### 创建实时监控面板
 
