@@ -339,8 +339,8 @@ filebeat.modules:
     prospector:
       fields:
         type: nginx-all-error
-fields:                                      #环境标识，Logstash的fields字段
-  env: prod
+fields:                                      #自定义字段，Logstash的fields字段
+  env: prod                                  #添加环境标识
 queue_size: 1000
 bulk_queue_size: 0
 

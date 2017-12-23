@@ -8,7 +8,7 @@ categories:
 - 分布式
 ---
 
-按照 [ELK集中式日志平台之二](https://www.fanhaobai.com/2017/12/elk-install.html) 方法部署后，日志平台基本可以投入使用，但是其配置并不完善，且系统功能存在局限性，本文将介绍部署后遇到的一些常见问题以及解决办法。
+根据 [ELK集中式日志平台之二](https://www.fanhaobai.com/2017/12/elk-install.html) 的方法部署 ELK 后，日志平台就基本可以投入使用了，但是其配置并不完善，系统功能也存在局限性，本文将对 ELK 部署后的一些常见问题给出解决办法。
 
 ![](https://www.fanhaobai,com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
 
@@ -47,7 +47,7 @@ output {
         document_type => "%{[fields][env]}"
         template_name => "logstash"
         user => "elastic"
-        password => "elastic"
+        password => "changeme"
     }
 }
 ```
@@ -100,7 +100,7 @@ output {
         document_type => "%{[fields][env]}"
         template_name => "logstash"
         user => "elastic"
-        password => "elastic"
+        password => "changeme"
     }
 }
 ```
@@ -127,27 +127,6 @@ PUT _template/logstash
     },
     "mappings": {
         "_default_": {
-            "dynamic_templates": [
-                {
-                    "string_fields": {
-                        "match": "*",
-                        "match_mapping_type": "string",
-                        "mapping": {
-                            "type": "string",
-                            "index": "not_analyzed",
-                            "omit_norms": true,
-                            "doc_values": true,
-                            "fields": {
-                                "raw": {
-                                    "index": "not_analyzed",
-                                    "ignore_above": 256,
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                }
-            ],
             "properties": {
                 "geoip": {
                     "type": "object",
@@ -201,10 +180,10 @@ PUT /_template/logstash
 配置定期清理过期日志的任务：
 
 ```Bash
-$ 0 0 * * * /usr/bin/curl -u user:password  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
+$ 0 0 * * * /usr/bin/curl -u elastic:elastic  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
 ```
 
-其中，`user`和`password`为 Elasticsearch 的用户名和密码，`query`为待清理日志的查询条件，`path.log`为日志文件路径。
+其中，`elastic`为 Elasticsearch 的用户名和密码，`query`为待清理日志的查询条件，`path.log`为日志文件路径。
 
 > 该方式只是删除了过期的日志文档，并不会删除过期的索引信息，适用于对特定索引下的日志文档进行定期清理的场景。
 
@@ -296,9 +275,9 @@ $ curator_cli --http_auth user:password --host es.fanhaobai.com --port 80 show_i
 ```Yaml
 client:
   hosts:
-    - es.fanhaobai.com         #集群配置形如[ "10.0.0.1", "10.0.0.2" ]
+    - es.fanhaobai.com         #集群配置形如["10.0.0.1", "10.0.0.2"]
   port: 80
-  http_auth: user:password     #授权信息
+  http_auth: elastic:elastic   #授权信息
   url_prefix:
   use_ssl: false
   certificate:
@@ -364,3 +343,5 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 ```
 
 > 该方式不但直接通过配置即可方便实现过期索引的清理，而且可以在复杂场景轻松地管理索引、快照等，故推荐该方式。
+
+## 数据报表
