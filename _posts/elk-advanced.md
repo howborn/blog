@@ -230,8 +230,8 @@ Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，�
             "number_of_replicas": "0"
         }
     },
-    "mappings": {                               #字段映射规则
-        "_default_": {                          #_default_属性将在ES7移除
+    "mappings": {
+        "_default_": {
             "properties": {
                 "@timestamp": {
                   "type": "date"
