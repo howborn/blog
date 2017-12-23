@@ -9,9 +9,7 @@ categories:
 ---
 
 部署 [ELK](https://www.fanhaobai.com/2017/12/elk-install.html) 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
-
-![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
-![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
 
 ## Logstash管道进阶
 
@@ -537,9 +535,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 ![](https://www.fanhaobai.com/2017/12/elk-advanced/3f97da38-e7e5-11e7-80c1-9a214cf093ae.png)
 
-最后，生成的用户访问量图表，如图：
-
-![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+最后，生成的用户访问量图表如文章开始所示。
 
 ### 创建实时监控面板
 
