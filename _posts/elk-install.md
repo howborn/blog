@@ -335,12 +335,12 @@ filebeat.modules:
         type: nginx-www-access               #Logstash的type字段
   error:
     enabled: true
-    var.paths: ["/usr/local/nginx/logs/error.log"]
+    var.paths: ["/data/logs/error.log"]
     prospector:
       fields:
         type: nginx-all-error
-fields:                                      #环境标识，Logstash的fields字段
-  env: prod
+fields:                                      #自定义字段，Logstash的fields字段
+  env: prod                                  #添加环境标识
 queue_size: 1000
 bulk_queue_size: 0
 
@@ -368,7 +368,7 @@ Filebeat 启动后，会侦测待采集文件内容是否有增加或更新，�
 
 Filebeat 推送到 Logstash 过滤后，Elasticsearch 存储的数据格式为：
 
-```Josn
+```Json
 {
     "_index": "nginx-www-access-2017.12",
     "_type": "prod",
