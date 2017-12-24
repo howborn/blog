@@ -347,7 +347,7 @@ Elasticsearch 待存储的地理位置数据，格式如下：
 配置定期清理过期日志的任务：
 
 ```Bash
-$ 0 0 * * * /usr/bin/curl -u elastic:changeme  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
+0 0 * * * /usr/bin/curl -u elastic:changeme  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
 ```
 
 其中，`elastic`和`changeme`分别为 Elasticsearch 的用户名和密码，`query`为待清理日志的查询条件，`path.log`为日志文件路径。
