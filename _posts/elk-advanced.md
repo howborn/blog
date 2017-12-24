@@ -193,7 +193,7 @@ filter {
             }
         } else if [fileset][name] == "error" {
             grok {
-                match => { "message" => ["%{DATA:[time]} \[%{DATA:[level]}\] %{NUMBER:[pid]}#%{NUMBER:[tid]}: (\*%{NUMBER:[connection_id]} )?%{GREEDYDATA:[message]}"] }
+                match => { "message" => ["%{DATA:[time]} \[%{LOGLEVEL:[level]}\] %{POSINT:[pid]}#%{NUMBER:[tid]}: %{GREEDYDATA:[message]}(?:, client: %{IPORHOST:[ip]})(?:, server: %{IPORHOST:[server]}?)(?:, request: \"%{WORD:[method]} %{DATA:[url]} HTTP/%{NUMBER:[http_version]}\")?(?:, upstream: %{WORD:[upstream]})?(?:, host: %{QS:[request_host]})?(?:, referrer: \"%{URI:[referrer]}\")?"] }
                 remove_field => "message"
             }
             mutate { rename => { "@timestamp" => "read_timestamp" } }
