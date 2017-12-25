@@ -21,7 +21,7 @@ Input 插件指定了 Logstash 事件的输入源，已经支持 [beats](https:/
 
 ```Yaml
 input {
-  beats { port => 5044 }
+    beats { port => 5044 }
 }
 ```
 
@@ -196,7 +196,6 @@ filter {
                 match => { "message" => ["%{DATA:[time]} \[%{LOGLEVEL:[level]}\] %{POSINT:[pid]}#%{NUMBER:[tid]}: %{GREEDYDATA:[message]}(?:, client: %{IPORHOST:[ip]})(?:, server: %{IPORHOST:[server]}?)(?:, request: \"%{WORD:[method]} %{DATA:[url]} HTTP/%{NUMBER:[http_version]}\")?(?:, upstream: %{WORD:[upstream]})?(?:, host: %{QS:[request_host]})?(?:, referrer: \"%{URI:[referrer]}\")?"] }
                 remove_field => "message"
             }
-            mutate { rename => { "@timestamp" => "read_timestamp" } }
             date { match => [ "[time]", "YYYY/MM/dd H:m:s" ] }
         }
     }
@@ -221,7 +220,7 @@ Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，�
 创建一个名为`logstash`的索引模板，并指定该索引模板的匹配模式，作为 Logstash 推送日志时索引的模板。
 
 ```Json
-//PUT _template/logstash
+PUT _template/logstash
 {
     "index_patterns": ["*access*", "*error*"],
     "settings": {
@@ -319,7 +318,7 @@ Elasticsearch 待存储的地理位置数据，格式如下：
 最简单的办法就是给每个索引设定 TTLs（过期时间），在索引模板中定义失效时间为 7 天：
 
 ```Json
-//PUT /_template/logstash
+PUT /_template/logstash
 {
     "template": "*",  
     "mappings": {
