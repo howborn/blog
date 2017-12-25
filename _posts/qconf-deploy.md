@@ -11,6 +11,7 @@ categories:
 ![](https://www.fanhaobai.com/2017/11/qconf-deploy/bce19607-8181-41fd-8885-5572ee1de166.jpg)<!--more-->
 
 Qconf 提供了跨语言的支持，实现了 C++、Go、Java、Lua、[PHP](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md)、Python 等语言 API，是 PHP 应用实现集中配置管理的理想方案，本文主要讲述 Qconf 的部署以及和 PHP 应用的接入。
+
 ![](https://www.fanhaobai.com/2017/11/qconf-deploy/0ab39fe6-fb1b-4498-a010-f8e7ebe356ae.jpg)
 
 ## 安装
@@ -206,7 +207,6 @@ zookeeper.test=127.0.0.1:2181
 [getConf(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getconf)，返回配置节点的值，失败返回 NULL。
 
 参数说明：
-
 * path：配置节点路径
 * idc：指定从那个 idc 获取配置信息，不指定则取 localidc 的值
 * get_flag：如果设置为 0，QConf 在未命中共享内存的 path 时，会同步等待从 Zookeeper 拉取的操作，直到返回结果。否则未命中则直接返回 NULL
@@ -225,7 +225,6 @@ Qconf::getConf('/demo/confs/conf1', 'prod');
 [getBatchKeys(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getbatchkeys)，获取该节点路径所有子节点（下一级）的名称，失败返回 NULL。
 
 参数说明：
-
 参数见 [getConf](#getConf) 参数部分。
 
 ```PHP
@@ -241,7 +240,6 @@ array(2) {
 [getBatchConf(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getbatchconf)，获取该节点路径所有子节点（下一级）的名称和配置值，失败返回 NULL。
 
 参数说明：
-
 参数见 [getConf](#getConf) 参数部分。
 
 ```PHP
@@ -262,7 +260,6 @@ array(1) {
 [getHost(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#gethost) 或 [getAllHost(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getallhost)，返回该配置节点全部或一个可用服务，失败返回 NULL。
 
 参数说明：
-
 参数见 [getConf](#getConf) 参数部分。
 
 ```PHP
