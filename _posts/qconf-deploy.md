@@ -8,11 +8,10 @@ categories:
 ---
 
 [Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 作为分布式配置管理服务，用来替代传统的配置文件，使得配置信息和程序代码分离，极大地简化了配置管理工作。
-
 ![](https://www.fanhaobai.com/2017/11/qconf-deploy/bce19607-8181-41fd-8885-5572ee1de166.jpg)<!--more-->
-![](https://www.fanhaobai.com/2017/11/qconf-deploy/0ab39fe6-fb1b-4498-a010-f8e7ebe356ae.jpg)
 
 Qconf 提供了跨语言的支持，实现了 C++、Go、Java、Lua、[PHP](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md)、Python 等语言 API，是 PHP 应用实现集中配置管理的理想方案，本文主要讲述 Qconf 的部署以及和 PHP 应用的接入。
+![](https://www.fanhaobai.com/2017/11/qconf-deploy/0ab39fe6-fb1b-4498-a010-f8e7ebe356ae.jpg)
 
 ## 安装
 
