@@ -7,39 +7,22 @@ categories:
 - 分布式
 ---
 
-[Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 作为分布式配置管理服务，已经支持 C++、Go、Java、Lua、PHP、Python 等语言，是 PHP 应用实现集中配置管理的理想方案，本文主要讲述 Qconf 的部署以及和 PHP 应用的接入。
+[Qconf](https://github.com/Qihoo360/QConf/blob/master/README_ZH.md) 作为分布式配置管理服务，用来替代传统的配置文件，使得配置信息和程序代码分离，极大地简化了配置管理工作。
 
 ![](https://www.fanhaobai.com/2017/11/qconf-deploy/bce19607-8181-41fd-8885-5572ee1de166.jpg)<!--more-->
+![](https://www.fanhaobai.com/2017/11/qconf-deploy/0ab39fe6-fb1b-4498-a010-f8e7ebe356ae.jpg)
+
+Qconf 提供了跨语言的支持，实现了 C++、Go、Java、Lua、[PHP](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md)、Python 等语言 API，是 PHP 应用实现集中配置管理的理想方案，本文主要讲述 Qconf 的部署以及和 PHP 应用的接入。
 
 ## 安装
 
 ### 安装Zookeeper服务
 
-因为 Qconf 使用 Zookeeper 作为配置服务端，若没有安装 Zookeeper，则先安装。
+因为 Qconf 使用 Zookeeper 作为分布式配置服务中心，先安装 Zookeeper。
 
 #### 安装JAVA环境
 
-在这里，直接通过 yum 命令来安装。
-
-```Bash
-$ yum install java-1.8.0-openjdk*
-# 默认安装目录为/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
-$ java -version
-openjdk version "1.8.0_151"
-```
-
-配置环境变量，在文件`/etc/profile`后追加如下内容：
-
-```Bash
-# 指向安装目录
-JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
-export PTAH=$JAVA_HOME/bin:$PATH
-CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export JAVA_HOME CLASSPATH
-```
-
-执行`source /etc/profile`，使修改生效。
-
+Zookeeper 需要 Java 环境的支持，若未安装，请参考 [JAVA 环境](https://www.fanhaobai.com/2017/12/elk-install.html#JAVA环境) 部分安装。
 
 #### 下载Zookeeper
 
@@ -107,13 +90,12 @@ $ tar zxvf qconf.tar.gz
 $ cd QConf-1.2.2
 $ mkdir build && cd build
 $ cmake ..
-$ make
-$ make install
+$ make && make install
 ```
 
 默认安装于`/usr/local/qconf`目录，查看版本信息：
 
-```
+```Bash
 $ qconf version
 Version : 1.2.2
 ```
@@ -145,7 +127,6 @@ $ qconf get_conf /demo/confs/conf1
 $ qconf get_batch_keys /demo/confs
 conf1
 conf2
-conf3
 ```
 
 ### 安装PHP扩展
@@ -174,7 +155,6 @@ extension=qconf.so
 
 ```Bash
 $ php --ri qconf
-
 qconf support => enabled
 qconf version => 1.2.2
 ```
@@ -224,14 +204,13 @@ zookeeper.test=127.0.0.1:2181
 
 ### getConf
 
-[getConf(path, idc, get_flag)]()
-返回配置节点的值，失败返回 NULL。
+[getConf(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getconf)，返回配置节点的值，失败返回 NULL。
 
-**参数**
+参数说明：
 
-* path - 配置节点路径
-* idc - 指定从那个 idc 获取配置信息，不指定则取 localidc 的值
-* get_flag - 如果设置为 0，QConf 在未命中共享内存的 path 时，会同步等待从 Zookeeper 拉取的操作，直到返回结果。否则未命中则直接返回 NULL
+* path：配置节点路径
+* idc：指定从那个 idc 获取配置信息，不指定则取 localidc 的值
+* get_flag：如果设置为 0，QConf 在未命中共享内存的 path 时，会同步等待从 Zookeeper 拉取的操作，直到返回结果。否则未命中则直接返回 NULL
 
 ```PHP
 # 从idc为test上获取/demo/confs/conf1节点的配置
@@ -244,59 +223,46 @@ Qconf::getConf('/demo/confs/conf1', 'prod');
 
 ### getBatchKeys
 
-[getBatchKeys(path, idc, get_flag)]()
-获取该节点路径所有 [下一级]() 子节点的名称，失败返回 NULL。
+[getBatchKeys(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getbatchkeys)，获取该节点路径所有子节点（下一级）的名称，失败返回 NULL。
 
-**参数**
+参数说明：
 
 参数见 [getConf](#getConf) 参数部分。
 
 ```PHP
 Qconf::getBatchKeys('/demo/confs', 'test');
-
-array(3) {
-  [0] =>
-  string(5) "conf1"
-  [1] =>
-  string(5) "conf2"
-  [2] =>
-  string(5) "conf3"
+array(2) {
+  [0] => string(5) "conf1"
+  [1] => string(5) "conf2"
 }
 ```
 
 ### getBatchConf
 
-[getBatchConf(path, idc, get_flag)]()
-获取该节点路径所有 [下一级]() 子节点的名称和配置值，失败返回 NULL。
+[getBatchConf(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getbatchconf)，获取该节点路径所有子节点（下一级）的名称和配置值，失败返回 NULL。
 
-**参数**
+参数说明：
 
 参数见 [getConf](#getConf) 参数部分。
 
 ```PHP
 Qconf::getBatchConf('/demo/confs', 'test');
-array(3) {
-  'conf1' =>
-  string(6) "888888"
-  'conf2' =>
-  string(6) "999999"
-  'conf3' =>
-  string(6) "101010"
+array(2) {
+  'conf1' => string(6) "888888"
+  'conf2' => string(6) "999999"
 }
 
 Qconf::getBatchConf('/demo', 'test');
 array(1) {
-  'confs' =>
-  string(5) "confs"
+  'confs' => string(5) "confs"
 }
 ```
 
 ### getHost和getAllHost
 
-[getHost(path, idc, get_flag)]() 或 [getAllHost(path, idc, get_flag)]()
-返回该配置节点全部或一个可用服务，失败返回 NULL。
+[getHost(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#gethost) 或 [getAllHost(path, idc, get_flag)](https://github.com/Qihoo360/QConf/blob/master/doc/QConf%20PHP%20Doc.md#getallhost)，返回该配置节点全部或一个可用服务，失败返回 NULL。
 
-**参数**
+参数说明：
 
 参数见 [getConf](#getConf) 参数部分。
 
@@ -307,10 +273,9 @@ Qconf::getHost('demo/confs/conf1');
 ## 植入代码
 
 
-
 ## 管理后台
 
-
+[zkdash](https://github.com/ireaderlab/zkdash) 是掌阅团队开发的 Dashboad 平台，可以作为 QConf 或 ZooKeeper 的管理后台。
 
 <strong>相关文章 [»]()</strong>
 

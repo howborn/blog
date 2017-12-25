@@ -28,6 +28,18 @@ $ java -version
 openjdk version "1.8.0_151"
 ```
 
+在文件`/etc/profile`配置环境变量：
+
+```Bash
+# 指向安装目录
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
+PTAH=$PATH:$JAVA_HOME/bin
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME CLASSPATH PATH
+```
+
+执行`source /etc/profile`命令，使配置环境生效。
+
 ### 安装GPG-KEY
 
 由于后续采用 yum 安装，所以需要下载并安装 GPG-KEY：
