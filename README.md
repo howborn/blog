@@ -4,7 +4,7 @@
 
 ## 预览
 
-![](https://github.com/fan-haobai/blog/blob/master/images/view.png)
+![](https://github.com/fan-haobai/blog/blob/master/view.png)
 
 ## 文章
 
