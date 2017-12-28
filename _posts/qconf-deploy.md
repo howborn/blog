@@ -161,7 +161,7 @@ qconf version => 1.2.2
 
 ## 配置Qconf
 
-Qconf 默认安装，其配置文件路径为`/usr/local/qconf/conf`。配置文件共有`agent.conf`、`idc.conf`、`localidc` 这三个，`agent.conf`为 Qconf 的 agent 相关配置，`idc.conf` 和 `localidc` 为与 Zookeeper 相关的连接信息配置。
+Qconf 默认安装，其配置文件路径为`/usr/local/qconf/conf`。配置文件共有`agent.conf`、`idc.conf`、`localidc` 这三个，`agent.conf`为 Qconf 的 agent 相关配置，`idc.conf` 和 `localidc` 为与 Zookeeper 相关的配置信息。
 
 ### 配置agent
 
@@ -172,11 +172,11 @@ Qconf 默认安装，其配置文件路径为`/usr/local/qconf/conf`。配置文
 daemon_mode=1
 # 日记级别 debug => 0; trace => 1; info => 2; warning => 3; error => 4; fatal_error => 5
 log_level=4
-# Zookeeper超时
+# Zookeeper超时时间
 zookeeper_recv_timeout=30000
-# 执行执行超时
+# 执行执行超时时间
 script_execute_timeout=3000
-# Register the node on zookeeper server
+# 在Zookeeper注册一个节点
 register_node_prefix=/qconf/__qconf_register_hosts
 # Zookeeper日志
 zk_log=zoo.err.log
@@ -189,14 +189,14 @@ shared_memory_size=100000
 
 ### 配置Zookeeper信息
 
-`idc.conf`配置文件指定 Zookeeper 的配置信息，并支持多个环境（测试环境、开发环境、生产环境）的配置。
+`idc.conf`配置文件指定 Zookeeper 的配置信息，支持多个环境（测试环境、开发环境、生产环境）的配置。
 
 ```INI
 zookeeper.prod=www.fanhaobai.com:2181
 zookeeper.test=127.0.0.1:2181
 ```
 
-然后，将每个环境下的`localidc`配置文件内容配置为对应的环境名称。如测试环境则为 test，生产环境为 prod，这样就可以根据不同环境获取对应的配置信息。
+然后，将每个环境下的`localidc`配置文件内容配置为对应的环境名称。如测试环境则为`test`，生产环境为`prod`，这样就可以区分不同的环境，进而获取对应环境的配置信息。
 
 ## API
 
@@ -208,15 +208,15 @@ zookeeper.test=127.0.0.1:2181
 
 参数说明：
 * path：配置节点路径
-* idc：指定从那个 idc 获取配置信息，不指定则取 localidc 的值
+* idc：指定从那个 idc 获取配置信息，否则获取 localidc 的值，通常不指定而通过 localidc 配置环境
 * get_flag：如果设置为 0，QConf 在未命中共享内存的 path 时，会同步等待从 Zookeeper 拉取的操作，直到返回结果。否则未命中则直接返回 NULL
 
 ```PHP
-# 从idc为test上获取/demo/confs/conf1节点的配置
+# localidc配置为test后，获取/demo/confs/conf1节点的值
 $ php -r "echo Qconf::getConf('/demo/confs/conf1');"
 888888
-# 从idc为prod上获取/demo/confs/conf1节点的配置
-Qconf::getConf('/demo/confs/conf1', 'prod');
+# localidc配置为prod后，获取/demo/confs/conf1节点的值
+$ php -r "echo Qconf::getConf('/demo/confs/conf1');"
 111111
 ```
 
@@ -228,7 +228,7 @@ Qconf::getConf('/demo/confs/conf1', 'prod');
 参数见 [getConf](#getConf) 参数部分。
 
 ```PHP
-Qconf::getBatchKeys('/demo/confs', 'test');
+Qconf::getBatchKeys('/demo/confs');
 array(2) {
   [0] => string(5) "conf1"
   [1] => string(5) "conf2"
@@ -243,13 +243,13 @@ array(2) {
 参数见 [getConf](#getConf) 参数部分。
 
 ```PHP
-Qconf::getBatchConf('/demo/confs', 'test');
+Qconf::getBatchConf('/demo/confs');
 array(2) {
   'conf1' => string(6) "888888"
   'conf2' => string(6) "999999"
 }
 
-Qconf::getBatchConf('/demo', 'test');
+Qconf::getBatchConf('/demo');
 array(1) {
   'confs' => string(5) "confs"
 }
