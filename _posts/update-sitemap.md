@@ -25,14 +25,14 @@ categories:
 
 站点建立了 robots.txt 文件后， [HTML格式]() 和 [XML格式](http://www.fanhaobai.com/sitemap.xml) 的站点地图路径就在 robots.txt 文件中指定， 即在该文件最后行加入如下代码：
 
-```PHP
+```Ini
 Sitemap: http://www.fanhaobai.com/map.xml                 #谷歌推荐格式
 Sitemap: http://www.fanhaobai.com/map.html                #百度推荐格式
 ```
 
 注意，对于全站为 https 协议的站点，也推荐使用 http 协议。只需在 Nginx 配置中增加如下信息：
 
-```Bash
+```Nginx
 server {
   listen 80;
   server_name fanhaobai.com www.fanhaobai.com;

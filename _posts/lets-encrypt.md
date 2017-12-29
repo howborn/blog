@@ -63,7 +63,7 @@ $ mkdir /data/challenges/
 
 再配置一个 HTTP 服务，例如 Nginx：
 
-```Bash
+```Nginx
 server {
   server_name www.yoursite.com yoursite.com subdomian.yoursite.com;
   location ^~ /.well-known/acme-challenge/ {
@@ -123,7 +123,7 @@ $ cat signed.crt intermediate.pem > chained.pem
 
 最后，在 Nginx 配置中加入证书配置项：
 
-```Bash
+```Nginx
 server {
   listen 443;
   server_name yoursite.com, www.yoursite.com;

@@ -55,7 +55,7 @@ $ npm start
 
 Nginx 配置如下：
 
-```Bash
+```Nginx
 server{
   root  path/to/www;    #指向firekylin目录下的www
   location / {
@@ -210,7 +210,7 @@ $ mv ./static/* /data/html/www/static
 
 1） 配置Nginx作为代理服务器：
 
-```Bash
+```Nginx
 server {
   ... ...
   location ~ ^/proxy/(.*)$ {

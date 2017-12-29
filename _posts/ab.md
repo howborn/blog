@@ -54,7 +54,7 @@ $ ab -c 100 -n 100 https://www.fanhaobai.com/
 
 通过上述对`www.fanhaobai.com`的站点压测，得到如下测试结果：
 
-```Bash
+```Ini
 Benchmarking www.fanhaobai.com (be patient).....done
 # web服务器名称
 Server Software:        nginx

@@ -208,8 +208,8 @@ post_asset_folder: true
 
 ```Bash
 ![alt](/post_title/image_name)
-$ post_title为与文章.md同名的资源文件夹名
-$ image_name为图片的文件名
+# post_title为与文章.md同名的资源文件夹名
+# image_name为图片的文件名
 ```
 
 ## URL静态化

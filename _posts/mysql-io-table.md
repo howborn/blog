@@ -15,24 +15,24 @@ categories:
 
 # 导入表数据
 
-```
-source /home/root/example.sql
+```Mysql
+mysql> source /home/root/example.sql
 ```
 
 # 导出表数据
 
-```
+```Mysql
 mysql> select * from table into outfile "/home/root/example.sql" where +条件
 ```
 
 # 导入数据库
 
-```
-mysqldump -uroot -p --default-character-set=utf8 dbname tablename >  /home/root/example.sql
+```Bash
+$ mysqldump -uroot -p --default-character-set=utf8 dbname tablename >  /home/root/example.sql
 ```
 
 # 转载数据
 
-```
+```Mysql
 mysql> load data local infile "/home/table.txt" into table `table`;
 ```

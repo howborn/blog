@@ -20,8 +20,8 @@ Docker 使用 EPEL 发布，RHEL 系的 OS 在安装前，要确保已经持有 
 
 安装 Docker 前，先查看系统的版本信息。
 
-```
-[root@fhb ~]# cat /etc/redhat-release
+```Bash
+$ cat /etc/redhat-release
 CentOS release 6.8 (Final)
 ```
 
@@ -29,9 +29,9 @@ CentOS release 6.8 (Final)
 
 OS 版本为 CentOS 6.8，而 Docker 官方要求最低支持 CentOS 7，这里通过安装 EPEL 解决。
 
-```
-[root@fhb ~]# sudo rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-[root@fhb ~]# sudo yum update -y
+```Bash
+$ sudo rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+$ sudo yum update -y
 ```
 
 # 安装Docker
@@ -42,14 +42,14 @@ OS 版本为 CentOS 6.8，而 Docker 官方要求最低支持 CentOS 7，这里�
 
 可以使用脚本`curl -sSL https://get.docker.com/ | sh`自动安装 Docker 。但这里，使用 rpm 安装神器的 yum 来完成 Docker 的安装。
 
-```
-[root@fhb ~]# sudo yum -y install docker-io
+```Bash
+$ sudo yum -y install docker-io
 ```
 
 安装成功后，查看 Docker 版本信息：
 
-```
-[root@fhb ~]# docker version
+```Bash
+$ docker version
 Client version: 1.7.1
 Client API version: 1.19
 Go version (client): go1.4.2
@@ -62,30 +62,30 @@ Git commit (client): 786b29d/1.7.1
 
 首先，建立 docker 用户组：
 
-```
-[root@fhb ~]# groupadd docker
+```Bash
+$ groupadd docker
 ```
 
 再创建需要使用 Docker 的用户，并将其加入 docker 用户组：
 
-```
-[root@fhb ~]# useradd docker -g docker
-[root@fhb ~]# passwd docker
+```Bash
+$ useradd docker -g docker
+$ passwd docker
 ```
 
 ## 启动Docker引擎
 
 一切就绪后，以 root 用户启动 Docker  引擎：
 
-```
-[root@fhb ~]# service docker start
+```Bash
+$ service docker start
 ```
 
 提示：如下命令分别为 **停止** 和 **重启** Docker 引擎。
 
-```
-[root@fhb ~]# service docker stop
-[root@fhb ~]# service docker restart
+```Bash
+$ service docker stop
+$ service docker restart
 ```
 
 ## Docker命令
@@ -112,7 +112,7 @@ kill      Kill a running container                      # kill 指定 docker 容
 load      Load an image from a tar archive              # 从一个 tar 包中加载一个镜像[对应 save]
 login     Register or Login to the docker registry server    
 # 注册或者登陆一个 docker 源服务器
- logout    Log out from a Docker registry server        # 从当前 Docker registry 退出
+logout    Log out from a Docker registry server        # 从当前 Docker registry 退出
 logs      Fetch the logs of a container                 # 输出当前容器日志信息
 port      Lookup the public-facing port which is NAT-ed to PRIVATE_PORT    # 查看映射端口对应的容器内部源端口
 pause     Pause all processes within a container        # 暂停容器
@@ -155,28 +155,28 @@ CentOS 7 下镜像加速器的配置，[见官方文档](https://yeasy.gitbooks.
 
 CentOS 6 下配置 Docker 镜像加速器，是通过编辑 **`/etc/sysconfig/docker`** 配置文件来完成，即将配置项`other_args`修改为：
 
-```
+```Bash
 other_args="--registry-mirror=https://jxus37ad.mirror.aliyuncs.com"    
 # your address
 ```
 
 然后通过下述命令，重启`docker daemon`：
 
-```
-[root@fhb ~]# service docker restart
+```Bash
+$ service docker restart
 ```
 
 ## 检查加速器
 
 Linux 系统下配置完 **加速器需要检查是否生效**，执行以下命令：
 
-```
-[root@fhb ~]# ps -ef | grep docker
+```Bash
+$ ps -ef | grep docker
 ```
 
 如果从结果中看到了配置的`--registry-mirror`参数说明配置成功，如下所示：
 
-```
+```Bash
 root  20728 1  0 23:27 pts/1  00:00:00 /usr/bin/docker -d --registry-mirror=https://2ykl5eof.mirror.aliyuncs.com
 ```
 
@@ -188,30 +188,30 @@ root  20728 1  0 23:27 pts/1  00:00:00 /usr/bin/docker -d --registry-mirror=http
 
 从 Docker Registry 获取镜像的命令是`docker pull`。其命令格式为：
 
-```
-docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
+```Bash
+$ docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
 ```
 
 获取 MongoDB 命令为：
 
-```
--bash-4.1$ docker pull mongo
+```Bash
+$ docker pull mongo
 ```
 
 想要列出 **本地镜像**，可以使用`docker images`命令：
 
-```
--bash-4.1$ docker images
-REPOSITORY     TAG        IMAGE ID        CREATED        VIRTUAL SIZE
-mongo          latest     35dc92f524d0    4 days ago     402 MB
+```Bash
+$ docker images
+REPOSITORY  TAG      IMAGE ID     CREATED    VIRTUAL SIZE
+mongo    latest    35dc92f524d0   4 days ago     402 MB
 ```
 
 ## 新建并启动容器
 
 使用命令`docker run`，即可通过新获取的镜像新建和启动一个容器了。如下：
 
-```
--bash-4.1$ docker run --name mongodb -p 27017:27017 -d mongo
+```Bash
+$ docker run --name mongodb -p 27017:27017 -d mongo
 ```
 
 参数说明：
@@ -226,18 +226,18 @@ mongo          latest     35dc92f524d0    4 days ago     402 MB
 
 用`docker ps`命令可以查看已经创建的容器，使用如下命令可以查看 **所有已经创建** 的包括 **终止状态** 的 **容器**：
 
-```
--bash-4.1$ docker ps -a
-CONTAINER ID  IMAGE  COMMAND              CREATED      STATUS         PORTS                     NAMES
+```Bash
+$ docker ps -a
+CONTAINER ID  IMAGE   COMMAND          CREATED       STATUS         PORTS                   NAMES
 8dbabb08f3d5  mongo  "/entrypoint.sh mong 10 hours ago Up 19 minutes  0.0.0.0:27017->27017/tcp  mongodb
 ```
 
 查看宿主端口监听状态：
 
-```
-[root@fhb ~]# netstat -tunpl
-Proto   Recv-Q   Send-Q  Local Address  Foreign Address  State   PID/Program name         
-tcp     0        0       0.0.0.0:27017  0.0.0.0:*        LISTEN  20997/docker-proxy 
+```Bash
+$ netstat -tunpl
+Proto Recv-Q Send-Q  Local Address Foreign Address State  PID/Program name         
+tcp   0       0      0.0.0.0:27017   0.0.0.0:*    LISTEN  20997/docker-proxy 
 ```
 
 此时，就表示 MongoDB 已经在 Docker 中成功运行了。
