@@ -55,7 +55,7 @@ Robots 协议是通过 robots.txt 文件来进行表述的，[robots.txt文件�
 
 对规范大致描述为：
 
-```Bash
+```Ini
 User-agent: *                           # *代表所有的搜索引擎种类，是一个通配符，其他常用值：百度-Baiduspider，搜狗-sogou spider，谷歌-Googlebot
 Disallow: /admin/                       # 禁止抓取admin目录下面的目录
 Disallow: /require/                     # 禁止抓取require目录下面的目录
@@ -119,7 +119,7 @@ Sitemap: http://你的网址/map.html         # 建议加入html格式的文件,
 
 本站拒绝了雅虎爬虫的爬取，对其他的爬虫，theme、static 目录下的 2 个逻辑代码目录 api、module 和 4 个静态资源目录 font、css、img、js 做了限制爬取，对 static 目录下 upload 做了允许爬取处理，并配置了后缀为`.xml`和`.htm`文件的站点地图。
 
-```Bash
+```Ini
 # robots.txt for fanhaobai.com 2017.01.12
 # yahoo disallow
 User-agent: Slurp
@@ -142,7 +142,7 @@ Sitemap: http://www.fanhaobai.com/map.html
 
 * ** 本站维基 **
 
-```Bash
+```Ini
 User-agent: *
 Disallow: /
 ```

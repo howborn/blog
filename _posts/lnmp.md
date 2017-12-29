@@ -75,7 +75,7 @@ $ ntpdate time.windows.com && hwclock -w
 
 5）修改DNS设置
 
-```
+```Bash
 $ vim /etc/resolv.conf
 # 增加主DNS
 nameserver 8.8.8.8
@@ -411,7 +411,7 @@ $ make && make install
 
 `nginx.conf`文件配置：
 
-```Bash
+```Nginx
 user www www;
 worker_processes  4;
 error_log  logs/error.log  notice;
@@ -435,7 +435,7 @@ http {
 
 各站配置文件：
 
-```Bash
+```Nginx
 server {
   listen       80;
   server_name  localhost;
@@ -464,37 +464,37 @@ $ vi /etc/rc.d/init.d/nginx
 nginx=/usr/local/nginx/sbin/nginx
 conf=/usr/local/nginx/conf/nginx.conf
 case $1 in
-start)
-echo -n "Starting Nginx"
-$nginx -c $conf
-echo " done"
-;;
-stop)
-echo -n "Stopping Nginx"
-killall -9 nginx
-echo " done"
-;;
-test)
-$nginx -t -c $conf
-;;
-reload)
-echo -n "Reloading Nginx"
-ps auxww | grep nginx | grep master | awk '{print $2}' | xargs kill -HUP
-echo " done"
-;;
-restart)
-echo -n "Restart Nginx"
-$0 stop
-sleep 1
-$0 start
-echo " done"
-;;
-show)
-ps -aux|grep nginx
-;;
-*)
-echo -n "Usage: $0 {start|restart|reload|stop|test|show}"
-;;
+    start)
+        echo -n "Starting Nginx"
+        $nginx -c $conf
+        echo " done"
+    ;;
+    stop)
+        echo -n "Stopping Nginx"
+        killall -9 nginx
+        echo " done"
+    ;;
+    test)
+        $nginx -t -c $conf
+    ;;
+    reload)
+        echo -n "Reloading Nginx"
+        ps auxww | grep nginx | grep master | awk '{print $2}' | xargs kill -HUP
+        echo " done"
+    ;;
+    restart)
+        echo -n "Restart Nginx"
+        $0 stop
+        sleep 1
+        $0 start
+        echo " done"
+    ;;
+    show)
+        ps -aux|grep nginx
+    ;;
+    *)
+        echo -n "Usage: $0 {start|restart|reload|stop|test|show}"
+    ;;
 esac
 # 保存并退出
 

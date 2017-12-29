@@ -14,7 +14,7 @@ categories:
 
 开启错误日志，只需使用如下配置即可：
 
-```
+```Nginx
 error_log path/error.log 
 ```
 
@@ -30,7 +30,7 @@ error_log path/error.log
 
 这里暂且称之为 **第一级别等级** 。按照上述顺序，从 [**左至右日志记录等级逐次降低**]()，debug 最详细，而 emerg 最粗略。例如：默认等级 error ，则表示 error，crit，alert，emerg 的信息会被记录到错误日志中。当然，这些都可以从`ngx_log.h`源码文件中得到验证。
 
-```C++
+```C
 #define NGX_LOG_EMERG             1
 #define NGX_LOG_ALERT             2
 #define NGX_LOG_CRIT              3
@@ -57,7 +57,7 @@ error_log path/error.log
 
 通过查看`ngx_log.c`源码，大致可以知道如何使用这些日志级别，部分源码如下：
 
-```C++
+```C
 static char *
 ngx_log_set_levels(ngx_conf_t *cf, ngx_log_t *log)
 {
@@ -115,14 +115,14 @@ ngx_log_set_levels(ngx_conf_t *cf, ngx_log_t *log)
 
 如果配置文件内配置如下：
 
-```
+```Nginx
 error_log path/error.log warn;  
 error_log path/error.log info;  
 ```
 
 则在检查配置文件语法时，会出现如下报错：
 
-```
+```Nginx
 [emerg]: duplicate log level "info" in /path/conf/nginx.conf:xx
 ```
 
@@ -144,7 +144,7 @@ error_log path/error.log info;  
 
 如果需要关闭错误日志记录，应使用以下配置：
 
-```
+```Nginx
 error_log /dev/null crit;                  # 把存储位置设置为linux的黑洞
 ```
 
@@ -152,7 +152,7 @@ error_log /dev/null crit;                  # 把存储位置设置为linux的黑
 
 值得注意`0.7.53`版本，Nginx 在读取配置文件指定的错误日志路径前将使用编译的默认日志位置，如果运行 Nginx 的用户对该位置没有写入权限，Nginx 将出现错误：
 
-```
+```Nginx
 [alert]: could not open error log file: open() "/var/log/nginx/error.log" failed (13: Permission denied) 
 log_not_found 语法：log_not_found on | off
 ```
@@ -161,7 +161,7 @@ log_not_found 语法：log_not_found on | off
 
 使用`log_not_found`，可以指定是否记录 **404** 请求错误的日志，通常用于站点不存在 robots.txt 和 favicon.ico 文件的情况：
 
-```
+```Nginx
 location = /robots.txt {
     log_not_found off;
  }

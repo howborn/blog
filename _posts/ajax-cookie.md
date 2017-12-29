@@ -83,7 +83,7 @@ $('#submit').on('click', function(ev) {
 
 1） 请求头
 
-```PHP
+```HTTP
 Accept:application/json, text/javascript, */*; q=0.01
 ... ...
 Host:yundong.vxin365.com
@@ -95,7 +95,7 @@ User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, 
 
 2） 响应头
 
-```PHP
+```HTTP
 Access-Control-Allow-Credentials:true
 Access-Control-Allow-Methods:POST
 Access-Control-Allow-Origin:*
@@ -112,7 +112,7 @@ Set-Cookie:PHPSESSID=lm8t5767el6j5g67tcbeuh0ab0; path=/      //需要设置Seesi
 
 1） 请求头
 
-```PHP
+```HTTP
 Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
 ... ...
 Host:yundong.vxin365.com
@@ -123,7 +123,7 @@ User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, 
 
 2） 响应头
 
-```PHP
+```HTTP
 Access-Control-Allow-Credentials:true
 Access-Control-Allow-Methods:POST
 Access-Control-Allow-Origin:*
@@ -137,14 +137,14 @@ Set-Cookie:PHPSESSID=lm8t5767el6j5g67tcbeuh0ab0; path=/     //又重新设置See
 
 3） 响应状态码
 
-```PHP
+```HTTP
 Status Code:302 Found
 ```
 由于 SessionID 获取失败，导致丢失用户的登录状态，从而又重定向到了登录页面。
 
 最后，为了验证是 COOKIE 设置并 **未生效** 的猜测，需要再次从 company 子域请求 yundong 域的登录接口，查看请求头信息为：
 
-```PHP
+```HTTP
 Accept:application/json, text/javascript, */*; q=0.01
 ... ...
 Content-Type:application/x-www-form-urlencoded; charset=UTF-8

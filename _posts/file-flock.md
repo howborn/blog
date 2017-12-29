@@ -24,7 +24,7 @@ PHP文件锁有两种形式：**共享锁**（读锁）和 **独占锁**（写�
 ## 参数介绍
 
 ```PHP
-bool flock ( resource $handle , int $operation [, int &$wouldblock ] )
+flock ( resource $handle , int $operation [, int &$wouldblock ] )
 ```
 ### handle
 文件系统指针，是典型地由 fopen() 创建的 resource (资源)。

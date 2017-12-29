@@ -194,6 +194,7 @@ filter {
         } else if [fileset][name] == "error" {
             grok {
                 match => { "message" => ["%{DATA:[time]} \[%{LOGLEVEL:[level]}\] %{POSINT:[pid]}#%{NUMBER:[tid]}: %{GREEDYDATA:[error_message]}(?:, client: %{IPORHOST:[ip]})(?:, server: %{IPORHOST:[server]}?)(?:, request: \"%{WORD:[method]} %{DATA:[url]} HTTP/%{NUMBER:[http_version]}\")?(?:, upstream: %{WORD:[upstream]})?(?:, host: %{QS:[request_host]})?(?:, referrer: \"%{URI:[referrer]}\")?"] }
+                remove_field => "message"
             }
             date { match => [ "[time]", "YYYY/MM/dd H:m:s" ] }
         }
