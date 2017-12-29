@@ -16,11 +16,11 @@ Hexo 如官方介绍一样，安装方便快捷。安装前请确保 Node 和 Ng
 只需使用如下命令即可安装 Hexo。
 
 ```Bash
-# npm install hexo-cli -g
-# hexo init blog
-# cd blog
-# npm install
-# hexo server
+$ npm install hexo-cli -g
+$ hexo init blog
+$ cd blog
+$ npm install
+$ hexo server
 ```
 
 安装完成后目录结构如下：
@@ -51,9 +51,9 @@ Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款�
 
 ```Bash
 进入博客目录
-# cd yourblog
+$ cd yourblog
 克隆主题源码到hexo的themes文件夹下
-# git clone https://github.com/xxx/xxx.git themes/xxx
+$ git clone https://github.com/xxx/xxx.git themes/xxx
 ```
 
 最后一步，在`_config.yml`配置中启用新主题。
@@ -74,7 +74,7 @@ theme: xxx
 当需要写文章时，使用如下命令新建文章，会在资源文件夹中生成与 title 对应的 .md 文件。
 
 ```Bash
-# hexo new [layout] <title>
+$ hexo new [layout] <title>
 ```
 
 .md 文件就是 markdown 格式的文章表述。格式大致为：
@@ -148,9 +148,9 @@ Typora 和 马克飞象 的对比：
 发布更新命令如下：
 
 ```Bash
-# hexo generate
+$ hexo generate
 可以简写
-# hexo g
+$ hexo g
 ```
 
 发布后，`public`文件夹更新到最新状态，此时即可直接访问。
@@ -208,8 +208,8 @@ post_asset_folder: true
 
 ```Bash
 ![alt](/post_title/image_name)
-# post_title为与文章.md同名的资源文件夹名
-# image_name为图片的文件名
+$ post_title为与文章.md同名的资源文件夹名
+$ image_name为图片的文件名
 ```
 
 ## URL静态化
