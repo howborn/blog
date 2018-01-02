@@ -22,7 +22,7 @@ Qconf 提供了跨语言的支持，实现了 C++、Go、Java、Lua、[PHP](http
 
 #### 安装JAVA环境
 
-Zookeeper 需要 Java  环境的支持，若未安装，请参考 [JAVA 环境](https://www.fanhaobai.com/2017/12/elk-install.html#JAVA环境) 部分安装。
+Zookeeper 需要 Java 环境的支持，若未安装，请参考 [JAVA 环境](https://www.fanhaobai.com/2017/12/elk-install.html#JAVA环境) 部分安装。
 
 #### 下载Zookeeper
 
