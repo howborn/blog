@@ -120,7 +120,7 @@ SELECT * FROM rooms WHERE resblockName LIKE "%嘉%"
 Solr 的模糊查询为：
 
 ```Js
-fq=resblockName:*丽*
+fq=resblockName:*嘉*
 ```
 
 ### 单精确值查询
