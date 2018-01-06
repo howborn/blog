@@ -1,5 +1,5 @@
 ---
-title: PHP接入Protocol Buffer并且实现TCP的二进制流传输
+title: PHP接入Protocol Buffer并实现二进制流传输
 date: 2017-02-24 18:06:40
 tags:
 - PHP

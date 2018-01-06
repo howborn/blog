@@ -98,7 +98,7 @@ build     Build an image from a Dockerfile              # 通过 Dockerfile 定�
 commit    Create a new image from a container changes   # 提交当前容器为新的镜像
 cp        Copy files/folders from the containers filesystem to the host path   # 从容器中拷贝指定文件或者目录到宿主机中
 create    Create a new container                        # 创建一个新的容器，同 run，但不启动容器
-diff      Inspect changes on a container's filesystem   # 查看 docker 容器变化
+diff      Inspect changes on a container filesystem     # 查看 docker 容器变化
 events    Get real time events from the server          # 从 docker 服务获取容器实时事件
 exec      Run a command in an existing container        # 在已存在的容器上运行命令
 export    Stream the contents of a container as a tar archive   
