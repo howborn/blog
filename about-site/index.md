@@ -7,7 +7,8 @@ date: 2016-12-11 13:12:10
 
 # 更新说明
 
-* 2017.12.16：搭建  [ELK](https://www.fanhaobai.com/2017/12/elk.html) 集中式日志平台。
+* 2018.01.06：接入 [Cloudflare](https://www.cloudflare.com) 提供的免费 CDN。
+* 2017.12.16：搭建 [ELK](https://www.fanhaobai.com/2017/12/elk.html) 集中式日志平台。
 * 2017.12.09：Hexo 结合 [Webhook](https://github.com/fan-haobai/webhook) 支持自动发布。
 * 2017.09.23：增加使用 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html)。
 * 2017.09.10：升级 Nginx 并增加 [Lua 模块](https://www.fanhaobai.com/2017/09/lua-in-nginx.html)。
