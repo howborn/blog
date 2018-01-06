@@ -9,7 +9,7 @@ categories:
 ---
 
 部署 [ELK](https://www.fanhaobai.com/2017/12/elk-install.html) 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
-![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+![](https://img.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
 
 ## Logstash管道进阶
 
@@ -283,8 +283,8 @@ Elasticsearch 待存储的地理位置数据，格式如下：
 ```Json
 {"geoip": {
   "location": { 
-    "lat":     40.722,
-    "lon":    -73.989
+    "lat": 40.722,
+    "lon": -73.989
   }
 }}
 ```
@@ -517,7 +517,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 选择 Kibana 的 ”Managemant  >> Kibana >> Index Patterns" 项 ，创建一个名为`nginx-www-access*`的索引模式，并设为默认索引，如图：
 
-![](https://www.fanhaobai.com/2017/12/elk-advanced/d82824ed-15eb-47c5-9ec6-925f2d3f7758.png)
+![](https://img.fanhaobai.com/2017/12/elk-advanced/d82824ed-15eb-47c5-9ec6-925f2d3f7758.png)
 
 ### 创建数据图表
 
@@ -527,11 +527,11 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 图表的 Metrics 部分，如下图：
 
-![](https://www.fanhaobai.com/2017/12/elk-advanced/f2c9321a-e7e4-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/12/elk-advanced/f2c9321a-e7e4-11e7-80c1-9a214cf093ae.png)
 
 图表的 Buckets 部分，如下图：
 
-![](https://www.fanhaobai.com/2017/12/elk-advanced/3f97da38-e7e5-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/12/elk-advanced/3f97da38-e7e5-11e7-80c1-9a214cf093ae.png)
 
 最后，生成的用户访问量图表如文章起始所示。
 
@@ -541,7 +541,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 下面是我针对主站 [Blog](https://www.fanhaobai.com) 健康监控和流量分析做出的实时 [数据报表](http://elk.fanhaobai.com) 展示，基本上满足了实时监控要求。
 
-![](https://www.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
 
 <strong>相关文章 [»]()</strong>
 

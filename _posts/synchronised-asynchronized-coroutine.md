@@ -10,7 +10,7 @@ categories:
 > 原文：http://wiki.phpboy.net/doku.php?id=2017-07:55-异步_并发_协程原理.md
 
 Linux 操作系统在设计上将虚拟空间划分为用户空间和内核空间，两者做了隔离是相互独立的，用户空间给应用程序使用，内核空间给内核使用。
-![](https://www.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine/a89c6e5b-facd-47a1-a26b-c8fb747e9650.jpg)<!--more-->
+![](https://img.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine/a89c6e5b-facd-47a1-a26b-c8fb747e9650.jpg)<!--more-->
 
 ## 一、异步
 
@@ -25,7 +25,7 @@ Linux 操作系统在设计上将虚拟空间划分为用户空间和内核空�
 
 ### Unix/Linux的体系架构
 
-![](https://www.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine/88bb24ee-b443-407d-ad14-fdae5a7113d6.png)
+![](https://img.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine/88bb24ee-b443-407d-ad14-fdae5a7113d6.png)
 
 ### 同步和异步
 
@@ -122,7 +122,7 @@ WIKI 的解释：
 
 ** 不同模型下用户空间与内核空间的关系：**
 
-![](https://www.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine/a89c6e5b-facd-47a1-a26b-c8fb747e9650.jpg)
+![](https://img.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine/a89c6e5b-facd-47a1-a26b-c8fb747e9650.jpg)
 
 注：协程可以理解为上图中的用户级线程模型。
 

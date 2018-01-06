@@ -10,7 +10,7 @@ categories:
 
 在如今互联网日新月异的时代，开发的项目对于应对高并发的要求也越来越高。作为常用的两种内存缓存服务器 Memache 和 Redis，由于 Redis 可持久化和支持多种数据结构的优点，在实际中得到广泛应用。
 
-{% asset_img vz83vwhWqtQckz-ZKarnv_5S.jpg %}<!--more-->
+![](https://img.fanhaobai.com/2016/08/redis-install/vz83vwhWqtQckz-ZKarnv_5S.jpg)<!--more-->
 
 下面我就源码安装 Redis，并记录整个的安装过程。
 
@@ -121,13 +121,13 @@ $ redis-cli                                   #连接redis
 
 * Redis Desktop Manager
 
-{% asset_img bf751f29-f293-49cc-b57d-935edba1d175.png %}
+![](https://img.fanhaobai.com/2016/08/redis-install/bf751f29-f293-49cc-b57d-935edba1d175.png)
 
 [Redis Desktop Manager](https://redisdesktop.com/) 是一款桌面版 Redis 管理工具。
 
 * phpRedisAdmin
 
-{% asset_img 20339264-ea65-4bf2-b247-f1d085cc66c3.png %}
+![](https://img.fanhaobai.com/2016/08/redis-install/20339264-ea65-4bf2-b247-f1d085cc66c3.png)
 
 [phpRedisAdmin](https://github.com/erikdubbelboer/phpRedisAdmin) 是用 PHP 开发的一款 WEB 版 Redis 管理工具，支持权限认证，使用也极为方便。
 

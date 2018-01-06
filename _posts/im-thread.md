@@ -11,7 +11,7 @@ categories:
 
 我是一个 [线程]()，我一出生就被编了个号：0x3704。
 
-{% asset_img fd1WM_W61si6GKLhz1QKjx0v.jpg %}<!--more-->
+![](https://img.fanhaobai.com/2016/10/im-thread/fd1WM_W61si6GKLhz1QKjx0v.jpg)<!--more-->
 
 # 第一回 初生牛犊
 
@@ -190,11 +190,11 @@ categories:
 
 1） 没有加锁的情况
 
-{% asset_img R7VgAA89IgKUx0zk9r_Mjo59.jpg %}
+![](https://img.fanhaobai.com/2016/10/im-thread/R7VgAA89IgKUx0zk9r_Mjo59.jpg)
 
 2） 加锁的情况
 
-{% asset_img YbFsuWDZubKCXGAdju47W3F.jpg %}
+![](https://img.fanhaobai.com/2016/10/im-thread/YbFsuWDZubKCXGAdju47W3F.jpg)
 
 我看得胆颤心惊，原来不加锁会带来这么严重的事故。从此以后看到存款、取款的包裹就倍加小心，还好没有出过事故。
 
@@ -206,7 +206,7 @@ categories:
 
 于是乎，就出现了这么个情况：
 
-{% asset_img T0YNUQrK-FBcoclbKW_WQBgu.jpg %}
+![](https://img.fanhaobai.com/2016/10/im-thread/T0YNUQrK-FBcoclbKW_WQBgu.jpg)
 
 刚开始我还不知道什么情况，一直坐在等待车间傻等，可是等的时间太长了，长达几十秒！我可从来没有经历过这样的事件。
 
@@ -244,7 +244,7 @@ categories:
 
 由于这里不仅仅只有导演和演员，还有很多其他人，大 Boss 留下了一个表格， 里边是个算法，用来计算资源的大小，计算出来以后，永远按照从大到小的方式来获得锁： 
 
-{% asset_img KlopwHrwfjw_lT83cEABXzjv.jpg %}
+![](https://img.fanhaobai.com/2016/10/im-thread/KlopwHrwfjw_lT83cEABXzjv.jpg)
 
 我回到线程池，大家都知道了我的历险，围着我问个不停。
 

@@ -168,7 +168,7 @@ E..<2.@.@..........e.|#).Nc|......r.nO.........
 
 再次使用 PhpStorm 的 REST Client 断点调试 API 时， Debug 控制台如下：
 
-![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/7f7c8948-5e61-4086-b52d-fa9ceab69d3b.png)
+![](https://img.fanhaobai.com/2017/09/xdebug-in-docker/7f7c8948-5e61-4086-b52d-fa9ceab69d3b.png)
 
 所以，使用 Xdebug 进行远程调试时，需要选择合适的调试模式，在 Docker 下建议使用远程模式 1。
 
@@ -180,6 +180,6 @@ E..<2.@.@..........e.|#).Nc|......r.nO.........
 
 * 本地文件和远端文件映射关系
 
-![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/cfe7ef04-4552-49c5-9ffb-6131f52afdb9.png)
+![](https://img.fanhaobai.com/2017/09/xdebug-in-docker/cfe7ef04-4552-49c5-9ffb-6131f52afdb9.png)
 
 如上图，在使用 PhpStorm 时进行远程调试时，需要配置本地文件和远端文件的目录映射关系，这样 IDE 才能根据 Xdebug 传递的当前执行文件路径与本地文件做匹配，实现断点调试和单步调试等。

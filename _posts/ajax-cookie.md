@@ -11,7 +11,7 @@ categories:
 > 同一个项目中两个不同后台管理系统，并分别采用 PHP 和 JAVA 语言独立开发。前期两个项目都有各自的登录入口，现在项目上线需要整合成统一登录入口。
 
 在业务方面，JAVA 开发的公司管理后台可以直接分配给 PHP 开发的园所管理后台用户，进而公司用户从公司后台登录，园所用户从园所后台登录，两个项目 **不共享用户数据**，且部署在不同服务器上。
-{% asset_img 8UUZlAcsiDmkZgWhKw0dhv-4.png  %}<!--more-->
+![](https://img.fanhaobai.com/2016/12/ajax-cookie/8UUZlAcsiDmkZgWhKw0dhv-4.png)<!--more-->
 
 为了后续描述，先假定公司后台管理系统入口地址为：`company.vxin365.com`，园所管理后台入口地址为：`yundong.vxin365.com`，整合后的统一登录入口地址为：`company.vxin365.com`，即统一登录入口放置在公司管理后台上，用户登录标志采用 SESSION 存储。
 
@@ -35,7 +35,7 @@ categories:
 
 而登录接口后端和园所后台后端同运行于一台服务器，且主域名一致，SESSION 的有效域也设置成了`.vxin365.com`，即子域名和主域名都共享 SESSION，所以排除了服务器端 SESSION 不能共享的问题。
 
-{% asset_img YOfO7obkR5uQ4PUsyVxZ4G5s.png %}
+![](https://img.fanhaobai.com/2016/12/ajax-cookie/YOfO7obkR5uQ4PUsyVxZ4G5s.png)
 
 那么大致猜测可能导致的原因是：调用登录接口的请求（①处）和跳转到成功回调地址的请求（②处）的 COOKIE 不一致或者丢失，导致存于 COOKIE 中的 SessionID 不一致或者丢失，无法获取到当前已登录用户的登录状态（③处）。
 

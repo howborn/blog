@@ -11,7 +11,7 @@ categories:
 
 当 Nginx 标准模块和配置不能灵活地适应系统要求时，就可以考虑使用 Lua 扩展和定制 Nginx 服务。[OpenResty](http://openresty.org/en/) 集成了大量精良的 Lua 库、第三方模块，可以方便地搭建能够处理超高并发、扩展性极高的 Web 服务，所以这里选择 OpenResty 提供的 [lua-nginx-module](https://github.com/openresty/lua-nginx-module) 方案。
 
-![](https://www.fanhaobai.com/2017/09/lua-in-nginx/63113174-45d7-4a27-8472-d037675c2cbd.jpg)<!--more-->
+![](https://img.fanhaobai.com/2017/09/lua-in-nginx/63113174-45d7-4a27-8472-d037675c2cbd.jpg)<!--more-->
 
 ## 安装Lua环境
 

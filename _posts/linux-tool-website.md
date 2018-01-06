@@ -8,14 +8,14 @@ categories:
 ---
 
 在使用 Linux 命令行模式下，作为程序员的你怎么查询一些日常信息呢？比如本地 IP 地址、天气情况等。这里收录一些较实用的日常查询信息的站点。
-{% asset_img em5NGzPratjzKRCB6kSvGehY.png %}<!--more-->
+![](https://img.fanhaobai.com/2017/02/linux-tool-website/em5NGzPratjzKRCB6kSvGehY.png)<!--more-->
 
 # 查询天气
 
 通过 [wttr.in](http://wttr.in) 提供的天气查询服务，可以轻松查询及时的天气信息。wttr.in 的官方文档，[见这里](https://github.com/chubin/wttr.in)。
 
 在`bash`中使用`curl`模拟请求**wttr.in**，即可查询到本地最近**3**天的天气信息。如下图所示：
-{% asset_img Gk8bUSZ01LiIgQtbLYPyF4xM.png %}
+![](https://img.fanhaobai.com/2017/02/linux-tool-website/Gk8bUSZ01LiIgQtbLYPyF4xM.png)
 
 当然，wttr.in 除了根据 IP 查询到本地的天气信息外，也可以查询**自定义城市**的天气信息，只需在查询地址后加上需查询城市名（中国城市使用城市名拼音）即可，格式为：`wttr.in/city`。
 

@@ -329,7 +329,7 @@ var y = date(item.date, 'YYYY年MM月');
 
 修改后，归档如下图：
 
-{% asset_img es8bUSE01LiIgQtbSESyEWxW.png  %}
+![](https://img.fanhaobai.com/2017/03/install-hexo/es8bUSE01LiIgQtbSESyEWxW.png)
 
 ## 样式修改
 

@@ -12,7 +12,7 @@ categories:
 为了跟随 HTTPS 浪潮，憧憬了很长时间，终于到现在本站也正式启用了 HTTPS，本文详细记录了本站申请证书的过程及途中所遇到一些的问题。
 
 [Let's Encrypt](https://letsencrypt.org/) 是由互联网安全研究小组（ISRG，一个公益组织）提供的 [数字证书认证](https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6%E8%AE%A4%E8%AF%81%E6%9C%BA%E6%9E%84)  服务。主要赞助商包括电子前哨基金会，Mozilla 基金会，Akamai 以及思科。
-{% asset_img oXIK5oghKOlCTOKMUK5lHtve.png %}<!--more-->
+![](https://img.fanhaobai.com/2016/12/lets-encrypt/oXIK5oghKOlCTOKMUK5lHtve.png)<!--more-->
 
 Let's Encrypt 目的就是向网站自动签发和管理免费证书，以便加速互联网由 HTTP 过渡到 HTTPS。因此 Let's Encrypt 证书不但免费，申请过程还非常简单，鼓励实现自动化部署。Let's Encrypt 作为安全考虑，每次所申请的证书只有 90 天的有效期，因此自动化部署显得尤为重要。
 

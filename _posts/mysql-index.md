@@ -1,5 +1,5 @@
 ---
-title: MySQL索引背后的数据结构及算法原理 
+title: MySQL索引背后的数据结构及算法原理
 date: 2016-05-19
 tags:
 - MySQL
@@ -28,7 +28,7 @@ MySQL 官方对索引的定义为：索引（Index）是帮助 MySQL 高效获�
 
 看一个例子：
 
-{% asset_img 0C246BB99D16D11FDF529437864AB7CE.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/0C246BB99D16D11FDF529437864AB7CE.png)
 
 图 1 展示了一种可能的索引方式。左边是数据表，一共有两列七条记录，最左边的是数据记录的物理地址（注意逻辑上相邻的记录在磁盘上也并不是一定物理相邻的）。为了加快 Col2 的查找，可以维护一个右边所示的二叉查找树，每个节点分别包含索引键值和一个指向对应数据记录物理地址的指针，这样就可以运用二叉查找在$O \left (  \log_{2} n  \right )$ 的复杂度内获取到相应数据。
 
@@ -57,7 +57,7 @@ MySQL 官方对索引的定义为：索引（Index）是帮助 MySQL 高效获�
 
 图 2 是一个 d=2 的 B-Tree 示意图。
 
-{% asset_img A9F238357681376D30DF3C6F524156FB.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/A9F238357681376D30DF3C6F524156FB.png)
 
 由于 B-Tree 的特性，在 B-Tree 中按 key 检索数据的算法非常直观：首先从根节点进行二分查找，如果找到则返回对应节点的 data，否则对相应区间的指针指向的节点递归进行查找，直到找到节点或找到 null 指针，前者查找成功，后者查找失败。B-Tree 上查找算法的伪代码如下：
 
@@ -87,7 +87,7 @@ B-Tree 有许多变种，其中最常见的是 B+Tree，例如 MySQL 就普遍�
 
 图 3 是一个简单的 B+Tree 示意。
 
-{% asset_img C6D5AF9F2923AFB70753E9B9556FE42A.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/C6D5AF9F2923AFB70753E9B9556FE42A.png)
 
 由于并不是所有节点都具有相同的域，因此 B+Tree 中叶节点和内节点一般大小不同。这点与 B-Tree 不同，虽然 B-Tree 中不同节点存放的 key 和指针可能数量不一致，但是每个节点的域和上限是一致的，所以在实现中 B-Tree 往往对每个节点申请同等大小的空间。
 
@@ -97,7 +97,7 @@ B-Tree 有许多变种，其中最常见的是 B+Tree，例如 MySQL 就普遍�
 
 一般在数据库系统或文件系统中使用的 B+Tree 结构都在经典 B+Tree 的基础上进行了优化，增加了顺序访问指针。
 
-{% asset_img 1592A1D1B6F59FDEC422FF5FC1C97CC0.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/1592A1D1B6F59FDEC422FF5FC1C97CC0.png)
 
 如图 4 所示，在 B+Tree 的每个叶子节点增加一个指向相邻叶子节点的指针，就形成了带有顺序访问指针的 B+Tree。做这个优化的目的是为了提高区间访问的性能，例如图 4 中如果要查询 key 为从 18 到 49 的所有数据记录，当找到 18 后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率。
 
@@ -113,7 +113,7 @@ B-Tree 有许多变种，其中最常见的是 B+Tree，例如 MySQL 就普遍�
 
 目前计算机使用的主存基本都是随机读写存储器（RAM），现代  RAM 的结构和存取原理比较复杂，这里本文抛却具体差别，抽象出一个十分简单的存取模型来说明 RAM 的工作原理。
 
-{% asset_img 63B428EC932670CB74B3A1B6249407AA.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/63B428EC932670CB74B3A1B6249407AA.png)
 
 从抽象角度看，主存是一系列的存储单元组成的矩阵，每个存储单元存储固定大小的数据。每个存储单元有唯一的地址，现代主存的编址规则比较复杂，这里将其简化成一个二维地址：通过一个行地址和一个列地址可以唯一定位到一个存储单元。图 5 展示了一个 4 x 4 的主存模型。
 
@@ -131,13 +131,13 @@ B-Tree 有许多变种，其中最常见的是 B+Tree，例如 MySQL 就普遍�
 
 图 6 是磁盘的整体结构示意图。
 
-{% asset_img 843424197A8FFFCD2894AC9B2F13302F.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/843424197A8FFFCD2894AC9B2F13302F.png)
 
 一个磁盘由大小相同且同轴的圆形盘片组成，磁盘可以转动（各个磁盘必须同步转动）。在磁盘的一侧有磁头支架，磁头支架固定了一组磁头，每个磁头负责存取一个磁盘的内容。磁头不能转动，但是可以沿磁盘半径方向运动（实际是斜切向运动），每个磁头同一时刻也必须是同轴的，即从正上方向下看，所有磁头任何时候都是重叠的（不过目前已经有多磁头独立技术，可不受此限制）。
 
 图 7 是磁盘结构的示意图。
 
-{% asset_img D13A43EAC5F0ECEE1FE1DA0AA06F69B4.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/D13A43EAC5F0ECEE1FE1DA0AA06F69B4.png)
 
 盘片被划分成一系列同心环，圆心是盘片中心，每个同心环叫做一个磁道，所有半径相同的磁道组成一个柱面。磁道被沿半径线划分成一个个小的段，每个段叫做一个扇区，每个扇区是磁盘的最小存储单元。为了简单起见，我们下面假设磁盘只有一个盘片和一个磁头。
 
@@ -185,11 +185,11 @@ floor 表示向下取整。由于 B+Tree 内节点去掉了 data 域，因此可
 
 MyISAM 引擎使用 B+Tree 作为索引结构，叶节点的 data 域存放的是数据记录的地址。下图是 MyISAM 索引的原理图：
 
-{% asset_img 53542FB1F6F6B898BEE53F4AE356564A.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/53542FB1F6F6B898BEE53F4AE356564A.png)
 
 这里设表一共有三列，假设我们以 Col1 为主键，则图 8 是一个 MyISAM 表的主索引（Primary key）示意。可以看出 MyISAM 的索引文件仅仅保存数据记录的地址。在 MyISAM 中，主索引和辅助索引（Secondary key）在结构上没有任何区别，只是主索引要求 key 是唯一的，而辅助索引的 key 可以重复。如果我们在 Col2 上建立一个辅助索引，则此索引的结构如下图所示：
 
-{% asset_img 3A4B107A96CE4C008B15D740D19CAF98.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/3A4B107A96CE4C008B15D740D19CAF98.png)
 
 同样也是一颗 B+Tree，data 域保存数据记录的地址。因此，MyISAM 中索引检索的算法为首先按照 B+Tree 搜索算法搜索索引，如果指定的 Key 存在，则取出其 data 域的值，然后以 data 域的值为地址，读取相应数据记录。
 
@@ -201,13 +201,13 @@ MyISAM 的索引方式也叫做“非聚集”的，之所以这么称呼是为�
 
 第一个重大区别是 InnoDB 的数据文件本身就是索引文件。从上文知道，MyISAM 索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。而在 InnoDB 中，表数据文件本身就是按 B+Tree 组织的一个索引结构，这棵树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引。
 
-{% asset_img 6D0B18886D8A8FB14E512CEEE869B07B.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/6D0B18886D8A8FB14E512CEEE869B07B.png)
 
 图 10 是 InnoDB 主索引（同时也是数据文件）的示意图，可以看到叶节点包含了完整的数据记录。这种索引叫做聚集索引。因为 InnoDB 的数据文件本身要按主键聚集，所以 InnoDB 要求表必须有主键（MyISAM 可以没有），如果没有显式指定，则 MySQL 系统会自动选择一个可以唯一标识数据记录的列作为主键，如果不存在这种列，则 MySQL 自动为 InnoDB 表生成一个隐含字段作为主键，这个字段长度为 6 个字节，类型为长整形。
 
 第二个与 MyISAM 索引的不同是 InnoDB 的辅助索引 data 域存储相应记录主键的值而不是地址。换句话说，InnoDB 的所有辅助索引都引用主键作为 data 域。例如，图 11 为定义在 Col3 上的一个辅助索引：
 
-{% asset_img 09D4DC9D97CBE8A634D244232710688E.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/09D4DC9D97CBE8A634D244232710688E.png)
 
 这里以英文字符的 ASCII 码作为比较准则。聚集索引这种实现方式使得按主键的搜索十分高效，但是辅助索引搜索需要检索两遍索引：首先检索辅助索引获得主键，然后用主键到主索引中检索获得记录。
 
@@ -223,7 +223,7 @@ MySQL 的优化主要分为结构优化（Scheme optimization）和查询优化�
 
 为了讨论索引策略，需要一个数据量不算小的数据库作为示例。本文选用 MySQL 官方文档中提供的示例数据库之一：employees。这个数据库关系复杂度适中，且数据量较大。下图是这个数据库的 E-R 关系图（引用自 MySQL 官方手册）：
 
-{% asset_img A561801D4FD4EAFB9FB7FB538ED8081F.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/A561801D4FD4EAFB9FB7FB538ED8081F.png)
 
 MySQL 官方文档中关于此数据库的页面为 [http://dev.mysql.com/doc/employee/en/employee.html](http://dev.mysql.com/doc/employee/en/employee.html)。 里面详细介绍了此数据库，并提供了下载地址和导入方法，如果有兴趣导入此数据库到自己的 MySQL 可以参考文中内容。
 
@@ -541,13 +541,13 @@ SHOW PROFILES;
 
 如果表使用自增主键，那么每次插入新的记录，记录就会顺序添加到当前索引节点的后续位置，当一页写满，就会自动开辟一个新的页。如下图所示：
 
-{% asset_img 48E546C2BE936C4A7CA2BB19FE4AA6DE.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/48E546C2BE936C4A7CA2BB19FE4AA6DE.png)
 
 这样就会形成一个紧凑的索引结构，近似顺序填满。由于每次插入时也不需要移动已有数据，因此效率很高，也不会增加很多开销在维护索引上。
 
 如果使用非自增主键（如果身份证号或学号等），由于每次插入主键的值近似于随机，因此每次新纪录都要被插到现有索引页得中间某个位置：
 
-{% asset_img 249AA6DD62821BDAC73892DEA1F61C4B.png %}
+![](https://img.fanhaobai.com/2016/05/mysql-index/249AA6DD62821BDAC73892DEA1F61C4B.png)
 
 此时 MySQL 不得不为了将新记录插到合适位置而移动数据，甚至目标页面可能已经被回写到磁盘上而从缓存中清掉，此时又要从磁盘上读回来，这增加了很多开销，同时频繁的移动、分页操作造成了大量的碎片，得到了不够紧凑的索引结构，后续不得不通过 OPTIMIZE TABLE 来重建表并优化填充页面。
 

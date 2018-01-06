@@ -58,7 +58,7 @@ categories:
 
 使用冒泡排序来说明上述用例的排序过程。
 
-{% asset_img 65FD0FD202413415D266AC754A75AAF3.png %}
+![](https://img.fanhaobai.com/2017/04/array-form-max-string/65FD0FD202413415D266AC754A75AAF3.png)
 
 ### 比较规则 ###
 
@@ -197,3 +197,7 @@ echo '最大排列组合为：', array_form_max_str($Arr), PHP_EOL;
 ## 写在最后 ##
 
 经过深入分析问题的本质，也使得我对与排序算法有了更深入的认识，更算是一个巩固。同时，正是由于我尝试着去解决这个问题，才使得我在后面的复试环节中面试官再次提出相同问题时，给出了一个满意的解决方案。
+
+<strong>相关文章 [»]()</strong>
+
+* [王者编程大赛之一](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1.html#题3) <span>（2017-12-05）</span>

@@ -11,7 +11,7 @@ categories:
 
 QConf 是奇虎 360 广泛使用的配置管理服务，现已开源 [QConf Source Code](https://github.com/Qihoo360/QConf)，欢迎大家关注使用。本文从设计初衷，架构实现，使用情况及相关产品比较四个方面进行介绍。
 
-![](https://www.fanhaobai.com/2017/11/qconf/d7fec4ae-e55a-11e7-80c1-9a214cf093ae.jpg)<!--more-->
+![](https://img.fanhaobai.com/2017/11/qconf/d7fec4ae-e55a-11e7-80c1-9a214cf093ae.jpg)<!--more-->
 
 ## 设计初衷
 
@@ -31,7 +31,7 @@ make && make install
 
 - 之后，通过 Zookeeper 客户端或 **QConf 管理界面** 在 Zookeeper 上建立自己的节点结构，节点完整路径作为 QConf 的 key 值，以 360 公司内部 QConf 管理界面为例：
 
-![](https://www.fanhaobai.com/2017/11/qconf/8bb7c9c6-c0e9-40d5-96c8-81b40613e9bc.jpg)
+![](https://img.fanhaobai.com/2017/11/qconf/8bb7c9c6-c0e9-40d5-96c8-81b40613e9bc.jpg)
 
 - 最后，选择所需语言版本的 QConf 库，并在需要获得配置内容的代码位置，直接调用 Qconf 客户端接口，并放心每次取得的都是最新鲜出炉的配置内容。
 
@@ -48,7 +48,7 @@ make && make install
 
 进入主题，开始介绍 QConf 的架构实现：
 
-![](https://www.fanhaobai.com/2017/11/qconf/d29ccf16-e559-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/11/qconf/d29ccf16-e559-11e7-80c1-9a214cf093ae.png)
 
 上图展示的是 QConf 的基本结构，从角色上划分主要包括 QConf 客户端，QConf 服务端和 QConf 管理端。
 
@@ -75,7 +75,7 @@ QConf 使用 ZooKeeper 集群作为服务端提供服务。众所周知，ZooKee
 
 下面来看下 QConf 客户端的架构：
 
-![](https://www.fanhaobai.com/2017/11/qconf/1a2c6f9e-e55a-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/11/qconf/1a2c6f9e-e55a-11e7-80c1-9a214cf093ae.png)
 
 可以看到 QConf 客户端主要有：agent、各种语言接口、连接他们的消息队列和共享内存。在 QConf 中，配置以 key-value 的形式存在，业务进程给出 key 获得对应 value，这与传统的配置文件方式是一致的。
 
@@ -83,7 +83,7 @@ QConf 使用 ZooKeeper 集群作为服务端提供服务。众所周知，ZooKee
 
 - 业务进程请求数据
 
-![](https://www.fanhaobai.com/2017/11/qconf/31cbf598-e55a-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/11/qconf/31cbf598-e55a-11e7-80c1-9a214cf093ae.png)
 
 1. 业务进程调用某一种语言的 QConf **接口**，从 **共享内存** 中查找需要的配置信息；
 2. 如果存在，直接获取，否则会向 **消息队列** 中加入该配置 key；
@@ -94,7 +94,7 @@ QConf 使用 ZooKeeper 集群作为服务端提供服务。众所周知，ZooKee
 
 - 配置信息更新
 
-![](https://www.fanhaobai.com/2017/11/qconf/5aade6d8-e55a-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/11/qconf/5aade6d8-e55a-11e7-80c1-9a214cf093ae.png)
 
 1. **ZooKeeper **通知 **agent** 某配置项发生变化；
 2. **agent **从 **ZooKeeper **查询新值并更新 watcher；
@@ -116,11 +116,11 @@ QConf 使用 ZooKeeper 集群作为服务端提供服务。众所周知，ZooKee
 - 定时扫描共享内存；
 - 数据序列化 QConf 客户端中有多处需要将数据序列化通信或存储，包括共享内存，消息队列，落盘数据中的内容。采取如下协议：
 
-![](https://www.fanhaobai.com/2017/11/qconf/b809d666-e55a-11e7-80c1-9a214cf093ae.jpg)
+![](https://img.fanhaobai.com/2017/11/qconf/b809d666-e55a-11e7-80c1-9a214cf093ae.jpg)
 
 - agent 任务通过上面的描述，大家应该大概了解了 agent 所做的一些事情，下面从 agent 的内部的线程分工的角度整理一下，如下图：
 
-![](https://www.fanhaobai.com/2017/11/qconf/d7fec4ae-e55a-11e7-80c1-9a214cf093ae.jpg)
+![](https://img.fanhaobai.com/2017/11/qconf/d7fec4ae-e55a-11e7-80c1-9a214cf093ae.jpg)
 
 - Send 线程：ZooKeeper 线程，处理网络数据包，进行协议包的解析与封装，并将 Zookeeper 的事件加入 WaitingEvent 队列等待处理；
 - Event 线程：ZooKeeper 线程，依次获取 WaitingEvent 队列中的事件，并进行相应处理，这里我们关注节点删除、节点值修改、子节点变化、会话过期等事件。对特定的事件会进行相应的操作，以节点值修改为例，agent 会按上边提到的方式序列化该节点 key，并将其加入到 WaitingWriting 队列，等待 Main 线程处理；
@@ -136,7 +136,7 @@ QConf 使用 ZooKeeper 集群作为服务端提供服务。众所周知，ZooKee
 
 管理端是业务修改配置的页面入口，利用数据库提供一些如批量导入，权限管理，版本控制等上层功能。由于公司内的一些业务耦合和需求定制，当前开源的 QConf 管理端这边提供了一个简易的页面，和一套下层的 c++ 接口，如下图：
 
-![](https://www.fanhaobai.com/2017/11/qconf/0cc54ae6-e55b-11e7-80c1-9a214cf093ae.jpg)
+![](https://img.fanhaobai.com/2017/11/qconf/0cc54ae6-e55b-11e7-80c1-9a214cf093ae.jpg)
 
 之后计划进一步完善以及跟社区合作提供更友好的界面。
 
@@ -148,7 +148,7 @@ QConf 除了存储配置的基本功能外，还在公司内提供了一套简�
 
 - 结构上多一个 Monitor 的角色，来监控所有服务的存活, 如下图：
 
-![](https://www.fanhaobai.com/2017/11/qconf/2d146c96-e55b-11e7-80c1-9a214cf093ae.png)
+![](https://img.fanhaobai.com/2017/11/qconf/2d146c96-e55b-11e7-80c1-9a214cf093ae.png)
 
 - 提供对应的客户端接口，get_host 获取某一可用服务，get_allhost 获取所有可用服务
 - 管理端页面对应的展示方式及操作，尤其是对指定服务的添加删除，上线下线

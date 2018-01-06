@@ -9,7 +9,7 @@ categories:
 ---
 
 本次王者编程大赛分为 3 个组别，分别为研发、测试、移动战场。这里只讨论研发战场所考的 [题目](https://github.com/fan-haobai/2017-ziroom-king)，本次大赛共有 7 道题，主要考查点为基础算法，解题所用语言不做限制，但是需要在 [在线验证平台](http://www.anycodes.cn/zh/) 使用标准输入并验证通过，最后成绩以正确性和答题时间为评定依据。
-![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/f9829b13-af2e-4c7b-b214-40bc78223c18.png)<!--more-->
+![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-1/f9829b13-af2e-4c7b-b214-40bc78223c18.png)<!--more-->
 
 所有题目中第 4 题蓄水池问题，是困惑我时间比较长的，其他题目比较容易看出考察点，这里我给出了 7 道题目自己的 [实现方式](https://github.com/fan-haobai/2017-ziroom-king/tree/master/src)，仅作为解题参考，若你有更好的思路欢迎讨论交流。
 
@@ -87,11 +87,11 @@ echo array_sum($card), PHP_EOL;
 
 为了获取 3 种连接符组成的 3^n-1 种组合情况，这里巧妙地运用 [3 进制运算]() 来实现。
 
-![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/25fc16ed-ebdd-4094-84a4-150ad9a31b1f.png)
+![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-1/25fc16ed-ebdd-4094-84a4-150ad9a31b1f.png)
 
 算法执行流程：
 
-![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/d4724b85-8491-451a-8b3c-d6c06842ec69.png)
+![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-1/d4724b85-8491-451a-8b3c-d6c06842ec69.png)
 
 ## 编码实现
 
@@ -193,11 +193,11 @@ array_walk($rank->run(), function($value) {
 
 这里使用冒泡排序来进行说明，每一趟找出待排序元素的最小值，算法执行流程如下：
 
-![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/a1cb7d2c-7fb6-4dbd-a363-3cd9e300743d.png)
+![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-1/a1cb7d2c-7fb6-4dbd-a363-3cd9e300743d.png)
 
-![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/d0955aea-2787-4e6b-adea-8fe1f61236de.png)
+![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-1/d0955aea-2787-4e6b-adea-8fe1f61236de.png)
 
-![](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1/03a07a80-8bc3-46d1-bcab-17e2a057d951.png)
+![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-1/03a07a80-8bc3-46d1-bcab-17e2a057d951.png)
 
 ### 编码实现
 

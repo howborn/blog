@@ -36,7 +36,7 @@ withdraw 的语义是从 account_id 对应的账户中扣除 amount 数额的钱
 
 所以问题来了，一种典型的情况是 withdraw 请求已经被服务器端正确处理，但服务器端的返回结果由于网络等原因被掉丢了，导致客户端无法得知处理结果。如果是在网页上，一些不恰当的设计可能会使用户认为上一次操作失败了，然后刷新页面，这就导致了 withdraw 被调用两次，账户也被多扣了一次钱。如图所示：
 
-{% asset_img 033717ZKv.png %}
+![](https://img.fanhaobai.com/2017/05/api-idempotence/033717ZKv.png)
 
 **解决方案一：**采用分布式事务，通过引入支持分布式事务的中间件来保证 withdraw 功能的事务性。分布式事务的优点是对于调用者很简单，复杂性都交给了中间件来管理。缺点则是一方面架构太重量级，容易被绑在特定的中间件上，不利于异构系统的集成；另一方面分布式事务虽然能保证事务的 ACID 性质，而但却无法提供性能和可用性的保证。
 
@@ -55,7 +55,7 @@ create_ticket 的语义是**获取一个服务器端生成的唯一的处理号 
 1. 调用 create_ticket() 获取 ticket_id；
 2. 调用 idempotent_withdraw(ticket_id, account_id, amount)。虽然 create_ticket 不是幂等的，但在这种设计下，它对系统状态的影响可以忽略，加上 idempotent_withdraw 是幂等的，所以任何一步由于网络等原因失败或超时，客户端都可以重试，直到获得结果。如图所示：
 
-{% asset_img 033718EYW.png  %}
+![](https://img.fanhaobai.com/2017/05/api-idempotence/033718EYW.png)
 
 和分布式事务相比，幂等设计的优势在于它的轻量级，容易适应异构环境，以及性能和可用性方面。在某些性能要求比较高的应用，幂等设计往往是唯一的选择。
 

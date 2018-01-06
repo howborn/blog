@@ -12,7 +12,7 @@ categories:
 DNS 是互联网核心协议之一。不管是上网浏览，还是编程开发，都需要了解一点它的知识。
 本文详细介绍 DNS 的原理，以及如何运用工具软件观察它的运作。我的目标是，读完此文后，你就能完全理解 DNS。
 
-{% asset_img a7266ef3-a634-467a-994e-caa04425b552.png %}<!--more-->
+![](https://img.fanhaobai.com/2017/06/dns/a7266ef3-a634-467a-994e-caa04425b552.png)<!--more-->
 
 ## DNS 是什么？
 
@@ -110,7 +110,7 @@ $ dig +short math.stackexchange.com
 下面我们根据前面这个例子，一步步还原，本机到底怎么得到域名`math.stackexchange.com`的 IP 地址。
 首先，本机一定要知道 DNS 服务器的 IP 地址，否则上不了网。通过 DNS 服务器，才能知道某个域名的 IP 地址到底是什么。
 
-{% asset_img 49ba1a00-6896-4858-8618-3918ca19b7ee.jpg %}
+![](https://img.fanhaobai.com/2017/06/dns/49ba1a00-6896-4858-8618-3918ca19b7ee.jpg)
 
 DNS 服务器的 IP 地址，有可能是动态的，每次上网时由网关分配，这叫做 DHCP 机制；也有可能是事先指定的固定地址。Linux 系统里面，DNS 服务器的 IP 地址保存在`/etc/resolv.conf`文件。
 上例的 DNS 服务器是 192.168.1.253，这是一个内网地址。有一些公网的 DNS 服务器，也可以使用，其中最有名的就是 Google 的 8.8.8.8 和 Level 3 的 4.2.2.2。

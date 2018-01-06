@@ -10,11 +10,11 @@ categories:
 > 文档：http://zhanzhang.baidu.com/college/courseinfo?id=267&page=2
 
 由于本站博客文章数收录情况，相比下谷歌比百度好，而原因是谷歌的抓取频率较百度高，所以这里采取了向搜索引擎主动提交本站新产生链接的办法，增加搜索引擎对本站链接的收录量。
-{% asset_img sZTgr9Q8To0jF44eBUP43Ux5.png %}<!--more-->
+![](https://img.fanhaobai.com/2017/01/push-links/sZTgr9Q8To0jF44eBUP43Ux5.png)<!--more-->
 
 下面记录了本站向搜索引擎提交链接的整个过程。部署后，查看谷歌对本站的 **抓取统计情况**，可知谷歌对本站链接的抓取处于 **正常状态** 。
 
-{% asset_img H3MLaW62k4BDaqThyncU8WpY.png %}
+![](https://img.fanhaobai.com/2017/01/push-links/H3MLaW62k4BDaqThyncU8WpY.png)
 
 # 提交方式
 
@@ -86,17 +86,17 @@ echo $result;
 
 谷歌的站点地图提交地址，[见这里](https://www.google.com/webmasters/tools/sitemap-list?hl=zh-CN) 。只需点击`添加测试站点地图`按钮即可，操作较为简单，提交成功后如下图所示：
 
-{% asset_img uJB4Wv8GViZLhZKn5gUY587W.png %}
+![](https://img.fanhaobai.com/2017/01/push-links/uJB4Wv8GViZLhZKn5gUY587W.png)
 
 2） **百度**
 
 百度的站点地图提交地址，[见这里](http://zhanzhang.baidu.com/linksubmit/index)。只需在该页面选中`自动提交`并选择`sitemap`，出现如下图所示，填写完毕提交即可。
 
-{% asset_img MxLZN0EoqTT42hFffpy2yLD-.png %}
+![](https://img.fanhaobai.com/2017/01/push-links/MxLZN0EoqTT42hFffpy2yLD-.png)
 
 提交成功后，如下图所示：
 
-{% asset_img 4phD1vo4GCBNNsJBFmcpshgp.png %}
+![](https://img.fanhaobai.com/2017/01/push-links/4phD1vo4GCBNNsJBFmcpshgp.png)
 
 需要说明，[**当已经从站点地图提交地址提交一次站点地图后，搜索引擎会根据提交的站点地图地址，自动定期检测站点地图是否更新，不需要再次手动提交更新后的站点地图**]()。
 

@@ -8,7 +8,7 @@ categories:
 ---
 
 [Composer](https://getcomposer.org/) 是一个 PHP 依赖包管理工具，我们通过在 composer.json 配置中申明项目依赖后，它会自动在的项目中安装完成项目所需依赖。一些常用的项目依赖包列表，[见这里](https://packagist.org/)。
-{% asset_img bb8a-6ddaa3977.png %}<!--more-->
+![](https://img.fanhaobai.com/2017/05/composer/bb8a-6ddaa3977.png)<!--more-->
 
 ## 安装
 
@@ -91,7 +91,7 @@ $ vim satis.json
 
 内容如下所示：
 
-```Bash
+```Js
 {
   "name": "Fhb Repository",      //名称
   "homepage": "http://packagist.fanhaobai.com",  //satis仓库地址
@@ -131,7 +131,7 @@ $ php bin/satis build satis.json /home/www/packagist -v
 
 如果看到`Installing xxx/xxx Downloading: 100% ...`信息，就说明索引成功，访问 [站点](http://packagist.fanhaobai.com) 即可。
 
-{% asset_img bb8a-6ddaa3977.png %}
+![](https://img.fanhaobai.com/2017/05/composer/bb8a-6ddaa3977.png)
 
 ## 发布包
 
@@ -143,7 +143,7 @@ $ php bin/satis build satis.json /home/www/packagist -v
 
 2) 在配置文件`satis.json`中增加包仓库地址，以及索引版本；
 
-```Bash
+```Js
 "repositories": [
   ... ...
   {
@@ -172,7 +172,7 @@ Installing chonder/yii2-aliyun-oss (V1.0.0) Downloading: 100% Extracting archive
 
 需要安装 Satis 索引的 Composer 包，只需在项目的`composer.json`文件中将 repositories 配置为 Satis 仓库地址即可。
 
-```Bash
+```Js
 {
   "config": {
     "process-timeout": 1800,
@@ -208,7 +208,7 @@ Generating autoload files
 
 在团队开发中，经常需要进行包的增加和删除，如果直接修改`satis.json`文件，显得比较麻烦，此时使用 [satisfy](https://github.com/ludofleury/satisfy) 的 Web 界面即可实现包的管理。
 
-{% asset_img 810b7e47-f510-4116-a79c-4499057e2189.png %}
+![](https://img.fanhaobai.com/2017/05/composer/810b7e47-f510-4116-a79c-4499057e2189.png)
 
 > 注意：操作 satisfy 后，只是更新了`satis.json`文件的 repositories 地址，所以 satisfy 只适用于私有云仓库的情况；同时操作 satisfy 并没有触发 satis 进行 build，所以从 satisfy 中新增和删除一个包后，Composer 仓库包并没有立即发生变化，需要主动触发 satis 进行一次 build，当然可以使用 crontab 周期性来进行 build。 
 

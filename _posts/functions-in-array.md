@@ -31,7 +31,7 @@ in_array 函数存在第三个参数 strict，它用来标记函数在对两元�
 
 **比较运算** 时 **不同类型转化规则** 如下表：
 
-{% asset_img ftmDbIAmvincNjudJwK3N82_.png %}
+![](https://img.fanhaobai.com/2016/07/functions-in-array/ftmDbIAmvincNjudJwK3N82_.png)
 
 可知，当两不同类型数值中含有数字类型，都会转化为数字类型进行比较。那么`s`转化为数字类型为`0`，所以`0 == 0 ？`判断为 true，这就是为什么`in_array(0, array('s'))`结果为   true 的原因。
 
