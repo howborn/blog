@@ -61,16 +61,16 @@
         "review": "",
         "score": "8.5",
         "doubanLink": "https://book.douban.com/subject/25816940/"
-      }
-    ],
-    "reading": [
+      },
       {
         "title": "淘宝技术这十年",
         "cover": "https://img3.doubanio.com/lpic/s26713863.jpg",
         "review": "",
         "score": "7.3",
         "doubanLink": "https://book.douban.com/subject/24335672/"
-      },
+      }
+    ],
+    "reading": [
       {
         "title": "高性能MySQL",
         "cover": "/douban/lpic/s27783358.jpg",
