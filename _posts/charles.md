@@ -175,7 +175,7 @@ Rewrite 功能功能适合对某一类网络请求进行一些正则替换，以
 
 此时可以修改请求信息，但这里只修改响应信息，故点击 “Execute” 后选择 “Edit Response” 项，修改 title 为`fanhaobai.com`，如下：
 
-![](https://img.fanhaobai.com/2017/07/charles/ 0fa6ff3f-c1f8-4179-b458-b21cc63e02c2.png)
+![](https://img.fanhaobai.com/2017/07/charles/0fa6ff3f-c1f8-4179-b458-b21cc63e02c2.png)
 
 继续点击 “Execute” ，可看见响应的 title 已经变为`fanhaobai.com`。
 
