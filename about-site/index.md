@@ -61,7 +61,7 @@ http {
     root /data/html/hexo/public;
     index index.html index.php;
     #错误页面
-    error_page  404 500 502 503 504 = /404.html;
+    error_page  404 500 502 503 504 /404.html;
     #关闭错误页面的nginx版本号
     server_tokens off;
     sendfile        on;
@@ -273,11 +273,9 @@ server {
 ## Robots文件
 
 ```Bash
-# robots.txt for www.fanhaobai.com 2017.03.01
 User-agent: *
-Disallow: /js
-Disallow: /css
-Disallow: /images
+Disallow: /404.html
+Disallow: /categories
 Sitemap: http://www.fanhaobai.com/sitemap.xml
 ```
 
