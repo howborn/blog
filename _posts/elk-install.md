@@ -290,7 +290,7 @@ output {
 }
 ```
 
-更多配置示例，见 [Logstash Configuration Examples])(https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
+更多配置示例，见 [Logstash Configuration Examples](https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
 
 ### 启动
 
@@ -379,7 +379,7 @@ libbeat.logstash.publish.read_bytes=6 libbeat.logstash.publish.write_bytes=460
 
 Filebeat 启动后，会侦测待采集文件内容是否有增加或更新，并实时推送数据到 Logstash。
 
-> 因为 Filebeat、Logstash 有些配置并不向后兼容，更新升级后可能导致服务不可用，所以这里在`/etc/yum.conf`增加`exclude=filebeat logstash`配置项，禁用`yum update`时的自动更新。
+> 因为 Filebeat、Logstash 有些配置并不向后兼容，更新升级后可能导致服务不可用，所以这里在`/etc/yum.conf`增加`exclude=filebeat logstash`配置项，禁用`yum update`的自动更新。
 
 ## 数据呈现
 
