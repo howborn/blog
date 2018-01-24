@@ -1,4 +1,3 @@
-```
 ---
 title: Swoole提供PHP异步特性
 date: 2016-02-17 08:00:00
@@ -8,7 +7,6 @@ tags:
 categories:
 - PHP
 ---
-```
 
 [Swoole](https://www.swoole.com/)
 
