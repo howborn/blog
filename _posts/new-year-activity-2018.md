@@ -12,7 +12,7 @@ categories:
 
 ## 活动规模
 
-既然公司对自如客这么阔，那对我们员工也必须意思意思，所以年底我们共准备了 3 个营销活动。
+既然公司对自如客这么阔，那对我们员工也得够意思，所以年底我们共准备了 3 个活动。
 
 1. 针对 [自如客]() 的服务费减免活动；
 2. 针对 [自如客]() 的 1000 万现金礼包；
@@ -63,20 +63,20 @@ $m[] = $M;
 
 由于要获取员工信息，所以接入了公司的 HR 系统，员工都用唯一一个系统号 emp_code（自增字段）标识，登录成功后返回 emp_code，系统后续所有交互流程都基于 emp_code，分享出去的红包也会携带 emp_code，为了保护员工敏感信息和防止恶意碰撞攻击，我们对 emp_code 做了 [hashids](http://hashids.org/php/) 散列算法，前端展示的只是一串无规律字符串。
 
-hashids 是一个开源且轻量的唯一 id 生成器，支持 Java、PHP、C/C++、Python 等主流语言，对于 PHP 来说，只需要使用`composer require hashids/hashids`安装即可。
+hashids 是一个开源且轻量的唯一 id 生成器，支持 Java、PHP、C/C++、Python 等主流语言，PHP 想使用 hashids，只需`composer require hashids/hashids`命令安装即可。
 
-然后，使用如下方式：
+然后，如下方式使用：
 
 ```PHP
 use Hashids\Hashids;
 
-$hashids = new Hashids('salt', 6, 'abcdefghijklmnopqrstuvwxyz1234567890');
+$hashids = new Hashids('salt', 6, 'abcdefghijk1234567890');
 
 $hashids->encode(11002);    //994k2kk
 $hashids->decode(994k2kk);  //[11002]
 ```
 
-需要说明的是，其中`salt`是非常重要的散列加密盐串，`6`表示散列值最小长度，`abcdefghijklmnopqrstuvwxyz1234567890`为散列字典，太长影响效率，太短不安全。由于默认的散列字典比较长，decode 效率并不高，所以这里移除了大写字母部分。
+需要说明的是，其中`salt`是非常重要的散列加密盐串，`6`表示散列值最小长度，`abcde...7890`为散列字典，太长影响效率，太短不安全。由于默认的散列字典比较长，decode 效率并不高，所以这里移除了大写字母部分。
 
 ### 语音点赞
 
