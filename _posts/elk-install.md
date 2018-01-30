@@ -33,9 +33,10 @@ openjdk version "1.8.0_151"
 ```Bash
 # 指向安装目录
 JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
-PTAH=$PATH:$JAVA_HOME/bin
+PATH=$JAVA_HOME/bin:$PATH
 CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export JAVA_HOME CLASSPATH PATH
+JAVACMD=/usr/bin/java
+export JAVA_HOME JAVACMD CLASSPATH PATH
 ```
 
 执行`source /etc/profile`命令，使配置环境生效。
@@ -121,9 +122,9 @@ $ bin/x-pack/setup-passwords interactive
 首先，在`/etc/yum.repos.d`目录下创建名为`kibana.repo`的 yum 源文件：
 
 ```Bash
-[kibana-6.x]
-name=Kibana repository for 6.x packages
-baseurl=https://artifacts.elastic.co/packages/6.x/yum
+[kibana-5.x]
+name=Kibana repository for 5.x packages
+baseurl=https://artifacts.elastic.co/packages/5.x/yum
 gpgcheck=1
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
 enabled=1
@@ -201,6 +202,7 @@ type=rpm-md
 使用 yum 安装 Logstash，并测试：
 
 ```Bash
+# 安装logstash 5.x
 $ yum install -y logstash
 # 默认安装路径/usr/share
 $ mkdir -p /usr/local/elk
@@ -245,7 +247,7 @@ path.data: /var/lib/logstash
 path.logs: /usr/share/logstash/logs
 # 配置
 path.config: /usr/share/logstash/config/conf.d
-# elasticsearch 用户名和密码
+# elasticsearch用户名和密码
 xpack.monitoring.elasticsearch.username: elastic
 xpack.monitoring.elasticsearch.password: changeme
 ```
@@ -288,7 +290,7 @@ output {
 }
 ```
 
-更多配置示例，见 [Logstash Configuration Examples])(https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
+更多配置示例，见 [Logstash Configuration Examples](https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
 
 ### 启动
 
@@ -308,6 +310,7 @@ tcp   0      0 0.0.0.0:5044     0.0.0.0:*    LISTEN      10132/java
 由于同 Elasticsearch 使用一个源，所以直接使用 yum 安装：
 
 ```Bash
+# 安装filebeat 5.6.6
 $ yum install -y filebeat
 $ mkdir -p /usr/local/elk/beats
 $ ln -s /usr/share/filebeat /usr/local/elk/beats/filebeat
@@ -319,7 +322,7 @@ $ cd /usr/local/elk/beats/filebeat
 ```Bash
 $ vim /etc/init.d/filebeat
 
-home=/usr/share/beats/filebeat
+home=/usr/share/filebeat
 pidfile=${PIDFILE-/var/run/filebeat.pid}
 agent=${BEATS_AGENT-$home/bin/filebeat}
 args="-c $home/filebeat.yml -path.home $home -path.config $home -path.data $home/bin/data -path.logs $home/bin/logs"
@@ -375,6 +378,8 @@ libbeat.logstash.publish.read_bytes=6 libbeat.logstash.publish.write_bytes=460
 ```
 
 Filebeat 启动后，会侦测待采集文件内容是否有增加或更新，并实时推送数据到 Logstash。
+
+> 因为 Filebeat、Logstash 有些配置并不向后兼容，更新升级后可能导致服务不可用，所以这里在`/etc/yum.conf`增加`exclude=filebeat logstash`配置项，禁用`yum update`的自动更新。
 
 ## 数据呈现
 
