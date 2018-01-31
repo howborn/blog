@@ -11,7 +11,7 @@ categories:
 
 ## 安装
 
-本文 PhpStorm 版本为 2017.1.1。PhpStorm 在 Win 平台安装比较容易，直接参考 [此处](https://www.jetbrains.com/phpstorm/download/#section=windows) 即可。Linux 平台安装相对比较坎坷，请移步 [这里](https://www.fanhaobai.com/2016/05/lnmp.html#Phpstorm)。至于注册码，见 [@lan yu](http://idea.qinxi1992.cn/) 提供的方法。
+本文 PhpStorm 版本为 2017.1.1。PhpStorm 在 Win 平台安装比较容易，直接参考 [此处](https://www.jetbrains.com/phpstorm/download/#section=windows) 即可。Linux 平台安装相对比较坎坷，请移步 [这里](https://www.fanhaobai.com/2016/05/lnmp.html#Phpstorm)。至于注册码，见 [@lan yu](http://idea.lanyus.com/) 提供的方法。
 
 ##  配置
 
