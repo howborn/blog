@@ -224,7 +224,7 @@ use Hashids\Hashids;
 $hashids = new Hashids('salt', 6, 'abcdefghijk1234567890');
 
 $hashids->encode(11002);    //994k2kk
-$hashids->decode(994k2kk);  //[11002]
+$hashids->decode('994k2kk');  //[11002]
 ```
 
 需要说明的是，其中`salt`是非常重要的散列加密盐串，`6`表示散列值最小长度，`abcde...7890`为散列字典，太长影响效率，太短不安全。由于默认的散列字典比较长，decode 效率并不高，所以这里移除了大写字母部分。
