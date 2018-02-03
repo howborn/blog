@@ -10,7 +10,7 @@ categories:
 
 2017 年是自如快速增长的一年，自如客突破 100 万，管理资产达到 50 万间，在年底成功获得了 40 亿 A 轮融资，而这些都要感谢广大的自如客，公司为了回馈自如客，在六周年活动时就发放了 6000 万租住基金，当然年底散币活动也够疯狂。
 
-![2018口碑年](https://img.fanhaobai.com/2018/01/new-year-activity-2018/a3f34d9b-55cd-4931-8557-63f9b6767a79.jpg)<!--more-->
+![2018口碑年](https://img.fanhaobai.com/2018/01/2018-new-year-activity/a3f34d9b-55cd-4931-8557-63f9b6767a79.jpg)<!--more-->
 
 ## 活动规模
 
@@ -20,7 +20,7 @@ categories:
 2. 针对 [自如客]() 的 1000 万现金礼包；
 3. 25 万的 [员工]() 红包活动；
 
-![员工红包活动](https://img.fanhaobai.com/2018/01/new-year-activity-2018/b19eec7a-978b-4ddc-8c8b-13c643c27b48.png)
+![员工红包活动](https://img.fanhaobai.com/2018/01/2018-new-year-activity/b19eec7a-978b-4ddc-8c8b-13c643c27b48.png)
 
 散币活动 2 和 3 是通过微信红包形式进行，想散币就散吧，可微信告诉我们，想散币还得交税（>﹏<）。员工红包来说，25 万要交掉 10 多万税，此时心疼我的钱。好了，下面开始说点正事。
 
@@ -104,13 +104,13 @@ $m[] = $M;
 
 在限流方面，由于我们预估的请求量还在系统承受范围，所以没有考虑引入后端限流方案。我们的抢红包系统流程图如下：
 
-[抢红包流程图](https://img.fanhaobai.com/2018/01/new-year-activity-2018/f405ee75-8e06-4f72-a8c5-60a155cc0ead.png)
+[抢红包流程图](https://img.fanhaobai.com/2018/01/2018-new-year-activity/f405ee75-8e06-4f72-a8c5-60a155cc0ead.png)
 
 我们将抢红包拆分为 [红包占有]()（流程①，同步） 和 [红包发放]() （流程②，异步）这两个过程，首先采用高速队列串行化请求，红包发放逻辑由一组 Worker 异步去完成。高速队列只是完成红包占有的过程，实现库存的控制，Worker 则处理耗时较长的红包发放过程。
 
 当然，在实际应用中，红包占用过程还需要加上一些前置规则校验，比如用户是否已经领取过，领取次数是否已经达到上限等？红包占有流程图如下：
 
-[红包占有流程图](https://img.fanhaobai.com/2018/01/new-year-activity-2018/3a9dff7a-71f1-4d9d-a576-a3dcbaf65c9b.png)
+[红包占有流程图](https://img.fanhaobai.com/2018/01/2018-new-year-activity/3a9dff7a-71f1-4d9d-a576-a3dcbaf65c9b.png)
 
 其中，`red::list`为 List 结构，存放预先生成的红包金额（流程①中的红包队列）；`red::task` 也为 List 结构，红包异步发放队列（流程②中的任务队列）；`red::draw`为 Hash 结构，存放红包领取记录，`field`为用户的 openid，`value`为序列化的红包信息；`red::draw_count:u:openid`为 K-V 结构，用户领取红包计数器。
 
@@ -196,7 +196,7 @@ while (true) {
 
 由于 Worker 需要常驻内存运行，难免会出现异常退出的情况（也有主动退出）， 所以需要保持 Worker 一直处于运行状态。我们使用进程管理工具 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html) 来监控 Worker 的运行状态，同时管理 Worker 的数量，当任务队列出现堆积时，增加 Worker 数量即可。Supervisor 的监控后台如下：
 
-[Supervisor进程管理](https://img.fanhaobai.com/2018/01/new-year-activity-2018/9a15f5d1-0983-4155-80e4-ba55e5543672.png)
+[Supervisor进程管理](https://img.fanhaobai.com/2018/01/2018-new-year-activity/9a15f5d1-0983-4155-80e4-ba55e5543672.png)
 
 ### 员工系统号散列
 
@@ -249,7 +249,7 @@ $hashids->decode(994k2kk);  //[11002]
 
 我们业务场景的特殊性，存在用户可助力次数的限制，所以无需担心恶意刷赞的情况，因此可以选用方案 1，此时整个交互流程如下：
 
-[语音点赞流程图](https://img.fanhaobai.com/2018/01/new-year-activity-2018/9cf63edb-315e-4951-9d7f-531953741e52.png)
+[语音点赞流程图](https://img.fanhaobai.com/2018/01/2018-new-year-activity/9cf63edb-315e-4951-9d7f-531953741e52.png)
 
 当然中国文字博大精深，语音识别的文本在匹配时，需要考虑容错处理，可以将文本转化为拼音，然后匹配拼音，或者设置一个匹配百分比，达到匹配值则认为语音口令正确。
 
