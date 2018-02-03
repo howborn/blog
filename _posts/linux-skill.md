@@ -99,3 +99,23 @@ $ kill -9 4755
 ```
 
 更多详细说明，见 [Linux强制踢出其他登录用户](https://www.fanhaobai.com/2016/11/out-users.html)。
+
+## Strace调试
+
+在调试程序时，我们会遇到一些系统层面的错误问题，一般都不易发现，这时可以使用 strace 来跟踪系统调用的过程，方便快速定位和解决问题。
+
+```C
+$ strace crontab.sh
+execve("./crontab.sh", ["./crontab.sh"], [/* 29 vars */]) = 0
+brk(0)                                  = 0x106a000
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f0434160000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=53434, ...}) = 0
+mmap(NULL, 53434, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f0434152000
+close(3)                                = 0
+open("/lib64/libc.so.6", O_RDONLY)      = 3
+... ...
+```
+
+更多详细说明，见 [错误调试](https://www.fanhaobai.com/2017/07/php-cli-setting.html#错误调试https://www.fanhaobai.com/2016/11/out-users.html)。
