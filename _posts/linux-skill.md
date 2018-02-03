@@ -49,7 +49,7 @@ $ cat /etc/redhat-release
 CentOS release 6.8 (Final)
 ```
 
-## yum更新排除指定软件
+## Yum更新排除指定软件
 
 有时候我们使用 yum 安装的软件，由于配置向后兼容性等问题，我们并不希望这些软件（filebeat 和 logstash）在使用`update`时，被不经意间被自动更新。这时，可以使用如下方法解决：
 
