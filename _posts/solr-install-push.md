@@ -62,8 +62,10 @@ Creating new core 'books'
 {
   "responseHeader":{
     "status":0,
-    "QTime":1140},
-  "core":"books"}
+    "QTime":1140
+  },
+  "core":"books"
+}
 
 #删除核使用delete
 ```
