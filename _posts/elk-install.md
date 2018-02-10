@@ -67,7 +67,7 @@ $ mv /usr/local/elk/elasticsearch-6.1.1 /usr/local/elk/elasticsearch
 ```Bash
 $ vim config/jvm.options
 # 根据实际情况修改
--Xms256m
+-Xms128m
 -Xmx256m
 ```
 
