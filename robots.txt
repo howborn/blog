@@ -1,6 +1,5 @@
-# robots.txt for www.fanhaobai.com 2017.12.09
+# robots.txt for www.fanhaobai.com 2018.01.07
 User-agent: *
-Disallow: /post
 Disallow: /404.html
 Disallow: /categories
 Sitemap: http://www.fanhaobai.com/sitemap.xml
