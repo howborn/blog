@@ -3,7 +3,7 @@ title: 本站特性
 date: 2016-12-11 13:12:10
 ---
 
-本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server。本站的 [博客](https://www.fanhaobai.com) 基于开源的 Hexo 搭建，运行于 NodeJS 环境；本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境；数据库采用开源的 MySQL ，内存缓存服务器采用 Redis 。
+本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server。本站的 [博客](https://www.fanhaobai.com) 基于开源的 Hexo 搭建，运行于 NodeJS 环境，本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境；数据库采用开源的 MySQL ，内存缓存服务器采用 Redis 。
 
 # 更新说明
 
