@@ -7,7 +7,9 @@ categories:
 - 工具
 ---
 
-俗话说，工欲善其事必先利其器。作为一名码农，合适开发工具能提高我们的开发效率，而 PhpStorm 是 PHPer 不可或缺的工具，这里整理了一些编码过程中常用的 PhpStorm 使用姿势。<!--more-->
+俗话说，工欲善其事必先利其器。作为一名码农，合适开发工具能提高我们的开发效率，而 PhpStorm 是 PHPer 不可或缺的工具，这里整理了一些编码过程中常用的 PhpStorm 使用姿势。
+
+![预览图](https://img.fanhaobai.com/2017/05/phpstorm-posture/837dac58-9c01-4748-949e-57ba18a524ea.png)<!--more-->
 
 ## 安装
 
