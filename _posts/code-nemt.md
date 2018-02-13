@@ -9,7 +9,9 @@ categories:
 
 > 原文：[Linux爱好者](https://mp.weixin.qq.com/s?__biz=MzAxODI5ODMwOA==&mid=2666540880&idx=1&sn=6af8fe6af3d65b1ddaf44cb9ba3a6058&chksm=80dcebfbb7ab62ed4c70384e8e4ae348e6560f3571192e2fe9cdc7a886eb1e2a6b40c010f1fd&mpshare=1&scene=22&srcid=0607mHPqVhP5AWYvGZ438y6h#rd)
 
-只要志愿选的好，年年期末像高考。比如，你选择了计算机专业，那么你将面临高等数学、线性代数、C语言、计算机引论、离散数学、电子技术、C++程序设计、汇编语言程序设计、计算机组成原理、编译原理、操作系统、数据库原理……![](https://img.fanhaobai.com/2017/06/code-nemt/27577541-0e2b-969b-3c61-2ddfaed5abb4.gif)<!--more-->
+只要志愿选的好，年年期末像高考。比如，你选择了计算机专业，那么你将面临高等数学、线性代数、C语言、计算机引论、离散数学、电子技术、C++程序设计、汇编语言程序设计、计算机组成原理、编译原理、操作系统、数据库原理……
+
+![](https://img.fanhaobai.com/2017/06/code-nemt/27577541-0e2b-969b-3c61-2ddfaed5abb4.gif)<!--more-->
 
 又是一年高考季，一起来做做“程序员们的高考试卷”，压压惊吧~
 

@@ -8,6 +8,7 @@ categories:
 ---
 
 在使用 Linux 命令行模式下，作为程序员的你怎么查询一些日常信息呢？比如本地 IP 地址、天气情况等。这里收录一些较实用的日常查询信息的站点。
+
 ![](https://img.fanhaobai.com/2017/02/linux-tool-website/em5NGzPratjzKRCB6kSvGehY.png)<!--more-->
 
 # 查询天气

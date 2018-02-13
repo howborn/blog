@@ -8,6 +8,7 @@ categories:
 ---
 
 随着公司房源数据的急剧增多，现搜索引擎 Solr 的搜索效率和建立索引效率显著降低，而 [Elasticsearch](https://github.com/elastic/elasticsearch) 是一个实时的分布式搜索和分析引擎，它是基于全文搜索引擎 [Apache Lucene](https://lucene.apache.org/) 之上，接入 Elasticsearch 是必然之选。本文是我学习使用 Elasticsearch 检索的笔记。
+
 ![](https://img.fanhaobai.com/2017/08/elasticsearch-search/9a3accb9-0da1-47e4-ad58-428370464af6.jpg)<!--more-->
 
 Elasticsearch 支持 RESTful API 方式检索，查询结果以 JSON 格式响应，文中示例数据见 [这里](http://es.fanhaobai.com)。有关 Elasticsearch 详细使用说明，见  [官方文档](https://elasticsearch.cn/book/elasticsearch_definitive_guide_2.x/)。

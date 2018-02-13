@@ -8,6 +8,7 @@ categories:
 ---
 
 [Composer](https://getcomposer.org/) 是一个 PHP 依赖包管理工具，我们通过在 composer.json 配置中申明项目依赖后，它会自动在的项目中安装完成项目所需依赖。一些常用的项目依赖包列表，[见这里](https://packagist.org/)。
+
 ![](https://img.fanhaobai.com/2017/05/composer/bb8a-6ddaa3977.png)<!--more-->
 
 ## 安装

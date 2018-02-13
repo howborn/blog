@@ -8,6 +8,7 @@ categories:
 ---
 
 [GitLab](https://www.gitlab.com) 是一个用于仓库管理系统的开源项目，非常适合在团队内部使用。很多公司为了代码安全，不会选择在公网代码管理仓库中托管代码，而会选择在公司内网服务器自主搭建 GitLab 服务，以便开发团队协作使用，这里记录我的搭建过程。
+
 ![预览图](https://img.fanhaobai.com/2017/02/gitlab-install/f8facee3-ddff-4d5a-a6a6-904951891ad5.png)<!--more-->
 
 系统环境为 CentOS 6.8，如果系统版本较低，请先使用命令`sudo yum -y update`进行升级。这里参考 Github [官方安装文档](https://github.com/gitlabhq/gitlab-recipes/tree/master/install/centos)，可以直接移步到这里。
