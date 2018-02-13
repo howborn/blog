@@ -17,7 +17,7 @@ categories:
 
 [站点地图](http://baike.baidu.com/link?url=ztt5Ynwbu27ulWT62PphpF9XCs4oE9xKriqZ_QnrLw3INX7Xf795vrdIhXgyspnaB4xrFq-CkTJyrTY6c_9Nu_)，又称网站地图。它是一个网站所有链接的容器，作用是引导搜索引擎机器人抓取网站页面，增加网站重点内容的收录。站点地图一般存放在站点根目录下并命名为 **sitemap** 。<!--more-->
 
-本站 [博客](https://www.fanhaobai.com) 为了SEO，已经做好了 [Robots协议](https://www.fanhaobai.com/2017/01/robots.html) 的引入。
+本站 [博客](https://www.fanhaobai.com) 为了 SEO，已经支持了 [Robots协议](https://www.fanhaobai.com/2017/01/robots.html)。
 
 由于本站博客文章是不定时进行更新，因此站点地图也需要进行时时更新，而本站对于站点地图更新的时效性要求不高，所以本站采用了 PHP 脚本定时更新站点地图的方案。
 
