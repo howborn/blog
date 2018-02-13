@@ -152,7 +152,7 @@ server {
     ssl on;
     root  /data/html/hexo/public;
     
-    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+    if ($request_method !~ ^(GET|HEAD|POST)$) {
         return 444;
     }
 
@@ -182,7 +182,7 @@ server {
     listen 80;
     access_log off;
     server_name fanhaobai.com www.fanhaobai.com;
-    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+    if ($request_method !~ ^(GET|HEAD|POST)$) {
         return        444;
     }
     include conf.d/common;	
