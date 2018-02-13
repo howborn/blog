@@ -7,7 +7,8 @@ categories:
 - 工具
 ---
 
-[ab](http://baike.baidu.com/link?url=b4bhuzwBAf5Zyh5lkcs_r_vOQAOINHPzuE8Z9oOvSoVwO4rqYARKLon6QzZmmVqbs2jxKudsBMXnoIQ7w0OdLCnPzaaKFnoMpuUGwnoMxw)（ApacheBench）是一款小巧且使用简单的压测工具，可以提供站点基本的性能指标。ab 一般作为 Apache 服务器的子应用程序出现，而这里将介绍 Linux 下独立安装 ab 的方法以及它的简单使用。<!--more-->
+[ab](http://baike.baidu.com/link?url=b4bhuzwBAf5Zyh5lkcs_r_vOQAOINHPzuE8Z9oOvSoVwO4rqYARKLon6QzZmmVqbs2jxKudsBMXnoIQ7w0OdLCnPzaaKFnoMpuUGwnoMxw)（ApacheBench）是一款小巧且使用简单的压测工具，可以提供站点基本的性能指标。ab 一般作为 Apache 服务器的子应用程序出现，而这里将介绍 Linux 下独立安装 ab 的方法以及它的简单使用。
+![预览图](https://img.fanhaobai.com/2016/02/ab/c390e541-7bb5-453e-bba5-adc31e9034f2.png)<!--more-->
 
 
 # 独立安装
