@@ -32,7 +32,7 @@ $test->parse('scintf.proto');
 
 于是，我们得到了 PHP 使用的库文件 pb_proto_scintf.php，下一步就是编写实际的程序代码。
 
-![](https://img.fanhaobai.com/2017/02/protocol-buffer/xGcf67WPCRtWw_sMgGqohg_u.png)
+![](https://img.fanhaobai.com/2017/02/protocol-buffer/xGcf67WPCRtWw_sMgGqohg.png)
 
 我们经常使用 PHP  来做字符串的 socket 通信，但是，处理这种二进制格式的 socket 传输，PHP 并不太擅长。
 
