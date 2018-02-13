@@ -9,7 +9,9 @@ categories:
 
 > 原文：http://www.ruanyifeng.com/blog/2012/07/git.html
 
-如果你严肃对待编程，就必定会使用 "[版本管理系统](http://www.ruanyifeng.com/blog/2008/12/a_visual_guide_to_version_control.html)"（Version Control System）。眼下最流行的"版本管理系统"，非 [Git](http://git-scm.com/) 莫属。![](https://img.fanhaobai.com/2016/11/git-flow/bg2012070501.png)<!--more-->
+如果你严肃对待编程，就必定会使用 "[版本管理系统](http://www.ruanyifeng.com/blog/2008/12/a_visual_guide_to_version_control.html)"（Version Control System）。眼下最流行的"版本管理系统"，非 [Git](http://git-scm.com/) 莫属。
+
+![](https://img.fanhaobai.com/2016/11/git-flow/bg2012070501.png)<!--more-->
 
 相比同类软件，Git 有很多优点。其中很显著的一点，就是版本的分支（branch）和合并（merge）十分方便。有些传统的版本管理软件，分支操作实际上会生成一份现有代码的物理拷贝，而 Git 只生成一个指向当前版本（又称"快照"）的指针，因此非常快捷易用。
 
