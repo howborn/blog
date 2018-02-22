@@ -13,7 +13,7 @@ categories:
 
 ## 查看系统版本
 
-在安装环境或者软件时，我们常常需要知道所在操作系统的版本信息，这里列举几种查看内核和发行版本信息的方法，更多见 [查看Linux系统版本](https://www.fanhaobai.com/2016/07/linux-version.html)。
+在安装环境或者软件时，我们常常需要知道所在操作系统的版本信息，这里列举几种查看内核和发行版本信息的方法，更多见 [查看 Linux 系统版本](https://www.fanhaobai.com/2016/07/linux-version.html)。
 
 ### 内核版本
 
