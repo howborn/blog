@@ -104,7 +104,7 @@ $m[] = $M;
 
 ![红包占有流程图](https://img.fanhaobai.com/2018/01/2018-new-year-activity/3a9dff7a-71f1-4d9d-a576-a3dcbaf65c9b.png)
 
-其中，`red::list`为 List 结构，存放预先生成的红包金额（流程①中的红包队列）；`red::task` 也为 List 结构，红包异步发放队列（流程②中的任务队列）；`red::draw`为 Hash 结构，存放红包领取记录，`field`为用户的 openid，`value`为序列化的红包信息；`red::draw_count:u:openid`为 K-V 结构，用户领取红包计数器。
+其中，`red::list`为 List 结构，存放预先生成的红包金额（流程①中的红包队列）；`red::task` 也为 List 结构，红包异步发放队列（流程②中的任务队列）；`red::draw`为 Hash 结构，存放红包领取记录，`field`为用户的 openid，`value`为序列化的红包信息；`red::draw_count:u:openid`为 k-v 结构，用户领取红包计数器。
 
 下面，我将以以下 3 个问题为中心，来说说我们设计出的抢红包系统。
 
