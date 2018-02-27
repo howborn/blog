@@ -180,7 +180,7 @@ server {
     server_name fanhaobai.com www.fanhaobai.com;
 
     include conf.d/common;
-    if ($request_uri !~ 'sitemap|map') {
+    if ($request_uri !~ '(sitemap|map\.html|xml)|(robots\.txt)') {
         #重定向到https
         return    301  https://www.fanhaobai.com$request_uri;
     }
