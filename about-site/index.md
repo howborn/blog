@@ -7,7 +7,7 @@ date: 2016-12-11 13:12:10
 
 # 更新说明
 
-* 2018.02.12：兼容迁移 Hexo 之前的文章 [url](#主站——www-conf)。
+* 2018.02.12：兼容迁移 Hexo 之前的文章 [URL](#主站——www-conf)。
 * 2018.01.06：接入 [Cloudflare](https://www.cloudflare.com) 提供的免费 CDN。
 * 2017.12.16：搭建 [ELK](https://www.fanhaobai.com/2017/12/elk.html) 集中式日志平台。
 * 2017.12.09：Hexo 结合 [Webhook](https://github.com/fan-haobai/webhook) 支持自动发布。
@@ -111,7 +111,7 @@ http {
 }
 ```
 
-### 共有配置——common.conf
+### 共有配置——common
 
 ```Nginx
 if ($http_user_agent ~ "DNSPod") {
@@ -125,7 +125,7 @@ location /.well-known/acme-challenge/ {
 }
 
 #网站地图地址
-location ~ /sitemap\.(html|xml)$ {
+location ~ /sitemap|map\.(html|xml)$ {
     expires off;
 }
 
@@ -134,12 +134,11 @@ location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
     access_log   off;
     expires      30d;
     
-    valid_referers none blocked *.fanhaobai.com server_names ~\.google\. ~\.baidu\. ~\.len7.cc\.;
+    valid_referers none blocked *.fanhaobai.com server_names ~\.google\. ~\.baidu\.;
     if ($invalid_referer) {
         return  403;
     }
 }
-
 ```
 
 ### 主站——www.conf
@@ -151,10 +150,6 @@ server {
     #https配置
     ssl on;
     root  /data/html/hexo/public;
-    
-    if ($request_method !~ ^(GET|HEAD|POST)$) {
-        return 444;
-    }
 
     #fanhaobai.com重定向到www.fanhaobai.com
     if ($host ~ ^fanhaobai.com$) {
@@ -175,6 +170,7 @@ server {
     }
 
     include conf.d/common;
+    include conf.d/rewrite;
 }
  
 server {
@@ -182,16 +178,19 @@ server {
     listen 80;
     access_log off;
     server_name fanhaobai.com www.fanhaobai.com;
-    if ($request_method !~ ^(GET|HEAD|POST)$) {
-        return        444;
+
+    include conf.d/common;
+    if ($request_uri !~ 'sitemap|map') {
+        #重定向到https
+        return    301  https://www.fanhaobai.com$request_uri;
     }
-    include conf.d/common;	
-    #重定向到https
-    return    301  https://www.fanhaobai.com$request_uri;
+    include conf.d/rewrite;
 }
 ```
 
-为了兼容迁移 Hexo 之前文章的 url，增加以下重写规则：
+### 主站——rewrite
+
+为了兼容迁移 Hexo 之前文章的 URL，增加以下重写规则：
 
 ```Nginx
 rewrite ^/2017/08/solr-insatll(.*) /2017/08/solr-install$1 permanent;
@@ -217,6 +216,7 @@ rewrite ^/post/letsencrypt(.*) /2016/12/lets-encrypt$1 permanent;
 rewrite ^/post/linux-tool-website(.*) /2017/02/linux-tool-website$1 permanent;
 rewrite ^/rss.html /atom.xml last;
 rewrite ^/map.html /sitemap.xml last;
+rewrite ^/map.xml /sitemap.xml last;
 ```
 
 ### 维基——wiki.conf
@@ -227,9 +227,7 @@ server {
     server_name wiki.fanhaobai.com;
     ssl on;
     root  /data/html/wiki;
-    if ($request_method !~ ^(GET|HEAD|POST)$) {
-        return 444;
-    }
+    
     try_files $uri $uri/ @rewrite;
     location @rewrite {
         if (!-e $request_filename) {
@@ -305,7 +303,7 @@ server {
 User-agent: *
 Disallow: /404.html
 Disallow: /categories
-Sitemap: http://www.fanhaobai.com/sitemap.xml
+Sitemap: http://www.fanhaobai.com/map.xml
 ```
 
 ## 站点地图
