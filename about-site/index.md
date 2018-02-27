@@ -59,7 +59,6 @@ http {
                       '"$http_user_agent" "$http_x_forwarded_for" "$request_body"';
     access_log /data/logs/$server_name.access.log main;
     
-    root /data/html/hexo/public;
     index index.html index.php;
     #错误页面
     error_page  404 500 502 503 504 /404.html;
@@ -107,7 +106,6 @@ http {
 
     include        conf.d/*.conf; 
     #防止恶意解析
-    #autoindex on;
 }
 ```
 
