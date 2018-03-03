@@ -512,4 +512,4 @@ appendChild(createElement('script')).src='https://www.fanhaobai.com
 </script>
 ```
 
-到这里，也终于算是搭建结束了。至于 404 页面打算采用 [腾讯的公益404页面](http://www.qq.com/404/) 来做，[见这里]()。
+到这里，也终于算是搭建结束了。至于 404 页面打算采用 [腾讯的公益404页面](http://www.qq.com/404/) 来做，[见这里](https://www.fanhaobai.com/404.html)。
