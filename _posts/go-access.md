@@ -162,5 +162,15 @@ tcp   0   0 0.0.0.0:7890      0.0.0.0:*     LISTEN      21136/goaccess
 
 到这里，唯一让我困惑且还未实践的是，当 access 日志被切割后，怎么合理使用 GoAccess 分析日志，`--keep-db-files`这个功能倒是可以尝试，这样就可以只分析新生产的日志文件了。
 
->官方文档：https://goaccess.io/man
+> 官方文档：https://goaccess.io/man
 
+## 高阶
+
+尽管 GoAccess 很强大，但是它无法制定自定义监控规则，无法满足对站点全面的监控的需求。到 2017 年底，本站已经使用 [ELK 日志平台](http://elk.fanhaobai.com) 来分析站点的访问情况和流量分析了，效果见 [ELK 集中式日志平台](https://www.fanhaobai.com/about/#站点导航
+)。
+
+<strong>相关文章 [»]()</strong>
+
+* [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html) <span>（2017-12-16）</span>
+* [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-22）</span>
+* [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-22）</span>
