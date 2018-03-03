@@ -166,7 +166,7 @@ tcp   0   0 0.0.0.0:7890      0.0.0.0:*     LISTEN      21136/goaccess
 
 ## 高阶
 
-尽管 GoAccess 很强大，但是它无法制定自定义监控规则，无法满足对站点全面的监控的需求。到 2017 年底，本站已经使用 [ELK 日志平台](http://elk.fanhaobai.com) 来分析站点的访问情况和流量分析了，效果见 [ELK 集中式日志平台](https://www.fanhaobai.com/about/#站点导航
+尽管 GoAccess 很强大，但是它无法制定自定义监控规则，无法满足对站点更细粒度更全面的监控需求。到 2017 年底，本站已经使用 [ELK 日志平台](http://elk.fanhaobai.com) 来分析站点的访问情况和流量分析了，效果见 [ELK 集中式日志平台](https://www.fanhaobai.com/about/#站点导航
 )。
 
 <strong>相关文章 [»]()</strong>
