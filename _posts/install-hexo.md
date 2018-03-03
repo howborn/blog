@@ -236,7 +236,9 @@ line_number: false
 
 # 部署
 
-因为我是直接在服务器上编辑博客，所以发布更新后即可生效。如果采用本地编辑博客，而博客部署在远程服务器上，那么你就需要部署，才能同步本地更新到远程服务器。
+如果采用本地编辑博客，而博客部署在远程服务器上，那么你就需要部署，才能同步本地更新到远程服务器。
+
+## 官方推荐
 
 Hexo 提供了 5 种部署方案，[见这里](https://hexo.io/zh-cn/docs/deployment.html)，这里只介绍以下 2 种：
 
@@ -280,6 +282,9 @@ deploy:
 
 总之，部署的目的，就是将发布生成的静态文件`public`更新到服务器上，如果能实现这个目的，途径倒是无所谓了。
 
+## 我的方案
+
+上述推荐部署方案，明显的缺点是本地需要部署 Hexo 环境，无法实现随时随地的更新博客。为了方便写作，我的部署方案见 [我的博客部署上线过程 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。
 
 # 自定义修改
 
@@ -513,3 +518,7 @@ appendChild(createElement('script')).src='https://www.fanhaobai.com
 ```
 
 到这里，也终于算是搭建结束了。至于 404 页面打算采用 [腾讯的公益404页面](http://www.qq.com/404/) 来做，[见这里](https://www.fanhaobai.com/404.html)。
+
+<strong>相关文章 [»]()</strong>
+
+* [我的博客部署上线过程 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)<span>（2018-03-03）</span>
