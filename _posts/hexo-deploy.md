@@ -1,5 +1,5 @@
 ---
-title: 我的博客发布上线过程 — Hexo
+title: 我的博客发布上线方案 — Hexo
 date: 2018-03-03 16:14:00
 tags:
 - 系统设计
@@ -8,9 +8,9 @@ categories:
 - 系统设计
 ---
 
-之前一直在使用 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html#官方推荐) 推荐的发布方案，缺点是本地依赖 Hexo 环境，无法随时随地地更新博客。为了摆脱 Hexo 环境约束进而高效写作，有了下述的发布方案。<!--more-->
+之前一直在使用 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html#官方推荐) 推荐的发布方案，缺点是本地依赖 Hexo 环境，无法随时随地地更新博客。为了摆脱 Hexo 环境约束进而高效写作，有了下述的发布方案。
 
-![预览图](https://img.fanhaobai.com/2018/03/hexo-deploy/bf3adf97-088b-47cd-b5ab-377a4f4acd44.png)
+![预览图](https://img.fanhaobai.com/2018/03/hexo-deploy/082786eb-0903-4776-a345-e52d25de2e49.png)<!--more-->
 
 本文的发布方案中，Git 仓库只是托管 md 文件，通过 Webhook 通知服务器拉取 md 文件，然后执行构建静态文件操作，完成一个发布过程。
 
@@ -133,3 +133,7 @@ $pwd/node_modules/hexo/bin/hexo g
 新发布方案与之前方案的区别是：一个本地只需编写 md 文件，博客服务器构建静态文件；另一个是本地编写 md 文件后，需要本地构建静态文件，然后博客服务器只同步静态文件。
 
 当然，有很多办法可以解决当前问题，比如可以使用 [持续集成](https://formulahendry.github.io/2016/12/04/hexo-ci/)。本文只是提供一个发布思路，在项目的生成环境中，我们也很容易应用上这种发布思路，开发出自己的发布系统。
+
+<strong>相关文章 [»]()</strong>
+
+* [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)<span>（2017-03-01）</span>

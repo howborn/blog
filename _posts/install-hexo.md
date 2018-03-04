@@ -284,7 +284,7 @@ deploy:
 
 ## 我的方案
 
-上述推荐部署方案，明显的缺点是本地需要部署 Hexo 环境，无法实现随时随地的更新博客。为了方便写作，我的部署方案见 [我的博客部署上线过程 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。
+上述推荐部署方案，明显的缺点是本地需要部署 Hexo 环境，无法实现随时随地的更新博客。为了方便写作，我的部署方案见 [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。
 
 # 自定义修改
 
@@ -521,4 +521,4 @@ appendChild(createElement('script')).src='https://www.fanhaobai.com
 
 <strong>相关文章 [»]()</strong>
 
-* [我的博客部署上线过程 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)<span>（2018-03-03）</span>
+* [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)<span>（2018-03-03）</span>
