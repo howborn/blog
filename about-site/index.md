@@ -104,7 +104,7 @@ http {
     lua_package_path '/usr/local/include/luajit-2.0/lib/?.lua;;';
     lua_package_cpath '/usr/local/include/luajit-2.0/lib/?.so;;';
 
-    include        conf.d/*.conf; 
+    include        vhost/*.conf; 
     #防止恶意解析
 }
 ```
@@ -167,8 +167,8 @@ server {
         expires max;
     }
 
-    include conf.d/common;
-    include conf.d/rewrite;
+    include vhost/common;
+    include vhost/rewrite;
 }
  
 server {
@@ -177,12 +177,12 @@ server {
     access_log off;
     server_name fanhaobai.com www.fanhaobai.com;
 
-    include conf.d/common;
+    include vhost/common;
     if ($request_uri !~ '(sitemap|map\.html|xml)|(robots\.txt)') {
         #重定向到https
         return    301  https://www.fanhaobai.com$request_uri;
     }
-    include conf.d/rewrite;
+    include vhost/rewrite;
 }
 ```
 
@@ -242,7 +242,7 @@ server {
         include        fastcgi_params;
     }
 
-    include conf.d/common;
+    include vhost/common;
 }
 ```
 

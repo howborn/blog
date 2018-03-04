@@ -42,13 +42,6 @@
         "doubanLink": "https://book.douban.com/subject/6920100/"
       },
       {
-        "title": "我们为什么会分手？",
-        "cover": "/douban/mpic/s27635418.jpg",
-        "review": "新年回家利用火车上的时间看完了这本访谈录性质的书，正如书中所言，同样的世界，在不同人的眼里竟是如此迥异的面貌。通过书中十五个分手的故事，你可以知道，恋人双方对爱会给出不同的诠释，而分手对双方又是如此的微妙。那么为什么会分手呢？请好好珍惜身边人吧。",
-        "score": "7.4",
-        "doubanLink": "https://book.douban.com/subject/26146992/"
-      },
-      {
         "title": "图解HTTP",
         "cover": "/douban/lpic/s27283822.jpg",
         "review": "",
@@ -79,18 +72,18 @@
     ],
     "reading": [
       {
+        "title": "Head First 设计模式",
+        "cover": "/douban/lpic/s2686916.jpg",
+        "review": "",
+        "score": "9.2",
+        "doubanLink": "https://book.douban.com/subject/2243615/"
+      },
+      {
         "title": "高性能MySQL",
         "cover": "/douban/lpic/s27783358.jpg",
         "review": "",
         "score": "9.3",
         "doubanLink": "https://book.douban.com/subject/23008813/"
-      },
-      {
-        "title": "程序员面试笔试宝典",
-        "cover": "/douban/lpic/s23121995.jpg",
-        "review": "",
-        "score": "8.0",
-        "doubanLink": "https://book.douban.com/subject/20270192/"
       }
     ],
     "wanted": [
@@ -135,6 +128,13 @@
         "review": "",
         "score": "8.8",
         "doubanLink": "https://read.douban.com/ebook/1637944"
+      },
+      {
+        "title": "程序员面试笔试宝典",
+        "cover": "/douban/lpic/s23121995.jpg",
+        "review": "",
+        "score": "8.0",
+        "doubanLink": "https://book.douban.com/subject/20270192/"
       }
     ]
   }
