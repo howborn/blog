@@ -8,7 +8,7 @@ categories:
 - 系统设计
 ---
 
-一直使用 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html#官方推荐) 推荐的发布部署方案，明显的缺点是本地依赖 Hexo 环境，无法随时随地地更新博客。为了摆脱 Hexo 环境约束进而高效写作，有了下述的发布方案。<!--more-->
+之前一直在使用 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html#官方推荐) 推荐的发布方案，缺点是本地依赖 Hexo 环境，无法随时随地地更新博客。为了摆脱 Hexo 环境约束进而高效写作，有了下述的发布方案。<!--more-->
 
 ![预览图](https://img.fanhaobai.com/2018/03/hexo-deploy/bf3adf97-088b-47cd-b5ab-377a4f4acd44.png)
 
