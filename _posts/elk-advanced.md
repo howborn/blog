@@ -543,6 +543,23 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 ![](https://img.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
 
+## OutOfMemory错误或CPU爆表问题
+
+当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 OutOfMemory 错误，并且服务器 CPU 处于爆表状态。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
+
+我服务器内存只有 2G，自然 JVM 配置不能太阔。如下：
+
+```Yaml
+-Xms64m
+-Xmx128m
+```
+
+这个问题是由于内存硬件限制，所以没法从根本上解决问题，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期（周期根据配置决定）重启 Logstash 即可。我的定时任务为：
+
+```Bash
+0 */12 * * * /sbin/service logstash restart
+```
+
 <strong>相关文章 [»]()</strong>
 
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html) <span>（2017-12-16）</span>
