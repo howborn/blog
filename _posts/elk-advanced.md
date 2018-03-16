@@ -213,6 +213,8 @@ output {
 }
 ```
 
+> 相对应的 Filebeat 的配置见 [filebeat.yml](https://www.fanhaobai.com/2017/12/elk-install.html#Filebeat) 部分。
+
 ## [索引模板](https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-templates.html)
 
 Logstash 在推送数据至 Elasticsearch 时，默认会自动创建索引，但有时候我们需要定制化索引信息，Logstash 创建的索引就不符合我们的要求，此时就可以使用索引模板来解决。
@@ -545,7 +547,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 ## OutOfMemory错误或CPU爆表问题
 
-当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 OutOfMemory 错误，并且服务器 CPU 处于爆表状态。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
+当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 [OutOfMemory 错误，并且服务器 CPU 处于爆表状态](#)。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
 
 我服务器内存只有 2G，自然 JVM 配置不能太阔。如下：
 

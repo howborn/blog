@@ -290,7 +290,7 @@ output {
 }
 ```
 
-更多配置示例，见 [Logstash Configuration Examples](https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
+完整配置见 [配置示例](https://www.fanhaobai.com/2017/12/elk-advanced.html#配置示例) 部分，更多配置示例见 [Logstash Configuration Examples](https://www.elastic.co/guide/en/logstash/current/config-examples.html)。
 
 ### 启动
 
