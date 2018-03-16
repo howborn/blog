@@ -182,6 +182,8 @@ while (true) {
 }
 ```
 
+> 这里使用 LPOP 命令获取任务，所以使用了 while 结构，并且无任务时需要等待，可以用阻塞命令 BLPOP 来改进。
+
 由于 Worker 需要常驻内存运行，难免会出现异常退出的情况（也有主动退出）， 所以需要保持 Worker 一直处于运行状态。我们使用进程管理工具 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html) 来监控 Worker 的运行状态，同时管理 Worker 的数量，当任务队列出现堆积时，增加 Worker 数量即可。Supervisor 的监控后台如下：
 
 ![Supervisor进程管理](https://img.fanhaobai.com/2018/01/2018-new-year-activity/9a15f5d1-0983-4155-80e4-ba55e5543672.png)
