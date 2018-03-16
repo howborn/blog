@@ -346,14 +346,12 @@ filebeat.modules:
     enabled: true
     var.paths: ["/data/logs/fanhaobai.com.access.log"] #日志路径
     prospector:
-      fields:
-        type: nginx-www-access               #Logstash的type字段
+      document_type: nginx-www-access               #Logstash的type字段
   error:
     enabled: true
     var.paths: ["/data/logs/error.log"]
     prospector:
-      fields:
-        type: nginx-all-error
+      document_type: nginx-all-error
 fields:                                      #自定义字段，Logstash的fields字段
   env: prod                                  #添加环境标识
 queue_size: 1000
