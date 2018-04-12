@@ -34,7 +34,7 @@ ONBOOT=no
 NM_CONTROLLED=yes
 BOOTPROTO=dhcp
 ```
-配置后重启重启即可，否则无法连接到网络。
+配置后重启即可，否则无法连接到网络。
 
 ### 配置 ###
 
@@ -606,14 +606,15 @@ $ cd /etc/init.d/
 $ sudo update-rc.d ssh defaults
 ```
 
-重启启动系统后，发现 sshd 服务并没有启动。查了很久，最后还是使用 vbs 脚本来实现了。
+重启系统后，发现 sshd 服务并没有启动。查了很久，最后还是使用 vbs 脚本来实现了。
 
-在 [子系统随WIN自启](#子系统随WIN自启) 启动脚本`ubuntu-up.vbs`中，增加如下内容：
+在 [子系统随 Win 自启](#子系统随WIN自启) 启动脚本`ubuntu-up.vbs`中，增加如下内容：
 
 ```bash
 ws.run "C:\Windows\System32\bash.exe -c 'sudo /usr/sbin/service ssh --full-restart'",0
 ```
 
+> 注意这里使用到了 sudo 命令，所以需要配置免密码使用，见 [免密码使用 sudo](https://www.fanhaobai.com/2018/01/linux-skill.html#免密码使用sudo) 部分。
 再次启动后，sshd 服务就能正常启动了。
 
 **更新 [»]()**

@@ -98,7 +98,7 @@ www       4755  4752  0 00:09 pts/0    00:00:00 bash
 $ kill -9 4755
 ```
 
-更多详细说明，见 [Linux强制踢出其他登录用户](https://www.fanhaobai.com/2016/11/out-users.html)。
+更多详细说明，见 [Linux 强制踢出其他登录用户](https://www.fanhaobai.com/2016/11/out-users.html)。
 
 ## 免密码使用sudo
 
@@ -153,4 +153,4 @@ open("/lib64/libc.so.6", O_RDONLY)      = 3
 更多详细说明，见 [错误调试](https://www.fanhaobai.com/2017/07/php-cli-setting.html#错误调试https://www.fanhaobai.com/2016/11/out-users.html)。
 
 <strong>更新 [»]()</strong>
-* [免密码使用sudo](#免密码使用sudo)（2018-04-12）
+* [免密码使用 sudo](#免密码使用sudo)（2018-04-12）
