@@ -576,6 +576,49 @@ $ cd vmware-tools-patches
 $ ./patched-open-vm-tools.sh
 ```
 
+### 启用Win10的Linux子系统
+
+之前的方案是使用虚拟机，到后面是 Docker。其实 Win10 已经支持 Linux 子系统，我这次已经尝鲜了，我装的子系统为 Ubuntu。
+一路过来并不顺利，在这里记录我所遇到的问题以及相应的解决方案。
+
+#### 子系统随WIN自启
+
+启动 Win 后，都需要手动 Bash 才能启动 Ubuntu，极为不方便。可以使用 vbs 脚本来启动 Ubuntu，并添加开机启动项。
+
+首先，创建名为`ubuntu-up.vbs`的 vbs 脚本，内容为：
+
+```bash
+set ws=wscript.createobject("wscript.shell")
+ws.run "C:\Windows\System32\bash.exe",0
+```
+
+然后，在"运行"中键入`shell:startup`，会打开"启动"列表，将`ubuntu-up.vbs`保存至此，即可实现 Ubuntu 开机启动。
+
+#### 子系统配置启动服务
+
+这里以 SSH 为例配置启动服务。Ubuntu 子系统默认未安装 SSH，可以使用`sudo apt-get install openssh-server`完成安装。
+
+> 为了避免端口冲突，建议 Port 配置成非 22 端口。
+
+先尝试配置自启动服务：
+
+```Bash
+$ sudo chmod +x /etc/init.d/ssh
+$ cd /etc/init.d/
+$ sudo update-rc.d ssh defaults
+```
+
+重启启动系统后，发现 sshd 服务并没有启动。查了很久，最后还是使用 vbs 脚本来实现了。
+
+在 [子系统随WIN自启](#子系统随WIN自启) 启动脚本`ubuntu-up.vbs`中，增加如下内容：
+
+```bash
+ws.run "C:\Windows\System32\bash.exe -c 'sudo /usr/sbin/service ssh --full-restart'",0
+```
+
+再次启动后，sshd 服务就能正常启动了。
+
 **更新 [»]()**
 
-* [已使用 Docker 来部署开发环境](https://hub.docker.com/r/fanhaobai/lnmp/)（2017-08-26）
+* [使用 Docker 来部署开发环境](https://hub.docker.com/r/fanhaobai/lnmp/)（2017-08-26）
+* [启用 Win10 的 Linux 子系统](#启用Win10的Linux子系统)（2018-04-12）
