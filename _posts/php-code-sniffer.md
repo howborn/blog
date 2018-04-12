@@ -7,16 +7,15 @@ categories:
 - 工具
 ---
 
-当你看到一个代码乱七八糟的项目时，心里肯定很各种  /_ \，代码阅读性特差，不易维护。优秀的项目应该是看起来像是出自一个人之手，这就需要一套代码规范来约束，当然还必须要求项目成员落实这套规范。
+当你看到一个代码乱七八糟的项目时，心里肯定很各种  /_ \，代码阅读性特差，又不易维护。优秀的项目应该是看起来像是出自一个人之手，这就需要一套代码规范来约束，当然还必须要求项目成员落实这套规范。
+
 ![预览图](https://img.fanhaobai.com/2018/04/php-code-sniffer/4b3745ff-6a6a-4381-9b25-5bb2a8033c3f.png)<!--more-->
 
-这里推荐一款自动化的 PHP 代码规范检查工具 —— [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)，当 CodeSniffer 结合 PhpStrom 和 Git 时，自动化代码规范极为方便。
+这里推荐一款自动化的 PHP 代码规范检查工具 —— [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)，当 CodeSniffer 结合 PhpStrom 和 Git 时，自动化代码规范极为方便可靠。
 
 ## 安装
 
-CodeSniffer 支持 [5](https://github.com/squizlabs/PHP_CodeSniffer#installation) 种安装方式，这里使用 [pear](pear.php.net) 方式安装。
-
-如果本地未安装 pear，参考 [pear 安装方法](http://pear.php.net/manual/en/installation.getting.php) 安装：
+CodeSniffer 支持 [5](https://github.com/squizlabs/PHP_CodeSniffer#installation) 种安装方式，这里使用 [pear](pear.php.net) 方式安装。如果本地未安装 pear，参考 [pear 安装方法](http://pear.php.net/manual/en/installation.getting.php) 安装：
 
 ```Bash
 $ wget https://pear.php.net/go-pear.phar
@@ -78,22 +77,22 @@ FOUND 2 ERROR(S) AFFECTING 2 LINE(S)
 
 在 PhpStrom 完成 CodeSniffer 配置后，就可以在 PhpStrom 中时时检测代码是否规范，并做出提醒。
 
-首先，在 “Settings” -> "Code Sniffer" 配置中，“Configuration” 项后点击`...`并输入 phpcs 路径，可以使用 "Validate" 按钮检测 phpcs 路径是否正确。
+首先，在 “Settings” -> "Code Sniffer" 配置中，“Configuration” 项后点击`...`并输入 phpcs 路径，可以使用 "Validate" 按钮验证 phpcs 路径是否正确。
 
-[phpcs路径面板](https://img.fanhaobai.com/2018/04/php-code-sniffer/482b161b-7c73-40ad-94d1-27cf67393ced.png)
-[选择phpcs路径](https://img.fanhaobai.com/2018/04/php-code-sniffer/7c4a474b-266e-4da5-9261-3e40caef10f7.png)
+![phpcs路径面板](https://img.fanhaobai.com/2018/04/php-code-sniffer/482b161b-7c73-40ad-94d1-27cf67393ced.png)
+![选择phpcs路径](https://img.fanhaobai.com/2018/04/php-code-sniffer/7c4a474b-266e-4da5-9261-3e40caef10f7.png)
 
 然后，在 “Settings” -> "Inspections" 配置项中，勾选上 "PHP Code Sniffer validation"。为了醒目，可以将所有 Warning 更改为 Error，如下图：
 
-[启用validation项]https://img.fanhaobai.com/2018/04/php-code-sniffer/8ef974a6-3e2f-11e8-b467-0ed5f89f718b.png)
+![启用validation项](https://img.fanhaobai.com/2018/04/php-code-sniffer/8ef974a6-3e2f-11e8-b467-0ed5f89f718b.png)
 
-最后，就可以在 PhpStrom 中提醒出不满足规范的代码了。
+最后，就可以在 PhpStrom 中提醒出不符合规范的代码了。
 
-[不满足代码规范提醒]https://img.fanhaobai.com/2018/04/php-code-sniffer/711dbc8e-3e30-11e8-b467-0ed5f89f718b.png)
+![不符合代码规范提醒](https://img.fanhaobai.com/2018/04/php-code-sniffer/711dbc8e-3e30-11e8-b467-0ed5f89f718b.png)
 
 ## 配置hook
 
-为了严格执行代码规范，当发现不满足规范的代码时，是不允许提交至代码仓库，可以通过配置 hook 来实现。
+为了严格执行代码规范，当发现不符合规范的代码时，是不允许提交至代码仓库，可以通过配置 hook 来实现。
 
 这里使用 Mercurial 进行代码管理，所以使用了 hg 命令。Mercurial 提供了 Bash 和 Python 这 2 种 [hook](https://www.mercurial-scm.org/wiki/Hook) 的支持，Bash 脚本适用于 Linux 或者 Mac 系统，Python 脚本使用于 Win 系统，更多示例见 [HookExamples](https://www.mercurial-scm.org/wiki/HookExamples)。
 
@@ -187,6 +186,7 @@ def phpcs(ui, repo, hooktype, node=None, source=None, **kwargs):
 在`.hg/hgrc`配置使其生效：
 
 ```Bash
+[hooks]
 precommit.phpcs = python:C:\path\to\pre-commit.py:phpcs
 ```
 
