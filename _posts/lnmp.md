@@ -577,6 +577,7 @@ $ ./patched-open-vm-tools.sh
 ### 启用Win10的Linux子系统
 
 之前的方案是使用虚拟机，到后面是 Docker。其实 Win10 已经支持 Linux 子系统，我这次已经尝鲜了，我装的子系统为 Ubuntu。
+
 一路过来并不顺利，在这里记录我所遇到的问题以及相应的解决方案。
 
 #### 子系统随WIN自启
@@ -615,6 +616,7 @@ ws.run "C:\Windows\System32\bash.exe -c 'sudo /usr/sbin/service ssh --full-resta
 ```
 
 > 注意这里使用到了 sudo 命令，所以需要配置免密码使用，见 [免密码使用 sudo](https://www.fanhaobai.com/2018/01/linux-skill.html#免密码使用sudo) 部分。
+
 再次启动后，sshd 服务就能正常启动了。
 
 **更新 [»]()**
