@@ -8,6 +8,7 @@ categories:
 ---
 
 当你看到一个代码乱七八糟的项目时，心里肯定很各种  /_ \，代码阅读性特差，不易维护。优秀的项目应该是看起来像是出自一个人之手，这就需要一套代码规范来约束，当然还必须要求项目成员落实这套规范。
+![预览图](https://img.fanhaobai.com/2018/04/php-code-sniffer/4b3745ff-6a6a-4381-9b25-5bb2a8033c3f.png)<!--more-->
 
 这里推荐一款自动化的 PHP 代码规范检查工具 —— [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)，当 CodeSniffer 结合 PhpStrom 和 Git 时，自动化代码规范极为方便。
 
@@ -90,21 +91,23 @@ FOUND 2 ERROR(S) AFFECTING 2 LINE(S)
 
 [不满足代码规范提醒]https://img.fanhaobai.com/2018/04/php-code-sniffer/711dbc8e-3e30-11e8-b467-0ed5f89f718b.png)
 
-## 配置Git拦截
+## 配置hook
 
-为了严格执行代码规范，当发现不满足规范的代码时，是不允许提交至代码仓库，可以配置 hook 来实现。
+为了严格执行代码规范，当发现不满足规范的代码时，是不允许提交至代码仓库，可以通过配置 hook 来实现。
 
-> 这里使用 Mercurial 进行代码管理，所以使用了 hg 命令。
+这里使用 Mercurial 进行代码管理，所以使用了 hg 命令。Mercurial 提供了 Bash 和 Python 这 2 种 [hook](https://www.mercurial-scm.org/wiki/Hook) 的支持，Bash 脚本适用于 Linux 或者 Mac 系统，Python 脚本使用于 Win 系统，更多示例见 [HookExamples](https://www.mercurial-scm.org/wiki/HookExamples)。
 
-#### Bash
+> Hook 脚本中，0 和 “False” 都表示为成功，“True” 和任意异常都表示为失败。
 
-Bash 拦截脚本适用于 Linux 或者 Mac 系统。
+### Bash
+
+创建名为`pre-commit` 的可执行脚本，内容如下：
 
 ```Bash
 #!/bin/bash
 
 commit_files=`hg status -nam`
-args='-n -p -s'
+args='-n -s'
 php_files="";
 php_files_count=0;
 
@@ -132,7 +135,76 @@ fi
 eval phpcs $args $php_files
 ```
 
-#### python
+在`.hg/hgrc`中配置使其生效：
 
+```Bash
+[hooks]
+precommit.phpcs = \path\to\pre-commit
+```
 
-> 推荐一个 PHP 代码质量检测工具 [phpmd](https://phpmd.org/rules/index.html)。
+> 注意 pre-commit 脚本的可执行权限，否则执行`sudo chmod +x \path\to\pre-commit`增加可执行权限。
+
+### Python
+
+创建名为`pre-commit.py`的脚本文件，内容如下：
+
+```Python
+# coding: utf8
+import sys
+import os
+import platform
+
+def phpcs(ui, repo, hooktype, node=None, source=None, **kwargs):
+    cmd_git = "hg status -n"
+    args = "-n -s"
+    php_files = csignore_files = ''
+    php_files_count = 0
+    # 所有变更的文件
+    for item in os.popen(cmd_git).readlines() :
+        if item.find("php") == -1 :
+            continue
+        # php语法检测
+        php_syntax = os.popen("php -l %s" % (item)).read()
+        if php_syntax.find("No syntax errors") == -1 :
+            ui.warn(php_syntax)
+        # 待phpcs检测的文件
+        php_files = php_files + " " + item
+        php_files_count = php_files_count + 1
+    # 忽略文件
+    for item in open(".csignore").readlines() :
+        csignore_files = csignore_files + "," + item.strip()
+    csignore_args = "--ignore='%s'" % (csignore_files.strip(','))
+
+    if php_files_count > 0 :
+        cmd_phpcs = "phpcs %s %s %s" % (args, csignore_args, php_files)
+        msg = os.popen(cmd_phpcs).read().strip('.\r\n')
+        if msg != '' :
+            ui.warn(msg + "\r\n")
+            return True
+    return False
+```
+
+在`.hg/hgrc`配置使其生效：
+
+```Bash
+precommit.phpcs = python:C:\path\to\pre-commit.py:phpcs
+```
+
+> 需要注意在 Win 下，安装有 hg、php、phpcs 的环境且已配置环境变量。
+
+### 拦截效果
+
+当提交不符合规范的代码时，拦截效果如下：
+
+```Bash
+FILE: \home\www\init.php
+---------------------------------------------------------
+FOUND 1 ERROR(S) AFFECTING 1 LINE(S)
+---------------------------------------------------------
+ 12 | ERROR | Missing function doc comment
+    |       | (Jumei.Commenting.FunctionComment.Missing)
+---------------------------------------------------------
+abort: precommit.phpcs hook failed
+```
+
+最后，推荐一个 PHP 代码质量检测工具 [phpmd](https://phpmd.org/rules/index.html)。

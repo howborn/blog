@@ -271,8 +271,15 @@ REST Client 工具用来调试 API，点击“Tools >> Test RESTful Web Service�
 
 ![](https://img.fanhaobai.com/2017/05/phpstorm-posture/0e835fc8-3fd6-4531-8480-44cd33a83655.png)
 
+### PHP_CodeSniffer
+
+[PHP_CodeSniffer](https://www.fanhaobai.com/2018/04/php-code-sniffer.html) 是一款自动化的 PHP 代码规范检查工具，详细见 [自动化代码规范检测 — PHP_CodeSniffer](https://www.fanhaobai.com/2018/04/php-code-sniffer.html#配置PhpStrom) 部分。
+
+![](https://img.fanhaobai.com/2017/05/phpstorm-posture/711dbc8e-3e30-11e8-b467-0ed5f89f718b.png)
+
 <strong>更新 [»]()</strong>
 * [Database](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Database)（2017-08-06）
 * [Git](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Git)（2017-08-06）
 * [Xdebug](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Xdebug)（2017-09-01）
 * [REST Client](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#REST Client)（2017-09-01）
+* [PHP_CodeSniffer](https://www.fanhaobai.com/2018/04/php-code-sniffer.html#配置PhpStrom)（2018-04-12）
