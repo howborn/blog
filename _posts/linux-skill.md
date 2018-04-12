@@ -98,7 +98,39 @@ www       4755  4752  0 00:09 pts/0    00:00:00 bash
 $ kill -9 4755
 ```
 
-更多详细说明，见 [Linux强制踢出其他登录用户](https://www.fanhaobai.com/2016/11/out-users.html)。
+更多详细说明，见 [Linux 强制踢出其他登录用户](https://www.fanhaobai.com/2016/11/out-users.html)。
+
+## 免密码使用sudo
+
+以下两种需求：
+1. 开发中经常会使用到 sudo 命令，为了避免频繁输入密码的麻烦；
+2. 脚本中使用到 sudo 命令，怎么输入密码？；
+
+这些，都可以通过将用户加入 sudoers 来解决，当然情况 2 也可以使用`echo "passwd"|sudo -S cmd`，从标准输入读取密码。
+
+sudoers 配置文件为`/etc/sudoers`，sudo 命令操作权限配置内容如下：
+
+```bash
+# 授权用户/组    主机名=（允许转换至的用户）   NOPASSWD:命令动作
+root ALL=(ALL) ALL
+```
+
+[授权格式](#)说明：
+* 第一个字段为授权用户或组，例如 root；
+* 第二个字段为来源，() 中为允许转换至的用户，= 左边为主机名；
+* 第三个字段为命令动作，多个命令以`,`号分割；
+
+因此，我的用户为`fhb`，授权步骤如下：
+
+```bash
+# 1. 执行visudo命令，操作的文件就是/etc/sudoers
+$ sudo visudo
+# 2. 追加内容
+fhb ALL=(root) NOPASSWD: /usr/sbin/service,/usr/local/php/bin/php,/usr/bin/vim
+# 3. Ctrl+O保存并按Enter
+```
+
+然后，使用`sudo service ssh restart`命令测试 OK。
 
 ## Strace调试
 
@@ -119,3 +151,6 @@ open("/lib64/libc.so.6", O_RDONLY)      = 3
 ```
 
 更多详细说明，见 [错误调试](https://www.fanhaobai.com/2017/07/php-cli-setting.html#错误调试https://www.fanhaobai.com/2016/11/out-users.html)。
+
+<strong>更新 [»]()</strong>
+* [免密码使用 sudo](#免密码使用sudo)（2018-04-12）

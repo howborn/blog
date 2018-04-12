@@ -45,7 +45,7 @@ SELECT COUNT(field_name) FROM table GROUP BY field_name
 | 指标   | min              | 桶内对该字段值求最小值                |
 | 指标   | max              | 桶内对该字段值求最大值                |
 | 指标   | avg              | 桶内对该字段值求平均数                |
-| 指标   | cardinality（ 基数） | 桶内对该字段不同值的数量（*distinct* 值） |
+| 指标   | cardinality（基数） | 桶内对该字段不同值的数量（*distinct* 值） |
 
 #### 简单聚合
 
