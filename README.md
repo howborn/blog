@@ -1,10 +1,6 @@
 # [樊浩柏科学院](https://www.fanhaobai.com)
 
-## 预览
-
 ![预览图](https://github.com/fan-haobai/blog/blob/master/view.png)
-
-## 文章列表
 
 ### 架构
 
@@ -13,6 +9,12 @@
 * [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html)（2017-12-22）
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html)（2017-12-21）
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html)（2017-12-16）
+
+#### 分布式
+
+* [配置中心部署Qconf](https://www.fanhaobai.com/2017/11/qconf-deploy.html)（2017-11-13）
+* [分布式配置管理Qconf](https://www.fanhaobai.com/2017/11/qconf.html)（2017-11-03）
+* [Gearman的安装和使用](https://www.fanhaobai.com/2017/08/gearman.html)（2017-08-27）
 
 ### 算法与数据结构
 
@@ -50,6 +52,12 @@
 * [SESSION共享问题](https://www.fanhaobai.com/2017/01/session-share.html)（2017-01-10）
 * [PHP文件锁机制](https://www.fanhaobai.com/2016/10/file-flock.html)（2016-10-19）
 * [in_array()函数的坑](https://www.fanhaobai.com/2016/07/functions-in-array.html)（2016-07-06）
+
+##### Yii
+
+* [Yii支持多域名cors原理](https://www.fanhaobai.com/2017/08/yii-cors.html)（2017-08-05）
+* [解决YII2验证码不刷新问题](https://www.fanhaobai.com/2017/06/yii-captcha.html)（2017-06-21）
+* [安全使用调试模式](https://www.fanhaobai.com/2017/04/debug-config.html)（2017-04-18）
 
 #### Lua
 
