@@ -6,7 +6,7 @@ date: 2016-02-10
 
 ## 个人介绍
 
-博主是一个乐于折腾的人，在技术方面是一个细节控。名字就在我的博客中，来自四川，1993 年生人。是一名电子（[智能车](http://www.znczz.com/home.php?mod=space&uid=125200&do=album&id=1777)）、斯诺克、F1 爱好者，目前专注于 Web 后端开发，关注 Web 安全问题和性能优化，就职于 [自如网](http://www.ziroom.com)。
+博主是一个乐于折腾的人，在技术方面是一个细节控。名字就在我的博客中，来自四川，1993 年生人。是一名电子（[智能车](http://www.znczz.com/home.php?mod=space&uid=125200&do=album&id=1777)）、斯诺克、F1 爱好者，目前专注于 Web 后端开发，关注 Web 安全问题和性能优化，就职于 [聚美优品](http://www.jumei.com)。
 
 ### 联系我
 
@@ -15,8 +15,8 @@ date: 2016-02-10
 
 ### 专业技能
 
-* 熟悉：PHP, HTML, JS
-* 了解：Shell, Lua, C, Node.js
+* 熟悉：PHP, Lua, JS
+* 了解：Shell, C, NodeJs, Python
 * 数据库：MySQL, MongoDB
 * 缓存：Redis
 * 搜索引擎：Solr, Elasticsearch
