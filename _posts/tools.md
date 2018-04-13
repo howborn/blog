@@ -134,7 +134,7 @@ tests['response is success'] = (responseJSON.status === 'success');
 
 ![](https://img.fanhaobai.com/2017/07/tools/972d2bac-0d4b-4095-b0ba-28a5f252f314.png)
 
-按照这些步骤，只要配置了每个接口的测试规则， Postman 就可以自动测试完项目的所有接口，并给出测试结果。
+按照这些步骤，只要配置了每个接口的测试规则，Postman 就可以自动测试完项目的所有接口，并给出测试结果。
 
 ## Charles
 
@@ -143,6 +143,14 @@ Charles 是在 Mac 下常用的截取网络封包的工具（现在也支持 Win
 ![](https://img.fanhaobai.com/2017/07/tools/0dc3e6f6-250e-4172-af30-83b91cfddf76.png)
 
 Charles 的使用指南，[见这里](https://www.fanhaobai.com/2017/07/charles.html)。
+
+## SwitchHosts
+
+[SwitchHosts](https://github.com/oldj/SwitchHosts/blob/master/README_cn.md) 是一个免费开源的 Hosts 管理软件，使用它切换和配置 host 极为方便。
+
+![预览图](https://img.fanhaobai.com/2017/07/tools/f5a0c313-9404-4152-9bd1-ea24f7b1edc1.png)
+
+从 [官方地址](https://github.com/oldj/SwitchHosts/releases) 下载自己系统的安装包，安装即可。
 
 ## 其他工具
 * [PhpStorm的使用姿势](https://www.fanhaobai.com/2017/05/phpstorm-posture.html)
@@ -153,3 +161,5 @@ Charles 的使用指南，[见这里](https://www.fanhaobai.com/2017/07/charles.
 
 <strong>更新 [»]()</strong>
 * [Postman](https://www.fanhaobai.com/2017/07/tools.html#Postman)（2017-07-30）
+* [Charles](https://www.fanhaobai.com/2017/07/tools.html#Charles)（2017-08-04）
+* [SwitchHosts](https://www.fanhaobai.com/2017/07/tools.html#SwitchHosts)（2018-04-13）
