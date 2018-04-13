@@ -94,9 +94,9 @@ FOUND 2 ERROR(S) AFFECTING 2 LINE(S)
 
 为了严格执行代码规范，当发现不符合规范的代码时，是不允许提交至代码仓库，可以通过配置 hook 来实现。
 
-这里使用 Mercurial 进行代码管理，所以使用了 hg 命令。Mercurial 提供了 Bash 和 Python 这 2 种 [hook](https://www.mercurial-scm.org/wiki/Hook) 的支持，Bash 脚本适用于 Linux 或者 Mac 系统，Python 脚本使用于 Win 系统，更多示例见 [HookExamples](https://www.mercurial-scm.org/wiki/HookExamples)。
+这里使用 Mercurial 进行代码管理，Mercurial 提供了 Bash 和 Python 这 2 种 [hook](https://www.mercurial-scm.org/wiki/Hook) 的支持，Bash 脚本适用于 Linux 或者 Mac 系统，Python 脚本使用于 Win 系统，更多示例见 [HookExamples](https://www.mercurial-scm.org/wiki/HookExamples)。
 
-> Hook 脚本中，0 和 “False” 都表示为成功，“True” 和任意异常都表示为失败。
+> Hook 脚本中，0 和 “False” 都表示为成功，“True” 和任意异常都表示为失败。若使用 Git 管理代码，则需要将`hg status -n`更换为`git diff --name-only`。
 
 ### Bash
 
@@ -155,12 +155,14 @@ import platform
 
 def phpcs(ui, repo, hooktype, node=None, source=None, **kwargs):
     cmd_git = "hg status -n"
+    csignore_name = ".csignore"
     args = "-n -s"
     php_files = csignore_files = ''
     php_files_count = 0
     # 所有变更的文件
     for item in os.popen(cmd_git).readlines() :
-        if item.find("php") == -1 :
+        item = item.strip()
+        if item.find("php") == -1 or not os.path.isfile(item) :
             continue
         # php语法检测
         php_syntax = os.popen("php -l %s" % (item)).read()
@@ -170,10 +172,10 @@ def phpcs(ui, repo, hooktype, node=None, source=None, **kwargs):
         php_files = php_files + " " + item
         php_files_count = php_files_count + 1
     # 忽略文件
-    for item in open(".csignore").readlines() :
-        csignore_files = csignore_files + "," + item.strip()
+    if os.path.isfile(csignore_name) :
+        for item in open(csignore_name).readlines() :
+            csignore_files = csignore_files + "," + item.strip()
     csignore_args = "--ignore='%s'" % (csignore_files.strip(','))
-
     if php_files_count > 0 :
         cmd_phpcs = "phpcs %s %s %s" % (args, csignore_args, php_files)
         msg = os.popen(cmd_phpcs).read().strip('.\r\n')
