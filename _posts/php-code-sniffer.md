@@ -106,7 +106,7 @@ FOUND 2 ERROR(S) AFFECTING 2 LINE(S)
 ```Bash
 #!/bin/bash
 
-commit_files=`hg status -nam`
+commit_files=`hg status -n`
 args='-n -s'
 php_files="";
 php_files_count=0;
