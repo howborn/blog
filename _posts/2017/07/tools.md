@@ -152,6 +152,38 @@ Charles 的使用指南，[见这里](https://www.fanhaobai.com/2017/07/charles.
 
 从 [官方地址](https://github.com/oldj/SwitchHosts/releases) 下载自己系统的安装包，安装即可。
 
+## 键位映射工具 — [AutoHotKey](https://www.autohotkey.com/)
+
+不得不说 AutoHotKey 是个好工具，它可以用脚本方式定义键位映射关系，然后编译成可执行文件。比方说在 Win10 下我希望使用 A（左）、D（右）、W（上）、S（下）来替代方向键，因为这样操作方便，下面通过 AutoHotKey 来示例。 
+
+![预览图](https://img.fanhaobai.com/2017/07/tools/11be684a-44ad-40e8-a291-e123d0df58ca.png)
+
+首先，从 [官方地址](https://www.autohotkey.com/download/) 下载安装包，安装后鼠标 “右键 >> 新建” 菜单会增加 “AutoHotKey Script” 项，点击 “AutoHotKey Script” 即可创建脚本。
+
+然后，创建名为`keyboard.ahk`的脚本文件，内容如下：
+
+```Bash
+; # Win (Windows logo key)
+; ! Alt
+; ^ Control
+; + Shift
+; & An ampersand may be used between any two keys or mouse buttons to combine them into a custom hotkey.
+
+; ::btw::
+;   MsgBox btw!!
+; Return
+
+; 方向键定义
+RSHIFT & a::Send, {Left}
+RSHIFT & d::Send, {Right}
+RSHIFT & w::Send, {Up}
+RSHIFT & s::Send, {Down}
+```
+
+> 其中`;`表示注释，更多语法见 [Documentation](https://www.autohotkey.com/docs/AutoHotkey.htm)。
+
+最后，在`keyboard.ahk`脚本文件右击，选择"Compile Script"编译脚本，生成`keyboard.exe`的可执行文件，双击运行即可生效映射关系。
+
 ## 其他工具
 * [PhpStorm的使用姿势](https://www.fanhaobai.com/2017/05/phpstorm-posture.html)
 * [常用Git命令清单](https://www.fanhaobai.com/2017/04/git-command.html)
@@ -160,6 +192,7 @@ Charles 的使用指南，[见这里](https://www.fanhaobai.com/2017/07/charles.
 * [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)
 
 <strong>更新 [»]()</strong>
-* [Postman](https://www.fanhaobai.com/2017/07/tools.html#Postman)（2017-07-30）
-* [Charles](https://www.fanhaobai.com/2017/07/tools.html#Charles)（2017-08-04）
-* [SwitchHosts](https://www.fanhaobai.com/2017/07/tools.html#SwitchHosts)（2018-04-13）
+* [Postman](#Postman)（2017-07-30）
+* [Charles](#Charles)（2017-08-04）
+* [SwitchHosts](#SwitchHosts)（2018-04-13）
+* [键位映射工具 — AutoHotKey](#键位映射工具 — AutoHotKey)（2018-04-19）
