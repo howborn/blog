@@ -3,10 +3,11 @@ title: 本站特性
 date: 2016-12-11 13:12:10
 ---
 
-本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server。本站的 [博客](https://www.fanhaobai.com) 基于开源的 Hexo 搭建，运行于 NodeJS 环境，本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境，数据库采用开源的 MySQL ，内存缓存服务器采用 Redis 。
+本站启用了更加安全的 HTTPS 协议，以 Nginx 作为主站的 Web Server。本站的 [博客](https://www.fanhaobai.com) 基于开源的 Hexo 搭建，运行于 NodeJS 环境，本站的 [维基](https://wiki.fanhaobai.com) 运行于 PHP 环境，数据库采用开源的 MySQL，内存缓存服务器采用 Redis 。
 
 # 更新说明
 
+* 2018.04.20：[404 访问日志](#主站——www.conf) 增加黑名单。
 * 2018.02.12：兼容迁移 Hexo 之前的文章 [URL](#主站——www-conf)。
 * 2018.01.06：接入 [Cloudflare](https://www.cloudflare.com) 提供的免费 CDN。
 * 2017.12.16：搭建 [ELK](https://www.fanhaobai.com/2017/12/elk.html) 集中式日志平台。
@@ -165,6 +166,12 @@ server {
 	proxy_set_header Referer https://book.douban.com;
         proxy_pass       http://img3.doubanio.com/$1;
         expires max;
+    }
+    #404特殊页面日志排除
+    location ~ /404.html {
+        if ($request_uri ~* '/(file/upload)|jianshu|hangqing|qinghua|script|lib|pifa|(apple\-touch)|(wp\-login))' {
+            access_log           off;
+        }
     }
 
     include vhost/common;
