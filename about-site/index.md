@@ -219,9 +219,8 @@ rewrite ^/post/lock-ip(.*) /2017/02/lock-ip$1 permanent;
 rewrite ^/post/reward(.*) /2017/02/reward$1 permanent;
 rewrite ^/post/letsencrypt(.*) /2016/12/lets-encrypt$1 permanent;
 rewrite ^/post/linux-tool-website(.*) /2017/02/linux-tool-website$1 permanent;
-rewrite ^/rss.html /atom.xml last;
-rewrite ^/map.html /sitemap.xml last;
-rewrite ^/map.xml /sitemap.xml last;
+rewrite ^/rss /atom.xml last;
+rewrite ^/map /sitemap.xml last;
 ```
 
 ### 维基——wiki.conf
