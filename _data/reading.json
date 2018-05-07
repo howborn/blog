@@ -135,6 +135,34 @@
         "review": "",
         "score": "8.0",
         "doubanLink": "https://book.douban.com/subject/20270192/"
+      },
+      {
+        "title": "算法图解",
+        "cover": "/douban/lpic/s29358625.jpg",
+        "review": "",
+        "score": "8.4",
+        "doubanLink": "https://book.douban.com/subject/26979890/"
+      },
+      {
+        "title": "微服务设计",
+        "cover": "/douban/lpic/s28626997.jpg",
+        "review": "",
+        "score": "8.2",
+        "doubanLink": "https://book.douban.com/subject/26772677/"
+      },
+      {
+        "title": "只是为了好玩",
+        "cover": "/douban/lpic/s27329267.jpg",
+        "review": "",
+        "score": "8.1",
+        "doubanLink": "https://book.douban.com/subject/25930025/"
+      },
+      {
+        "title": "只是为了好玩",
+        "cover": "/douban/lpic/s27329267.jpg",
+        "review": "",
+        "score": "8.1",
+        "doubanLink": "https://book.douban.com/subject/25930025/"
       }
     ]
   }
