@@ -1,5 +1,5 @@
 ---
-title: 自动化代码规范检测 — PHP_CodeSniffer
+title: 自动化代码规范检测 — CodeSniffer
 date: 2018-04-12 21:00:00
 tags:
 - 工具
