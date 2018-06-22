@@ -24,7 +24,7 @@ date: 2016-12-11 13:12:10
 * 2017.04.06：增加 Solr 支持，见 [Solr Admin](http://solr.fanhaobai.com)。
 * 2017.03.01：博客迁移到 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html)。
 * 2017.02.10：将 Nginx 配置增加「[限制恶意IP访问](https://www.fanhaobai.com/2017/02/lock-ip.html)」。
-* 2017.02.07：增加 Nginx 配置，防止其他「[域名恶意解析]()」 到本服务器。
+* 2017.02.07：增加 Nginx 配置，防止其他 [域名恶意解析]() 到本服务器。
 * 2017.01.20：增加使用 MongoDB，运行于 Docker 环境，[见这里](https://www.fanhaobai.com/2017/01/mongo-docker-install.html)。
 * 2017.01.18：增加使用 [Docker](https://www.fanhaobai.com/post/docker-install.html)。
 * 2017.01.16：将 Nginx 配置增加 [防盗链]()。
