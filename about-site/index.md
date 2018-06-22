@@ -7,6 +7,7 @@ date: 2016-12-11 13:12:10
 
 # 更新说明
 
+* 2018.06.22：增加 [二维码服务](https://img.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)。
 * 2018.04.20：[404 访问日志](#主站——www.conf) 增加黑名单。
 * 2018.02.12：兼容迁移 Hexo 之前的文章 [URL](#主站——www-conf)。
 * 2018.01.06：接入 [Cloudflare](https://www.cloudflare.com) 提供的免费 CDN。
@@ -32,7 +33,7 @@ date: 2016-12-11 13:12:10
 * 2016.12.13：增加多少评论的用户头像，将 HTTP 代理为 HTTPS， [见这里](https://www.fanhaobai.com/2017/03/install-hexo.html#多说头像HTTPS代理)。
 * 2016.12.11：将主站博客迁移到 [FireKylin](https://www.fanhaobai.com/2016/12/firekylin.html)。
 * 2016.12.08：增加使用 [HTTPS](https://www.fanhaobai.com/2016/12/firekylin.html)。
-* 2016.12.07：增加使用 [NodeJS ](https://www.fanhaobai.com/2016/12/nodejs-install.html)。
+* 2016.12.07：增加使用 [NodeJS](https://www.fanhaobai.com/2016/12/nodejs-install.html)。
 
 # 配置信息
 
@@ -128,6 +129,17 @@ location ~ /sitemap|map\.(html|xml)$ {
     expires off;
 }
 
+#二维码
+location ~ \.php {
+    root /data/html/pro;
+
+    fastcgi_pass  127.0.0.1:9000;
+    fastcgi_split_path_info ^(.+\.php)(.*)$;
+    fastcgi_param PATH_INFO $fastcgi_path_info;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+}
+
 #防止图片盗链,30天的过期时间
 location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
     access_log   off;
@@ -153,12 +165,6 @@ server {
     #fanhaobai.com重定向到www.fanhaobai.com
     if ($host ~ ^fanhaobai.com$) {
         return 301 https://www.fanhaobai.com$request_uri;
-    }
-    #微信二维码https代理 
-    location ~ /qrcode.php {
-        proxy_set_header Host s.jiathis.com;
-        proxy_pass	 http://s.jiathis.com$request_uri;
-        expires max;
     }
     #豆瓣代理
     location ~ ^/douban/(.*)$ {
