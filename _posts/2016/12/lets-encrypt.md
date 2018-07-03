@@ -135,7 +135,7 @@ server {
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
   ssl_ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA;
   ssl_session_cache shared:SSL:50m;
-  ssl_dhparam /data/ssl/server.dhparam;        #根据你的路径更改
+  ssl_dhparam /data/ssl/dhparams.pem;            #根据你的路径更改
   ssl_prefer_server_ciphers on;
 
   ...the rest of your config

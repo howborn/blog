@@ -519,6 +519,10 @@ appendChild(createElement('script')).src='https://www.fanhaobai.com
 
 到这里，也终于算是搭建结束了。至于 404 页面打算采用 [腾讯的公益404页面](http://www.qq.com/404/) 来做，[见这里](https://www.fanhaobai.com/404.html)。
 
+<strong>更新 [»]()</strong>
+
+* [科学使用disqus](#科学使用disqus)<span>（2018-06-30）</span>
+
 <strong>相关文章 [»]()</strong>
 
 * [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)<span>（2018-03-03）</span>

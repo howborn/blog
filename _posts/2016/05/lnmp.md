@@ -112,11 +112,11 @@ id:5:initdefault:
 
 ### 下载并解压源码 ###
 
-从 [PHP 官方地址](http://php.net/downloads.php)下载源码包。
+从 [PHP 官方地址](http://php.net/downloads.php) 下载源码包。
 
 ```Bash
 $ cd /usr/src
-$ wget http://219.238.7.71/files/1007000009B9E9D0/cn2.php.net/distributions/php-5.6.30.tar.gz
+$ wget http://am1.php.net/distributions/php-5.6.30.tar.gz
 $ tar zxvf php-5.6.30.tar.gz
 $ cd php-5.6.30
 ```
@@ -455,7 +455,7 @@ server {
 ### 系统服务 ###
 
 ```Bash
-$ vi /etc/rc.d/init.d/nginx
+$ vi /etc/init.d/nginx
 
 # 追加入如下内容
 #!/bin/bash
