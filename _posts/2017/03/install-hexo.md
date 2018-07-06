@@ -521,7 +521,10 @@ appendChild(createElement('script')).src='https://www.fanhaobai.com
 
 <strong>更新 [»]()</strong>
 
-* [科学使用disqus](#科学使用disqus)<span>（2018-06-30）</span>
+* [主题更换为hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)<span>（2017-10-30）</span>
+* [替换百度分享为自定义分享](#)<span>（2017-11-28）</span>
+* [去除百度统计](#)<span>（2018-07-04）</span>
+* [科学使用disqus](https://github.com/fan-haobai/disqus-php-api)<span>（2018-07-04）</span>
 
 <strong>相关文章 [»]()</strong>
 
