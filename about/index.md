@@ -6,7 +6,7 @@ date: 2016-02-10
 
 ## 个人介绍
 
-博主是一个乐于折腾的人，在技术方面是一个细节控。名字就在我的博客中，来自四川，1993 年生人。是一名电子（[智能车](http://www.znczz.com/home.php?mod=space&uid=125200&do=album&id=1777)）、斯诺克、F1 爱好者，目前专注于 Web 后端开发，关注 Web 安全问题和性能优化，就职于 [聚美优品](http://www.jumei.com)。
+博主是一个乐于折腾的人，在技术方面是一个细节控。名字就在我的博客中，来自四川，1993 年生人。是一名电子（[智能车](https://www.fanhaobai.com/project)）、斯诺克、F1 爱好者，目前专注于 Web 后端开发，关注 Web 安全问题和性能优化，就职于 [聚美优品](http://www.jumei.com)。
 
 ### 联系我
 
@@ -44,7 +44,7 @@ date: 2016-02-10
 
 ## 版权说明
 
-主站 Blog 托管于 [Github](https://github.com/fan-haobai/blog)，所有文章的 [Markdown 源文件](https://github.com/fan-haobai/blog/tree/master/_posts) 均可以直接查看或下载，除非单独说明外，个人转载本站的原创内容，请遵循 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh)的创作共享协议。
+主站 Blog 托管于 [Github](https://github.com/fan-haobai/blog)，所有文章的 [Markdown 源文件](https://github.com/fan-haobai/blog/tree/master/_posts) 均可以直接查看或下载，除非单独说明外，个人转载本站的原创内容，请遵循 [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh) 的创作共享协议。
 
 ## 其他
 
