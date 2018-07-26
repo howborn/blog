@@ -7,6 +7,7 @@ date: 2016-12-11 13:12:10
 
 # 更新说明
 
+* 2018.07.26：图片支持 [img0](https://img0.fanhaobai.com) 和 [img1](https://img1.fanhaobai.com) 多域名。
 * 2018.07.04：科学使用 [Disqus](https://github.com/fan-haobai/disqus-php-api)。
 * 2018.06.22：增加 [二维码服务](https://img.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)。
 * 2018.04.20：[404 访问日志](#主站——www.conf) 增加黑名单。
@@ -20,8 +21,8 @@ date: 2016-12-11 13:12:10
 * 2017.08.18：增加使用 RabbitMQ，[见这里](http://mq.fanhaobai.com)。
 * 2017.08.12：修改 Nginx [配置](#Nginx配置)。
 * 2017.08.11：增加使用 Elasticsearch，[见这里](http://es.fanhaobai.com)。
-* 2017.06.17：使用 GoAccess 分析日志，[见这里](https://www.fanhaobai.com/go-access.html)。
-* 2017.05.03：启用 Composer [私有镜像仓库](http://packagist.fanhaobai.com)。
+* 2017.06.17：使用 GoAccess 分析日志，[见这里(https://www.fanhaobai.com/go-access.html)。
+* 2017.05.03：启用 Composer [私有镜i像仓库](http://packagist.fanhaobai.com)。
 * 2017.04.06：增加 Solr 支持，见 [Solr Admin](http://solr.fanhaobai.com)。
 * 2017.03.01：博客迁移到 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html)。
 * 2017.02.10：将 Nginx 配置增加 [限制恶意IP访问](https://www.fanhaobai.com/2017/02/lock-ip.html)。
