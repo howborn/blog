@@ -10,7 +10,7 @@ categories:
 
 在 PHP 中如何实现一个常驻系统的守护进程呢！使其可以脱离终端运行，不直接将其运行结果输出到终端。这里列举两种实现方式。
 
-![](https://img.fanhaobai.com/2017/06/php-daemonize/72650dd9-11e7-48d2-adb9-f4137e51160f.png)<!--more--> 
+![](https://img0.fanhaobai.com/2017/06/php-daemonize/72650dd9-11e7-48d2-adb9-f4137e51160f.png)<!--more--> 
 
 ## nohup
 

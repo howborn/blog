@@ -10,14 +10,14 @@ categories:
 
 最近比较忙，要上新的项目，也没时间打理博客了。今天中午抽午睡时间记录下这几天工作上遇到的 [接口签名错误]() 和 [Redis 集群 VIP 漂移故障]() 。
 
-![](https://img.fanhaobai.com/2017/09/record-question-1/0188ae67-31cc-464e-a986-d999f3507427.png)<!--more-->
+![](https://img2.fanhaobai.com/2017/09/record-question-1/0188ae67-31cc-464e-a986-d999f3507427.png)<!--more-->
 
 
 ## 接口签名错误
 
 今天一大早就升级 IOS 11 尝鲜，并习惯性打开 [APP](https://static8.ziroom.com/card_clean)，点着点着就发现 [通勤找房]() 功能异常。
 
-![](https://img.fanhaobai.com/2017/09/record-question-1/5727d810-6ea5-476c-8479-bcec444805d7.jpg)
+![](https://img3.fanhaobai.com/2017/09/record-question-1/5727d810-6ea5-476c-8479-bcec444805d7.jpg)
 
 Charles 抓包查看接口信息：
 

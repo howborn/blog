@@ -9,7 +9,7 @@ categories:
 ---
 
 自如寓打算门口用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。那如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？
-![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-2/53afcc7a-ff51-4191-aab0-5c9cc6850566.png)<!--more-->
+![](https://img0.fanhaobai.com/2017/12/2017-ziroom-king-2/53afcc7a-ff51-4191-aab0-5c9cc6850566.png)<!--more-->
 
 例如二维数组为：
 
@@ -40,7 +40,7 @@ categories:
 
 算法流程图示如下：
 
-![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-2/53afcc7a-ff51-4191-aab0-5c9cc6850566.png)
+![](https://img1.fanhaobai.com/2017/12/2017-ziroom-king-2/53afcc7a-ff51-4191-aab0-5c9cc6850566.png)
 
 ## [编码实现](https://github.com/fan-haobai/2017-ziroom-king/blob/master/src/4.php)
 
@@ -228,7 +228,7 @@ echo $pool->run(), PHP_EOL;
 ## 相似题目
 
 Twitter 之前曾经出过类似蓄水池的笔试题，只不过本题是立体水池（二维数组），Twitter 蓄水池笔试题是平面水池（一维数组），解题复杂度也就降低了，当然 Twitter 蓄水池笔试题也可以采用本题的思想来实现，但是时间复杂度为 $O(n^2)$，采用 [我的Twitter技术面试失败了](http://blog.jobbole.com/50705/) 的实现时间复杂度为 $O(n)$。
-![](https://img.fanhaobai.com/2017/12/2017-ziroom-king-2/b2f137ff-b91b-4036-b7d8-fc86f82fb980.png)
+![](https://img2.fanhaobai.com/2017/12/2017-ziroom-king-2/b2f137ff-b91b-4036-b7d8-fc86f82fb980.png)
 
 实现思路如下：
 

@@ -9,7 +9,7 @@ categories:
 
 在后端开发过程中，我们经常会通过 [SSH](http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html) 远程登录并连接到 **服务器**，以便我们能对服务器进行远程操作。虽说 SSH 是一种加密登录协议， 但是我们在使用 SSH 中还需要注意一些安全技巧。
 
-![](https://img.fanhaobai.com/2016/08/ssh-safely-use/wUy69HWRKIW0qTiUrzYQhnzR.jpg)<!--more-->
+![](https://img0.fanhaobai.com/2016/08/ssh-safely-use/wUy69HWRKIW0qTiUrzYQhnzR.jpg)<!--more-->
 
 SSH 服务器的配置文件位置`/etc/ssh/sshd_conf`，下述配置基本上都在配置文件中修改，配置文件修改后需要重新启动 SSH 服务，否则配置不会立即生效。
 

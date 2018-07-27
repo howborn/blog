@@ -9,7 +9,7 @@ date: 2016-12-11 13:12:10
 
 * 2018.07.26：图片支持 [img0](https://img0.fanhaobai.com) 和 [img1](https://img1.fanhaobai.com) 多域名。
 * 2018.07.04：科学使用 [Disqus](https://github.com/fan-haobai/disqus-php-api)。
-* 2018.06.22：增加 [二维码服务](https://img.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)。
+* 2018.06.22：增加 [二维码服务](https://img0.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)。
 * 2018.04.20：[404 访问日志](#主站——www.conf) 增加黑名单。
 * 2018.02.12：兼容迁移 Hexo 之前的文章 [URL](#主站——www-conf)。
 * 2018.01.06：接入 [Cloudflare](https://www.cloudflare.com) 提供的免费 CDN。

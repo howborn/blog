@@ -23,7 +23,7 @@ Iptables 和 Netfilter 的关系是一个让很多人搞不清的问题，很多
 
 Iptables 的结构：`Iptables -> Tables -> Chains -> Rules`。也即是，Tables 由 Chains 组成，而 Chains 又由 Rules 组成。
 
-![](https://img.fanhaobai.com/2017/02/iptables/jWoQg8bgQMi_u4I7HHs7lpUX.png)
+![](https://img5.fanhaobai.com/2017/02/iptables/jWoQg8bgQMi_u4I7HHs7lpUX.png)
 
 ** 规格表 **
 

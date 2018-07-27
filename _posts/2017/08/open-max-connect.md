@@ -9,7 +9,7 @@ categories:
 
 如果忽略客户端机器的性能限制，一个客户端最多能同时打开多少个页面？乍一听时很懵逼，不知道什么套路。本文给出的答案是 64512。
 
-![](https://img.fanhaobai.com/2017/08/open-max-connect/3249e3f3-9e26-4a9a-b850-68baba3be257.png)<!--more-->
+![](https://img2.fanhaobai.com/2017/08/open-max-connect/3249e3f3-9e26-4a9a-b850-68baba3be257.png)<!--more-->
 
 ## 制约因素
 

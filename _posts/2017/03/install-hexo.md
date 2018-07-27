@@ -9,9 +9,9 @@ categories:
 
 前段时间博客一直使用 FireKylin，总体感觉挺好，但是扩展开发和社区是弱点。而 [Hexo](https://hexo.io/) 最大特点为纯静态博客系统，同时社区支持也比较好， 故我转而投向了 Hexo 的怀抱。
 
-![预览图](https://img.fanhaobai.com/2017/03/install-hexo/11b9814d-885a-4aca-9b56-94c3ad908f3f.png)<!--more-->
+![预览图](https://img5.fanhaobai.com/2017/03/install-hexo/11b9814d-885a-4aca-9b56-94c3ad908f3f.png)<!--more-->
 
-![预览图](https://img.fanhaobai.com/2017/03/install-hexo/11b9814d-885a-4aca-9b56-94c3ad908f3f.png)
+![预览图](https://img0.fanhaobai.com/2017/03/install-hexo/11b9814d-885a-4aca-9b56-94c3ad908f3f.png)
 
 # 安装
 
@@ -338,7 +338,7 @@ var y = date(item.date, 'YYYY年MM月');
 
 修改后，归档如下图：
 
-![](https://img.fanhaobai.com/2017/03/install-hexo/es8bUSE01LiIgQtbSESyEWxW.png)
+![](https://img1.fanhaobai.com/2017/03/install-hexo/es8bUSE01LiIgQtbSESyEWxW.png)
 
 ## 样式修改
 

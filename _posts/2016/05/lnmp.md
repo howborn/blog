@@ -8,7 +8,7 @@ categories:
 ---
 
 本文主要介绍 LNMP 开发环境的安装，同时列出了 PhpStorm 的安装过程。源码包统一放置于`/usr/src`，软件统一安装于`/usr/local`。
-![预览图](https://img.fanhaobai.com/2016/05/lnmp/5e41724-379c-4729-9c7a-30bd469e520b.jpg)<!--more-->
+![预览图](https://img1.fanhaobai.com/2016/05/lnmp/5e41724-379c-4729-9c7a-30bd469e520b.jpg)<!--more-->
 
 ## CentOS安装 ##
 
