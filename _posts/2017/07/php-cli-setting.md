@@ -10,7 +10,7 @@ categories:
 
 在项目中，经常会遇到定时任务的情景，当然这不仅仅只是将 PHP 文件结合 crontab 这么简单。其中有一些我遇到的非 code 层面的问题，在这里列举出来。
 
-![](https://img.fanhaobai.com/2017/07/php-cli-setting/0f15b5f5-2212-4a0a-9af4-e14811ad9234.png)<!--more-->
+![](https://img3.fanhaobai.com/2017/07/php-cli-setting/0f15b5f5-2212-4a0a-9af4-e14811ad9234.png)<!--more-->
 
 示例脚本使用 YII 框架，内容如下：
 

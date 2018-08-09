@@ -10,7 +10,7 @@ categories:
 
 工作中，我们经常会遇到某个进程需要守护态运行的场景，比如任务脚本、Worker。那么，在 PHP 中如何实现一个守护进程，从控制终端完全脱离呢！这里列举 3 种常见实现方式，我们可以针对不同的场景选择不同的方式来处理这个问题。
 
-![](https://img.fanhaobai.com/2017/06/php-daemonize/72650dd9-11e7-48d2-adb9-f4137e51160f.png)<!--more--> 
+![](https://img0.fanhaobai.com/2017/06/php-daemonize/72650dd9-11e7-48d2-adb9-f4137e51160f.png)<!--more--> 
 
 ## 进程管理知识
 

@@ -10,7 +10,7 @@ categories:
 
 在 Yii 2 中的验证码功能的确很方便，但是会存在刷新页面并不会刷新验证码的现象，不知道作者这么做有什么意图？在实际应用中，有较多的场景需要刷新页面并刷新验证码，这里在不修改框架源码的情况下，给出了可供参考的解决办法。
 
-![](https://img.fanhaobai.com/2017/06/yii-captcha/72ac98c8-56b4-4b12-b720-8aa703a017d3.png)<!--more-->
+![](https://img1.fanhaobai.com/2017/06/yii-captcha/72ac98c8-56b4-4b12-b720-8aa703a017d3.png)<!--more-->
 
 ## 抛出问题
 
@@ -37,13 +37,13 @@ class SiteController extends Controller
 
 通过 Widgets 渲染出验证码，连续刷新页面多次，验证码并未刷新。
 
-![](https://img.fanhaobai.com/2017/06/yii-captcha/72ac98c8-56b4-4b12-b720-8aa703a017d3.png)
+![](https://img2.fanhaobai.com/2017/06/yii-captcha/72ac98c8-56b4-4b12-b720-8aa703a017d3.png)
 
 ### 点击刷新发送两次请求
 
 点击验证码，可以刷新验证码，交互流程如下图所示。
 
-![](https://img.fanhaobai.com/2017/06/yii-captcha/062108a6-c588-4589-892c-3cfa86b53cc9.png)
+![](https://img3.fanhaobai.com/2017/06/yii-captcha/062108a6-c588-4589-892c-3cfa86b53cc9.png)
 
 第 1 次请求只返回获取新验证码的地址，响应内容如下：
 
@@ -193,6 +193,6 @@ class JoinForm extends \yii\base\Model
 
 经过修改后，每次刷新页面验证码也会刷新，刷新验证码也只需要请求 1 次即可。
 
-![](https://img.fanhaobai.com/2017/06/yii-captcha/b055c2be-3113-190f-5ea9-4f98b2e77e89.png)
+![](https://img4.fanhaobai.com/2017/06/yii-captcha/b055c2be-3113-190f-5ea9-4f98b2e77e89.png)
 
-![](https://img.fanhaobai.com/2017/06/yii-captcha/4e4de2c6-3098-c251-4c66-82c429ab991c.png)
+![](https://img5.fanhaobai.com/2017/06/yii-captcha/4e4de2c6-3098-c251-4c66-82c429ab991c.png)

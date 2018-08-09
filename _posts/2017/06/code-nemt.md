@@ -11,7 +11,7 @@ categories:
 
 只要志愿选的好，年年期末像高考。比如，你选择了计算机专业，那么你将面临高等数学、线性代数、C语言、计算机引论、离散数学、电子技术、C++程序设计、汇编语言程序设计、计算机组成原理、编译原理、操作系统、数据库原理……
 
-![](https://img.fanhaobai.com/2017/06/code-nemt/27577541-0e2b-969b-3c61-2ddfaed5abb4.gif)<!--more-->
+![](https://img2.fanhaobai.com/2017/06/code-nemt/27577541-0e2b-969b-3c61-2ddfaed5abb4.gif)<!--more-->
 
 又是一年高考季，一起来做做“程序员们的高考试卷”，压压惊吧~
 
@@ -44,11 +44,11 @@ C. 程序员没有女朋友，不过节
 
 **4、程序员最怕弹出的窗口是（）**
 A.
-![](https://img.fanhaobai.com/2017/06/code-nemt/c5d0ebf1-d2a5-45d2-bb32-13375d39a3e1.jpg)
+![](https://img3.fanhaobai.com/2017/06/code-nemt/c5d0ebf1-d2a5-45d2-bb32-13375d39a3e1.jpg)
 B.
-![](https://img.fanhaobai.com/2017/06/code-nemt/4175ab74-d72b-a795-75df-1316f144d782.jpg)
+![](https://img4.fanhaobai.com/2017/06/code-nemt/4175ab74-d72b-a795-75df-1316f144d782.jpg)
 C.
-![](https://img.fanhaobai.com/2017/06/code-nemt/27577541-0e2b-969b-3c61-2ddfaed5abb4.jpg)
+![](https://img5.fanhaobai.com/2017/06/code-nemt/27577541-0e2b-969b-3c61-2ddfaed5abb4.jpg)
 
 **5、程序员：哎，太累了日子没法过了，怎么才能换行啊？（）**
 A. 打回车

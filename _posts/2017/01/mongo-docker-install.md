@@ -11,7 +11,7 @@ categories:
 
 MongoDB 作为 [NOSQL](http://baike.baidu.com/link?url=NTbBo0uTFuveD-bigzlZ_LODG6-c9jkat2nOgPV8u4A0LA_84txdJy0YgcBgnE5TtIPrlKVHFW5hHoVklxcb0K) 的典型代表之一，它是非关系数据库当中最像关系数据库的。并且支持类似于面向对象的查询语言，所以几乎可以实现类似关系数据库单表查询的绝大部分功能，同时还支持索引。因此，在大数据的时代，大型 Web 应用难免会使用到 MongoDB 作为大数据存储服务。这里记录我在开发环境下，在 Docker 中部署 MongoDB 的过程。
 
-![](https://img.fanhaobai.com/2017/01/mongo-docker-install/Z6lofG8iRih1k6pKqsMPp9sn.png)<!--more-->
+![](https://img4.fanhaobai.com/2017/01/mongo-docker-install/Z6lofG8iRih1k6pKqsMPp9sn.png)<!--more-->
 
 由于 Docker 不受宿主环境影响的特性，所以部署 MongoDB 较容易。 Docker 的安装，[见这里](https://www.fanhaobai.com/2017/01/docker-install.html)。
 
@@ -58,7 +58,7 @@ d83cab80f13d   mongo   "/entrypoint.sh  3 seconds ago   Up 2 seconds   0.0.0.0:2
 
 使用可视化连接工具  [Robomongo](https://robomongo.org/) 进行连接测试，测试成功如下图所示：
 
-![](https://img.fanhaobai.com/2017/01/mongo-docker-install/Z6lofG8iRih1k6pKqsMPp9sn.png)
+![](https://img5.fanhaobai.com/2017/01/mongo-docker-install/Z6lofG8iRih1k6pKqsMPp9sn.png)
 
 到这里，Docker 环境下 MongoDB 已经部署完毕，但是现在 MongoDB 数据库处于极度危险的状态，因为没有做 auth 认证，不久之后就会发现 MongoDB 数据库被人删了，并多了一些恐吓信息，这就是最近闹的比较大的 [MongoDB赎金事件](http://www.mongoing.com/archives/3738?utm_source=tuicool&utm_medium=referral)。
 
@@ -156,7 +156,7 @@ $ exit
 
 最后，通过 **用户名** 和 **密码** 使用 Robomongo 连接测试，如下图表示修改成功。
 
-![](https://img.fanhaobai.com/2017/01/mongo-docker-install/xtY6PnmbCYZcPWY0gw6_rDFq.png)
+![](https://img0.fanhaobai.com/2017/01/mongo-docker-install/xtY6PnmbCYZcPWY0gw6_rDFq.png)
 
 # 更新镜像
 

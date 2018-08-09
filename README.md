@@ -4,6 +4,10 @@
 
 ![预览图](https://github.com/fan-haobai/blog/blob/master/view.png)
 
+### 杂谈
+
+* [从北京回到成都的这3个月](https://www.fanhaobai.com/2018/06/beijing-to-chengdu.html)（2018-06-27）
+
 ### 架构
 
 * [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)（2018-03-03）

@@ -14,7 +14,7 @@ categories:
 
 使用 Navicat 查看新导出的表 b 数据如下：
 
-![](https://img.fanhaobai.com/2017/08/mysql-replace-tn/f78a979c-f979-4a39-b117-72989a05c658.png)
+![](https://img0.fanhaobai.com/2017/08/mysql-replace-tn/f78a979c-f979-4a39-b117-72989a05c658.png)
 
 从表象上看并没有发现问题，执行查询：
 
@@ -30,7 +30,7 @@ SELECT * FROM table_a WHERE uid = "340ae30a-724e-12c5-6b92-************";
 
 经过确认，查询 uid 确实存在表 b 中，查询条件没问题。正眉头紧锁时，我使用 PhpStrom 集成的 Database 插件发现，数据格式奇怪地有些不一致，如下图：
 
-![](https://img.fanhaobai.com/2017/08/mysql-replace-tn/78e7f070-e9ac-45f6-958d-f5d282afec0e.png)
+![](https://img1.fanhaobai.com/2017/08/mysql-replace-tn/78e7f070-e9ac-45f6-958d-f5d282afec0e.png)
 
 仔细观察不难发现，第 1 行 uid 数据比第 2 行数据前多了“←┘”符号，所以确定是 Oracel 表导入 MySQL 表后导致某些列（uid ）值前多了 [换行符]()，查询条件与真实数据不一致 ，因此无法查询到结果。
 

@@ -9,13 +9,15 @@ categories:
 
 作为技术人员，Linux 系统可以说是我们使用最多的操作系统，但我们可能并不是很了解它。在这里我将自己日常遇到的 Linux 使用技巧记录下来，方便以后查询使用。
 
-![](https://img.fanhaobai.com/2018/01/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
+![](https://img0.fanhaobai.com/2018/01/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
 
-## 查看系统版本
+## 操作系统
+
+### 查看系统版本
 
 在安装环境或者软件时，我们常常需要知道所在操作系统的版本信息，这里列举几种查看内核和发行版本信息的方法，更多见 [查看 Linux 系统版本](https://www.fanhaobai.com/2016/07/linux-version.html)。
 
-### 内核版本
+#### 内核版本
 
 * uname命令
 
@@ -31,7 +33,7 @@ $ cat /proc/version
 Linux version 2.6.32-642.13.1.el6.i686
 ```
 
-### 发行版本
+#### 发行版本
 
 * lsb_release命令
 
@@ -49,58 +51,7 @@ $ cat /etc/redhat-release
 CentOS release 6.8 (Final)
 ```
 
-## Yum更新排除指定软件
-
-有时候我们使用 yum 安装的软件，由于配置向后兼容性等问题，我们并不希望这些软件（filebeat 和 logstash）在使用`update`时，被不经意间被自动更新。这时，可以使用如下方法解决：
-
-* 临时
-
-通过`-x`或`--exclude`参数指定需要排除的包名称，多个包名称使用空格分隔。例如：
-
-```Bash
-# --exclude同样
-$ yum -x filebeat logstash update
-```
-
-* 永久
-
-在 yum 配置文件`/etc/yum.conf`中，追加`exclude`配置项。例如：
-
-```Ini
-# 需排序的包名称
-exclude=filebeat logstash
-```
-
-再次使用`yum update`命令，就不会自动更新指定的软件包了。
-
-```Bash
-$ yum update
-No Packages marked for Update
-```
-
-## 强制踢出其他登录用户
-
-在某些情况下，需要强制踢出系统其他登录用户，比如遇到非法用户登录。查询当前登陆用户：
-
-```Bash
-# 当前用户
-$ whoami
-root
-# 当前所有用户
-$ ps -ef | grep 'pts'
-root      4752  4727  0 00:09 pts/0    00:00:00 su www
-www       4755  4752  0 00:09 pts/0    00:00:00 bash
-```
-
-剔除非法登陆用户：
-
-```Bash
-$ kill -9 4755
-```
-
-更多详细说明，见 [Linux 强制踢出其他登录用户](https://www.fanhaobai.com/2016/11/out-users.html)。
-
-## 免密码使用sudo
+### 免密码使用sudo
 
 以下两种需求：
 1. 开发中经常会使用到 sudo 命令，为了避免频繁输入密码的麻烦；
@@ -132,7 +83,75 @@ fhb ALL=(root) NOPASSWD: /usr/sbin/service,/usr/local/php/bin/php,/usr/bin/vim
 
 然后，使用`sudo service ssh restart`命令测试 OK。
 
-## Strace调试
+### Yum更新排除指定软件
+
+有时候我们使用 yum 安装的软件，由于配置向后兼容性等问题，我们并不希望这些软件（filebeat 和 logstash）在使用`update`时，被不经意间被自动更新。这时，可以使用如下方法解决：
+
+* 临时
+
+通过`-x`或`--exclude`参数指定需要排除的包名称，多个包名称使用空格分隔。例如：
+
+```Bash
+# --exclude同样
+$ yum -x filebeat logstash update
+```
+
+* 永久
+
+在 yum 配置文件`/etc/yum.conf`中，追加`exclude`配置项。例如：
+
+```Ini
+# 需排序的包名称
+exclude=filebeat logstash
+```
+
+再次使用`yum update`命令，就不会自动更新指定的软件包了。
+
+```Bash
+$ yum update
+No Packages marked for Update
+```
+
+## ssh
+
+### 强制踢出其他登录用户
+
+在某些情况下，需要强制踢出系统其他登录用户，比如遇到非法用户登录。查询当前登陆用户：
+
+```Bash
+# 当前用户
+$ whoami
+root
+# 当前所有用户
+$ ps -ef | grep 'pts'
+root      4752  4727  0 00:09 pts/0    00:00:00 su www
+www       4755  4752  0 00:09 pts/0    00:00:00 bash
+```
+
+剔除非法登陆用户：
+
+```Bash
+$ kill -9 4755
+```
+
+更多详细说明，见 [Linux 强制踢出其他登录用户](https://www.fanhaobai.com/2016/11/out-users.html)。
+
+### 建立隧道实现端口转发
+
+在可以使用 ssh 情况下，为了能进行线上调试，我们可以使用 ssh 隧道建立端口映射。
+
+例如，线上远程目标机器 ip：10.1.1.123、端口：3303；映射到本地 33031 端口。命令如下：
+
+```Bash
+# [主机ip]:[端口]:[主机ip]:[远程目标机器端口] [远程目标机器ip]
+ssh -L 127.0.0.1:33031:127.0.0.1:3303 10.1.1.123
+```
+
+> 该命令操作后，只能通过`127.0.0.1`访问。若想全网段访问，需要将第一个主机 ip 更改为`0.0.0.0`，同时需要在`/etc/ssh/sshd_config`增加`GatewayPorts yes`的配置项。
+
+## 常用工具
+
+### Strace调试
 
 在调试程序时，我们会遇到一些系统层面的错误问题，一般都不易发现，这时可以使用 strace 来跟踪系统调用的过程，方便快速定位和解决问题。
 

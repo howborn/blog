@@ -22,7 +22,7 @@ error_log path/error.log
 
 查看 Nginx 配置的 [官方文档](http://nginx.org/en/docs/ngx_core_module.html#error_log) ，如下所示：
 
-![](https://img.fanhaobai.com/2017/01/nginx-error-log/bV28VaqG_Zxq4KG0QjFIyC0j.png)
+![](https://img1.fanhaobai.com/2017/01/nginx-error-log/bV28VaqG_Zxq4KG0QjFIyC0j.png)
 
 从上图可知，Nginx 的 error_log **等级** 如下：
 
@@ -138,7 +138,7 @@ error_log path/error.log info;  
 
 关于关闭错误日志的方法，Nginx 官方文档中说明如下：
 
-![](https://img.fanhaobai.com/2017/01/nginx-error-log/Y9dl4sFCEwGsFmUFvKYey-bI.png)
+![](https://img2.fanhaobai.com/2017/01/nginx-error-log/Y9dl4sFCEwGsFmUFvKYey-bI.png)
 
 所以，通过 **error_log off** 并不能关闭错误日志记录，而它只是表示将日志文件写入一个文件名为 **off** 的文件中。
 

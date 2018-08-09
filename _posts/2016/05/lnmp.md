@@ -8,7 +8,7 @@ categories:
 ---
 
 本文主要介绍 LNMP 开发环境的安装，同时列出了 PhpStorm 的安装过程。源码包统一放置于`/usr/src`，软件统一安装于`/usr/local`。
-![预览图](https://img.fanhaobai.com/2016/05/lnmp/5e41724-379c-4729-9c7a-30bd469e520b.jpg)<!--more-->
+![预览图](https://img1.fanhaobai.com/2016/05/lnmp/5e41724-379c-4729-9c7a-30bd469e520b.jpg)<!--more-->
 
 ## CentOS安装 ##
 
@@ -112,11 +112,11 @@ id:5:initdefault:
 
 ### 下载并解压源码 ###
 
-从 [PHP 官方地址](http://php.net/downloads.php)下载源码包。
+从 [PHP 官方地址](http://php.net/downloads.php) 下载源码包。
 
 ```Bash
 $ cd /usr/src
-$ wget http://219.238.7.71/files/1007000009B9E9D0/cn2.php.net/distributions/php-5.6.30.tar.gz
+$ wget http://am1.php.net/distributions/php-5.6.30.tar.gz
 $ tar zxvf php-5.6.30.tar.gz
 $ cd php-5.6.30
 ```
@@ -455,7 +455,7 @@ server {
 ### 系统服务 ###
 
 ```Bash
-$ vi /etc/rc.d/init.d/nginx
+$ vi /etc/init.d/nginx
 
 # 追加入如下内容
 #!/bin/bash

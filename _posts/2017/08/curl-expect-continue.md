@@ -9,7 +9,7 @@ categories:
 ---
 
 curl 在项目中使用频率较高，比如内部接口、第三方 api、图片存储服务等，但是我们在使用 curl 时可能并没有注意到 Expect 这个请求头信息，而 Expect 设置不正确，会导致不必要的一次 HTTP 请求，甚至可能会导致业务逻辑错误。
-![](https://img.fanhaobai.com/2017/08/curl-expect-continue/d6ab643f-3c28-4721-a362-1e9133c6bc14.png)<!--more-->
+![](https://img3.fanhaobai.com/2017/08/curl-expect-continue/d6ab643f-3c28-4721-a362-1e9133c6bc14.png)<!--more-->
 
 ## 问题
 

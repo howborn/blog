@@ -10,7 +10,7 @@ categories:
 
 之前一直在使用 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html#官方推荐) 推荐的发布方案，缺点是本地依赖 Hexo 环境，无法随时随地地更新博客。为了摆脱 Hexo 环境约束进而高效写作，有了下述的发布方案。
 
-![预览图](https://img.fanhaobai.com/2018/03/hexo-deploy/082786eb-0903-4776-a345-e52d25de2e49.png)<!--more-->
+![预览图](https://img1.fanhaobai.com/2018/03/hexo-deploy/082786eb-0903-4776-a345-e52d25de2e49.png)<!--more-->
 
 本文的发布方案中，Git 仓库只是托管 md 文件，通过 Webhook 通知服务器拉取 md 文件，然后执行构建静态文件操作，完成一个发布过程。
 
@@ -28,7 +28,7 @@ categories:
 
 之前（包括 Hexo 推荐）的发布方案，都是先本地编写 MarkDown 源文件，然后本地构建静态文件，最后同步静态文件到服务器。发布流程图如下：
 
-![原来的发布流程](https://img.fanhaobai.com/2018/03/hexo-deploy/f2ec7449-ae8a-4f6a-8dfa-95d6abf4aaa6.png)
+![原来的发布流程](https://img2.fanhaobai.com/2018/03/hexo-deploy/f2ec7449-ae8a-4f6a-8dfa-95d6abf4aaa6.png)
 
 显而易见，若继续使用之前的发布方案，那么每当更换写作场地时都需要安装 Hexo 环境，写作场地和时间都受到限制，不满足需求。
 
@@ -40,7 +40,7 @@ categories:
 
 首先，看下新方案的发布流程图：
 
-![我的发布流程](https://img.fanhaobai.com/2018/03/hexo-deploy/bf3adf97-088b-47cd-b5ab-377a4f4acd44.png)
+![我的发布流程](https://img3.fanhaobai.com/2018/03/hexo-deploy/bf3adf97-088b-47cd-b5ab-377a4f4acd44.png)
 
 如流程图所示，整个发布系统共涉及到 3 个环境，分别为本地（写作）、Git 仓库（托管 md 源文件）、服务器（Web 服务）环境。在服务器环境构建静态文件，因此只需要在服务器端安装 Hexo 环境。 
 
@@ -54,7 +54,7 @@ categories:
 
 采用按分支开发策略，当写作完成后，只需要 push 修改到对应分支即可。只要有 MarkDown 编辑器，以及任何文本编辑器，甚至 [马克飞象](https://maxiang.io/) 都可以随时随地写作。
 
-![写作流程](https://img.fanhaobai.com/2018/03/hexo-deploy/cd4f6674-aba5-4cbc-87e6-18c0c230585b.png)
+![写作流程](https://img4.fanhaobai.com/2018/03/hexo-deploy/cd4f6674-aba5-4cbc-87e6-18c0c230585b.png)
 
 当然，你可能说还需要 Git 环境呀？好吧，如果你是一名合格的 Coder，竟然没有 Git，你知道该干嘛了！再说没有 Git 环境，还可以通过 [GitHub](https://github.com) 来完成写作。 
 
@@ -62,7 +62,7 @@ categories:
 
 采用 master 发布策略，当需要发布时，需要将对应开发分支 merge 到 master 分支，然后`push master`分支，即可实现发布。
 
-![发布流程](https://img.fanhaobai.com/2018/03/hexo-deploy/12b62d2e-7e26-4a3c-a770-e0d16d5c2254.png)
+![发布流程](https://img5.fanhaobai.com/2018/03/hexo-deploy/12b62d2e-7e26-4a3c-a770-e0d16d5c2254.png)
 
 #### 构建流程
 
@@ -70,11 +70,11 @@ categories:
 
 当流程 ① 和 ② 结束后，Git 仓库都会向服务器发起一次 HTTP 请求，记录如下：
 
-![Webhook请求](https://img.fanhaobai.com/2018/03/hexo-deploy/9ee84981-7d79-47f5-98f8-e7500eff6e67.png)
+![Webhook请求](https://img0.fanhaobai.com/2018/03/hexo-deploy/9ee84981-7d79-47f5-98f8-e7500eff6e67.png)
 
 当收到构建请求后，执行构建操作。构建流程图如下：
 
-![构建流程图](https://img.fanhaobai.com/2018/03/hexo-deploy/3b8f20b3-f3b2-498d-afa4-d60391c47db5.png)
+![构建流程图](https://img1.fanhaobai.com/2018/03/hexo-deploy/3b8f20b3-f3b2-498d-afa4-d60391c47db5.png)
 
 首先检查当前变更分支，只有为 master 分支时，执行 pull 操作拉取 md 文件更新，然后再执行 `hexo g`完成静态文件的构建。 
 
