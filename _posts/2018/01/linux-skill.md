@@ -199,18 +199,12 @@ echo -e "\033[0;37;41m Hello World."
 主要包括 [前景色]() 和 [背景色]()，前景色范围为`30~39`，背景色范围为`40~49`（前景色对应颜色值 +10）。前景色颜色代码表如下：
 
 <div>
-<p><span style="color:black;">黑   = "\033[30m"</span></p>
-<p><span style="color:red;">红   = "\033[31m"</span></p>
-<p><span style="color:green;">绿   = "\033[32m"</span></p>
-<p><span style="color:yellow;">黄   = "\033[33m"
-<p><span style="color:blue;">蓝   = "\033[34m"
-<p><span style="color:purple;">紫   = "\033[35m"
-<p><span style="color:cyan;">青 = "\033[36m"
-<p><span style="color:white;">白   = "\033[37m"
+<p><span style="color:black;">黑   = "\033[30m"</span></p><p><span style="color:red;">红   = "\033[31m"</span></p><p><span style="color:green;">绿   = "\033[32m"</span></p><p><span style="color:yellow;">黄   = "\033[33m"<p><span style="color:blue;">蓝   = "\033[34m"<p><span style="color:purple;">紫   = "\033[35m"<p><span style="color:cyan;">青 = "\033[36m"<p><span style="color:white;">白   = "\033[37m"
 </div>
 
 * 格式
-
++---------+--------------+
+|  表达式 |     格式      |
 +---------+--------------+
 | \033[0m |  关闭所有属性 |
 | \033[1m |    高亮度    |
