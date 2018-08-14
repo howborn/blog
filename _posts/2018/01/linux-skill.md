@@ -198,21 +198,25 @@ echo -e "\033[0;37;41m Hello World."
 
 主要包括 [前景色]() 和 [背景色]()，前景色范围为`30~39`，背景色范围为`40~49`（前景色对应颜色值 +10）。前景色颜色代码表如下：
 
-<div>
-<p><span style="color:black;">黑   = "\033[30m"</span></p><p><span style="color:red;">红   = "\033[31m"</span></p><p><span style="color:green;">绿   = "\033[32m"</span></p><p><span style="color:yellow;">黄   = "\033[33m"<p><span style="color:blue;">蓝   = "\033[34m"<p><span style="color:purple;">紫   = "\033[35m"<p><span style="color:cyan;">青 = "\033[36m"<p><span style="color:white;">白   = "\033[37m"
-</div>
+<div><span style="color:black;">黑   = "\033[30m"</span>
+<span style="color:red;">红   = "\033[31m"</span>
+<span style="color:green;">绿   = "\033[32m"</span>
+<span style="color:yellow;">黄   = "\033[33m"</span>
+<span style="color:blue;">蓝   = "\033[34m"</span>
+<span style="color:purple;">紫   = "\033[35m"</span>
+<span style="color:cyan;">青 = "\033[36m"</span>
+<span style="color:white;">白   = "\033[37m"</span></div>
 
 * 格式
-+---------+--------------+
-|  表达式 |     格式      |
-+---------+--------------+
+
+|  表达式   |     格式     |
+| -------- | ------------ |
 | \033[0m |  关闭所有属性 |
 | \033[1m |    高亮度    |
 | \033[4m |    下划线    |
 | \033[5m |     闪烁     |
 | \033[7m |     反显     |
 | \033[8m |     消隐     |
-+---------+--------------+
 
 <strong>更新 [»]()</strong>
 * [免密码使用 sudo](#免密码使用sudo)（2018-04-12）
