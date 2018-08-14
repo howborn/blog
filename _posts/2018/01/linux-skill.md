@@ -9,7 +9,7 @@ categories:
 
 作为技术人员，Linux 系统可以说是我们使用最多的操作系统，但我们可能并不是很了解它。在这里我将自己日常遇到的 Linux 使用技巧记录下来，方便以后查询使用。
 
-![](https://img0.fanhaobai.com/2018/01/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
+![预览图](https://img0.fanhaobai.com/2018/01/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
 
 ## 操作系统
 
@@ -170,6 +170,55 @@ open("/lib64/libc.so.6", O_RDONLY)      = 3
 ```
 
 更多详细说明，见 [错误调试](https://www.fanhaobai.com/2017/07/php-cli-setting.html#错误调试https://www.fanhaobai.com/2016/11/out-users.html)。
+
+### 彩色的命令行
+
+在脚本或者代码中，有时候需要在控制终端输出醒目的提示信息，以便引起我们的关注。其实，在 Linux 终端下很容易就能搞定，如下：
+
+![彩色的命令行](https://img1.fanhaobai.com/2018/01/linux-skill/7bb99049-49bd-427b-a338-3afff4268fb3.jpg)
+
+实现的源代码，内容为：
+
+```Bash
+echo -e "\033[1;30m Hello World. \033[0m [高亮]"
+echo -e "\033[0;31m Hello World. \033[0m [关闭属性]"
+echo -e "\033[4;32m Hello World. \033[0m [下划线]"
+echo -e "\033[5;33m Hello World. \033[0m [闪烁]"
+echo -e "\033[7;34m Hello World. \033[0m [反显]"
+echo -e "\033[8;35m Hello World. \033[0m [消隐]"
+echo -e "\033[0;36;40m Hello World."
+echo -e "\033[0;37;41m Hello World."
+```
+
+> `\033`是 Esc 键对应的 ASCII 码（27=/033=0x1B），表示后面的内容具有特殊含义，类似表述有`^[`以及`/e`，而`\033[0m`表示清除格式控制。
+
+输出格式的规则，可表示为`\033[特殊格式;前景色;背景色m`，主要分为 [颜色]() 和 [格式]() 两类规则。
+
+* 颜色
+
+主要包括 [前景色]() 和 [背景色]()，前景色范围为`30~39`，背景色范围为`40~49`（前景色对应颜色值 +10）。前景色颜色代码表如下：
+
+<div>
+<p><span style="color:black;">黑   = "\033[30m"</span></p>
+<p><span style="color:red;">红   = "\033[31m"</span></p>
+<p><span style="color:green;">绿   = "\033[32m"</span></p>
+<p><span style="color:yellow;">黄   = "\033[33m"
+<p><span style="color:blue;">蓝   = "\033[34m"
+<p><span style="color:purple;">紫   = "\033[35m"
+<p><span style="color:cyan;">青 = "\033[36m"
+<p><span style="color:white;">白   = "\033[37m"
+</div>
+
+* 格式
+
++---------+--------------+
+| \033[0m |  关闭所有属性 |
+| \033[1m |    高亮度    |
+| \033[4m |    下划线    |
+| \033[5m |     闪烁     |
+| \033[7m |     反显     |
+| \033[8m |     消隐     |
++---------+--------------+
 
 <strong>更新 [»]()</strong>
 * [免密码使用 sudo](#免密码使用sudo)（2018-04-12）
