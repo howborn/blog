@@ -13,6 +13,10 @@ date: 2016-02-10
 * <i class="fa fa-envelope"></i> [i@fanhaobai.com](mailto:i@fanhaobai.com)
 * <i class="fa fa-qq"></i> [292476774]()
 
+### 学习方法
+
+Google、逛博客、研读开源代码、欣赏一些优秀的架构方案、空余时间读一些书。
+
 ### 专业技能
 
 * 熟悉：PHP, Lua, JS
