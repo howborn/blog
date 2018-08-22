@@ -46,8 +46,21 @@ $ ll -a
 -rw-r--r--. 1 root root  191 Jul 10 17:34 crontab.sh
 
 $ crontab -l
-10 0 * * * /mnt/hgfs/Code/ziroom/crontab/cli/crontab.sh > /home/log/cli.log
+5 * * * * /mnt/hgfs/Code/ziroom/crontab/cli/crontab.sh > /home/log/cli.log
 ```
+
+## 单实例防并发
+
+脚本往往只需要单实例执行，甚至有时候启动多个实例并行执行会带来不可预期的错误。例如，一个脚本执行时间偶尔会超过 10 分钟，而我又需要以每 5 分钟的频率执行，那么不可避免的会出现多实例并发执行的异常情况，这时可以使用 [文件锁]() 来保证脚本的单实例执行。
+
+当然，我们可以在脚本中实现文件锁，但是我们往往希望脚本只涉及到业务逻辑，这样方便维护。此时可以使用`flock`命令来解决：
+
+```
+# flock文件锁
+5 * * * * /usr/bin/flock -xn /var/run/crontab.lock -c "/mnt/hgfs/Code/ziroom/crontab/cli/crontab.sh > /home/log/cli.log"
+```
+
+使用 flock 命令，一个明显的好处是不对业务有任何侵入，脚本只需关注业务逻辑。
 
 ### Git修改文件权限
 
