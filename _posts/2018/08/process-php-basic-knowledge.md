@@ -2,7 +2,6 @@
 title: 怎么用PHP玩转进程之一 — 基础
 date: 2018-08-28 20:30:06
 tags:
-- PHP
 - 系统设计
 categories:
 - 语言
