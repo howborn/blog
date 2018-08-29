@@ -168,5 +168,4 @@ QConf 因为其对配置信息的定位，使得整个结构非常简单，容�
 
 <strong>相关文章 [»]()</strong>
 
-* [配置中心部署Qconf](https://www.fanhaobai.com/2017/11/qconf-deploy.html) <span>（2017-11-13）</span>
 * [配置管理服务横向对比 ](http://www.cnblogs.com/zhangxh20/p/5464103.html)

@@ -18,7 +18,6 @@
 
 #### 分布式
 
-* [配置中心部署Qconf](https://www.fanhaobai.com/2017/11/qconf-deploy.html)（2017-11-13）
 * [分布式配置管理Qconf](https://www.fanhaobai.com/2017/11/qconf.html)（2017-11-03）
 * [Gearman的安装和使用](https://www.fanhaobai.com/2017/08/gearman.html)（2017-08-27）
 
@@ -85,6 +84,10 @@
 * [DNS缓存服务 — NSCD](https://www.fanhaobai.com/2017/06/nscd-dns-cache.html)（2017-06-25）
 * [DNS原理入门](https://www.fanhaobai.com/2017/06/dns.html)（2017-06-24）
 * [我是一个线程（修订版](https://www.fanhaobai.com/2016/10/im-thread.html)（2016-10-11）
+
+#### 进程
+
+* [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html)（2018-08-28）
 
 #### 协议
 
