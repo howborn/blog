@@ -2,14 +2,13 @@
 title: 怎么用PHP玩转进程之一 — 基础
 date: 2018-08-28 20:30:06
 tags:
-- PHP
 - 系统设计
 categories:
 - 语言
 - PHP
 ---
 
-我们工作中接触最多的就是 [进程](https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%A8%8B)，但是我们对它又比较陌生，因为它是业务不需要关心的地方，既有的公有组件和操作系统已经对我们屏蔽了它的复杂性。然后跟它的接触时间一长，我们难免会对它产生好奇：How it work? 
+我们工作中接触最多的就是 [进程](https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%A8%8B)，但是我们对它又比较陌生，因为它是业务不需要关心的地方，既有的公有组件和操作系统已经对我们屏蔽了它的复杂性。然后跟它的接触时间一长，我们难免会对它产生好奇：How it works?
 
 ![预览图](https://img0.fanhaobai.com/2018/08/process-php-basic-knowledge/f6eb7888-6de6-41a4-8d15-4d471825a24e.jpg)<!--more--> 
 
