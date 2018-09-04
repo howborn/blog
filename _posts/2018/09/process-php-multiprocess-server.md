@@ -1,21 +1,30 @@
 ---
 title: 怎么用PHP玩转进程之二 — 多进程PHPServer
-date: 2018-08-29 13:30:23
+date: 2018-09-02 16:10:53
 tags:
-- PHP
 - 系统设计
 categories:
 - 语言
 - PHP
 ---
 
-现在，我们用 PHP 做一些简单的进程控制和管理，采用多进程模型实现一个简单的`PHPServer`，基于它你可以做任何事。
+经过 [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的`PHPServer`，基于它你可以做任何事。
 
-完整的源代码，可前往 [fan-haobai/php-server](https://github.com/fan-haobai/php-server) 获取。接下来，就关键的实现部分进行说明。
+![预览图](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/34f35d33-57b2-41d7-b738-f0c1c712102f.png)
+
+完整的源代码，可前往 [fan-haobai/php-server](https://github.com/fan-haobai/php-server) 获取。
+
+### 总流程
+
+master 和 worker 进程主要控制流程，如下图：
+
+![master控制流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
+
+![worker控制流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
 
 ### 守护进程
 
-![守护进程流程](https://img0.fanhaobai.com/2018/08/)
+![守护进程流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
 
 先在该进程中`fork`一个子进程，然后该父进程退出，并设置该子进程为会话组长，此时的子进程就会脱离当前终端的控制，进而实现进程的后台运行。代码如下：
 
@@ -116,13 +125,9 @@ protected static function signalHandler($signal)
 
 ### 多进程
 
-为了提高业务处理能力和提高可靠性，`PHPServer`由单进程模型演变为经典的多进程模型。其中 master 进程只负责任务调度和 worker 进程监控，而 worker 进程则负责执行具体的业务逻辑。
+其中 master 进程只负责任务调度和 worker 进程监控，而 worker 进程则负责执行具体的业务逻辑。首先 master 进程完成初始化，然后通过`fork`系统调用，创建多个 worker 进程，并持续监控和管理。
 
-![多进程模型](https://img0.fanhaobai.com/2018/08/)
-
-可描述为：首先 master 进程完成初始化，然后通过`fork`系统调用，创建多个 worker 进程，并持续监控和管理。
-
-![多进程流程](https://img0.fanhaobai.com/2018/08/)
+![多进程流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
 
 实现代码，如下：
 
@@ -199,7 +204,7 @@ protected static function monitor()
 
 #### 停止
 
-![停止流程](https://img0.fanhaobai.com/2018/08/)
+![停止流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
 
 给 master 进程发送 SIGINT 或 SIGTERM 信号，master 进程捕获到该信号并执行信号处理器，调用`stop()`方法，如下：
 
@@ -249,25 +254,19 @@ protected static function stopAllWorkers()
 
 #### 重载
 
-![重载流程](https://img0.fanhaobai.com/2018/08/)
+![重载流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
 
 给 master 进程发送 SIGQUIT 或 SIGUSR1 信号，master 进程捕获到该信号并执行信号处理器，调用`reload()`方法。先调用`stopAllWorkers()`方法并等待所有 worker 退出，然后再调用`forkWorkers()`方法重新创建所有 worker 进程。如下：
 
 ```PHP
 protected static function reload()
 {
+    // 停止所有worker即可,master会自动fork新worker
     static::stopAllWorkers();
-
-    $allWorkPid = static::getAllWorkerPid();
-    while (static::isAlive($allWorkPid)) {
-        usleep(10);
-    }
-
-    static::forkWorkers();
 }
 ```
 
-> `reload()`方法只会在 master 进程中执行。
+> `reload()`方法只会在 master 进程中执行，因为 SIGQUIT 和 SIGUSR1 信号不会发送给 worker 进程。
 
 该过程，因为只是所有 worker 进程退出，并 fork 了新的 worker 进程，所以 master 进程 PID 并不会发生变化。代码发布后，需要使用该操作进行重新加载。
 
@@ -275,7 +274,7 @@ protected static function reload()
 
 由于 worker 进程执行繁重的业务逻辑，所以很有可能会异常崩溃，因此 master 进程需要监控 worker 进程健康状态，并维持一定数量的 worker 进程。
 
-![异常退出处理流程](https://img0.fanhaobai.com/2018/08/)
+![异常退出处理流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
 
 代码实现，如下：
 
@@ -299,3 +298,7 @@ protected static function keepWorkerNumber()
 
 首先，我们不应该给 master 进程分配繁重的任务，它更适合做一些类似于调度和管理性质的工作；
 其次，可以使用 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html) 等工具来管理我们的程序，当 master 进程异常崩溃时，可以再次尝试被拉起，避免 master 进程异常退出的情况发生。
+
+<strong>相关文章 [»]()</strong>
+
+* [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) <span>（2018-08-28）</span>
