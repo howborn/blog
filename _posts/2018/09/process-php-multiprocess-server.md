@@ -8,25 +8,44 @@ categories:
 - PHP
 ---
 
-经过 [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的`PHPServer`，基于它你可以做任何事。
+经过 [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的 PHPServer，基于它你可以做任何事。
 
 ![预览图](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/34f35d33-57b2-41d7-b738-f0c1c712102f.png)
 
-完整的源代码，可前往 [fan-haobai/php-server](https://github.com/fan-haobai/php-server) 获取。
+PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.com/fan-haobai/php-server) 获取。
 
-### 总流程
+## 总流程
 
-master 和 worker 进程主要控制流程，如下图：
+该 PHPServer 的 Master 和 Worker 进程主要控制流程，如下图所示：
 
-![master控制流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
+![控制流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/e0e86073-3093-4e5f-be20-b64510e61575.png)
 
-![worker控制流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
+其中，主要涉及 3 个对象，分别为 [入口脚本]()、[Master 进程]()、[Worker 进程]()。它们扮演的角色如下：
+* 入口脚本：主要实现 PHPServer 的启动、停止、重载功能，即触发 Master 进程`start`、`stop`、`reload`流程；
+* Master 进程：负责创建并监控 Worker 进程在启动阶段，会注册信号处理器，然后创建 Worker；在运行阶段，会持续监控 Worker 进程健康状态，并接受来自入口脚本的控制信号并作出响应；在停止阶段，会停止掉所有 Worker；
+* Worker 进程：负责执行业务逻辑。在 Master 进程创建后，就处于持续运行阶段，会监听到来自 Master 进程的信号，以实现自我的停止；
 
-### 守护进程
+主要实现 4 个流程：
+* 流程 ① ：以守护态启动 PHPServer 时的主要流程。入口脚本会进行 [daemonize]()，也就是实现进程的守护态，此时会`fork`出一个 Master 进程；Master 进程先经过 [保存 PID]()、[注册信号处理器]() 操作，然后 [创建 Worker]() 会`fork`出多个 Worker 进程；
+* 流程 ② ：为 Master 进程持续监控的流程，过程中会捕获入口脚本发送来的信号。主要监控  Worker 进程健康状态，当 Worker 进程异常退出时，会尝试创建新的 Worker 进程以维持 Worker 进程数量；
+* 流程 ③ ：为 Worker 进程持续运行的流程，过程中会捕获 Master 进程发送来的信号。流程 ① 中Worker 进程被创建后，就会持续执行业务逻辑，并阻塞于此；
+* 流程 ④ ：停止 PHPServer 的主要流程。入口脚本首先会向 Master 进程发送 SIGINT 信号，Master 进程捕获到该信号后，会向所有的 Worker 进程转发 SIGINT 信号（通知所有的 Worker 进程终止），直到所有 Worker 进程终止退出后，它才会清除 PID 文件并退出。
 
-![守护进程流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
+由于`reload`流程类似于`stop`流程（ ④），所以这里未作描述。与`stop`流程不同的是：一是入口脚本发送的是 SIGUSR1 信号；二是在所有 Worker 进程退出后，Master 进程并不会终止退出。
 
-先在该进程中`fork`一个子进程，然后该父进程退出，并设置该子进程为会话组长，此时的子进程就会脱离当前终端的控制，进而实现进程的后台运行。代码如下：
+> 在流程 ② 中，Worker 进程被 Master 进程`fork`出来后，就会 [持续运行]() 并阻塞于此，只有 Master 进程才会继续后续的流程。
+
+## 代码实现
+
+### 启动
+
+启动流程见 [流程 ①](#总流程)，主要包括 [守护进程](#守护进程)、[保存 PID](#保存PID)、[注册信号处理器](#注册信号处理器)、[创建多进程 Worker](创建多进程Worker) 这四部分。
+
+#### 守护进程
+
+![守护进程流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/22ed9e46-971c-4983-8bf5-65d321585d42.png)
+
+在入口脚本中`fork`一个子进程，然后该进程退出，并设置新的子进程为会话组长，此时的这个子进程就会脱离当前终端的控制。这里使用了 2 次`fork`，所以最后`fork`的一个子进程才是Master 进程，其实一次`fork`也是允许的。代码如下：
 
 ```PHP
 protected static function daemonize()
@@ -54,9 +73,9 @@ protected static function daemonize()
 }
 ```
 
-> 通常在启动时增加`-d`参数，表示进程使用守护态模式启动。
+> 通常在启动时增加`-d`参数，表示进程将运行于守护态模式。
 
-顺利成为一个守护进程后，其已经脱离了终端控制，所以有必要关闭标准输出和标准错误输出。如下：
+当顺利成为一个守护进程后，Master 进程已经脱离了终端控制，所以有必要关闭标准输出和标准错误输出。如下：
 
 ```PHP
 protected static function resetStdFd()
@@ -70,9 +89,9 @@ protected static function resetStdFd()
 }
 ```
 
-### PID
+#### 保存PID
 
-为了实现`PHPServer`的重载或停止，我们需要将 master 进程的 PID 保存于 PID 文件php-server.pid`中。代码如下：
+为了实现 PHPServer 的重载或停止，我们需要将 Master 进程的 PID 保存于 PID 文件中，如`php-server.pid`文件。代码如下：
 
 ```PHP
 protected static function saveMasterPid()
@@ -87,9 +106,11 @@ protected static function saveMasterPid()
 }
 ```
 
-### 信号处理器
+#### 注册信号处理器
 
-因为守护进程一旦脱离了终端控制，就犹如一匹脱缰的野马，任由其奔腾可能会为所欲为，所以我们需要去驯服并监控它。这里用信号来处理，代码如下：
+因为守护进程一旦脱离了终端控制，就犹如一匹脱缰的野马，任由其奔腾可能会为所欲为，所以我们需要去驯服它。
+
+这里使用信号来实现进程间通信并控制进程的行为，注册信号处理器如下：
 
 ```PHP
 protected static function installSignal()
@@ -121,15 +142,11 @@ protected static function signalHandler($signal)
 }
 ```
 
-其中，SIGINT 和 SIGTERM 信号会触发`stop`操作，即终止所有进程；SIGQUIT 和 SIGUSR1 信号会触发`reload`操作，即重新加载所有 worker 进程；忽略了 SIGUSR2 和 SIGHUP 信号，但是并未忽略 SIGKILL 信号，即所有进程都可以被强制 kill 掉。
+其中，SIGINT 和 SIGTERM 信号会触发`stop`操作，即终止所有进程；SIGQUIT 和 SIGUSR1 信号会触发`reload`操作，即重新加载所有 Worker 进程；此处忽略了 SIGUSR2 和 SIGHUP 信号，但是并未忽略 SIGKILL 信号，即所有进程都可以被强制`kill`掉。
 
-### 多进程
+#### 创建多进程Worker
 
-其中 master 进程只负责任务调度和 worker 进程监控，而 worker 进程则负责执行具体的业务逻辑。首先 master 进程完成初始化，然后通过`fork`系统调用，创建多个 worker 进程，并持续监控和管理。
-
-![多进程流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
-
-实现代码，如下：
+Master 进程通过`fork`系统调用，就能创建多个 Worker 进程。实现代码，如下：
 
 ```PHP
 protected static function forkOneWorker()
@@ -160,7 +177,13 @@ protected static function forkWorkers()
 }
 ```
 
-其中，`run()`方法会在 worker 进程中执行具体的业务逻辑。这里使用`while`来模拟调度，实际应该使用事件（Select 等）驱动，`pcntl_signal_dispatch()`函数用来在每次任务执行完成后，捕获信号以执行安装的信号处理器，当然 worker 进程会被阻塞于此方法。
+### Worker进程的持续运行
+
+Worker 进程的持续运行，见 [流程 ③](#总流程) 。其内部调度流程，如下图：
+
+![Worker进程的持续运行](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/ad804eb2-9300-4d34-ae63-3b820d81d4b1.png)
+
+对于 Worker 进程，`run()`方法主要执行具体业务逻辑，当然 Worker 进程会被阻塞于此。对于 [任务 ①]() 这里简单地使用`while`来模拟调度，实际中应该使用事件（Select 等）驱动。
 
 ```PHP
 public static function run()
@@ -178,9 +201,17 @@ public static function run()
 }
 ```
 
-### 进程管理
+其中，`pcntl_signal_dispatch()`会在每次调度过程中，捕获信号并执行注册的信号处理器。
 
-在通过 PID 文件能确切地知道 master 进程 PID 情况下，可以借助信号进行进程间通信，实现对 master 和 worker 进程的控制。这里只实现了重载和停止进程，并未实现重启进程，但是其可以由停止进程和启动进程两操作组合而成。
+### Master进程的持续监控
+
+#### 调度流程
+
+Master 进程的持续监控，见 [流程 ②](#总流程) 。其内部调度流程，如下图：
+
+![Master持续监控流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/8e65456f-8e08-4ae8-84f8-e6f2278410e4.png)
+
+对于 Master 进程的调度，这里也使用了`while`，但是引入了`wait`的系统调用，它会挂起当前进程，直到一个子进程退出或接收到一个信号。
 
 ```PHP
 protected static function monitor()
@@ -194,19 +225,44 @@ protected static function monitor()
         pcntl_signal_dispatch();
 
         if ($pid >= 0) {
-            // worker异常退出
-            static::keepWorkerNumber();
+            // worker健康检查
+            static::checkWorkerAlive();
         }
         // 其他你想监控的
     }
 }
 ```
+> 这里第两次的`pcntl_signal_dispatch()`捕获信号，是由于`wait`挂起时间可能会很长，而这段时间可能恰恰会有信号，所以需要再次进行捕获。
+
+其中，PHPServer 的 [停止](#停止) 和 [重载](#重载) 操作是由信号触发，然后在信号处理器中完成操作；[Worker 进程的健康检查](#Worker进程的健康检查) 会在每一次的调度过程中触发。
+
+#### Worker进程的健康检查
+
+由于 Worker 进程执行繁重的业务逻辑，所以很有可能会异常崩溃，因此 Master 进程需要监控Worker 进程健康状态，并尝试维持一定数量的 Worker 进程。健康检查流程，如下图：
+
+![健康检查流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/db333298-5a10-4de3-b0b2-41088cafc77f.png)
+
+代码实现，如下：
+
+```PHP
+protected static function checkWorkerAlive()
+{
+    $allWorkerPid = static::getAllWorkerPid();
+    foreach ($allWorkerPid as $index => $pid) {
+        if (!static::isAlive($pid)) {
+            unset(static::$_workers[$index]);
+        }
+    }
+
+    static::forkWorkers();
+}
+```
 
 #### 停止
 
-![停止流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
+![停止流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/fc458e5f-fccc-477f-9e18-eada5d856289.png)
 
-给 master 进程发送 SIGINT 或 SIGTERM 信号，master 进程捕获到该信号并执行信号处理器，调用`stop()`方法，如下：
+入口脚本给 Master 进程发送 SIGINT  信号，Master 进程捕获到该信号并执行 [信号处理器](#注册信号处理器)，调用`stop()`方法，如下：
 
 ```PHP
 protected static function stop()
@@ -227,14 +283,16 @@ protected static function stop()
 }
 ```
 
-若是 master 进程执行该方法，会先调用`stopAllWorkers()`方法，向所有的 worker 进程发送 SIGTERM 信号并等待所有 worker  进程终止退出，再删除 PID 文件并退出。有一种特殊情况，worker 进程退出超时时（僵尸进程），master 进程则会再次发送 SIGKILL 信号强制所有 worker 进程退出。
+若是 Master 进程执行该方法，会先调用`stopAllWorkers()`方法，向所有的 Worker 进程发送 SIGINT 信号并等待所有 Worker  进程终止退出，再清除 PID 文件并退出。有一种特殊情况，Worker 进程退出超时时（僵尸进程），Master 进程则会再次发送 SIGKILL 信号强制杀死所有 Worker 进程；
+
+由于 Master 进程会发送 SIGINT 信号给 Worker 进程，则 Worker 进程也会执行该方法，并会直接退出。
 
 ```PHP
 protected static function stopAllWorkers()
 {
     $allWorkerPid = static::getAllWorkerPid();
     foreach ($allWorkerPid as $workerPid) {
-        posix_kill($workerPid, SIGTERM);
+        posix_kill($workerPid, SIGINT);
     }
 
     // 子进程退出异常,强制kill
@@ -250,13 +308,13 @@ protected static function stopAllWorkers()
 }
 ```
 
-由于上述过程，master 进程会发送 SIGTERM 信号给 worker 进程，则 worker 进程也会执行该方法，并会直接退出。
-
 #### 重载
 
-![重载流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
+代码发布后，往往都需要进行重新加载。其实，重载过程只需要重启所有 Worker 进程即可。流程如下图：
 
-给 master 进程发送 SIGQUIT 或 SIGUSR1 信号，master 进程捕获到该信号并执行信号处理器，调用`reload()`方法。先调用`stopAllWorkers()`方法并等待所有 worker 退出，然后再调用`forkWorkers()`方法重新创建所有 worker 进程。如下：
+![重载流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/4c5ec8d3-e56e-4367-8856-beaf23ee7602.png)
+
+整个过程共有 2 个流程，流程 ① 终止所有的 Worker 进程，流程 ② 为  [Worker 进程的健康检查](#Worker进程的健康检查) 。其中流程 ① ，入口脚本给 Master 进程发送 SIGUSR1 信号，Master 进程捕获到该信号，执行信号处理器调用`reload()`方法，`reload()`方法调用`stopAllWorkers()`方法。如下：
 
 ```PHP
 protected static function reload()
@@ -266,38 +324,16 @@ protected static function reload()
 }
 ```
 
-> `reload()`方法只会在 master 进程中执行，因为 SIGQUIT 和 SIGUSR1 信号不会发送给 worker 进程。
+> `reload()`方法只会在 Master 进程中执行，因为 SIGQUIT 和 SIGUSR1 信号不会发送给 Worker 进程。
 
-该过程，因为只是所有 worker 进程退出，并 fork 了新的 worker 进程，所以 master 进程 PID 并不会发生变化。代码发布后，需要使用该操作进行重新加载。
-
-#### worker进程异常退出
-
-由于 worker 进程执行繁重的业务逻辑，所以很有可能会异常崩溃，因此 master 进程需要监控 worker 进程健康状态，并维持一定数量的 worker 进程。
-
-![异常退出处理流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/)
-
-代码实现，如下：
-
-```PHP
-protected static function keepWorkerNumber()
-{
-    $allWorkerPid = static::getAllWorkerPid();
-    foreach ($allWorkerPid as $index => $pid) {
-        if (!static::isAlive($pid)) {
-            unset(static::$_workers[$index]);
-        }
-    }
-
-    static::forkWorkers();
-}
-```
+你可能会纳闷，为什么我们需要重启所有的 Worker 进程，而这里只是停止了所有的 Worker 进程？这是因为，在 Worker 进程终止退出后，由于 Master 进程对 [Worker 进程的健康检查](#Worker进程的健康检查) 作用，会自动重新创建所有 Worker 进程，如流程 ②。
 
 ## 总结
 
-我们已经实现了一个简易的多进程 [PHPServer]((https://github.com/fan-haobai/php-server)，模拟了进程的管理与控制。需要说明的是，master 进程可能偶尔会异常地崩溃，为了避免这种情况的发生：
+我们已经实现了一个简易的多进程 [PHPServer](https://github.com/fan-haobai/php-server)，模拟了进程的管理与控制。需要说明的是，Master 进程可能偶尔会异常地崩溃，为了避免这种情况的发生：
 
-首先，我们不应该给 master 进程分配繁重的任务，它更适合做一些类似于调度和管理性质的工作；
-其次，可以使用 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html) 等工具来管理我们的程序，当 master 进程异常崩溃时，可以再次尝试被拉起，避免 master 进程异常退出的情况发生。
+首先，我们不应该给 Master 进程分配繁重的任务，它更适合做一些类似于调度和管理性质的工作；
+其次，可以使用 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html) 等工具来管理我们的程序，当 Master 进程异常崩溃时，可以再次尝试被拉起，避免 Master 进程异常退出的情况发生。
 
 <strong>相关文章 [»]()</strong>
 
