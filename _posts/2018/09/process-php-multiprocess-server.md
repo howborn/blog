@@ -8,9 +8,9 @@ categories:
 - PHP
 ---
 
-经过 [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的 PHPServer，基于它你可以做任何事。
+经过 [怎么用 PHP 玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的 PHPServer，基于它你可以做任何事。
 
-![预览图](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/34f35d33-57b2-41d7-b738-f0c1c712102f.png)
+![预览图](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/34f35d33-57b2-41d7-b738-f0c1c712102f.png)<!--more-->
 
 PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.com/fan-haobai/php-server) 获取。
 
@@ -20,16 +20,17 @@ PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.
 
 ![控制流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/e0e86073-3093-4e5f-be20-b64510e61575.png)
 
-其中，主要涉及 3 个对象，分别为 [入口脚本]()、[Master 进程]()、[Worker 进程]()。它们扮演的角色如下：
-* 入口脚本：主要实现 PHPServer 的启动、停止、重载功能，即触发 Master 进程`start`、`stop`、`reload`流程；
-* Master 进程：负责创建并监控 Worker 进程在启动阶段，会注册信号处理器，然后创建 Worker；在运行阶段，会持续监控 Worker 进程健康状态，并接受来自入口脚本的控制信号并作出响应；在停止阶段，会停止掉所有 Worker；
-* Worker 进程：负责执行业务逻辑。在 Master 进程创建后，就处于持续运行阶段，会监听到来自 Master 进程的信号，以实现自我的停止；
+其中，主要涉及 **3 个对象**，分别为 [入口脚本]()、[Master 进程]()、[Worker 进程]()。它们扮演的角色如下：
+* [入口脚本]()：主要实现 PHPServer 的启动、停止、重载功能，即触发 Master 进程`start`、`stop`、`reload`流程；
+* [Master 进程]()：负责创建并监控 Worker 进程在启动阶段，会注册信号处理器，然后创建 Worker；在运行阶段，会持续监控 Worker 进程健康状态，并接受来自入口脚本的控制信号并作出响应；在停止阶段，会停止掉所有 Worker；
+* [Worker 进程]()：负责执行业务逻辑。在 Master 进程创建后，就处于持续运行阶段，会监听到来自 Master 进程的信号，以实现自我的停止；
 
-主要实现 4 个流程：
-* 流程 ① ：以守护态启动 PHPServer 时的主要流程。入口脚本会进行 [daemonize]()，也就是实现进程的守护态，此时会`fork`出一个 Master 进程；Master 进程先经过 [保存 PID]()、[注册信号处理器]() 操作，然后 [创建 Worker]() 会`fork`出多个 Worker 进程；
-* 流程 ② ：为 Master 进程持续监控的流程，过程中会捕获入口脚本发送来的信号。主要监控  Worker 进程健康状态，当 Worker 进程异常退出时，会尝试创建新的 Worker 进程以维持 Worker 进程数量；
-* 流程 ③ ：为 Worker 进程持续运行的流程，过程中会捕获 Master 进程发送来的信号。流程 ① 中Worker 进程被创建后，就会持续执行业务逻辑，并阻塞于此；
-* 流程 ④ ：停止 PHPServer 的主要流程。入口脚本首先会向 Master 进程发送 SIGINT 信号，Master 进程捕获到该信号后，会向所有的 Worker 进程转发 SIGINT 信号（通知所有的 Worker 进程终止），直到所有 Worker 进程终止退出后，它才会清除 PID 文件并退出。
+
+主要实现 **4 个流程**：
+* [流程 ①]() ：以守护态启动 PHPServer 时的主要流程。入口脚本会进行 [daemonize]()，也就是实现进程的守护态，此时会`fork`出一个 Master 进程；Master 进程先经过 [保存 PID]()、[注册信号处理器]() 操作，然后 [创建 Worker]() 会`fork`出多个 Worker 进程；
+* [流程 ②]() ：为 Master 进程持续监控的流程，过程中会捕获入口脚本发送来的信号。主要监控  Worker 进程健康状态，当 Worker 进程异常退出时，会尝试创建新的 Worker 进程以维持 Worker 进程数量；
+* [流程 ③]() ：为 Worker 进程持续运行的流程，过程中会捕获 Master 进程发送来的信号。流程 ① 中Worker 进程被创建后，就会持续执行业务逻辑，并阻塞于此；
+* [流程 ④]() ：停止 PHPServer 的主要流程。入口脚本首先会向 Master 进程发送 SIGINT 信号，Master 进程捕获到该信号后，会向所有的 Worker 进程转发 SIGINT 信号（通知所有的 Worker 进程终止），等待所有 Worker 进程终止退出后；
 
 由于`reload`流程类似于`stop`流程（ ④），所以这里未作描述。与`stop`流程不同的是：一是入口脚本发送的是 SIGUSR1 信号；二是在所有 Worker 进程退出后，Master 进程并不会终止退出。
 
@@ -260,9 +261,11 @@ protected static function checkWorkerAlive()
 
 #### 停止
 
+Master 进程的持续监控，见 [流程 ④](#总流程) 。其详细流程，如下图：
+
 ![停止流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/fc458e5f-fccc-477f-9e18-eada5d856289.png)
 
-入口脚本给 Master 进程发送 SIGINT  信号，Master 进程捕获到该信号并执行 [信号处理器](#注册信号处理器)，调用`stop()`方法，如下：
+入口脚本给 Master 进程发送 SIGINT  信号，Master 进程捕获到该信号并执行 [信号处理器](#注册信号处理器)，调用`stop()`方法。如下：
 
 ```PHP
 protected static function stop()
