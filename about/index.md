@@ -6,17 +6,29 @@ date: 2016-02-10
 
 ## 个人介绍
 
-博主是一个乐于折腾的人，在技术方面是一个细节控。名字就在我的博客中，来自四川，1993 年生人。是一名电子（[智能车](https://www.fanhaobai.com/project)）、斯诺克、F1 爱好者，目前专注于 Web 后端开发，关注 Web 安全问题和性能优化，就职于 [聚美优品](http://www.jumei.com)。
+博主是一个乐于折腾的人，在技术方面是一个细节控。名字就在我的博客中，来自四川，1993 年生人。是一名电子（[智能车](https://www.fanhaobai.com/project)）、斯诺克、F1 爱好者，目前专注于后端研发，关注分布式系统性能优化，就职于 [聚美优品](http://www.jumei.com)。
 
 ### 联系我
 
 * <i class="fa fa-envelope"></i> [i@fanhaobai.com](mailto:i@fanhaobai.com)
 * <i class="fa fa-qq"></i> [292476774]()
 
+### 学习方法
+
+喜欢写博客、逛博客、常 Google、研读开源项目、欣赏一些优秀的架构，空余时间会读一些书丰富自己。
+
+<pre>
+每天至少读一篇博客；
+每周至少看一个项目；
+每月至少写一篇博客；
+每季度至少读一本书；
+每年至少会一门新技能；
+</pre>
+
 ### 专业技能
 
-* 熟悉：PHP, Lua, JS
-* 了解：Shell, C, NodeJs, Python
+* 熟悉：PHP, Lua
+* 了解：Go, Shell, C, Python
 * 数据库：MySQL, MongoDB
 * 缓存：Redis
 * 搜索引擎：Solr, Elasticsearch
