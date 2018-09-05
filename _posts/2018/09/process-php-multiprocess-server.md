@@ -1,5 +1,5 @@
 ---
-title: 怎么用PHP玩转进程之二 — 多进程PHPServer
+title: 用PHP玩转进程之二 — 多进程PHPServer
 date: 2018-09-02 16:10:53
 tags:
 - 系统设计
@@ -8,7 +8,7 @@ categories:
 - PHP
 ---
 
-经过 [怎么用 PHP 玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的 PHPServer，基于它你可以做任何事。
+经过 [用 PHP 玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的 PHPServer，基于它你可以做任何事。
 
 ![预览图](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/34f35d33-57b2-41d7-b738-f0c1c712102f.png)<!--more-->
 
@@ -340,4 +340,4 @@ protected static function reload()
 
 <strong>相关文章 [»]()</strong>
 
-* [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) <span>（2018-08-28）</span>
+* [用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) <span>（2018-08-28）</span>
