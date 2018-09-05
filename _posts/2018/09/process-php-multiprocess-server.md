@@ -45,7 +45,7 @@ PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.
 
 ![守护进程流程](https://img0.fanhaobai.com/2018/09/process-php-multiprocess-server/22ed9e46-971c-4983-8bf5-65d321585d42.png)
 
-这里使用了 2 次`fork`，所以最后`fork`的一个子进程才是Master 进程，其实一次`fork`也是可以的。代码如下：
+这里使用了 2 次`fork`，所以最后`fork`的一个子进程才是 Master 进程，其实一次`fork`也是可以的。代码如下：
 
 ```PHP
 protected static function daemonize()
