@@ -28,7 +28,7 @@ PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.
 整个过程，又包括 **4 个流程**：
 * [流程 ①]() ：以守护态启动 PHPServer 时的主要流程。入口脚本会进行 [daemonize]()，也就是实现进程的守护态，此时会`fork`出一个 Master 进程；Master 进程先经过 [保存 PID]()、[注册信号处理器]() 操作，然后 [创建 Worker]() 会`fork`出多个 Worker 进程；
 * [流程 ②]() ：为 Master 进程持续监控的流程，过程中会捕获入口脚本发送来的信号。主要监控  Worker 进程健康状态，当 Worker 进程异常退出时，会尝试创建新的 Worker 进程以维持 Worker 进程数量；
-* [流程 ③]() ：为 Worker 进程持续运行的流程，过程中会捕获 Master 进程发送来的信号。流程 ① 中Worker 进程被创建后，就会持续执行业务逻辑，并阻塞于此；
+* [流程 ③]() ：为 Worker 进程持续运行的流程，过程中会捕获 Master 进程发送来的信号。流程 ① 中 Worker 进程被创建后，就会持续执行业务逻辑，并阻塞于此；
 * [流程 ④]() ：停止 PHPServer 的主要流程。入口脚本首先会向 Master 进程发送 SIGINT 信号，Master 进程捕获到该信号后，会向所有的 Worker 进程转发 SIGINT 信号（通知所有的 Worker 进程终止），等待所有 Worker 进程终止退出；
 
 > 在流程 ② 中，Worker 进程被 Master 进程`fork`出来后，就会 [持续运行]() 并阻塞于此，只有 Master 进程才会继续后续的流程。
