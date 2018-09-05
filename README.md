@@ -87,7 +87,8 @@
 
 #### 进程
 
-* [怎么用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html)（2018-08-28）
+* [用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html)（2018-09-02）
+* [用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html)（2018-08-28）
 
 #### 协议
 

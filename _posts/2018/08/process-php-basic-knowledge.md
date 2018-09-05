@@ -1,5 +1,5 @@
 ---
-title: 怎么用PHP玩转进程之一 — 基础
+title: 用PHP玩转进程之一 — 基础
 date: 2018-08-28 20:30:06
 tags:
 - 系统设计
@@ -219,4 +219,4 @@ PPID   PID  PGID   SID TTY      TIME COMMAND
 
 <strong>相关文章 [»]()</strong>
 
-* [怎么用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html) <span>（2018-09-02）</span>
+* [用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html) <span>（2018-09-02）</span>
