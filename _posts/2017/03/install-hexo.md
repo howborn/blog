@@ -49,7 +49,7 @@ Hexo 默认启动 4000 端口，使用浏览器访问 [http://localhost:4000](ht
 
 ## 更换主题
 
-Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款你如意的，我这里主题选择了 [raytaylorism](https://github.com/raytaylorlin/hexo-theme-raytaylorism)，没有为什么，就是看起来舒服而已，后续相关配置也是基于该主题。
+Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款你如意的，我这里主题选择了 [hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)，没有为什么，就是看起来舒服而已，后续相关配置也是基于该主题。
 
 找到喜欢的一款后，使用如下命令安装主题：
 
@@ -167,7 +167,7 @@ $ hexo g
 
 安装 [hexo-generator-search](https://github.com/PaicHyperionDev/hexo-generator-search)，在`_config.yml`中添加如下配置代码：
 
-```Shell
+```YAML
 search:
   path: search.xml
   field: all
@@ -177,11 +177,36 @@ search:
 
 安装 [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)，并按照说明配置（atom.xml 的链接写在`yourblog/source/_data/link.json`的 social 项中，一般无需更改）
 
+## jsonContent
+
+安装 [hexo-generator-json-content](https://github.com/alexbruno/hexo-generator-json-content)，即可生成所有文章的 json 描述。需在`_config.yml`中添加如下配置代码：
+
+```YAML
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
+```
+
 ## Sitemap
 
 安装 [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap)，并`_config.yml`中添加如下配置代码：
 
-```Shell
+```YAML
 sitemap:
   path: sitemap.xml
 ```
@@ -200,7 +225,7 @@ sitemap:
 
 在配置文件`_config.yml`中开启`post_asset_folder`项，即更改为：
 
-```Shell
+```YAML
 post_asset_folder: true
 ```
 
@@ -220,8 +245,8 @@ post_asset_folder: true
 
 Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，我将之更改为`year/month/title.html`形式，`_config.yml`配置如下：
 
-```Shell
-permalink: :year/:month/:title.html
+```YAML
+permalink: :title.html
 ```
 
 特别说明，当开启了文章资源文件夹功能，将 URL 静态化后，使用 Hexo 生成器时会产生一个 **ENOTDIR** 错误，解决办法见下述的 [自定义修改]() 部分。
@@ -230,8 +255,9 @@ permalink: :year/:month/:title.html
 
 修改`_config.yml`配置项如下：
 
-```Shell
-line_number: false
+```YAML
+highlight:
+  line_number: false
 ```
 
 # 部署
@@ -248,7 +274,7 @@ Hexo 提供了 5 种部署方案，[见这里](https://hexo.io/zh-cn/docs/deploy
 
 `_config.yml`配置如下：
 
-```Shell
+```YAML
 deploy:
   type: git
   repo: <repository url>                     # 库地址
@@ -264,7 +290,7 @@ deploy:
 
  `_config.yml`配置如下：
 
-```Shell
+```YAML
 deploy:
   type: rsync
   host: <host>                         # 远程主机的地址                       
@@ -288,57 +314,22 @@ deploy:
 
 # 自定义修改
 
-## 修复ENOTDIR错误
-
-当打开文章资源文件夹功能且 URL 静态化后，使用生成器时会产生一个 **ENOTDIR** 错误，此时需要修改`yourblog/node_modules/hexo/lib/models/post_asset.js`中的部分源码。
-
-将`return pathFn.join(post.path, this.slug);`更改为：
-
-```Js
-var path = post.path;
-if (path.indexOf('.') != -1) {
-    path = path.substr(0, path.lastIndexOf('.'));
-}
-if (path[path.length - 1] !== '/') {
-    path += '/';
-}
-return pathFn.join(path, this.slug);
-```
-
 ## 在文章摘要中加入预览图
 
-需修改文件`yourblog/node_modules/hexo/lib/plugins/filter/after_post_render/excerpt.js`，修改内容如下：
+需修改文件`yourblog/node_modules/hexo/lib/plugins/filter/after_post_render/excerpt.js`，内容修改为如下：
 
 ```Js
+// 此处有更改
 content.replace(rExcerpt, function(match, index) {
    data.excerpt = content.substring(0, index).trim();
    data.more = content.substring(index + match.length).trim();
+   // 去掉img标签
    data.content = data.excerpt.replace(/<img(.*)>/, '') + data.more;
    return '<a id="more"></a>';
 });
 ```
 
 **说明：**文章摘要预览图不会在文章正文中显示。
-
-## 文章归档按月归档
-
-需修改文件`yourtheme/layout/_partial/archive.ejs`。
-
-将：
-
-```Js
-var y = item.date.year();
-```
-
-修改为：
-
-```Js
-var y = date(item.date, 'YYYY年MM月');
-```
-
-修改后，归档如下图：
-
-![](https://img1.fanhaobai.com/2017/03/install-hexo/es8bUSE01LiIgQtbSESyEWxW.png)
 
 ## 样式修改
 
@@ -363,72 +354,6 @@ text-align justify
 }
 ```
 
-## 多说头像HTTPS代理
-
-由于本站全战采用了 HTTPS，而多说头像依然为 HTTP，故这里通过 Nginx 将 HTTP 代理为 HTTPS。
-
-1） Nginx 增加如下代理配置：
-
-```Nginx
-server {
-   ... ...
-   location ~ ^/proxy/(.*)$ {               # proxy为标识
-       proxy_connect_timeout    10s;        proxy_read_timeout       10s;
-       proxy_read_timeout       10s;
-       proxy_pass               http://$1;
-       proxy_redirect off;
-       proxy_set_header X-Real-IP $remote_addr;
-       proxy_set_header X-Forwarded-For $remote_addr;
-       expires max;
-   }
-   ... ...
-}
-```
-
-2） 下载并修改多说embed.js文件
-
-首先，替换 embed.js 文件中头像的路径。在`return e.avatar_url||rt.data.default_avatar_url`之前插入如下代码：
-
-```Js
-var site = "https://yoursite/proxy/";
-if (e.avatar_url) {
-    e.avatar_url = (document.location.protocol == "https:") 
-    ? e.avatar_url.replace(/^http\:\/\//, site)
-    : e.avatar_url;
-} else {
-    rt.data.default_avatar_url = (document.location.protocol == "https:")
-    ? rt.data.default_avatar_url.replace(/^http\:\/\//, site)
-    : rt.data.default_avatar_url;
-}
-```
-
-最后，替换 embed.js 文件中表情的路径。替换`t+=s.message+'</p><div class="ds-comment-footer ds-comment-actions'`中的`s.message`为如下代码：
-
-```Js
-((s.message.indexOf("src=\"http:\/\/") == -1) 
-? s.message : ((document.location.protocol == "https:") 
-? s.message.replace(/src=\"http\:\/\//, "src=\"https://yoursite/proxy/")
-: s.message))
-```
-
-3） 修改加载路径
-
-将修改完的 embed.js 文件放置于资源文件夹`/source/js`下，在位置为`yourtheme/layout/_partial/plugin/comment.ejs` 的模板文件中，修改加载 embed.js 文件路径。
-
-将：
-
-```Js
-ds.src = (document.location.protocol == 'https:' ? 'https:'
-   : 'http:') + '//static.duoshuo.com/embed.js';
-```
-
-修改为：
-
-```Js
-ds.src = (document.location.protocol == 'https:' ? 'https:'
-   : 'http:') + '//www.fanhaobai.com/js/embed.js';
-```
-
 ## 百度统计
 
 在`yourblog/themes/raytaylorism/layout/_partial/plugin/analytics.ejs`文件中追加如下代码：
@@ -451,48 +376,6 @@ ds.src = (document.location.protocol == 'https:' ? 'https:'
 ```Js
 # 百度分析Uid，若为空则不启用
 baidu_analytics: 9f0ecfa73797e6a907d8ea6a285df6a5
-```
-
-## 百度分享
-
-由于百度分享也不支持 HTTPS 站点，但是 [hrwhisper](https://github.com/hrwhisper) 已经在 Github 上提供了解决办法，[见这里](https://github.com/hrwhisper/baiduShare)。
-
-1） 下载源码
-
-从 [Github](https://codeload.github.com/hrwhisper/baiduShare/zip/master) 直接下载源码，解压缩后放置于资源文件夹`source`中，因为 Hexo 会压缩 Js 文件，可能会导致 share.js 会报错，可以通过配置`_config.yml`解决。
-
-```Js
-skip_render:
-  - "static/**"
-```
-
-2） 添加加载
-
-从百度分享获取分享代码，插入主题模板文件`yourtheme/layout/_partial/article.ejs`中。
-
-将分享 HTML 代码插入如下位置：
-
-```Html
-<div class="card-content">               # 追加到这个div中
-  ... ...
-  <div style="height:15px;"></div>
-  <div class="bdsharebuttonbox">
-    <a href="" class="bds_more" data-cmd="more"></a>
-    <a href="" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-    <a href="" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-    <a href="" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-  </div>
-</div>
-```
-
-
-最后，注意将引用 share.js 的 **路径** 替换为自己的站点路径。
-
-```Js
-appendChild(createElement('script')).src='https://www.fanhaobai.com
-/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)
 ```
 
 ## 百度主动推送
