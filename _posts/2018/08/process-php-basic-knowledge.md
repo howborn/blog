@@ -18,7 +18,7 @@ categories:
 
 我们来直观感受下它的存在，可以说它是看不见又摸不着。
 
-```Bash
+```Shell
 $ pstree -p
 init(1)-+-init(3)---bash(4)
         |-nginx(771)-+-nginx(773)
@@ -38,7 +38,7 @@ init(1)-+-init(3)---bash(4)
 * 可以同用户交互，但容易被意外终止；
 * 有较高的响应速度，优先级别稍高；
 
-```Bash
+```Shell
 $ php server.php start
 PHPServer start	  [OK] 
 
@@ -56,7 +56,7 @@ PHPServer start	  [OK]
 
 通常我们编写的程序，都需要在 [后台不终止的长期运行]() ，此时就可以使用守护进程。当然，我们可以在代码中调用系统函数，或者直接在启动命令后追加`&`操作符，来实现一个守护进程。后者使用如下：
 
-```Bash
+```Shell
 $ php server.php start &
 # 进程脱离控制终端运行
 ```
@@ -169,7 +169,7 @@ if (posix_kill($pid, 0)) {
 
 使用`ps -ajx`命令查看所有进程信息，如下：
 
-```Bash
+```Shell
 #父PID  PID  组ID 会话ID 终端      时间   名称
 PPID   PID  PGID   SID TTY      TIME COMMAND
     0     1     1     1 ?       0:00 /init ro

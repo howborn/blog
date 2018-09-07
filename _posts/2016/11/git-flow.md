@@ -39,13 +39,13 @@ Git 主分支的名字，默认叫做 Master。它是自动建立的，版本库
 
 Git 创建 Develop 分支的命令：
 
-```Bash
+```Shell
 $ git checkout -b develop master
 ```
 
 将 Develop 分支发布到 Master 分支的命令：
 
-```Bash
+```Shell
 # 切换到Master分支
 $ git checkout master
 
@@ -85,20 +85,20 @@ $ git merge --no-ff develop
 
 创建一个功能分支：
 
-```Bash
+```Shell
 $ git checkout -b feature-x develop
 ```
 
 开发完成后，将功能分支合并到 develop 分支：
 
-```Bash
+```Shell
 $ git checkout develop
 $ git merge --no-ff feature-x
 ```
 
 删除 feature 分支：
 
-```Bash
+```Shell
 $ git branch -d feature-x
 ```
 
@@ -110,13 +110,13 @@ $ git branch -d feature-x
 
 创建一个预发布分支：
 
-```Bash
+```Shell
 $ git checkout -b release-1.2 develop
 ```
 
 确认没有问题后，合并到 master 分支：
 
-```Bash
+```Shell
 $ git checkout master
 $ git merge --no-ff release-1.2
 # 对合并生成的新节点，做一个标签
@@ -125,14 +125,14 @@ $ git tag -a 1.2
 
 再合并到 develop 分支：
 
-```Bash
+```Shell
 $ git checkout develop
 $ git merge --no-ff release-1.2
 ```
 
 最后，删除预发布分支：
 
-```Bash
+```Shell
 $ git branch -d release-1.2
 ```
 
@@ -146,13 +146,13 @@ $ git branch -d release-1.2
 
 创建一个修补 bug 分支：
 
-```Bash
+```Shell
 $ git checkout -b fixbug-0.1 master
 ```
 
 修补结束后，合并到 master 分支：
 
-```Bash
+```Shell
 $ git checkout master
 $ git merge --no-ff fixbug-0.1
 $ git tag -a 0.1.1
@@ -160,13 +160,13 @@ $ git tag -a 0.1.1
 
 再合并到 develop 分支：
 
-```Bash
+```Shell
 $ git checkout develop
 $ git merge --no-ff fixbug-0.1
 ```
 
 最后，删除 "修补bug分支"：
 
-```Bash
+```Shell
 $ git branch -d fixbug-0.1
 ```

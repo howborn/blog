@@ -75,7 +75,7 @@ Client、Job Server、Worker 典型的部署方案，如下图：
 
 首先，下载 Gearman 守护程序 gearmand 的 [最新源码](https://github.com/gearman/gearmand/releases)，并解压缩源码包：
 
-```Bash
+```Shell
 cd /usr/src
 $ wget https://github.com/gearman/gearmand/releases/download/1.1.17/gearmand-1.1.17.tar.gz
 $ tar zxvf gearmand-1.1.17.tar.gz
@@ -83,7 +83,7 @@ $ tar zxvf gearmand-1.1.17.tar.gz
 
 接着，安装 gearmand 的依赖包，并编译源码安装 gearmand：
 
-```Bash
+```Shell
 $ yum install boost-devel gperf libuuid-devel libevent-devel
 $ cd ./gearmand-1.1.17.tar.gz
 $ ./configure
@@ -96,7 +96,7 @@ Libraries have been installed in:
 
 修改`/etc/ld.so.conf`配置文件，添加 MySQL 动态链接库地址：
 
-```Bash
+```Shell
 # /usr/local/mysql/lib为MySQL动态链接库libmysqlclient.so的目录
 $ echo "/usr/local/mysql/lib" >>/etc/ld.so.conf
 # 使其生效
@@ -105,7 +105,7 @@ $ /sbin/ldconfig
 
 然后，如果出现如下信息则表示安装 gearmand 成功。
 
-```Bash
+```Shell
 # 启动Client和Worker
 $ gearman
 # 如下信息则表示成功
@@ -121,7 +121,7 @@ gearmand 1.1.17
 
 从 PECL 下载最新 [gearman 扩展](http://pecl.php.net/package/gearman)（php7 需下载 [最新源码包](https://github.com/wcgallego/pecl-gearman/archive/gearman-2.0.3.tar.gz)），并解压缩安装：
 
-```Bash
+```Shell
 $ cd /usr/src
 $ wget http://pecl.php.net/get/gearman-1.1.2.tgz
 $ tar zxvf gearman-1.1.2.tgz
@@ -135,7 +135,7 @@ Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non
 
 然后，配置 php.ini 文件：
 
-```Bash
+```Shell
 $ php --ini
 Loaded Configuration File:         /usr/local/php/lib/php.ini
 $ vim /usr/local/php/lib/php.ini
@@ -145,7 +145,7 @@ extension=gearman.so
 
 重启 php-fpm 后，出现如下信息则表示安装扩展成功。
 
-```Bash
+```Shell
 $ php --info | grep "gearman"
 gearman support => enabled
 libgearman version => 1.1.17
@@ -157,7 +157,7 @@ libgearman version => 1.1.17
 
 ### 启动Job
 
-```Bash
+```Shell
 # 先创建日志目录
 $ gearmand -d --log-file=/var/log/gearmand.log
 ```
@@ -166,7 +166,7 @@ $ gearmand -d --log-file=/var/log/gearmand.log
 
 查看启动信息：
 
-```Bash
+```Shell
 $ ps -ef | grep gearman
 root     6048     1  0 19:56 ?        00:00:00 gearmand -d
 # 监听端口
@@ -196,13 +196,13 @@ gearmand 命令的一些参数说明：
 
 首先，启动一个 Worker，用于列出某个目录的内容：
 
-```Bash
+```Shell
 $ gearman -w -f ls -- ls -lh
 ```
 
 然后，创建一个 Client，用于查找请求的一个作业：
 
-```Bash
+```Shell
 $ gearman -f ls < /dev/null
 total 4.0K
 drwxr-xr-x. 21 www www 4.0K Jun 21 23:52 www
@@ -327,7 +327,7 @@ Result: !namraeG ma I
 
 Gearman 可以使用 [GearmanManager](https://github.com/brianlmoon/GearmanManager) 作为管理工具，命令行下可以使用 gearadmin 命令来进行简易的管理。
 
-```Bash
+```Shell
 $ gearadmin --show-jobs
 32 ::7866:86a6:d87f:0%32 - : reserve
 

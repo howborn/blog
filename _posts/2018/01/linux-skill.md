@@ -21,14 +21,14 @@ categories:
 
 * uname命令
 
-```Bash
+```Shell
 $ uname -a
 Linux fhb-6.6 2.6.32-642.13.1.el6.i686
 ```
 
 * /proc/version文件
 
-```Bash
+```Shell
 $ cat /proc/version 
 Linux version 2.6.32-642.13.1.el6.i686
 ```
@@ -37,7 +37,7 @@ Linux version 2.6.32-642.13.1.el6.i686
 
 * lsb_release命令
 
-```Bash
+```Shell
 $ lsb_release -a
 LSB Version:	:base-4.0-ia32:base-4.0-noarch:core-4.0-ia32
 Distributor ID:	CentOS
@@ -46,7 +46,7 @@ Release:	6.8
 
 * /etc/issue文件
 
-```Bash
+```Shell
 $ cat /etc/redhat-release
 CentOS release 6.8 (Final)
 ```
@@ -91,7 +91,7 @@ fhb ALL=(root) NOPASSWD: /usr/sbin/service,/usr/local/php/bin/php,/usr/bin/vim
 
 通过`-x`或`--exclude`参数指定需要排除的包名称，多个包名称使用空格分隔。例如：
 
-```Bash
+```Shell
 # --exclude同样
 $ yum -x filebeat logstash update
 ```
@@ -107,7 +107,7 @@ exclude=filebeat logstash
 
 再次使用`yum update`命令，就不会自动更新指定的软件包了。
 
-```Bash
+```Shell
 $ yum update
 No Packages marked for Update
 ```
@@ -118,7 +118,7 @@ No Packages marked for Update
 
 在某些情况下，需要强制踢出系统其他登录用户，比如遇到非法用户登录。查询当前登陆用户：
 
-```Bash
+```Shell
 # 当前用户
 $ whoami
 root
@@ -130,7 +130,7 @@ www       4755  4752  0 00:09 pts/0    00:00:00 bash
 
 剔除非法登陆用户：
 
-```Bash
+```Shell
 $ kill -9 4755
 ```
 
@@ -142,7 +142,7 @@ $ kill -9 4755
 
 例如，线上远程目标机器 ip：10.1.1.123、端口：3303；映射到本地 33031 端口。命令如下：
 
-```Bash
+```Shell
 # [主机ip]:[端口]:[主机ip]:[远程目标机器端口] [远程目标机器ip]
 ssh -L 127.0.0.1:33031:127.0.0.1:3303 10.1.1.123
 ```
@@ -179,7 +179,7 @@ open("/lib64/libc.so.6", O_RDONLY)      = 3
 
 实现的源代码，内容为：
 
-```Bash
+```Shell
 echo -e "\033[1;30m Hello World. \033[0m [高亮]"
 echo -e "\033[0;31m Hello World. \033[0m [关闭属性]"
 echo -e "\033[4;32m Hello World. \033[0m [下划线]"

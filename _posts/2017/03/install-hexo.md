@@ -19,7 +19,7 @@ Hexo 如官方介绍一样，安装方便快捷。安装前请确保 Node 和 Ng
 
 只需使用如下命令即可安装 Hexo。
 
-```Bash
+```Shell
 $ npm install hexo-cli -g
 $ hexo init blog
 $ cd blog
@@ -29,7 +29,7 @@ $ hexo server
 
 安装完成后目录结构如下：
 
-```Bash
+```Shell
 ├── _config.yml             # 主配置文件
 ├── package.json            # 应用程序的信息
 ├── scaffolds               # 模版文件夹，新建文章时根据这些模版来生成文章的.md文件
@@ -53,7 +53,7 @@ Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款�
 
 找到喜欢的一款后，使用如下命令安装主题：
 
-```Bash
+```Shell
 进入博客目录
 $ cd yourblog
 克隆主题源码到hexo的themes文件夹下
@@ -62,7 +62,7 @@ $ git clone https://github.com/xxx/xxx.git themes/xxx
 
 最后一步，在`_config.yml`配置中启用新主题。
 
-```Bash
+```Shell
 theme: xxx
 ```
 
@@ -77,13 +77,13 @@ theme: xxx
 
 当需要写文章时，使用如下命令新建文章，会在资源文件夹中生成与 title 对应的 .md 文件。
 
-```Bash
+```Shell
 $ hexo new [layout] <title>
 ```
 
 .md 文件就是 markdown 格式的文章表述。格式大致为：
 
-```Bash
+```Shell
 title: Hello World
 date: 2013/7/13 20:46:25
 ---                                      # 分隔符
@@ -96,7 +96,7 @@ date: 2013/7/13 20:46:25
 
 Front-matter 内容如下：
 
-```Bash
+```Shell
 layout                 布局
 title                  标题
 date                   建立日期
@@ -109,7 +109,7 @@ permalink              覆盖文章网址
 
 其中 title、date、tags、categories 这 4 项，在新建文章时需要进行设置，其他项采用默认值即可，不需要在每篇文章中进行设置，故可以将这 4 项基本设置移到模板文件`scaffolds\post.md`中，如下：
 
-```Bash
+```Shell
 ---
 title: {{ title }}
 date: {{ date }}
@@ -122,7 +122,7 @@ categories:
 
 特别说明，文章中添加了分类和标签后， Hexo 会自动生成分类页面和统计分类的文章数。关于分类和标签的使用，如下：
 
-```Bash
+```Shell
 categories:           # 分类存在顺序关系
 - 语言                 # 1级分类
 - PHP                 # 2级分类
@@ -151,7 +151,7 @@ Typora 和 马克飞象 的对比：
 
 发布更新命令如下：
 
-```Bash
+```Shell
 $ hexo generate
 可以简写
 $ hexo g
@@ -167,7 +167,7 @@ $ hexo g
 
 安装 [hexo-generator-search](https://github.com/PaicHyperionDev/hexo-generator-search)，在`_config.yml`中添加如下配置代码：
 
-```Bash
+```Shell
 search:
   path: search.xml
   field: all
@@ -181,7 +181,7 @@ search:
 
 安装 [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap)，并`_config.yml`中添加如下配置代码：
 
-```Bash
+```Shell
 sitemap:
   path: sitemap.xml
 ```
@@ -200,7 +200,7 @@ sitemap:
 
 在配置文件`_config.yml`中开启`post_asset_folder`项，即更改为：
 
-```Bash
+```Shell
 post_asset_folder: true
 ```
 
@@ -210,7 +210,7 @@ post_asset_folder: true
 
 可以通过以下 markdown 语法在文章中插入图片，这种方式同时也支持本地 markdown 编辑器实时预览。
 
-```Bash
+```Shell
 ![alt](/post_title/image_name)
 # post_title为与文章.md同名的资源文件夹名
 # image_name为图片的文件名
@@ -220,7 +220,7 @@ post_asset_folder: true
 
 Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，我将之更改为`year/month/title.html`形式，`_config.yml`配置如下：
 
-```Bash
+```Shell
 permalink: :year/:month/:title.html
 ```
 
@@ -230,7 +230,7 @@ permalink: :year/:month/:title.html
 
 修改`_config.yml`配置项如下：
 
-```Bash
+```Shell
 line_number: false
 ```
 
@@ -248,7 +248,7 @@ Hexo 提供了 5 种部署方案，[见这里](https://hexo.io/zh-cn/docs/deploy
 
 `_config.yml`配置如下：
 
-```Bash
+```Shell
 deploy:
   type: git
   repo: <repository url>                     # 库地址
@@ -264,7 +264,7 @@ deploy:
 
  `_config.yml`配置如下：
 
-```Bash
+```Shell
 deploy:
   type: rsync
   host: <host>                         # 远程主机的地址                       
@@ -369,7 +369,7 @@ text-align justify
 
 1） Nginx 增加如下代理配置：
 
-```Bash
+```Nginx
 server {
    ... ...
    location ~ ^/proxy/(.*)$ {               # proxy为标识

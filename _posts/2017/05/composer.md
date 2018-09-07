@@ -17,14 +17,14 @@ categories:
 
 这里在 Linux 环境下全局安装 Composer。
 
-```Bash
+```Shell
 $ wget https://getcomposer.org/installer
 $ php installer --install-dir=/usr/local/bin --filename=composer
 ```
 
 如果出现如下错误，可以在`php installer`命令后追加`--disable-tls`参数。
 
-```Bash
+```Shell
 The "https://getcomposer.org/download/1.4.1/composer.phar.sig" file could not be downloaded: SSL: Connection reset by peer
 # 或者
 Failed to decode zlib stream
@@ -32,7 +32,7 @@ Failed to decode zlib stream
 
 安装完成后，查看 Composer 版本信息。
 
-```Bash
+```Shell
 $ composer --version
 Composer version 1.4.1 2017-03-10 09:29:45
 ```
@@ -41,7 +41,7 @@ Composer version 1.4.1 2017-03-10 09:29:45
 
 由于国外镜像存在被墙的问题，所以这里将 Composer 镜像切换为 [中国镜像](https://pkg.phpcomposer.com/)。
 
-```Bash
+```Shell
 $ composer config -g repo.packagist composer https://packagist.phpcomposer.com
 ```
 
@@ -49,7 +49,7 @@ $ composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 常用命令：
 
-```Bash
+```Shell
 require         # 添加包到composer.json并安装
 update          # 更新composer.json中的包至最新版本，并更新composer.lock文件
 remove          # 删除包及其依赖
@@ -75,7 +75,7 @@ validate        # 校验composer.json和composer.lock
 
 这里通过 Composer 方式拉取 Satis 源码。
 
-```Bash
+```Shell
 $ cd /home/www     # $path
 $ composer create-project composer/satis:dev-master --keep-vcs
 ```
@@ -85,7 +85,7 @@ $ composer create-project composer/satis:dev-master --keep-vcs
 
 修改`satis.json`文件，在这里列举出仓库所有包的托管仓库地址，以 GitHub 上的开源 MongoDB 地址为例，讲述配置详情。
 
-```Bash
+```Shell
 $ cd satis/
 $ vim satis.json
 ```
@@ -114,7 +114,7 @@ $ vim satis.json
 
 需要说明的是，如果包托管仓库也是采用开源版本管理系统搭建，那么这里`require-all`可以设置为 true。否则，建议只列举出需要索引的包名称以及版本号，因为设置为 true 会扫描全网所有包地址。例如仓库地址设为 GitHub，那么扫描的全网包数量巨大，非常耗时。所以在本例中修改为如下：
 
-```Bash
+```Shell
 ... ....
 "require": {
   "yiisoft/yii2-mongodb": "^2.1.0"
@@ -124,7 +124,7 @@ $ vim satis.json
 
 ### 运行
 
-```Bash
+```Shell
 $ php bin/satis build satis.json /home/www/packagist -v
 ```
 
@@ -163,7 +163,7 @@ $ php bin/satis build satis.json /home/www/packagist -v
 
 出现以下内容即为包索引更新成功。
 
-```Bash
+```Shell
 Installing chonder/yii2-aliyun-oss (V1.0.0) Downloading: 100% Extracting archive
 ```
 
@@ -192,13 +192,13 @@ config 项用于设置超时时间和 https，如果 Satis 站点是 http 协议
 
 在项目的`composer.josn`同目录下，运行：
 
-```Bash
+```Shell
 $ composer require chonder/yii2-aliyun-oss:^1.0.0
 ```
 
 出现如下信息则安装包成功。
 
-```Bash
+```Shell
 Package operations: 1 install, 0 updates, 0 removals       
   - Installing chonder/yii2-aliyun-oss (V1.0.0): Downloading (100%)
 Writing lock file

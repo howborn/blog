@@ -22,7 +22,7 @@ Let's Encrypt 目的就是向网站自动签发和管理免费证书，以便加
 
 首先需要创建一个用于存放证书申请过程中的临时文件以及证书文件，例如 ssl ，无特别说明，后续操作都是在该目录下进行。进入该目录，创建一个 [RSA](https://www.google.com.hk/?gfe_rd=cr&ei=F9dLWOj9H4fFoAOgx6KgAg&gws_rd=ssl#safe=strict&q=RSA+%E7%A7%81%E9%92%A5)  私钥用于 Let's Encrypt 标识你的身份。
 
-```Bash
+```Shell
 $ openssl genrsa 4096 > account.key
 ```
 
@@ -30,7 +30,7 @@ $ openssl genrsa 4096 > account.key
 
 由于 Let's Encrypt 使用的 ACME 协议需要 CSR（Certificate Signing Request，证书签名请求）文件。但在生成 CSR 文件之前需要创建域名私钥（**这个域名私钥一定不能是第一步创建的账户私钥**），下面先创建域名私钥：
 
-```Bash
+```Shell
 $ openssl genrsa 4096 > domain.key
 ```
 
@@ -38,13 +38,13 @@ $ openssl genrsa 4096 > domain.key
 
 1） 单域名
 
-```Bash
+```Shell
 $ openssl req -new -sha256 -key domain.key -subj "/CN=yoursite.com" > domain.csr
 ```
 
 2） 多域名  
 
-```Bash
+```Shell
 $ openssl req -new -sha256 -key domain.key -subj "/" -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:yoursite.com,DNS:www.yoursite.com,DNS:subdomain.yoursite.com")) > domain.csr
 ```
 
@@ -57,7 +57,7 @@ Let's Encrypt 会在签发证书时在你的服务器上生成一个随机验证
 
 首先，需要创建一个用于存放验证文件的目录，且该目录建议一直保留于服务器上，例如：
 
-```Bash
+```Shell
 $ mkdir /data/challenges/
 ```
 
@@ -83,13 +83,13 @@ server {
 
 首先，获取 acme-tiny 脚本并保存于之前的 ssl 目录下：
 
-```Bash
+```Shell
 $ wget https://raw.githubusercontent.com/diafygi/acme-tiny/master/acme_tiny.py
 ```
 
 然后，指定账户私钥、CSR 以及验证目录（需自行更改为对应目录），执行 acme-tiny 脚本：
 
-```Bash
+```Shell
 $ python acme_tiny.py --account-key ./account.key --csr ./domain.csr --acme-dir /data/challenges/ > ./signed.crt
 ```
 
@@ -97,7 +97,7 @@ $ python acme_tiny.py --account-key ./account.key --csr ./domain.csr --acme-dir 
 
 但凡事总有不顺，如果出现如下类似错：
 
-```Bash
+```Shell
 ValueError: Wrote file to /data/challenges/oJbvpIhkwkBGBAQUklWJXyC8VbWAdQqlgpwUJkgC1Vg, but couldn't download http://yoursite.com/.well-known/acme-challenge/oJbvpIhkwkBGBAQUklWJXyC8VbWAdQqlgpwUJkgC1Vg
 ```
 
@@ -115,7 +115,7 @@ ValueError: Wrote file to /data/challenges/oJbvpIhkwkBGBAQUklWJXyC8VbWAdQqlgpwUJ
 
 拿到从 Let's Encrypt 签发的证书后，还需要下载 Let's Encrypt 的中间证书。配置 HTTPS 证书时既不能漏掉中间证书，也不能直接包含根证书，则需要把中间证书和网站证书进行合并：
 
-```Bash
+```Shell
 $ openssl dhparam -out dhparams.pem 2048
 $ wget -O - https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem > intermediate.pem
 $ cat signed.crt intermediate.pem > chained.pem
@@ -147,14 +147,14 @@ server {
 由于 Let's Encrypt  签发的证书只有 90 天有效期，所以证书需要定期的进行更新，推荐使用自动化脚本定期更新。   
 首先，在 ssl 目录下创建自动更新脚本`renew_cert.sh`，并赋予执行权限：
 
-```Bash
+```Shell
 $ touch ./renew_cert.sh
 $ chmod a+x ./renew_cert.sh
 ```
 
 然后，往`renew_cert.sh`添加如下内容（`/data/challenges/`路径，请对应自行更改）：
 
-```Bash
+```Shell
 $ python /data/ssl/acme_tiny.py --account-key /data/ssl/account.key --csr /data/ssl/domain.csr --acme-dir /data/challenges/ > /data/ssl/signed.crt || exit
 $ wget -O - https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem > /data/ssl/intermediate.pem
 $ cat /data/ssl/signed.crt /data/ssl/intermediate.pem > /data/ssl/chained.pem
@@ -163,7 +163,7 @@ $ nginx -s reload
 
 最后，`crontab -e`增加定时任务：
 
-```Bash
+```Shell
 0 0 1 * * /data/ssl/renew_cert.sh 2>> /data/ssl/acme_tiny.log
 ```
 

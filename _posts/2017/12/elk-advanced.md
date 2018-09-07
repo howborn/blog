@@ -347,7 +347,7 @@ PUT /_template/logstash
 
 配置定期清理过期日志的任务：
 
-```Bash
+```Shell
 0 0 * * * /usr/bin/curl -u elastic:changeme  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
 ```
 
@@ -424,7 +424,7 @@ enabled=1
 
 使用 yum 命令安装：
 
-```Bash
+```Shell
 $ rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 $ yum install -y elasticsearch-curator
 
@@ -491,7 +491,7 @@ Curator 支持配置多个任务，其中 [action](https://www.elastic.co/guide/
 
 测试删除过期索引：
 
-```Bash
+```Shell
 #删除前
 $ curator_cli --config /etc/curator/curator.yml show_indices --verbose | grep test-
 test-2017.11.16      open   162.0B       0   3   0 2017-12-17T06:10:04Z
@@ -505,7 +505,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 配置每天执行任务：
 
-```Bash
+```Shell
 0 0 * * * /usr/bin/curator --config /etc/curator/curator.yml /etc/curator/delete-index.yml
 ```
 
@@ -558,7 +558,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 这个问题是由于内存硬件限制，所以没法从根本上解决问题，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期（周期根据配置决定）重启 Logstash 即可。我的定时任务为：
 
-```Bash
+```Shell
 0 */12 * * * /sbin/service logstash restart
 ```
 

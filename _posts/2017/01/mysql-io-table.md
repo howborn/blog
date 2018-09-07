@@ -27,7 +27,7 @@ select * from table into outfile "/home/root/example.sql" where +条件
 
 # 导入数据库
 
-```Bash
+```Shell
 $ mysqldump -uroot -p --default-character-set=utf8 dbname tablename >  /home/root/example.sql
 ```
 

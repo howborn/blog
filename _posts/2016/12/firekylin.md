@@ -21,13 +21,13 @@ FireKylin 是基于 ThinkJS 开发，所以本篇博客也默认你已安装好�
 
 1）首先需要安装 npm「[npm 使用说明](http://www.runoob.com/nodejs/nodejs-npm.html)」
 
-```Bash
+```Shell
 $ yum install –y npm
 ```
 
 2）下载最新的安装包并解压
 
-```Bash
+```Shell
 $ wget http://firekylin.org/release/firekylin_0.13.1.tar.gz
 $ tar zxvf ./firekylin_0.13.1.tar.gz
 ```
@@ -36,20 +36,20 @@ $ tar zxvf ./firekylin_0.13.1.tar.gz
 
 ## 安装对应依赖
 
-```Bash
+```Shell
 $ cd ./firekylin
 $ npm install                 #必须在解压缩目录内执行
 ```
 
 发现是从国外`https://registry.npmjs.org/upyun`地址下载源，而下载速度较慢，故改用国内淘宝的镜像。
 
-```Bash
+```Shell
 $ npm install --registry=https://registry.npm.taobao.org
 ```
 
 ## 访问并安装
 
-```Bash
+```Shell
 $ npm start
 ```
 
@@ -80,13 +80,13 @@ PM2 是用来在服务器上管理 NodeJS 服务的工具，安装较简单。
 
 1） 安装
 
-```Bash
+```Shell
 $ npm install -g pm2 --registry=https://registry.npm.taobao.org
 ```
 
 2） 配置
 
-```Bash
+```Shell
 $ mv ./pm2_default.json ./pm2.json
 ```
 
@@ -94,7 +94,7 @@ $ mv ./pm2_default.json ./pm2.json
 
 3）启动
 
-```Bash
+```Shell
 $ pm2 start pm2.json
 ```
 
@@ -181,7 +181,7 @@ if (!(/!\[alt\]/).test(data.summary)) {
 
 1） 下载 github 上已经修改完成的 [源码](https://github.com/hrwhisper/baiduShare)，解压并放置在站点服务器静态资源目录下：
 
-```Bash
+```Shell
 $ unzip ./baiduShare-master.zip
 $ cd ./baiduShare-master
 $ mv ./static/* /data/html/www/static      

@@ -53,7 +53,7 @@ START_HOURS_RANGE=1-24
 
 由于 *anacron* 本身是一个普通的程序，还需 *cron* 去调度执行。
 
-```Bash
+```Shell
 # 每个小时去执行anacron
 01 * * * * /usr/sbin/anacron
 ```

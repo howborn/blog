@@ -31,7 +31,7 @@ xdebug.remote_log = /home/tmp/xdebug.log
 
 开始收集问题详细表述。首先，观察到 PhpStorm 的 Debug 控制台出现状态：
 
-```Bash
+```Shell
 Waiting for incoming connection with ide key ***
 ```
 
@@ -54,14 +54,14 @@ E: Could not connect to client. :-(
 
 Win 下执行 `netstat -ant`命令：
 
-```Bash
+```Shell
 协议    本地地址       外部地址        状态           卸载状态
 TCP  0.0.0.0:9001   0.0.0.0:0     LISTENING       InHost
 ```
 
 端口 9001 监听正常，然后在容器中使用 telnet 尝试同本地 9001 端口建立 TCP 连接：
 
-```Bash
+```Shell
 $ telnet 192.168.1.101 9001
 
 Trying 192.168.1.101...
@@ -75,7 +75,7 @@ Escape character is '^]'.
 
 回过头来看看 Xdebug 的错误日志，注意观察到失败时的连接信息：
 
-```Bash
+```Shell
 I: Remote address found, connecting to 172.17.0.1:9001.
 W: Creating socket for '172.17.0.1:9001', poll success, but error: Operation now in progress (29).
 E: Could not connect to client. :-(
@@ -83,7 +83,7 @@ E: Could not connect to client. :-(
 
 此时，在容器中使用 tcpdump 截获的数据包如下：
 
-```Bash
+```Shell
 $ tcpdump -nnA port 9001
 # 尝试建立连接，但是失败了
 12:20:34.318080 IP 172.17.0.2.40720 > 172.17.0.1.9001: Flags [S], seq 2365657644, win 29200, options [mss 1460,sackOK,TS val 833443 ecr 0,nop,wscale 7], length 0
@@ -118,7 +118,7 @@ I: Remote address found
 
 接下来，可以知道 Xdebug 端是工作在远程调试的模式 2 上，Xdebug 会通过 HTTP_X_FORWARDED_FOR 和 REMOTE_ADDR 项获取目标机 IP。Docker 启动容器时已经做了 80 端口映射，忽略宿主机同 Docker 容器复杂的数据包转发规则，先截取容器 80 端口数据包：
 
- ```Bash
+ ```Shell
 $ tcpdump -nnA port 80
 # 请求信息
 13:30:07.017770 IP 172.17.0.1.33976 > 172.17.0.2.80: Flags [P.], seq 1:208, ack 1, win 229, options [nop,nop,TS val 1250713 ecr 1250713], length 207

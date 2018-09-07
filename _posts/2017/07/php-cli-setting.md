@@ -14,7 +14,7 @@ categories:
 
 示例脚本使用 YII 框架，内容如下：
 
-```Bash
+```Shell
 $ vim ./crontab.sh
 #!/usr/bin/env bash
 # 状态更新
@@ -26,7 +26,7 @@ CURRENT_DIR=`dirname $0`
 
 通常在 web 和 cli 模式时，php 配置需要不一致。例如，disable_functions 项等，cli  模式配置文件为`php_cli.ini`。
 
-```Bash
+```Ini
 ; 不限制系统函数
 disable_functions =
 ; 脚本最大执行时间
@@ -41,7 +41,7 @@ PHP 语言类型的脚本，使用 crontab 进行调度时，会遇到脚本的�
 
 脚本初始权限和 crontab 配置信息：
 
-```Bash
+```Shell
 $ ll -a
 -rw-r--r--. 1 root root  191 Jul 10 17:34 crontab.sh
 
@@ -53,7 +53,7 @@ $ crontab -l
 
 Git 支持文件权限的保持，所以可以通过如下命令修改文件权限并提交：
 
-```Bash
+```Shell
 # path.sh文件增加可执行权限
 $ git update-index --chmod=+x crontab.sh
 $ git commit -m "access"
@@ -62,7 +62,7 @@ $ git push origin feature
 
 重新拉取文件获取可执行权限：
 
-```Bash
+```Shell
 $ git pull origin feature
 # 查看文件权限
 $ ll -a
@@ -73,7 +73,7 @@ $ ll -a
 
 在不增加脚本文件可执行权限的情况，可以直接使用`sh`命令解决。
 
-```Bash
+```Shell
 # 直接执行
 $ sh ./crontab.sh
 # crontab
@@ -87,7 +87,7 @@ $ crontab -e
 
 当然，我们可以在脚本中实现文件锁，但是我们往往希望脚本只涉及到业务逻辑，这样方便维护。此时可以使用`flock`命令来解决：
 
-```Bash
+```Shell
 # flock文件锁
 5 * * * * /usr/bin/flock -xn /var/run/crontab.lock -c "/mnt/hgfs/Code/ziroom/crontab/cli/crontab.sh > /home/log/cli.log"
 ```
@@ -98,7 +98,7 @@ $ crontab -e
 
 调试脚本时，遇到一些系统层面的错误问题，一般都不易发现，这时使用`strace`可以用来查看系统调用的执行，才是解决问题的根本。
 
-```Bash
+```Shell
 $ strace crontab.sh
 
 execve("./crontab.sh", ["./crontab.sh"], [/* 29 vars */]) = 0

@@ -16,13 +16,13 @@ categories:
 
 CentOS 下独立安装 ab 的命令：
 
-```Bash
+```Shell
 $ yum install httpd-tools
 ```
 
 安装后，查看 ab 版本：
 
-```Bash
+```Shell
 $ ab -V
 This is ApacheBench, Version 2.3
 ```
@@ -37,7 +37,7 @@ ab 使用命令格式为：
 
 通过`ab -h`命令查看 ab 命令参数，这里只列举 **常用参数**。
 
-```Bash
+```Shell
 -n   # 在测试会话中所执行的请求个数
 -c   # 一次产生的请求个数（并发数）
 -p   # 包含需要POST数据的文件，文件格式：“p1=1&p2=2”
@@ -48,7 +48,7 @@ ab 使用命令格式为：
 
 对我博客主站点`www.fanhaobai.com`进行 100 并发压测，命令如下：
 
-```Bash
+```Shell
 $ ab -c 100 -n 100 https://www.fanhaobai.com/
 ```
 

@@ -15,7 +15,7 @@ categories:
 
 为了提高 GoAccess 分析准确度，需要配置 `nginx.conf` 的 log_format 项。
 
-```Bash
+```Nginx
 log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                   '$status $body_bytes_sent "$http_referer" '
                   '"$http_user_agent" "$http_x_forwarded_for" "$request_body"';
@@ -25,7 +25,7 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 
 安装详见 [GoAccess 文档](https://goaccess.io/download)。
 
-```Bash
+```Shell
 $ wget http://tar.goaccess.io/goaccess-1.2.tar.gz
 $ tar -xzvf goaccess-1.2.tar.gz
 $ cd goaccess-1.2/
@@ -37,7 +37,7 @@ $ make install
 
 在 configure 的时候可能会因为缺少一些依赖而失败。例如：
 
-```Bash
+```Shell
 checking for GeoIP_new in -lGeoIP... no
 configure: error: 
     *** Missing development files for the GeoIP library
@@ -45,7 +45,7 @@ configure: error:
 
 此时，根据提示安装对应依赖即可。
 
-```Bash
+```Shell
 $ yum install GeoIP-devel
 # 或者安装全部依赖
 $ yum install glib2 glib2-devel GeoIP-devel  ncurses-devel zlib zlib-devel
@@ -57,7 +57,7 @@ $ yum install glib2 glib2-devel GeoIP-devel  ncurses-devel zlib zlib-devel
 
 对配置文件做一些主要配置：
 
-```Bash
+```Nginx
 time-format %H:%M:%S
 date-format %d/%b/%Y
 log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
@@ -65,7 +65,7 @@ log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
 
 其中，log-format 与 access.log 的 log_format 格式对应，每个参数以空格或者制表符分割。参数说明如下：
 
-```Bash
+```Nginx
 %t  匹配time-format格式的时间字段
 %d  匹配date-format格式的日期字段
 %h  host(客户端ip地址，包括ipv4和ipv6)
@@ -86,7 +86,7 @@ log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
 
 查看 GoAccess 命令参数，如下：
 
-```Bash
+```Shell
 $ goaccess -h
 # 常用参数
 -a --agent-list 启用由主机用户代理的列表。为了更快的解析，不启用该项
@@ -102,14 +102,14 @@ $ goaccess -h
 
 ## 控制台模式
 
-```Bash
+```Shell
 $ goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf
 ```
 ![](https://img3.fanhaobai.com/2017/06/go-access/f0652e34-e1ce-46ab-8c0f-b2fef5f36577.png)
 
 控制台下的操作方法：
 
-```Bash
+```Shell
 F1   主帮助页面
 F5   重绘主窗口
 q    退出
@@ -126,7 +126,7 @@ G    移动到最后一个模块底部
 
 ## HTML模式
 
-```Bash
+```Shell
 $ goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf -o /data/html/hexo/public/go-access.html
 ```
 
@@ -138,7 +138,7 @@ $ goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf -o
 
 GoAccess 已经为我们考虑到这点了，它可以以 daemonize 模式运行，并提供创建实时 HTML 的功能，只需要在启动命令后追加`--real-time-html --daemonize`参数即可。
 
-```Bash
+```Shell
 $ goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf -o /data/html/hexo/public/go-access.html --real-time-html --daemonize
 # 监听端口7890
 $ netstat -tunpl | grep "goaccess"
@@ -153,7 +153,7 @@ tcp   0   0 0.0.0.0:7890      0.0.0.0:*     LISTEN      21136/goaccess
 
 在某些场景下，没有这样的实时性要求，可采用 crontab 机制实现定时更新 HTML 报表。
 
-```Bash
+```Shell
 # 每天执行
 0 0 1 * * goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf -o /data/html/hexo/public/go-access.html 2> /data/logs/go-access.log
 ```

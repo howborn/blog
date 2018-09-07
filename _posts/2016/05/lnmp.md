@@ -20,11 +20,11 @@ categories:
 
 安装完成 Min 版后，默认未开启网卡，采用如下方法开启网卡。
 
-```Bash
+```Shell
 $ vi /etc/sysconfig/network-scripts/ifcfg-eth0
 ```
 配置信息如下：
-```Bash
+```Shell
 DEVICE=eth0
 HWADDR=00:0C:29:7A:CF:56
 TYPE=Ethernet
@@ -40,19 +40,19 @@ BOOTPROTO=dhcp
 
 1）安装 epel 解决第三方扩展依赖的问题
 
-```Bash
+```Shell
 $ yum install epel-release
 ```
 
 2）更新系统
 
-```Bash
+```Shell
 $ yum -y update
 ```
 
 3）安装必备工具
 
-```Bash
+```Shell
 # 查看流量
 $ yum -y install iptraf
 # 常用工具
@@ -65,18 +65,18 @@ $ yum -y install cmake
 
 4）同步时钟
 
-```Bash
+```Shell
 $ yum -y install ntpdate ntp
 $ ntpdate time.windows.com && hwclock -w
 ```
 将以下内容写入计划任务：
-```Bash
+```Shell
 03 01 * * * /usr/sbin/ntpdate -u time.windows.com  >/var/log/ntpdate.log &
 ```
 
 5）修改DNS设置
 
-```Bash
+```Shell
 $ vim /etc/resolv.conf
 # 增加主DNS
 nameserver 8.8.8.8
@@ -87,7 +87,7 @@ nameserver 8.8.4.4
 6）修改语言
 
 查看系统语言：
-```Bash
+```Shell
 # 如果是zh_CN则为中文，是en_US则为英文
 $ echo $LANG
 # 查看系统语言包
@@ -101,7 +101,7 @@ $ yum -y groupinstall chinese-support
 
 为了方便后续开发，在这里安装了 GNOME 桌面。
 
-```Bash
+```Shell
 $ yum groupinstall "X Window System"  "Desktop" "Desktop Platform" "Fonts" "Chinese Support [zh]"
 # 修改默认启动模式
 $ vim /etc/inittab
@@ -114,7 +114,7 @@ id:5:initdefault:
 
 从 [PHP 官方地址](http://php.net/downloads.php) 下载源码包。
 
-```Bash
+```Shell
 $ cd /usr/src
 $ wget http://am1.php.net/distributions/php-5.6.30.tar.gz
 $ tar zxvf php-5.6.30.tar.gz
@@ -125,13 +125,13 @@ $ cd php-5.6.30
 
 可以通过`./configure`脚本检查依赖安装情况。
 
-```Bash
+```Shell
 $ yum -y install gd-devel pcre-devel libxml2-devel libjpeg-devel libpng-devel libevent-devel libtool* autoconf* freetype* libstd* gcc44* ncurse* bison* openssl* libcurl* libcurl* libmcrypt*
 ```
 
 使用 yum 安装 libmcrypt 时可能会找不到安装源，这里提供了 libmcrypt 的源码安装方式。
 
-```Bash
+```Shell
 $ wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt/libmcrypt-2.5.7.tar.gz
 $ tar zxf libmcrypt-2.5.7.tar.gz
 $ cd libmcrypt-2.5.7
@@ -141,7 +141,7 @@ $ make && make install
 
 ###  编译安装 ###
 
-```Bash
+```Shell
 ./configure --prefix=/usr/local/php \
 --with-mysql=mysqlnd \
 --with-mysqli=mysqlnd \
@@ -183,12 +183,12 @@ $ make && make install
 
 如果在编译过程中出现如下错误：
 
-```Bash
+```Shell
 configure:error:Don't know how to define struct flock on this system,set-enable-opcache=no
 ```
 采用如下办法解决：
 
-```Bash
+```Shell
 $ vim /etc/ld.so.conf.d/local.conf
 # 文件追加如下内容
 /usr/local/lib
@@ -202,13 +202,13 @@ $ ldconfig
 
 复制并修改`php.ini`配置文件。
 
-```Bash
+```Shell
 $ cp ./php.ini-development /usr/local/php/lib/php.ini
 ```
 
 **开发环境** 建议配置修改为如下：
 
-```Bash
+```Ini
 short_open_tag = On
 output_buffering = 4096
 max_execution_time = 60
@@ -227,13 +227,13 @@ date.timezone = PRC
 
 复制并修改`php-fpm.conf`配置文件。
 
-```Bash
+```Shell
 cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 ```
 
 建议配置修改为如下：
 
-```Bash
+```Ini
 [global]
 # 重要，一定要记录notice, 及时发现异常情况
 log_level = notice
@@ -260,7 +260,7 @@ catch_workers_output = yes
 
 ### 系统服务 ###
 
-```Bash
+```Shell
 $ cp /usr/src/php-5.6.30/sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
 $ chmod a+x  /etc/init.d/php-fpm
 # 添加到init.d服务中
@@ -271,7 +271,7 @@ $ chkconfig php-fpm on
 
 ### 启动 ###
 
-```Bash
+```Shell
 $ ln -s /usr/local/php/bin/php /usr/bin/php
 $ ln -s /usr/local/php/sbin/php-fpm /usr/bin/php-pfm
 # 配置语法检测
@@ -283,7 +283,7 @@ $ service php-fpm start
 
 ### 用户 ###
 
-```Bash
+```Shell
 # mysql运行用户
 $ groupadd mysql
 $ useradd mysql -g mysql -M
@@ -301,20 +301,20 @@ $ source /etc/profile
 
 从 MySQL 官网下载源码包，解压。
 
-```Bash
+```Shell
 $ tar zxvf mysql-5.6.33.tar.gz
 $ cd mysql-5.6.33
 ```
 
 ### 安装依赖 ###
 
-```Bash
+```Shell
 $ yum -y install ncurses-devel perl ncurses-devel bison-devel
 ```
 
 ### 编译安装 ###
 
-```Bash
+```Shell
 cmake \
 -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 -DMYSQL_DATADIR=/usr/local/mysql/data \
@@ -336,14 +336,14 @@ $ make && make install
 
 执行初始化：
 
-```Bash
+```Shell
 $ cd /usr/local/mysql
 $ ./scripts/mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 ```
 
 修改配置文件：
 
-```Bash
+```Ini
 [mysqld]
 datadir=/usr/local/mysql/data
 socket=/tmp/mysql.sock
@@ -358,20 +358,20 @@ default-character-set=utf8
 
 ### 系统服务 ###
 
-```Bash
+```Shell
 $ cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
 $ chkconfig mysqld on
 ```
 
 ### 启动 ###
 
-```Bash
+```Shell
 $ service mysqld start
 ```
 
 ### 权限 ###
 
-```Bash
+```Shell
 $ mysql -u root
 mysql> SET PASSWORD = PASSWORD('**********');
 mysql> GRANT ALL PRIVILEGES ON *.* TO root@"127.0.0.1"  WITH GRANT OPTION;
@@ -382,7 +382,7 @@ mysql> FLUSH PRIVILEGES;
 
 ### 准备 ###
 
-```Bash
+```Shell
 # 用户
 $ groupadd www
 $ useradd -g www www -s /bin/false -M
@@ -394,7 +394,7 @@ $ yum -y install pcre* opensll*
 
 从 [官网](http://nginx.org/download/nginx-1.7.8.tar.gz) 下载源码包，并解压。
 
-```Bash
+```Shell
 $ wget http://nginx.org/download/nginx-1.7.8.tar.gz
 $ tar zxvf nginx-1.7.8.tar.gz
 $ cd nginx-1.7.8
@@ -402,7 +402,7 @@ $ cd nginx-1.7.8
 
 ### 编译安装 ###
 
-```Bash
+```Shell
 $ ./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module --with-http_spdy_module --with-http_stub_status_module --with-pcre
 
 $ make && make install
@@ -454,7 +454,7 @@ server {
 
 ### 系统服务 ###
 
-```Bash
+```Shell
 $ vi /etc/init.d/nginx
 
 # 追加入如下内容
@@ -508,7 +508,7 @@ $ chkconfig nginx on
 
 ### 启动 ###
 
-```Bash
+```Shell
 # 检测配置
 $ service nginx test
 $ service nginx start
@@ -520,7 +520,7 @@ $ service nginx start
 
 Phpstorm 运行环境依赖 JAVA，这里使用 yum 安装 JAVA 环境。
 
-```Bash
+```Shell
 $ yum -y install java
 ```
 
@@ -528,7 +528,7 @@ $ yum -y install java
 
 从 [phpstorm 官网](https://download.jetbrains.8686c.com/webide/PhpStorm-2017.1.1.tar.gz) 下载最新安装包—— Linux版。
 
-```Bash
+```Shell
 $ tar zxvf PhpStorm-10.0.4.tar.gz
 $ mv ./PhpStorm-10.0.4 /usr/local/phpstorm
 ```
@@ -539,7 +539,7 @@ $ mv ./PhpStorm-10.0.4 /usr/local/phpstorm
 
 在虚拟机终端：
 
-```Bash
+```Shell
 $ cd /usr/local/phpstorm/bin
 $ ./phpstorm.sh
 ```
@@ -558,7 +558,7 @@ $ ./phpstorm.sh
 
 共享文件夹默认挂载路径为`/mnt/hgfs`，如下：
 
-```Bash
+```Shell
 $ cd /mnt/hgfs
 $ ls
 # 我的本地代码文件夹
@@ -567,7 +567,7 @@ Code
 
 如果配置共享文件夹路径后，默认挂载路径没有共享文件夹，可以试试下面的解决办法：
 
-```Bash
+```Shell
 $ cd /usr/src
 $ git clone https://github.com/rasa/vmware-tools-patches.git
 $ cd vmware-tools-patches
@@ -601,7 +601,7 @@ ws.run "C:\Windows\System32\bash.exe",0
 
 先尝试配置自启动服务：
 
-```Bash
+```Shell
 $ sudo chmod +x /etc/init.d/ssh
 $ cd /etc/init.d/
 $ sudo update-rc.d ssh defaults

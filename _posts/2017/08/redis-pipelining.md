@@ -20,7 +20,7 @@ Redis 的管道实质就是命令打包批量执行，多次网络交互减少�
 
 我们使用 nc 命令来直观感受下 Redis 管道的使用过程：
 
-```Bash
+```Shell
 # 安装nc命令
 $ yum install nc
 # nc打包多个命令

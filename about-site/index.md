@@ -311,7 +311,7 @@ server {
 
 ## Robots文件
 
-```Bash
+```Shell
 User-agent: *
 Disallow: /404.html
 Disallow: /categories
