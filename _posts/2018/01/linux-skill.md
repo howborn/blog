@@ -179,7 +179,7 @@ open("/lib64/libc.so.6", O_RDONLY)      = 3
 
 实现的源代码，内容为：
 
-```Shell
+```Bash
 echo -e "\033[1;30m Hello World. \033[0m [高亮]"
 echo -e "\033[0;31m Hello World. \033[0m [关闭属性]"
 echo -e "\033[4;32m Hello World. \033[0m [下划线]"
