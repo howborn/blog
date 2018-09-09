@@ -68,7 +68,7 @@ theme: hexo-theme-yilia
 
 关于主题的相关配置，参考主题源码中的 README.md 文档。
 
-> [hexo-theme-yilia](https://www.fanhaobai.com) 主题我做了较多的修改，如果你觉得我的修改也适合你，那么你只要 [pull](https://github.com/fan-haobai/hexo-theme-yilia) 下来即可，而不需要再做 [自定义修改](#自定义修改（非必须）) 部分的修改。
+> [hexo-theme-yilia](https://www.fanhaobai.com) 主题我做了较多的修改，如果你觉得我的修改也适合你，那么你只要 [pull](https://github.com/fan-haobai/hexo-theme-yilia) 下来即可，而不需要再做 [自定义修改](#自定义修改——非必须) 部分的修改。
 
 ## 写文章
 
@@ -203,7 +203,7 @@ jsonContent:
 
 ## Sitemap
 
-安装 [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap)，并`_config.yml`中添加如下配置代码：
+安装 [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap)，并在`_config.yml`中添加如下配置代码：
 
 ```YAML
 sitemap:
@@ -242,7 +242,7 @@ post_asset_folder: true
 
 ## URL静态化
 
-Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，需更改为`year/month/day/title.html`形式。这里我已经将`source`目录下的 md 文件按`year/month`手动归档了，所以 Hexo 发布时只需要`title.html`这部分。配置如下：
+Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，需更改为`year/month/title.html`形式。这里我已经将`source`目录下的 md 文件按`year/month`手动归档了，所以 Hexo 发布时只需要`title.html`这部分。配置如下：
 
 ```YAML
 permalink: title.html
@@ -309,7 +309,7 @@ deploy:
 
 上述推荐部署方案，明显的缺点是本地需要部署 Hexo 环境，无法实现随时随地的更新博客。为了方便写作，我的部署方案见 [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。
 
-# 自定义修改（非必须）
+# 自定义修改——非必须
 
 ## 在文章摘要中加入预览图
 
