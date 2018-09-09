@@ -41,7 +41,7 @@ $ hexo server
 
 Hexo 默认启动 4000 端口，使用浏览器访问 [http://localhost:4000](http://localhost:4000)，即可看见 Hexo 美丽的面容。
 
-说明：Nginx  配置站点根目录为`yourblog/public`。
+说明：Nginx 配置站点根目录为`public`。
 
 # 使用
 
@@ -54,9 +54,9 @@ Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款�
 找到喜欢的一款后，使用如下命令安装主题：
 
 ```Shell
-进入博客目录
+# 进入博客目录
 $ cd yourblog
-克隆主题源码到hexo的themes文件夹下
+# 克隆主题源码到hexo的themes文件夹下
 $ git clone https://github.com/fan-haobai/hexo-theme-yilia.git themes/hexo-theme-yilia
 ```
 
@@ -68,7 +68,7 @@ theme: hexo-theme-yilia
 
 关于主题的相关配置，参考主题源码中的 README.md 文档。
 
-> [hexo-theme-yilia](https://www.fanhaobai.com) 主题我做了较多的修改，如果你觉得我的修改也适合你，那么你只要 [pull](https://github.com/fan-haobai/hexo-theme-yilia) 下来即可，而不需要再做 [自定义修改](#自定义修改) 部分的修改。
+> [hexo-theme-yilia](https://www.fanhaobai.com) 主题我做了较多的修改，如果你觉得我的修改也适合你，那么你只要 [pull](https://github.com/fan-haobai/hexo-theme-yilia) 下来即可，而不需要再做 [自定义修改](#自定义修改（非必须）) 部分的修改。
 
 ## 写文章
 
@@ -88,7 +88,7 @@ md 文件就是 Markdown 格式的文章表述。格式大致为：
 title: Hello World
 date: 2013/7/13 20:46:25
 ---                                      # 分隔符
-以下为文章的Markdown内容
+# 以下为文章的Markdown内容
 ```
 
 文件最上方以`---`为分隔符，分隔符以上为 Front-matter，用于指定与文章相关的基本信息，分隔符以下才为文章的内容区域。
@@ -154,13 +154,11 @@ Typora 和 马克飞象 的对比：
 
 ```Shell
 $ hexo generate
-可以简写
+# 可以简写为
 $ hexo g
 ```
 
 发布后，`public`文件夹更新到最新状态，此时即可直接访问。
-
-说明：`hexo s`并没有产生静态文件，而是实时动态解析实现及时访问。
 
 # 插件
 
@@ -176,7 +174,7 @@ search:
 
 ## RSS
 
-安装 [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)，并按照说明配置（atom.xml 的链接写在`yourblog/source/_data/link.json`的 social 项中，一般无需更改）
+安装 [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)，并按照说明配置（atom.xml 的链接写在`source/_data/link.json`的 social 项中，一般无需更改）
 
 ## jsonContent
 
@@ -311,7 +309,7 @@ deploy:
 
 上述推荐部署方案，明显的缺点是本地需要部署 Hexo 环境，无法实现随时随地的更新博客。为了方便写作，我的部署方案见 [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。
 
-# 自定义修改
+# 自定义修改（非必须）
 
 ## 在文章摘要中加入预览图
 
@@ -336,7 +334,7 @@ content.replace(rExcerpt, function(match, index) {
 
 ```Shell
 $ git clone https://github.com/fan-haobai/highlight.js.git
-$ cp highlight.js/src/languages/shell.js yourblog/node_modules/highlight.js/lib/languages/shell.js
+$ cp highlight.js/src/languages/shell.js node_modules/highlight.js/lib/languages/shell.js
 ```
 
 并将 [shell.js]() 中的如下部分：
@@ -353,9 +351,9 @@ module.exports = function(hljs)
 
 ## 评论
 
-由于后来多说的关站，就再也找不到合适的第三方评论服务了。换来换去，最后还是觉得 [Disqus](https://disqus.com) 只有合适，但是需要解决被墙的问题，还好 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案——[disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
+由于后来多说的关站，就再也找不到合适的第三方评论服务了。换来换去，最后还是觉得 [Disqus](https://disqus.com) 只有合适，但是需要解决被墙的问题，还好 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案—— [disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
 
-我部署后域名为 [disqus.fanhaobai.com](https://disqus.fanhaobai.com)，首先在`layout/_partial/article.ejs`文件中追加以下内容：
+我部署后域名为 [disqus.fanhaobai.com](https://disqus.fanhaobai.com)。首先在`layout/_partial/article.ejs`文件中追加以下内容：
 
 ```Js
 <% if (!index && post.comments){ %>
@@ -417,10 +415,10 @@ disqus:
 <script>
 var _hmt = _hmt || [];
 (function() {
-	var hm = document.createElement("script");
-	hm.src = "https://hm.baidu.com/hm.js?<%= theme.baidu_analytics %>";
-	var s = document.getElementsByTagName("script")[0]; 
-	s.parentNode.insertBefore(hm, s);
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?<%= theme.baidu_analytics %>";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
 })();
 </script>
 <% } %>
