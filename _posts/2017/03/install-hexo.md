@@ -351,7 +351,7 @@ module.exports = function(hljs)
 
 ## 评论
 
-由于后来多说的关站，就再也找不到合适的第三方评论服务了。换来换去，最后还是觉得 [Disqus](https://disqus.com) 只有合适，但是需要解决被墙的问题，还好 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案—— [disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
+由于后来多说的关站，就再也找不到合适的第三方评论服务了。换来换去，最后还是觉得只有 [Disqus](https://disqus.com) 合适，但是需要先解决被墙的问题，不过 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案—— [disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
 
 我部署后域名为 [disqus.fanhaobai.com](https://disqus.fanhaobai.com)。首先在`layout/_partial/article.ejs`文件中追加以下内容：
 
