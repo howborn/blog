@@ -57,17 +57,18 @@ Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款�
 进入博客目录
 $ cd yourblog
 克隆主题源码到hexo的themes文件夹下
-$ git clone https://github.com/xxx/xxx.git themes/xxx
+$ git clone https://github.com/fan-haobai/hexo-theme-yilia.git themes/hexo-theme-yilia
 ```
 
 最后一步，在`_config.yml`配置中启用新主题。
 
 ```Shell
-theme: xxx
+theme: hexo-theme-yilia
 ```
 
 关于主题的相关配置，参考主题源码中的 README.md 文档。
 
+> [hexo-theme-yilia](https://www.fanhaobai.com) 主题我做了较多的修改，如果你觉得我的修改也适合你，那么你只要 [pull](https://github.com/fan-haobai/hexo-theme-yilia) 下来即可，而不需要再做 [自定义修改](#自定义修改) 部分的修改。
 
 ## 写文章
 
@@ -75,19 +76,19 @@ theme: xxx
 
 1） 新建文章
 
-当需要写文章时，使用如下命令新建文章，会在资源文件夹中生成与 title 对应的 .md 文件。
+当需要写文章时，使用如下命令新建文章，会在资源文件夹中生成与 title 对应的 md 文件。
 
 ```Shell
 $ hexo new [layout] <title>
 ```
 
-.md 文件就是 markdown 格式的文章表述。格式大致为：
+md 文件就是 Markdown 格式的文章表述。格式大致为：
 
 ```Shell
 title: Hello World
 date: 2013/7/13 20:46:25
 ---                                      # 分隔符
-以下为文章的markdown内容
+以下为文章的Markdown内容
 ```
 
 文件最上方以`---`为分隔符，分隔符以上为 Front-matter，用于指定与文章相关的基本信息，分隔符以下才为文章的内容区域。
@@ -118,7 +119,7 @@ categories:
 ---
 ```
 
-这样在新建文章时，就会自动在文章 .md 文件中加入 4 项基本设置。
+这样在新建文章时，就会自动在文章 md 文件中加入 4 项基本设置。
 
 特别说明，文章中添加了分类和标签后， Hexo 会自动生成分类页面和统计分类的文章数。关于分类和标签的使用，如下：
 
@@ -134,14 +135,14 @@ tags:                 # 标签为无序
 
 3） 正文
 
-文章正文使用 markdown 格式即可，我使用的 markdown 编辑器主要有 [Typora — Win版](http://typora.io/) 和 [马克飞象 — 网页版](https://maxiang.io)。
+文章正文使用 Markdown 格式即可，我使用的 Markdown 编辑器主要有 [Typora — Win版](http://typora.io/) 和 [马克飞象 — 网页版](https://maxiang.io)。
 
 Typora 和 马克飞象 的对比：
 
 * Typora 可以在本地使用相对路径预览文章图片，文章中插入图片方法，[见配置部分]()。
 * 马克飞象在线编辑，可以同印象笔记时时同步，但是想预览图片，就必须是线上图片地址。
 
-使用编辑器预览编辑完文章后，导出 .md 文件替换新建文章时生成的同名 .md 文件即可。
+使用编辑器预览编辑完文章后，导出 md 文件替换新建文章时生成的同名 md 文件即可。
 
 编辑完文章后，使用`hexo s`命令即可实时预览到文章效果。
 
@@ -229,11 +230,11 @@ sitemap:
 post_asset_folder: true
 ```
 
-开启该项配置后，Hexo 将会在你每一次通过`hexo new [layout] <title>`命令创建新文章时自动创建一个文件名同 .md 文件的文件夹。将所有与你的文章有关的资源放在这个关联文件夹中之后，就可以通过相对路径来引用它们。
+开启该项配置后，Hexo 将会在你每一次通过`hexo new [layout] <title>`命令创建新文章时自动创建一个文件名同 md 文件的文件夹。将所有与你的文章有关的资源放在这个关联文件夹中之后，就可以通过相对路径来引用它们。
 
-写文章时你只需在 markdown 中插入相对 .md 文件的 **相对路径** 的图片即可， hexo-asset-image 自动转化为网站 **绝对路径**。此时，可以直接使用 Hexo 提供的标签`asset_img`来插入图片，但是这样违背了 markdown 语法，无法及时预览，不便于编辑文章。
+写文章时你只需在 Markdown 中插入相对 md 文件的 **相对路径** 的图片即可，[hexo-asset-image]() 自动转化为网站 **绝对路径**。此时，可以直接使用 Hexo 提供的标签`asset_img`来插入图片，但是这样违背了 Markdown 语法，无法及时预览，不便于编辑文章。
 
-可以通过以下 markdown 语法在文章中插入图片，这种方式同时也支持本地 markdown 编辑器实时预览。
+可以通过以下 Markdown 语法在文章中插入图片，这种方式同时也支持本地 Markdown 编辑器实时预览。
 
 ```Shell
 ![alt](/post_title/image_name)
@@ -243,13 +244,11 @@ post_asset_folder: true
 
 ## URL静态化
 
-Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，我将之更改为`year/month/title.html`形式，`_config.yml`配置如下：
+Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，需更改为`year/month/day/title.html`形式。这里我已经将`source`目录下的 md 文件按`year/month`手动归档了，所以 Hexo 发布时只需要`title.html`这部分。配置如下：
 
 ```YAML
-permalink: :title.html
+permalink: title.html
 ```
-
-特别说明，当开启了文章资源文件夹功能，将 URL 静态化后，使用 Hexo 生成器时会产生一个 **ENOTDIR** 错误，解决办法见下述的 [自定义修改]() 部分。
 
 ## 去除代码块行号
 
@@ -262,7 +261,7 @@ highlight:
 
 # 部署
 
-如果采用本地编辑博客，而博客部署在远程服务器上，那么你就需要部署，才能同步本地更新到远程服务器。
+如果采用本地编辑博客，博客部署在远程服务器上，那么你就需要部署，才能同步本地更新到远程服务器。
 
 ## 官方推荐
 
@@ -282,7 +281,7 @@ deploy:
   message: [message]                         # 提交信息
 ```
 
-该方案适用于采用 github pages 托管博客的用户，当然使用服务器搭建博客的用户可以使用 webhook 方案来实现。
+该方案适用于采用 Github Pages 托管博客的用户，当然使用服务器搭建博客的用户可以使用 Webhook 方案来实现。
 
 2） Rsync
 
@@ -316,7 +315,7 @@ deploy:
 
 ## 在文章摘要中加入预览图
 
-需修改文件`yourblog/node_modules/hexo/lib/plugins/filter/after_post_render/excerpt.js`，内容修改为如下：
+需修改文件`node_modules/hexo/lib/plugins/filter/after_post_render/excerpt.js`，内容修改为如下：
 
 ```Js
 // 此处有更改
@@ -331,47 +330,103 @@ content.replace(rExcerpt, function(match, index) {
 
 **说明：**文章摘要预览图不会在文章正文中显示。
 
-## 样式修改
+## 更好地支持Shell代码高亮
 
-1） 去除文字不够一行时居中分散样式
-需修改文件`yourtheme/source/css/_partial/article.styl`。
+由于 [highlight.js]() 对 Shell 语法高亮解析效果并不理想，为此我对 [languages/shell.js](https://github.com/fan-haobai/highlight.js/blob/master/src/languages/shell.js) 部分做了修改来更好地支持 Shell，你只需要 [pull](https://github.com/fan-haobai/highlight.js) 并替换掉原 [languages/shell.js]() 文件即可。
 
-删除以下样式代码：
+```Shell
+$ git clone https://github.com/fan-haobai/highlight.js.git
+$ cp highlight.js/src/languages/shell.js yourblog/node_modules/highlight.js/lib/languages/shell.js
+```
+
+并将 [shell.js]() 中的如下部分：
 
 ```Js
-text-align justify
+function(hljs)
 ```
 
-2） 代码块自动换行
+修改为：
 
-在`yourtheme/source/css/lib/prettify-tomorrow-night-eighties.css`文件中增加如下样式：
-
-```CSS
-.line span {
-  word-break: break-all;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-}
+```Js
+module.exports = function(hljs)
 ```
+
+## 评论
+
+由于后来多说的关站，就再也找不到合适的第三方评论服务了。换来换去，最后还是觉得 [Disqus](https://disqus.com) 只有合适，但是需要解决被墙的问题，还好 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案——[disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
+
+我部署后域名为 [disqus.fanhaobai.com](https://disqus.fanhaobai.com)，首先在`layout/_partial/article.ejs`文件中追加以下内容：
+
+```Js
+<% if (!index && post.comments){ %>
+  <% if (theme.disqus || theme.disqus.shortname){ %>
+  <%- partial('post/disqus', {
+      title: post.title,
+      url: config.url+url_for(post.path)
+    }) %>
+  <% } %>
+<% } %>
+```
+
+然后，在`layout/_partial/post`目录下创建`disqus.ejs`文件，内容如下：
+
+```Js
+<div id="disqus_thread"></div>
+<link rel="stylesheet" href="/disqus.css">
+<script src="/disqus.js"></script>
+<script>
+  (function () {
+    var disqus = new iDisqus('disqus_thread', {
+      forum: '<%= theme.disqus.shortname %>',
+      site: '<%= config.url %>',
+      api: '<%= theme.disqus.api %>',
+      url: '<%= url %>',
+      mode: 2,
+      timeout: 3000,
+      init: true,
+      autoCreate: true,
+      relatedType: false
+    });
+    disqus.count();
+  })();
+</script>
+```
+
+最后，在`_config.yml`增加如下配置：
+
+```YAML
+disqus:
+  shortname: 'fanhaobai'
+  api: '//disqus.fanhaobai.com'
+```
+
+> 有关 Disqus 更详细的配置，见 [Disqus 设置](https://github.com/fan-haobai/disqus-php-api#disqus-%E8%AE%BE%E7%BD%AE) 部分。
 
 ## 百度统计
 
-在`yourblog/themes/raytaylorism/layout/_partial/plugin/analytics.ejs`文件中追加如下代码：
+首先，在`layout/_partial/after-footer.ejs`文件中追加如下代码：
+
+```Js
+<%- partial('baidu-analytics') %>
+```
+
+并在`layout/_partial`目录下创建`baidu-analytics.ejs`文件，内容为：
 
 ```Js
 <% if (theme.baidu_analytics){ %>
 <script>
+var _hmt = _hmt || [];
 (function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?<%= theme.baidu_analytics %>";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?<%= theme.baidu_analytics %>";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
 })();
 </script>
 <% } %>
 ```
 
-并在配置文件`_config.yml`中，加入如下配置信息：
+然后，在配置文件`_config.yml`中，增加如下配置信息：
 
 ```Js
 # 百度分析Uid，若为空则不启用
@@ -382,11 +437,12 @@ baidu_analytics: 9f0ecfa73797e6a907d8ea6a285df6a5
 
 为了更好的收录本站文章，这里引进了百度 [主动推送功能](http://zhanzhang.baidu.com/college/courseinfo?id=267&page=2)，只需添加如下 JS代码，每当文章被浏览时都会自动向百度提交链接，这种方式以用户为驱动，较为方便和实用。
 
-在主题模板文件`yourthemes/layout/_partial/article.ejs`中，插入以下代码：
+在主题模板文件`layout/_partial/article.ejs`中，追加以下代码：
 
 ```Js
+<% if (!index){ %>
 <script>
-(function () {
+  (function () {
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
     if (curProtocol === 'https') {
@@ -396,18 +452,20 @@ baidu_analytics: 9f0ecfa73797e6a907d8ea6a285df6a5
     }
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s)
-})();
+  })();
 </script>
+<% } %>
 ```
 
 到这里，也终于算是搭建结束了。至于 404 页面打算采用 [腾讯的公益404页面](http://www.qq.com/404/) 来做，[见这里](https://www.fanhaobai.com/404.html)。
 
 <strong>更新 [»]()</strong>
 
-* [主题更换为hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)<span>（2017-10-30）</span>
-* [替换百度分享为自定义分享](#)<span>（2017-11-28）</span>
+* [主题更换为 hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)<span>（2017-10-30）</span>
+* [自定义分享](#)<span>（2017-11-28）</span>
 * [去除百度统计](#)<span>（2018-07-04）</span>
-* [科学使用disqus](https://github.com/fan-haobai/disqus-php-api)<span>（2018-07-04）</span>
+* [科学使用 Disqus](#评论)<span>（2018-07-04）</span>
+* [更好地支持Shell代码高亮](#更好地支持Shell代码高亮)<span>（2018-09-09）</span>
 
 <strong>相关文章 [»]()</strong>
 
