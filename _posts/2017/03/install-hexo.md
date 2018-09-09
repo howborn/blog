@@ -463,7 +463,7 @@ baidu_analytics: 9f0ecfa73797e6a907d8ea6a285df6a5
 * [自定义分享](#)<span>（2017-11-28）</span>
 * [去除百度统计](#)<span>（2018-07-04）</span>
 * [科学使用 Disqus](#评论)<span>（2018-07-04）</span>
-* [更好地支持Shell代码高亮](#更好地支持Shell代码高亮)<span>（2018-09-09）</span>
+* [更好地支持 Shell 代码高亮](#更好地支持Shell代码高亮)<span>（2018-09-09）</span>
 
 <strong>相关文章 [»]()</strong>
 
