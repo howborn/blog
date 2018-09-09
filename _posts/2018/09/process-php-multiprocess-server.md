@@ -359,6 +359,7 @@ PHPServer start	  [OK]
 其次，查看进程树，如下：
 
 ```Shell
+$pstree -p
 init(1)-+-init(3)---bash(4)
         |-php(1286)-+-php(1287)
                     `-php(1288)
