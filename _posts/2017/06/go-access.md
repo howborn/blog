@@ -65,7 +65,7 @@ log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
 
 其中，log-format 与 access.log 的 log_format 格式对应，每个参数以空格或者制表符分割。参数说明如下：
 
-```Nginx
+```Vim
 %t  匹配time-format格式的时间字段
 %d  匹配date-format格式的日期字段
 %h  host(客户端ip地址，包括ipv4和ipv6)
@@ -86,7 +86,7 @@ log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
 
 查看 GoAccess 命令参数，如下：
 
-```Shell
+```Vim
 $ goaccess -h
 # 常用参数
 -a --agent-list 启用由主机用户代理的列表。为了更快的解析，不启用该项
@@ -109,7 +109,7 @@ $ goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf
 
 控制台下的操作方法：
 
-```Shell
+```Vim
 F1   主帮助页面
 F5   重绘主窗口
 q    退出
