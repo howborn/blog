@@ -108,7 +108,8 @@ http {
     lua_package_path '/usr/local/include/luajit-2.0/lib/?.lua;;';
     lua_package_cpath '/usr/local/include/luajit-2.0/lib/?.so;;';
 
-    include        vhost/*.conf; 
+    include        vhost/*.conf;
+    
     #防止恶意解析
 }
 ```
@@ -140,12 +141,15 @@ location ~ \.php {
     fastcgi_param PATH_INFO $fastcgi_path_info;
     fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
     include        fastcgi_params;
+    
+    #30天失效
+    expires 30d;
 }
 
-#防止图片盗链,30天的过期时间
+#防止图片盗链,1天的过期时间
 location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
     access_log   off;
-    expires      30d;
+    expires      1d;
     
     valid_referers none blocked *.fanhaobai.com server_names ~\.google\. ~\.baidu\.;
     if ($invalid_referer) {
@@ -168,6 +172,7 @@ server {
     if ($host ~ ^fanhaobai.com$) {
         return 301 https://www.fanhaobai.com$request_uri;
     }
+    
     #豆瓣代理
     location ~ ^/douban/(.*)$ {
 	proxy_set_header Host img3.doubanio.com;
@@ -175,6 +180,7 @@ server {
         proxy_pass       http://img3.doubanio.com/$1;
         expires max;
     }
+    
     #404特殊页面日志排除
     location ~ /404.html {
         if ($request_uri ~* '/(file/upload)|jianshu|hangqing|qinghua|script|lib|pifa|(apple\-touch)|(wp\-login))' {
@@ -299,7 +305,7 @@ server {
     listen 80 default_server;
     server_name _;
     #引流到www.fanhaobai.com
-    return 302  https://www.fanhaobai.com$request_uri;
+    return 302  https://www.fanhaobai.com;
 }
 ```
 
