@@ -21,7 +21,7 @@ date: 2016-12-11 13:12:10
 * 2017.08.18：增加使用 RabbitMQ，[见这里](http://mq.fanhaobai.com)。
 * 2017.08.12：修改 Nginx [配置](#Nginx配置)。
 * 2017.08.11：增加使用 Elasticsearch，[见这里](http://es.fanhaobai.com)。
-* 2017.06.17：使用 GoAccess 分析日志，[见这里(https://www.fanhaobai.com/go-access.html)。
+* 2017.06.17：使用 GoAccess 分析日志，[见这里](https://www.fanhaobai.com/go-access.html)。
 * 2017.05.03：启用 Composer [私有镜i像仓库](http://packagist.fanhaobai.com)。
 * 2017.04.06：增加 Solr 支持，见 [Solr Admin](http://solr.fanhaobai.com)。
 * 2017.03.01：博客迁移到 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html)。
