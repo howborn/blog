@@ -387,7 +387,7 @@ mysql> FLUSH PRIVILEGES;
 $ groupadd www
 $ useradd -g www www -s /bin/false -M
 # 依赖
-$ yum -y install pcre* opensll*
+$ yum -y install pcre* openssl*
 ```
 
 ### 下载并解压 ###
