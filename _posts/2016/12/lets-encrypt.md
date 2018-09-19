@@ -155,16 +155,20 @@ $ chmod a+x ./renew_cert.sh
 然后，往`renew_cert.sh`添加如下内容（`/data/challenges/`路径，请对应自行更改）：
 
 ```Shell
-$ python /data/ssl/acme_tiny.py --account-key /data/ssl/account.key --csr /data/ssl/domain.csr --acme-dir /data/challenges/ > /data/ssl/signed.crt || exit
-$ wget -O - https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem > /data/ssl/intermediate.pem
-$ cat /data/ssl/signed.crt /data/ssl/intermediate.pem > /data/ssl/chained.pem
-$ nginx -s reload
+#!/bin/bash
+
+path='/home/www'
+
+python $path/ssl/acme_tiny.py --account-key $path/ssl/account.key --csr $path/ssl/domain.csr --acme-dir $path/challenges/ > $path/ssl/signed.crt || exit
+wget -O - https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem > $path/ssl/intermediate.pem
+cat $path/ssl/signed.crt $path/ssl/intermediate.pem > $path/ssl/chained.pem
+/usr/local/nginx/sbin/nginx -s reload
 ```
 
 最后，`crontab -e`增加定时任务：
 
 ```Shell
-0 0 1 * * /data/ssl/renew_cert.sh 2>> /data/ssl/acme_tiny.log
+0 0 1 */2 * /data/ssl/renew_cert.sh 2>> /data/ssl/acme_tiny.log
 ```
 
-就这样完成了 Let's Encrypt 证书的自动化部署，证书每个月自动更新，无需你的干预。
+就这样完成了 Let's Encrypt 证书的自动化部署，证书每 2 个月自动更新，无需你的干预。
