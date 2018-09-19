@@ -154,7 +154,7 @@ $ chmod a+x ./renew_cert.sh
 
 然后，往`renew_cert.sh`添加如下内容（`/data/challenges/`路径，请对应自行更改）：
 
-```Shell
+```Bash
 #!/bin/bash
 
 path='/home/www'
