@@ -299,7 +299,7 @@ $ source /etc/profile
 
 ### 下载并解压源码 ###
 
-从 MySQL 官网下载源码包，解压。
+从 [MySQL](https://dev.mysql.com/downloads/mysql/) 官网下载源码包，解压。
 
 ```Shell
 $ tar zxvf mysql-5.6.33.tar.gz
