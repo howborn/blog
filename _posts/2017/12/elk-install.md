@@ -31,7 +31,7 @@ openjdk version "1.8.0_151"
 在文件`/etc/profile`配置环境变量：
 
 ```Shell
-# 指向安装目录
+# 指向安装目录，其中1.8.0.151需与版本号保持一致
 JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
 PATH=$JAVA_HOME/bin:$PATH
 CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
@@ -48,6 +48,8 @@ export JAVA_HOME JAVACMD CLASSPATH PATH
 ```Shell
 $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ```
+
+>yum 命令会安装最新的版本，若需安装较旧的版本，请先从 [官方地址](https://www.elastic.co/downloads/past-releases) 下载对应的旧版本 rpm 包，然后使用`rpm -ivh`命令安装。
 
 ## Elasticsearch
 
@@ -216,6 +218,21 @@ elk
 2017-11-21T22:25:07.264Z fhb elk
 ```
 
+修改配置文件路径：
+
+```Shell
+$ mv /etc/logstash /usr/local/elk/logstash/config
+```
+
+并修改配置文件`jvm.options`的 JVM 内存大小：
+
+```Shell
+$ vim jvm.options
+# 根据实际情况修改
+-Xms64m
+-Xmx100m
+```
+
 生成并修改 [init]() 启动脚本：
 
 ```Shell
@@ -325,7 +342,7 @@ $ vim /etc/init.d/filebeat
 home=/usr/share/filebeat
 pidfile=${PIDFILE-/var/run/filebeat.pid}
 agent=${BEATS_AGENT-$home/bin/filebeat}
-args="-c $home/filebeat.yml -path.home $home -path.config $home -path.data $home/bin/data -path.logs $home/bin/logs"
+args="-c $home/filebeat.yml -path.home $home -path.config $home -path.data $home/data -path.logs $home/logs"
 ```
 
 配置启动服务：
