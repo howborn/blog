@@ -93,6 +93,9 @@ $ redis-server /usr/local/redis/redis.conf
 $ chmod +x redis
 $ chkconfig --add redis
 $ chkconfig redis on
+
+# 启动
+$ service redis start
 ```
 
 查看端口监听情况，`netstat -tupl | 6379`，如下情况表示安装成功：
