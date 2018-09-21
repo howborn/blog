@@ -51,6 +51,46 @@ $ cat /etc/redhat-release
 CentOS release 6.8 (Final)
 ```
 
+### 启用Swap分区
+
+在遇到内存容量瓶颈时，我们就可以尝试启用 Swap 分区。使用文件（还可以磁盘分区）作为 Swap 分区的具体步骤如下：
+
+1. 创建 Swap 分区的文件
+
+```Shell
+# bs*count为文件大小
+$ dd if=/dev/zero of=/root/swapfile bs=1M count=1024
+```
+
+2. 格式化为交换分区文件
+
+```Shell
+$ mkswap /root/swapfile
+```
+
+3. 启用交换分区
+
+```Shell
+$ swapon /root/swapfile
+```
+
+4. 开机自启用 Swap 分区
+
+在`/etc/fstab`文件中添加如下内容：
+
+```Shell
+/root/swapfile swap swap defaults 0 0
+```
+
+最后，查看系统的 Swap 分区信息：
+
+```Shell
+$ free -h
+       total   used    free   shared  buff/cache   available
+Mem:   1.7G    729M    252M   9.2M    714M         763M
+Swap:  1.0G    0B      1.0G
+```
+
 ### 免密码使用sudo
 
 以下两种需求：
@@ -66,7 +106,8 @@ sudoers 配置文件为`/etc/sudoers`，sudo 命令操作权限配置内容如�
 root ALL=(ALL) ALL
 ```
 
-[授权格式](#)说明：
+[授权格式](#) 说明：
+
 * 第一个字段为授权用户或组，例如 root；
 * 第二个字段为来源，() 中为允许转换至的用户，= 左边为主机名；
 * 第三个字段为命令动作，多个命令以`,`号分割；
