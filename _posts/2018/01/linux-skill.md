@@ -53,28 +53,28 @@ CentOS release 6.8 (Final)
 
 ### 启用Swap分区
 
-在遇到内存容量瓶颈时，我们就可以尝试启用 Swap 分区。使用文件（还可以磁盘分区）作为 Swap 分区的具体步骤如下：
+在遇到内存容量瓶颈时，我们就可以尝试启用 Swap 分区。使用文件（还可以磁盘分区）作为 Swap 分区时，具体步骤如下：
 
-1. 创建 Swap 分区的文件
+1、 创建 Swap 分区的文件
 
 ```Shell
 # bs*count为文件大小
 $ dd if=/dev/zero of=/root/swapfile bs=1M count=1024
 ```
 
-2. 格式化为交换分区文件
+2、 格式化为交换分区文件
 
 ```Shell
 $ mkswap /root/swapfile
 ```
 
-3. 启用交换分区
+3、 启用交换分区
 
 ```Shell
 $ swapon /root/swapfile
 ```
 
-4. 开机自启用 Swap 分区
+4、 开机自启用 Swap 分区
 
 在`/etc/fstab`文件中添加如下内容：
 
