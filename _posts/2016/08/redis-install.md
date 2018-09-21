@@ -79,12 +79,20 @@ $ requirepass ***
 
 # 启动
 
-## 启动服务端
+## 服务端
 
 启动 Redis 服务端，查看安装是否成功。
 
 ```Shell
 $ redis-server /usr/local/redis/redis.conf
+```
+
+在`/etc/init.d`下新建名为`redis`的 [启动脚本](https://github.com/fan-haobai/tools/blob/master/init/redis)，并设置为自启动：
+
+```Shell
+$ chmod +x redis
+$ chkconfig --add redis
+$ chkconfig redis on
 ```
 
 查看端口监听情况，`netstat -tupl | 6379`，如下情况表示安装成功：
@@ -93,7 +101,7 @@ $ redis-server /usr/local/redis/redis.conf
 tcp    0    0 *:6379      *:*     LISTEN    28647/redis-server 
 ```
 
-## 启动客户端
+## 客户端
 
 启动客户端，进行简单连接测试。
 
