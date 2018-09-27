@@ -19,7 +19,7 @@ Input 插件指定了 Logstash 事件的输入源，已经支持 [beats](https:/
 
 例如，配置 Beats 源为输入，且端口为 5044：
 
-```Yaml
+```Bash
 input {
     beats { port => 5044 }
 }
@@ -42,7 +42,7 @@ Filter 插件主要功能是数据过滤和格式化，通过简洁的表达式�
 
 [Drop](https://www.elastic.co/guide/en/logstash/current/plugins-filters-drop.html) 插件用来过滤掉无价值的数据，例如过滤掉静态文件日志信息：
 
-```Yaml
+```Bash
 if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
     drop {}
 }
@@ -54,7 +54,7 @@ if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
 
 例如，将 time 字段值格式化为`dd/MMM/YYYY:H:m:s Z`形式：
 
-```Yaml
+```Bash
 date { match => [ "[time]", "dd/MMM/YYYY:H:m:s Z" ] }
 ```
 
@@ -64,7 +64,7 @@ date { match => [ "[time]", "dd/MMM/YYYY:H:m:s Z" ] }
 
 例如，将字段`@timestamp`重命名（rename 或 replace）为 read_timestamp：
 
-```Yaml
+```Bash
 mutate { rename => { "@timestamp" => "read_timestamp" } }
 ```
 
@@ -74,7 +74,7 @@ mutate { rename => { "@timestamp" => "read_timestamp" } }
 
 例如，将 response_code 字段值转换为整型：
 
-```Yaml
+```Bash
 mutate { convert => { "fieldname" => "integer" } }
 ```
 
@@ -82,7 +82,7 @@ mutate { convert => { "fieldname" => "integer" } }
 
 例如，将经纬度坐标用数组表示：
 
-```Yaml
+```Bash
 mutate { split => { "location" => "," } }
 ```
 
@@ -90,7 +90,7 @@ mutate { split => { "location" => "," } }
 
 例如，将经纬度坐标合并：
 
-```Yaml
+```Bash
 mutate { join => { "location" => "," } }
 ```
 
@@ -100,7 +100,7 @@ mutate { join => { "location" => "," } }
 
 例如，获取形如`?name=cat&type=2`GET 请求的参数：
 
-```Yaml
+```Bash
 kv { field_split => "&?" }
 ```
 
@@ -113,7 +113,7 @@ kv { field_split => "&?" }
 
 [Json](https://www.elastic.co/guide/en/logstash/current/plugins-filters-json.html) 插件当然是用来解析 Json 字符串，而 [Json_encode](https://www.elastic.co/guide/en/logstash/current/plugins-filters-json_encode.html) 插件是对字段编码为 Json 字符串。例如，Nginx 日志为 Json 格式，则：
 
-```Yaml
+```Bash
 json { source => "message" }
 ```
 
@@ -123,7 +123,7 @@ json { source => "message" }
 
 例如，形如`55.3.244.1 GET /index.html 15824 0.043`的请求日志，则对应的表达式应为`%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}`，配置如下：
 
-```Yaml
+```Bash
 grok {
     match => { "message" => "%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}" }
 }
@@ -147,7 +147,7 @@ Output 插件配置 Logstash 输出对象，可以为 [elasticsearch](https://ww
 
 例如，配置过滤后存储在 Elasticsearch 中：
 
-```Yaml
+```Bash
 output {
     elasticsearch {
         hosts => "localhost:9200"
@@ -167,7 +167,7 @@ output {
 
 实现基于 Nginx 日志进行过滤处理，并且通过 useragent 和 geoip 插件获取用户客户端和地理位置信息。详细配置如下：
 
-```Yaml
+```Bash
 input {
     beats { port => 5044 }
 }
@@ -260,7 +260,7 @@ Logstash 推送数据到 Elasticsearch 时，可以通过以下几种方式指�
 
 ### grok
 
-```Yaml
+```Bash
 grok {
     match => { "message" => "%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}" }
 }
@@ -272,7 +272,7 @@ grok {
 
 通过 Mutate 过滤插件的 convert 配置项，可以转换字段值类型。
 
-```Yaml
+```Bash
 mutate { convert => { "fieldname" => "integer" } }
 ```
 
