@@ -11,6 +11,14 @@ categories:
 
 ![预览图](https://img0.fanhaobai.com/2018/01/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
 
+## 常用命令
+
+* 统计 IP 连接数
+
+```Shell
+$ netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -rn | head -10
+```
+
 ## 操作系统
 
 ### 查看系统版本
