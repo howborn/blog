@@ -222,6 +222,8 @@ elk
 
 ```Shell
 $ mv /etc/logstash /usr/local/elk/logstash/config
+# 修改文件权限
+$ chown -R elk:elk /usr/local/elk/logstash
 ```
 
 并修改配置文件`jvm.options`的 JVM 内存大小：
@@ -242,6 +244,8 @@ home=/usr/share/logstash
 name=logstash
 program=$home/bin/logstash
 args=--path.settings\ $home/config
+user="elk"
+group="elk"
 # 添加启动
 $ chkconfig --add logstash
 $ chkconfig logstash on
@@ -273,7 +277,7 @@ xpack.monitoring.elasticsearch.password: changeme
 
 创建一个简单的管道（inputs → filters → outputs），配置文件为`conf.d/filebeat.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 部分需配置 Elasticsearch 的用户名和密码。
 
-```Conf
+```Nginx
 input {
     beats {
         port => 5044
