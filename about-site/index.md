@@ -121,9 +121,9 @@ if ($http_user_agent ~ "DNSPod") {
     return 200;
 }
 
-#https证书申请使用
-location /.well-known/acme-challenge/ {
-    alias /data/challenges/;
+#https证书申请使用,不再往下匹配
+location ^~ /.well-known/acme-challenge/ {
+    alias /home/www/challenges/;
     try_files $uri = 404;
 }
 
