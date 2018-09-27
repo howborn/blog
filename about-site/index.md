@@ -123,7 +123,7 @@ if ($http_user_agent ~ "DNSPod") {
 
 #https证书申请使用,不再往下匹配
 location ^~ /.well-known/acme-challenge/ {
-    alias /home/www/challenges/;
+    alias /data/html/challenges/;
     try_files $uri = 404;
 }
 
