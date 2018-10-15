@@ -57,7 +57,7 @@ PHPServer start	  [OK]
 通常我们编写的程序，都需要在 [后台不终止的长期运行]() ，此时就可以使用守护进程。当然，我们可以在代码中调用系统函数，或者直接在启动命令后追加`&`操作符，来实现一个守护进程。后者使用如下：
 
 ```Shell
-$ php server.php start &
+$ nohup php server.php start &
 # 进程脱离控制终端运行
 ```
 
