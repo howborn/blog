@@ -178,6 +178,9 @@ filter {
                 match => { "message" => ["%{IPORHOST:[@metadata][remote_ip]} - %{DATA:[user_name]} \[%{HTTPDATE:[time]}\] \"%{WORD:[method]} %{DATA:[url]} HTTP/%{NUMBER:[http_version]}\" %{NUMBER:[response_code]} %{NUMBER:[body_sent][bytes]} \"%{DATA:[referrer]}\" \"%{DATA:[@metadata][agent]}\""] }
                 remove_field => "message"
             }
+            grok {
+                match => { "referrer" => "%{URIPROTO}://%{URIHOST:referrer_domain}" }
+            }
             if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
                 drop {}
             }
