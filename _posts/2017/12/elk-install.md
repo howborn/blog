@@ -165,6 +165,15 @@ elasticsearch.password: "changeme"          # 密码
 $ bin/kibana-plugin install x-pack
 ```
 
+Kibana 运行时 NodeJs 默认会最大分配 1G 内存，可以在启动时增加`max-old-space-size`参数，以限制其运行内存大小：
+
+```Shell
+$ vim bin/kibana
+
+# 增加--max-old-space-size=140参数
+NODE_ENV=production exec "${NODE}" $NODE_OPTIONS --max-old-space-size=140 --no-warnings "${DIR}/src/cli" ${@}
+```
+
 修改 [init]() 启动脚本，并启动 Kibana：
 
 ```Shell
@@ -226,13 +235,13 @@ $ mv /etc/logstash /usr/local/elk/logstash/config
 $ chown -R elk:elk /usr/local/elk/logstash
 ```
 
-并修改配置文件`jvm.options`的 JVM 内存大小：
+修改 JVM 内存大小，防止出现内存溢出异常：
 
 ```Shell
-$ vim jvm.options
+$ vim config/jvm.options
 # 根据实际情况修改
--Xms64m
--Xmx100m
+-Xms80m
+-Xmx150m
 ```
 
 生成并修改 [init]() 启动脚本：

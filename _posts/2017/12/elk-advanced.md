@@ -9,7 +9,32 @@ categories:
 ---
 
 部署 [ELK](https://www.fanhaobai.com/2017/12/elk-install.html) 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
-![](https://img3.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+![预览图](https://img3.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+
+## Elasticsearch证书
+
+为了获得 Elasticsearch 更好的体验，我们需要获得 [Elastic](https://register.elastic.co/registration) 的使用授权，安装颁发的永久 License 证书。
+
+首先，前往 [registration](https://register.elastic.co/registration) 地址注册，稍后我们会收到 License 的下载地址：
+
+![邮件](https://www.fanhaobai.com/2017/12/elk-advanced/0f9b0271-108b-47d4-acc2-6fde4e4f9ff7.png)
+
+接着，点击邮件中的 [地址](http://license.elastic.co/registration/download/de804a8e-97e1-478b-a843-613aecac1a6e) 下载 License 文件，并另存为`fan-haobai-dbc3f18c-f87e-40e4-9a1d-f496e58a591e-v5.json`：
+
+![License文件](https://www.fanhaobai.com/2017/12/elk-advanced/c618f544-7093-4530-9bda-b63ab58832ea.png)
+
+然后，通过 Elasticsearch 的 API 更新 License：
+
+```Shell
+# 文件名前有@符号
+$ curl -XPOST -u elastic:changeme http://127.0.0.1:9200/_xpack/license/start_basic?acknowledge=true -H "Content-Type: application/json" -d @fan-haobai-dbc3f18c-f87e-40e4-9a1d-f496e58a591e-v5.json
+# 返回如下信息则成功
+{"acknowledged":true,"basic_was_started":true}
+```
+
+通过 [Kibana](http://elk.fanhaobai.com/app/kibana#/management/elasticsearch/license_management) 查看新的证书信息：
+
+![证书信息](https://www.fanhaobai.com/2017/12/elk-advanced/575f23bd-f21a-4b53-a7f3-5581f9c25c01.png)
 
 ## Logstash管道进阶
 
@@ -548,18 +573,11 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 ![](https://img1.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
 
-## OutOfMemory错误或CPU爆表问题
+## Logstash出现OutOfMemory异常
 
-当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 [OutOfMemory 错误，并且服务器 CPU 处于爆表状态](#)。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
+当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 [OutOfMemory 错误，并且服务器 CPU 处于 100% 状态](#)。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
 
-我服务器内存只有 2G，自然 JVM 配置不能太阔。如下：
-
-```Yaml
--Xms64m
--Xmx128m
-```
-
-这个问题是由于内存硬件限制，所以没法从根本上解决问题，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期（周期根据配置决定）重启 Logstash 即可。我的定时任务为：
+尽管在 [安装](https://www.fanhaobai.com/2017/12/elk-install.html#安装) 过程中调整了 Logstash 内存大小，这个由于服务器硬件限制导致的问题还是没法根本解决问题，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期重启 Logstash 即可。设置定时任务为：
 
 ```Shell
 0 */12 * * * /sbin/service logstash restart
