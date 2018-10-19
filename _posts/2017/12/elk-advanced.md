@@ -577,7 +577,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 [OutOfMemory 错误，并且服务器 CPU 处于 100% 状态](#)。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
 
-尽管在 [安装](https://www.fanhaobai.com/2017/12/elk-install.html#安装) 过程中调整了 Logstash 内存大小，这个由于服务器硬件限制导致的问题还是没法根本解决问题，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期重启 Logstash 即可。设置定时任务为：
+尽管在 [安装](https://www.fanhaobai.com/2017/12/elk-install.html#安装) 过程中调整了 Logstash 内存大小，这个由于服务器硬件限制导致的问题还是没法根本解决，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期重启 Logstash 即可。定时任务为：
 
 ```Shell
 0 */12 * * * /sbin/service logstash restart
