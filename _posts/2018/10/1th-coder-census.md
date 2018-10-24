@@ -17,7 +17,7 @@ categories:
 
 <h3 style="text-align:center;margin:0">第一次全国程序员人口普查</h3>
 
-<font size="2.6">注：以下都为单选题。</font>
+<font size="2">注：以下都为单选题。</font>
 
 **1、阿里巴巴新成立的半导体公司名字叫什么？**
 A. 犀利哥半导体有限公司
