@@ -147,6 +147,7 @@
 
 ### 日常
 
+* [第一次全国程序员人口普查](https://www.fanhaobai.com/2018/10/1th-coder-census.html)（2018-10-24）
 * [2017年程序员高考试卷来了](https://www.fanhaobai.com/2017/06/code-nemt.html)（2017-06-08）
 * [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)（2017-03-01）
 * [如何向搜索引擎提交链接](https://www.fanhaobai.com/2017/01/push-links.html)（2017-01-17）
