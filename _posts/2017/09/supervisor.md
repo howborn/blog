@@ -62,6 +62,7 @@ $ chmod 777 /etc/init.d/supervisor
 配置成开机启动服务：
 
 ```Shell
+$ chkconfig --add supervisor
 $ chkconfig supervisor on
 $ chkconfig --list | grep "supervisor"
 supervisor  0:off 1:off 2:on 3:on 4:on 5:on 6:off
