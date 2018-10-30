@@ -61,7 +61,7 @@ Iptables 基本语法格式为：**`iptables [-t table] COMMAND chain CRETIRIA -
 
 命令说明：
 
-```Bash
+```Shell
  -t table：指定操作表，即filter、nat、mangle表
   COMMAND：定义如何对规则进行管理
     chain：指定操作规则的链，当定义策略的时候，是可以省略的
@@ -71,7 +71,7 @@ Iptables 基本语法格式为：**`iptables [-t table] COMMAND chain CRETIRIA -
 
 ## 链管理命令
 
-```Bash
+```Shell
 -P：设置默认策略的（设定默认门是关着的还是开着的）
 eg：iptables -P INPUT (DROP|ACCEPT)  默认是关的/默认是开的
 
@@ -93,7 +93,7 @@ eg：iptables -Z
 
 ## 规则管理命令
 
-```Bash
+```Shell
 -A：在当前链的最后新增一条规则
 -I num：插入为第几条规则
 -R num：指定修改第几条规则
@@ -102,13 +102,13 @@ eg：iptables -Z
 
 ## 查看管理命令
 
-```Bash
+```Shell
 -L：列出相关信息，可以附加子命令
 ```
 
 附加子命令列表：
 
-```Bash
+```Shell
 -n：以数字的方式显示ip，如果不加-n，则会将ip反向解析成主机名
 -v：显示详细信息
 -vv：显示更多详细信息
@@ -121,7 +121,7 @@ eg：iptables -Z
 
 1） 通用匹配，源地址和目标地址的匹配
 
-```Bash
+```Shell
 -s：指定源地址匹配，这里不能指定主机名称，必须是IP
 -d：指定目标地址
 -p：指定协议，通常有3种（TCP/UDP/ICMP）
@@ -131,13 +131,13 @@ eg：iptables -Z
 
 2） 扩展匹配
 
-```Bash
+```Shell
 -p tcp ：对TCP协议的扩展。
 ```
 
 一般有以下两种扩展：
 
-```Bash
+```Shell
 --dport：指定目标端口，不能指定多个非连续端口
 eg：--dport 21：表示指定21端口
 eg：--dport 21-23：表示指定21、22、23端口
@@ -146,13 +146,13 @@ eg：--dport 21-23：表示指定21、22、23端口
 
 ## 处理操作命令
 
-```Bash
+```Shell
 -j：指定规则的处理操作类型
 ```
 
 常用的 ACTION 为：
 
-```Bash
+```Shell
 DROP：直接丢弃
 REJECT：明示拒绝
 ACCEPT：接受
@@ -168,7 +168,7 @@ RETURN：返回
 
 查看指定表的所有规则，且显示规则序号和 ip。默认查看的是 Filter 表（后面操作都是基于该表），如果要查看 NAT 表，可以加上`-t NAT`参数。
 
-```Bash
+```Shell
 $ iptables -nvL --line-number                  #查看当前表所有链的信息
 $ iptables --line-number -nL INPUT             #查看当前表INPUT链的信息
 ```
@@ -177,7 +177,7 @@ $ iptables --line-number -nL INPUT             #查看当前表INPUT链的信息
 
 先查看当前规则：
 
-```Bash
+```Shell
 $ iptables --line-number -nL
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination         
@@ -191,7 +191,7 @@ num  target     prot opt source               destination
 
 添加一条规则到当前规则表中：
 
-```Bash
+```Shell
 $ iptables -A INPUT -s 192.168.1.5 -p tcp -j DROP        #追加一条DROP规则到INPUT链中
 $ iptables -I INPUT 2 -s 192.168.2.1 -j DROP             #添加一条DROP规则到INPUT链中，且序号为2
 ```
@@ -200,7 +200,7 @@ $ iptables -I INPUT 2 -s 192.168.2.1 -j DROP             #添加一条DROP规则
 
 查看当前所有规则：
 
-```Bash
+```Shell
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination         
 1    DROP       tcp  --  123.56.150.61        0.0.0.0/0           
@@ -209,13 +209,13 @@ num  target     prot opt source               destination
 
 将序号为 **2** 的规则修改为 **ACCEPT**：
 
-```Bash
+```Shell
 $ iptables -R INPUT 2 -s 192.168.1.5 -j ACCEPT
 ```
 
 修改后，再次查看所有规则如下：
 
-```Bash
+```Shell
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination         
 1    DROP       tcp  --  123.56.150.61        0.0.0.0/0           
@@ -226,12 +226,12 @@ num  target     prot opt source               destination
 
 删除上面通过命令`iptables -I INPUT 2 -s 192.168.2.1 -j DROP`添加的规则：
 
-```Bash
+```Shell
 $ iptables -D INPUT -s 192.168.2.1 -j DROP
 ```
 
 有时候需要删除的规则很长，所以相应的命令很不方便，所以可以使用删除指定序号的规则。以下为删除序号为 **2** 的规则的命令：
 
-```Bash
+```Shell
 $ iptables -D INPUT 2
 ```

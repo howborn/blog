@@ -334,7 +334,7 @@ protected static function reload()
 
 到这里，我们已经完成了一个多进程 PHPServer。我们来体验一下：
 
-```Bash
+```Shell
 $ php server.php 
 Usage: Commands [mode] 
 
@@ -351,14 +351,15 @@ Use "--help" for more information about a command.
 
 首先，我们启动它：
 
-```Bash
+```Shell
 $ php server.php start -d
 PHPServer start	  [OK]
 ```
 
 其次，查看进程树，如下：
 
-```Bash
+```Shell
+$ pstree -p
 init(1)-+-init(3)---bash(4)
         |-php(1286)-+-php(1287)
                     `-php(1288)
@@ -366,7 +367,7 @@ init(1)-+-init(3)---bash(4)
 
 最后，我们把它停止：
 
-```Bash
+```Shell
 $ php server.php stop
 PHPServer stopping ...
 PHPServer stop success

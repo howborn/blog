@@ -1,6 +1,6 @@
 ---
 title: 用PHP玩转进程之一 — 基础
-date: 2018-08-28 20:30:06
+date: 2018-08-28 20:30:07
 tags:
 - 系统设计
 categories:
@@ -18,7 +18,7 @@ categories:
 
 我们来直观感受下它的存在，可以说它是看不见又摸不着。
 
-```Bash
+```Shell
 $ pstree -p
 init(1)-+-init(3)---bash(4)
         |-nginx(771)-+-nginx(773)
@@ -38,7 +38,7 @@ init(1)-+-init(3)---bash(4)
 * 可以同用户交互，但容易被意外终止；
 * 有较高的响应速度，优先级别稍高；
 
-```Bash
+```Shell
 $ php server.php start
 PHPServer start	  [OK] 
 
@@ -54,14 +54,14 @@ PHPServer start	  [OK]
 * 它没有控制终端，不能直接和用户交互，在后台运行；
 * 它不受用户登录和注销的影响，只受开机或关机的影响，可以长期运行；
 
-通常我们编写的程序，都需要在 [后台不终止的长期运行]() ，此时就可以使用守护进程。当然，我们可以在代码中调用系统函数，或者直接在启动命令后追加`&`操作符，来实现一个守护进程。后者使用如下：
+通常我们编写的程序，都需要在 [后台不终止的长期运行]() ，此时就可以使用守护进程。当然，我们可以在代码中调用系统函数，或者直接在启动命令后追加`&`操作符，如下：
 
-```Bash
-$ php server.php start &
-# 进程脱离控制终端运行
+```Shell
+$ nohup php server.php start &
+# &使进程脱离控制终端运行
 ```
 
-> 通常`&`与 nohup 结合使用，忽略 SIGHUP 信号。该方式对业务代码侵入最小，方便且成本低，常用于临时执行任务脚本的场景。
+> 通常`&`与 nohup 结合使用，忽略 SIGHUP 信号来实现一个守护进程。该方式对业务代码侵入最小，方便且成本低，常用于临时执行任务脚本的场景。
 
 ## [进程间通信](https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%A8%8B%E9%96%93%E9%80%9A%E8%A8%8A)（InterProcess Communication）
 
@@ -169,7 +169,7 @@ if (posix_kill($pid, 0)) {
 
 使用`ps -ajx`命令查看所有进程信息，如下：
 
-```Bash
+```Shell
 #父PID  PID  组ID 会话ID 终端      时间   名称
 PPID   PID  PGID   SID TTY      TIME COMMAND
     0     1     1     1 ?       0:00 /init ro

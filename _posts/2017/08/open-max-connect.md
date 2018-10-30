@@ -27,7 +27,7 @@ categories:
 
 查看 Win 系统 port 使用情况：
 
-```Bash
+```Shell
 $ netstat -ano
 
 活动连接
@@ -40,7 +40,7 @@ TCP 192.168.1.102:61389 123.57.32.54:443 ESTABLISHED  14208
 
 可以发现，本地被使用的 port 有 445、902、61389 等这些值，查看下其使用程序：
 
-```Bash
+```Shell
 #端口号4情况
 $ tasklist | findstr "4"
 System          4    Services     0         16 K

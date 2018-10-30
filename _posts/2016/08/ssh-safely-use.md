@@ -19,19 +19,19 @@ SSH 服务器的配置文件位置`/etc/ssh/sshd_conf`，下述配置基本上�
 
 1） 关闭ICMP服务
 
-```Bash
+```Shell
 $ echo "1" >/proc/sys/net/ipv4/icmp_echo_ignore_all
 ```
 
 2） 防火墙拦截
 
-```Bash
+```Shell
 $ iptables -A INPUT -p icmp -j DROP
 ```
 
 检查禁 ping 是否成功：
 
-```Bash
+```Shell
 > ping www.fanhaobai.com
 请求超时。
 请求超时。
@@ -43,14 +43,14 @@ $ iptables -A INPUT -p icmp -j DROP
 
 在文件`/etc/ssh/sshd_config`中，增加如下配置：
 
-```Bash
+```Shell
 Port 22                # 保留22默认端口，防止端口配置失败，无法连接SSH
 Port 10086
 ```
 
 重启 SSH 服务：
 
-```Bash
+```Shell
 $ service sshd restart
 $ netstat -tunpl | grep sshd
 
@@ -63,7 +63,7 @@ tcp   0      0      0.0.0.0:22     0.0.0.0:*        LISTEN   2462/sshd
 
 如果查看发现 10086 已被 sshd 监听，而仍然无法连接 SSH，则需添加防火墙规则：
 
-```Bash
+```Shell
 # -dport指操作端口号
 $ iptables -A INPUT -p tcp --dport 10086 -j ACCEPT
 # 永久保存iptables规则
@@ -76,7 +76,7 @@ $ /etc/rc.d/init.d/iptables restart
 
 SSH 协议存在两个版本，版本 2 相对于版本 1 更加安全，默认配置只使用协议版本 2。
 
-```Bash
+```Shell
 Protocol 2
 ```
 
@@ -86,7 +86,7 @@ Protocol 2
 
 1） 在本地主机上生成自己的公钥
 
-```Bash
+```Shell
 $ ssh-keygen
 ```
 
@@ -98,14 +98,14 @@ $ ssh-keygen
 
 如果`authorized_keys`文件不存在，创建即可：
 
-```Bash
+```Shell
 $ mkdir ~/.ssh
 $ touch ~/.ssh/authorized_keys
 ```
 
 配置 sshd 服务，配置文件为`/etc/ssh/sshd_config`，将下面内容关闭注释。
 
-```Bash
+```Shell
 RSAAuthentication yes
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
@@ -113,7 +113,7 @@ AuthorizedKeysFile .ssh/authorized_keys
 
 然后，重启 sshd 服务。
 
-```Bash
+```Shell
 $ service sshd restart
 ```
 
@@ -123,7 +123,7 @@ $ service sshd restart
 
 在`$HOME/.ssh`目录下创建`config`文件，并作如下配置：
 
-```Bash
+```Shell
 Host fhb
 HostName www.fanhaobai.com
 Port 10086
@@ -132,7 +132,7 @@ User fhb
 
 使用识别名连接 SSH 登录远程主机，出现如下内容表示公钥登录成功。
 
-```Bash
+```Shell
 $ ssh fhb
 Last login: Mon Feb 20 17:09:00 2017 from 103.233.131.130
 

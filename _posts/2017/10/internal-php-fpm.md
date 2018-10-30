@@ -34,7 +34,7 @@ fpm 可以同时监听多个端口，每个端口对应一个 worker pool，而�
 
 在 php-fpm.conf 中通过`[pool name]`声明一个 worker pool：
 
-```Bash
+```Ini
 [web1]
 listen = 127.0.0.1:9000
 ...
@@ -46,7 +46,7 @@ listen = 127.0.0.1:9001
 
 启动 fpm 后查看进程：
 
-```Bash
+```Shell
 $ ps -aux|grep fpm
 root     27155  0.0  0.1 144704  2720 ?  Ss   15:16   0:00 php-fpm: master process (/usr/local/php7/etc/php-fpm.conf)
 nobody   27156  0.0  0.1 144676  2416 ?  S    15:16   0:00 php-fpm: pool web1

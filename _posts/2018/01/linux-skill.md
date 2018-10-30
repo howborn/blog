@@ -11,6 +11,14 @@ categories:
 
 ![预览图](https://img0.fanhaobai.com/2018/01/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
 
+## 常用命令
+
+* 统计 IP 连接数
+
+```Shell
+$ netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -rn | head -10
+```
+
 ## 操作系统
 
 ### 查看系统版本
@@ -21,14 +29,14 @@ categories:
 
 * uname命令
 
-```Bash
+```Shell
 $ uname -a
 Linux fhb-6.6 2.6.32-642.13.1.el6.i686
 ```
 
 * /proc/version文件
 
-```Bash
+```Shell
 $ cat /proc/version 
 Linux version 2.6.32-642.13.1.el6.i686
 ```
@@ -37,7 +45,7 @@ Linux version 2.6.32-642.13.1.el6.i686
 
 * lsb_release命令
 
-```Bash
+```Shell
 $ lsb_release -a
 LSB Version:	:base-4.0-ia32:base-4.0-noarch:core-4.0-ia32
 Distributor ID:	CentOS
@@ -46,9 +54,49 @@ Release:	6.8
 
 * /etc/issue文件
 
-```Bash
+```Shell
 $ cat /etc/redhat-release
 CentOS release 6.8 (Final)
+```
+
+### 启用Swap分区
+
+在遇到内存容量瓶颈时，我们就可以尝试启用 Swap 分区。使用文件（还可以磁盘分区）作为 Swap 分区时，具体步骤如下：
+
+1、 创建 Swap 分区的文件
+
+```Shell
+# bs*count为文件大小
+$ dd if=/dev/zero of=/root/swapfile bs=1M count=1024
+```
+
+2、 格式化为交换分区文件
+
+```Shell
+$ mkswap /root/swapfile
+```
+
+3、 启用交换分区
+
+```Shell
+$ swapon /root/swapfile
+```
+
+4、 开机自启用 Swap 分区
+
+在`/etc/fstab`文件中添加如下内容：
+
+```Shell
+/root/swapfile swap swap defaults 0 0
+```
+
+最后，查看系统的 Swap 分区信息：
+
+```Shell
+$ free -h
+       total   used    free   shared  buff/cache   available
+Mem:   1.7G    729M    252M   9.2M    714M         763M
+Swap:  1.0G    0B      1.0G
 ```
 
 ### 免密码使用sudo
@@ -66,7 +114,8 @@ sudoers 配置文件为`/etc/sudoers`，sudo 命令操作权限配置内容如�
 root ALL=(ALL) ALL
 ```
 
-[授权格式](#)说明：
+[授权格式](#) 说明：
+
 * 第一个字段为授权用户或组，例如 root；
 * 第二个字段为来源，() 中为允许转换至的用户，= 左边为主机名；
 * 第三个字段为命令动作，多个命令以`,`号分割；
@@ -91,7 +140,7 @@ fhb ALL=(root) NOPASSWD: /usr/sbin/service,/usr/local/php/bin/php,/usr/bin/vim
 
 通过`-x`或`--exclude`参数指定需要排除的包名称，多个包名称使用空格分隔。例如：
 
-```Bash
+```Shell
 # --exclude同样
 $ yum -x filebeat logstash update
 ```
@@ -107,7 +156,7 @@ exclude=filebeat logstash
 
 再次使用`yum update`命令，就不会自动更新指定的软件包了。
 
-```Bash
+```Shell
 $ yum update
 No Packages marked for Update
 ```
@@ -118,7 +167,7 @@ No Packages marked for Update
 
 在某些情况下，需要强制踢出系统其他登录用户，比如遇到非法用户登录。查询当前登陆用户：
 
-```Bash
+```Shell
 # 当前用户
 $ whoami
 root
@@ -130,7 +179,7 @@ www       4755  4752  0 00:09 pts/0    00:00:00 bash
 
 剔除非法登陆用户：
 
-```Bash
+```Shell
 $ kill -9 4755
 ```
 
@@ -142,7 +191,7 @@ $ kill -9 4755
 
 例如，线上远程目标机器 ip：10.1.1.123、端口：3303；映射到本地 33031 端口。命令如下：
 
-```Bash
+```Shell
 # [主机ip]:[端口]:[主机ip]:[远程目标机器端口] [远程目标机器ip]
 ssh -L 127.0.0.1:33031:127.0.0.1:3303 10.1.1.123
 ```

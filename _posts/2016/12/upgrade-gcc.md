@@ -11,7 +11,7 @@ CenOS6.5 系统中默认带有 gcc4.4.7 版本，在编译一些库时无法编�
 
 # 安装依赖
 
-```Bash
+```Shell
 $ yum install -y gcc texinfo-tex flex zip libgcc.i686 glibc-devel.i686 gcc-c++ gcc
 ```
 
@@ -19,39 +19,39 @@ $ yum install -y gcc texinfo-tex flex zip libgcc.i686 glibc-devel.i686 gcc-c++ g
 
 编译前准备。
 
-```Bash
+```Shell
 $ wget http://gcc.skazkaforyou.com/releases/gcc-4.8.2/gcc-4.8.2.tar.gz
 $ tar zxvf ./gcc-4.8.2.tar.gz
 ```
 
 下载一些必备的依赖包。
 
-```Bash
+```Shell
 $ ./contrib/download_prerequisites
 ```
 
 创建一个供编译后的程序文件存放目录：
 
-```Bash
+```Shell
 $ mkdir /usr/src/gcc-make
 $ cd /usr/src/gcc-make/
 ```
 
 生成编译文件：
 
-```Bash
+```Shell
 $ /usr/src/gcc-4.8.2/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib
 ```
 
 执行编译：
 
-```Bash
+```Shell
 $ make
 ```
 
 1） 可能错误1
 
-```Bash
+```Shell
 configure: error: C++ compiler missing or inoperational         
 make[2]: *** [configure-stage1-libcpp] Error 1 
 make[2]: Leaving directory /usr/local/gcc-make
@@ -69,19 +69,19 @@ error: Building GCC requires GMP 4.2+, MPFR 2.4.0+ and MPC 0.8.0+.
 
 则需要执行：
 
-```Bash
+```Shell
 $ yum install gmp-devel mpfr-devel libmpc-devel
 ```
 
 # 安装
 
-```Bash
+```Shell
 $ make install
 ```
 
 查看 gcc 版本，检测是否安装成功。  
 
-```Bash
+```Shell
 $ gcc -v
 ```
 
@@ -89,7 +89,7 @@ $ gcc -v
 
 系统自带低版本 gcc 文件位置为`/usr/bin/gcc`和`/usr/bin/lib`，此时需要将这两个部分删掉，或者后缀加上`.bak`，然后通过建立软连接的方式替换系统默认位置的 gcc、c++、g++ 文件。 
 
-```Bash
+```Shell
 $ mv /usr/bin/c++ /usr/bin/c++.bak
 $ ln -s /usr/local/bin/c++ /usr/bin/c++
 $ mv ./g++ ./g++.bak
@@ -100,13 +100,13 @@ $ ln -s /usr/local/bin/gcc /usr/bin/gcc
 
 # 替换系统gcc动态链接库
 
-```Bash
+```Shell
 $ strings /usr/lib64/libstdc++.so.6 | grep GLIBC
 ```
 
 输出结果如下, 可以看出，gcc 的动态库还是处于旧版本，说明生成的动态库没有替换旧版本 gcc 的动态库。 
 
-```Bash
+```Shell
 GLIBCXX_3.4
 GLIBCXX_3.4.1
 GLIBCXX_3.4.2
@@ -125,19 +125,19 @@ GLIBCXX_3.4.13
 
 查找编译 gcc 时生成的最新动态库。
 
-```Bash
+```Shell
 $ find / -name "libstdc++.so*"
 ```
 
 列出了新版的 gcc 动态链接库位置。
 
-```Bash
+```Shell
 /usr/local/lib64/libstdc++.so.6.0.18
 ```
 
 将上面的最新动态库`libstdc++.so.6.0.18`复制到`/usr/lib64`目录下，并重新建立软连接。
 
-```Bash
+```Shell
 $ cp /usr/local/lib64/libstdc++.so.6.0.18 /usr/lib64 
 $ cd /usr/lib64/
 $ rm -f ./libstdc++.so.6
@@ -146,7 +146,7 @@ $ ln -s libstdc++.so.6.0.18 libstdc++.so.6
 
 再次查看 gcc 版本，以下结果表示动态库升级完成。
 
-```Bash
+```Shell
 ...
 GLIBCXX_3.4.13 
 GLIBCXX_3.4.14

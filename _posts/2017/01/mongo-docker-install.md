@@ -21,13 +21,13 @@ MongoDB 作为 [NOSQL](http://baike.baidu.com/link?url=NTbBo0uTFuveD-bigzlZ_LODG
 
 所以执行以下命令，就可以获取 MongoDB 的镜像，默认获取最新版本镜像。
 
-```Bash
+```Shell
 $ docker pull mongo
 ```
 
 查看新获取的 MongoDB 镜像信息，如下：
 
-```Bash
+```Shell
 $ docker images mongo
 REPOSITORY    TAG      IMAGE ID      CREATED        VIRTUAL SIZE
 mongo         latest   50fa1fa47718  11 hours ago   402 MB
@@ -37,7 +37,7 @@ mongo         latest   50fa1fa47718  11 hours ago   402 MB
 
 该镜像中默认会在`27017`端口启动 MongoDB，当然这里需要开启端口映射，使 MongoDB 容器对外网访问开放。
 
-```Bash
+```Shell
 $ docker run --name mongo -v /home/docker/mongo:/data/db -p 27017:27017 -d mongo
 ```
 
@@ -50,7 +50,7 @@ $ docker run --name mongo -v /home/docker/mongo:/data/db -p 27017:27017 -d mongo
 
 查看启动的容器，如果出现如下信息，则说明 MongoDB 容器启动成功。
 
-```Bash
+```Shell
 $ docker ps -a
 CONTAINER ID   IMAGE   COMMAND          CREATED         STATUS        PORTS                      NAMES
 d83cab80f13d   mongo   "/entrypoint.sh  3 seconds ago   Up 2 seconds   0.0.0.0:27017->27017/tcp   mongo
@@ -68,7 +68,7 @@ d83cab80f13d   mongo   "/entrypoint.sh  3 seconds ago   Up 2 seconds   0.0.0.0:2
 
 使用以下命令进入正在运行的 MongoDB 容器中，后续命令都是在容器中执行，除非特别说明外。
 
-```Bash
+```Shell
 $ docker exec -it mongo /bin/bash
 ```
 
@@ -76,14 +76,14 @@ $ docker exec -it mongo /bin/bash
 
 在容器中运行如下命令连接 MongoDB 数据库，并选择名为 admin 的数据库：
 
-```Bash
+```Shell
 $ mongo
 $ use admin
 ```
 
 创建一个管理员账户：
 
-```Bash
+```Shell
 $ db.createUser({user:"admin",pwd:"admin",roles: [{role: "root",db: "admin"}]})
 ```
 
@@ -113,7 +113,7 @@ $ db.createUser({user:"admin",pwd:"admin",roles: [{role: "root",db: "admin"}]})
 
 测试新添加管理员账户的认证情况，如果返回 1 ，则表示认证成功。
 
-```Bash
+```Shell
 $ db.auth('admin','admin')
 ```
 
@@ -121,7 +121,7 @@ $ db.auth('admin','admin')
 
 这里需要修改容器根目录下的`entrypoint.sh`文件，由于无法直接从容器中修改，所以复制该文件到挂载的数据卷中。
 
-```Bash
+```Shell
 $ cp /entrypoint.sh /data/db
 ```
 
@@ -129,7 +129,7 @@ $ cp /entrypoint.sh /data/db
 
 在 **宿主环境** 下执行：
 
-```Bash
+```Shell
 $ vim /home/docker/mongo/entrypoint.sh
 ```
 
@@ -147,7 +147,7 @@ fi
 
 将修改应用到容器中。首先，直接替换容器根目录下`entrypoint.sh`文件：
 
-```Bash
+```Shell
 $ cp -f /data/db/entrypoint.sh /
 $ exit
 ```
@@ -164,7 +164,7 @@ $ exit
 
 在 **宿主环境** 下执行：
 
-```Bash
+```Shell
 $ docker diff mongo                              #查看容器所修改内容
 $ docker commit -a "fanhaobai" -m "add auth" mongo mongo:latest
 $ docker images mongo

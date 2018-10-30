@@ -21,7 +21,7 @@ categories:
 
 现象是这样的，首先看我用 ab 不加 -k 选项的结果：
 
-```Bash
+```Shell
 $ /usr/sbin/ab  -c 1 -n 10 http://127.0.0.1:8000/styles/shThemeRDark.css
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -69,7 +69,7 @@ Percentage of the requests served within a certain time (ms)
 
 很好，不超过 1ms 的响应时间。但一旦我加上了 -k 选项启用 HTTP Keep-Alive，结果就变成了这样：
 
-```Bash
+```Shell
 $ /usr/sbin/ab -k  -c 1 -n 10 http://127.0.0.1:8000/styles/shThemeRDark.css
 This is ApacheBench, Version 2.3 <$Revision: 655654 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -118,7 +118,7 @@ Percentage of the requests served within a certain time (ms)
 
 40ms 啊！这可是访问本机上的 Server 啊，才 1 个连接啊！太奇怪了吧！祭出 神器 strace，看看到底是什么情况：
 
-```Bash
+```Shell
 15:37:47.493170 epoll_wait(3, {}, 1024, 0) = 0
 15:37:47.493210 readv(5, [{"GET /styles/shThemeRDark.css HTT"..., 10111}, {"GET /styles/shThemeRDark.css HTT"..., 129}], 2) = 129
 15:37:47.493244 epoll_wait(3, {}, 1024, 0) = 0

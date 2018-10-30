@@ -233,7 +233,7 @@ $map->run();
 
 上述过程是通过 [**Linux 的 crontab 定时机制，实现每隔 2 天循环一次执行的更新频率**]()。
 
-```Bash
+```Shell
 0 1 */2 * * /usr/local/php7/bin/php /data/html/www/sitemap/map_create.php
 ```
 

@@ -19,7 +19,7 @@ Hexo 如官方介绍一样，安装方便快捷。安装前请确保 Node 和 Ng
 
 只需使用如下命令即可安装 Hexo。
 
-```Bash
+```Shell
 $ npm install hexo-cli -g
 $ hexo init blog
 $ cd blog
@@ -29,7 +29,7 @@ $ hexo server
 
 安装完成后目录结构如下：
 
-```Bash
+```Shell
 ├── _config.yml             # 主配置文件
 ├── package.json            # 应用程序的信息
 ├── scaffolds               # 模版文件夹，新建文章时根据这些模版来生成文章的.md文件
@@ -41,7 +41,7 @@ $ hexo server
 
 Hexo 默认启动 4000 端口，使用浏览器访问 [http://localhost:4000](http://localhost:4000)，即可看见 Hexo 美丽的面容。
 
-说明：Nginx  配置站点根目录为`yourblog/public`。
+说明：Nginx 配置站点根目录为`public`。
 
 # 使用
 
@@ -49,25 +49,26 @@ Hexo 默认启动 4000 端口，使用浏览器访问 [http://localhost:4000](ht
 
 ## 更换主题
 
-Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款你如意的，我这里主题选择了 [raytaylorism](https://github.com/raytaylorlin/hexo-theme-raytaylorism)，没有为什么，就是看起来舒服而已，后续相关配置也是基于该主题。
+Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款你如意的，我这里主题选择了 [hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)，没有为什么，就是看起来舒服而已，后续相关配置也是基于该主题。
 
 找到喜欢的一款后，使用如下命令安装主题：
 
-```Bash
-进入博客目录
+```Shell
+# 进入博客目录
 $ cd yourblog
-克隆主题源码到hexo的themes文件夹下
-$ git clone https://github.com/xxx/xxx.git themes/xxx
+# 克隆主题源码到hexo的themes文件夹下
+$ git clone https://github.com/fan-haobai/hexo-theme-yilia.git themes/hexo-theme-yilia
 ```
 
 最后一步，在`_config.yml`配置中启用新主题。
 
-```Bash
-theme: xxx
+```Shell
+theme: hexo-theme-yilia
 ```
 
 关于主题的相关配置，参考主题源码中的 README.md 文档。
 
+> [hexo-theme-yilia](https://www.fanhaobai.com) 主题我做了较多的修改，如果你觉得我的修改也适合你，那么你只要 [pull](https://github.com/fan-haobai/hexo-theme-yilia) 下来即可，而不需要再做 [自定义修改](#自定义修改——非必须) 部分的修改。
 
 ## 写文章
 
@@ -75,19 +76,19 @@ theme: xxx
 
 1） 新建文章
 
-当需要写文章时，使用如下命令新建文章，会在资源文件夹中生成与 title 对应的 .md 文件。
+当需要写文章时，使用如下命令新建文章，会在资源文件夹中生成与 title 对应的 md 文件。
 
-```Bash
+```Shell
 $ hexo new [layout] <title>
 ```
 
-.md 文件就是 markdown 格式的文章表述。格式大致为：
+md 文件就是 Markdown 格式的文章表述。格式大致为：
 
-```Bash
+```Shell
 title: Hello World
 date: 2013/7/13 20:46:25
 ---                                      # 分隔符
-以下为文章的markdown内容
+# 以下为文章的Markdown内容
 ```
 
 文件最上方以`---`为分隔符，分隔符以上为 Front-matter，用于指定与文章相关的基本信息，分隔符以下才为文章的内容区域。
@@ -96,7 +97,7 @@ date: 2013/7/13 20:46:25
 
 Front-matter 内容如下：
 
-```Bash
+```Shell
 layout                 布局
 title                  标题
 date                   建立日期
@@ -109,7 +110,7 @@ permalink              覆盖文章网址
 
 其中 title、date、tags、categories 这 4 项，在新建文章时需要进行设置，其他项采用默认值即可，不需要在每篇文章中进行设置，故可以将这 4 项基本设置移到模板文件`scaffolds\post.md`中，如下：
 
-```Bash
+```Shell
 ---
 title: {{ title }}
 date: {{ date }}
@@ -118,11 +119,11 @@ categories:
 ---
 ```
 
-这样在新建文章时，就会自动在文章 .md 文件中加入 4 项基本设置。
+这样在新建文章时，就会自动在文章 md 文件中加入 4 项基本设置。
 
 特别说明，文章中添加了分类和标签后， Hexo 会自动生成分类页面和统计分类的文章数。关于分类和标签的使用，如下：
 
-```Bash
+```Shell
 categories:           # 分类存在顺序关系
 - 语言                 # 1级分类
 - PHP                 # 2级分类
@@ -134,14 +135,14 @@ tags:                 # 标签为无序
 
 3） 正文
 
-文章正文使用 markdown 格式即可，我使用的 markdown 编辑器主要有 [Typora — Win版](http://typora.io/) 和 [马克飞象 — 网页版](https://maxiang.io)。
+文章正文使用 Markdown 格式即可，我使用的 Markdown 编辑器主要有 [Typora — Win版](http://typora.io/) 和 [马克飞象 — 网页版](https://maxiang.io)。
 
 Typora 和 马克飞象 的对比：
 
 * Typora 可以在本地使用相对路径预览文章图片，文章中插入图片方法，[见配置部分]()。
 * 马克飞象在线编辑，可以同印象笔记时时同步，但是想预览图片，就必须是线上图片地址。
 
-使用编辑器预览编辑完文章后，导出 .md 文件替换新建文章时生成的同名 .md 文件即可。
+使用编辑器预览编辑完文章后，导出 md 文件替换新建文章时生成的同名 md 文件即可。
 
 编辑完文章后，使用`hexo s`命令即可实时预览到文章效果。
 
@@ -151,15 +152,13 @@ Typora 和 马克飞象 的对比：
 
 发布更新命令如下：
 
-```Bash
+```Shell
 $ hexo generate
-可以简写
+# 可以简写为
 $ hexo g
 ```
 
 发布后，`public`文件夹更新到最新状态，此时即可直接访问。
-
-说明：`hexo s`并没有产生静态文件，而是实时动态解析实现及时访问。
 
 # 插件
 
@@ -167,7 +166,7 @@ $ hexo g
 
 安装 [hexo-generator-search](https://github.com/PaicHyperionDev/hexo-generator-search)，在`_config.yml`中添加如下配置代码：
 
-```Bash
+```YAML
 search:
   path: search.xml
   field: all
@@ -175,13 +174,38 @@ search:
 
 ## RSS
 
-安装 [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)，并按照说明配置（atom.xml 的链接写在`yourblog/source/_data/link.json`的 social 项中，一般无需更改）
+安装 [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)，并按照说明配置（atom.xml 的链接写在`source/_data/link.json`的 social 项中，一般无需更改）
+
+## jsonContent
+
+安装 [hexo-generator-json-content](https://github.com/alexbruno/hexo-generator-json-content)，即可生成所有文章的 json 描述。需在`_config.yml`中添加如下配置代码：
+
+```YAML
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
+```
 
 ## Sitemap
 
-安装 [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap)，并`_config.yml`中添加如下配置代码：
+安装 [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap)，并在`_config.yml`中添加如下配置代码：
 
-```Bash
+```YAML
 sitemap:
   path: sitemap.xml
 ```
@@ -200,17 +224,17 @@ sitemap:
 
 在配置文件`_config.yml`中开启`post_asset_folder`项，即更改为：
 
-```Bash
+```YAML
 post_asset_folder: true
 ```
 
-开启该项配置后，Hexo 将会在你每一次通过`hexo new [layout] <title>`命令创建新文章时自动创建一个文件名同 .md 文件的文件夹。将所有与你的文章有关的资源放在这个关联文件夹中之后，就可以通过相对路径来引用它们。
+开启该项配置后，Hexo 将会在你每一次通过`hexo new [layout] <title>`命令创建新文章时自动创建一个文件名同 md 文件的文件夹。将所有与你的文章有关的资源放在这个关联文件夹中之后，就可以通过相对路径来引用它们。
 
-写文章时你只需在 markdown 中插入相对 .md 文件的 **相对路径** 的图片即可， hexo-asset-image 自动转化为网站 **绝对路径**。此时，可以直接使用 Hexo 提供的标签`asset_img`来插入图片，但是这样违背了 markdown 语法，无法及时预览，不便于编辑文章。
+写文章时你只需在 Markdown 中插入相对 md 文件的 **相对路径** 的图片即可，[hexo-asset-image]() 自动转化为网站 **绝对路径**。此时，可以直接使用 Hexo 提供的标签`asset_img`来插入图片，但是这样违背了 Markdown 语法，无法及时预览，不便于编辑文章。
 
-可以通过以下 markdown 语法在文章中插入图片，这种方式同时也支持本地 markdown 编辑器实时预览。
+可以通过以下 Markdown 语法在文章中插入图片，这种方式同时也支持本地 Markdown 编辑器实时预览。
 
-```Bash
+```Shell
 ![alt](/post_title/image_name)
 # post_title为与文章.md同名的资源文件夹名
 # image_name为图片的文件名
@@ -218,25 +242,24 @@ post_asset_folder: true
 
 ## URL静态化
 
-Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，我将之更改为`year/month/title.html`形式，`_config.yml`配置如下：
+Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，需更改为`year/month/title.html`形式。这里我已经将`source`目录下的 md 文件按`year/month`手动归档了，所以 Hexo 发布时只需要`title.html`这部分。配置如下：
 
-```Bash
-permalink: :year/:month/:title.html
+```YAML
+permalink: title.html
 ```
-
-特别说明，当开启了文章资源文件夹功能，将 URL 静态化后，使用 Hexo 生成器时会产生一个 **ENOTDIR** 错误，解决办法见下述的 [自定义修改]() 部分。
 
 ## 去除代码块行号
 
 修改`_config.yml`配置项如下：
 
-```Bash
-line_number: false
+```YAML
+highlight:
+  line_number: false
 ```
 
 # 部署
 
-如果采用本地编辑博客，而博客部署在远程服务器上，那么你就需要部署，才能同步本地更新到远程服务器。
+如果采用本地编辑博客，博客部署在远程服务器上，那么你就需要部署，才能同步本地更新到远程服务器。
 
 ## 官方推荐
 
@@ -248,7 +271,7 @@ Hexo 提供了 5 种部署方案，[见这里](https://hexo.io/zh-cn/docs/deploy
 
 `_config.yml`配置如下：
 
-```Bash
+```YAML
 deploy:
   type: git
   repo: <repository url>                     # 库地址
@@ -256,7 +279,7 @@ deploy:
   message: [message]                         # 提交信息
 ```
 
-该方案适用于采用 github pages 托管博客的用户，当然使用服务器搭建博客的用户可以使用 webhook 方案来实现。
+该方案适用于采用 Github Pages 托管博客的用户，当然使用服务器搭建博客的用户可以使用 Webhook 方案来实现。
 
 2） Rsync
 
@@ -264,7 +287,7 @@ deploy:
 
  `_config.yml`配置如下：
 
-```Bash
+```YAML
 deploy:
   type: rsync
   host: <host>                         # 远程主机的地址                       
@@ -286,33 +309,18 @@ deploy:
 
 上述推荐部署方案，明显的缺点是本地需要部署 Hexo 环境，无法实现随时随地的更新博客。为了方便写作，我的部署方案见 [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。
 
-# 自定义修改
-
-## 修复ENOTDIR错误
-
-当打开文章资源文件夹功能且 URL 静态化后，使用生成器时会产生一个 **ENOTDIR** 错误，此时需要修改`yourblog/node_modules/hexo/lib/models/post_asset.js`中的部分源码。
-
-将`return pathFn.join(post.path, this.slug);`更改为：
-
-```Js
-var path = post.path;
-if (path.indexOf('.') != -1) {
-    path = path.substr(0, path.lastIndexOf('.'));
-}
-if (path[path.length - 1] !== '/') {
-    path += '/';
-}
-return pathFn.join(path, this.slug);
-```
+# 自定义修改——非必须
 
 ## 在文章摘要中加入预览图
 
-需修改文件`yourblog/node_modules/hexo/lib/plugins/filter/after_post_render/excerpt.js`，修改内容如下：
+需修改文件`node_modules/hexo/lib/plugins/filter/after_post_render/excerpt.js`，内容修改为如下：
 
 ```Js
+// 此处有更改
 content.replace(rExcerpt, function(match, index) {
    data.excerpt = content.substring(0, index).trim();
    data.more = content.substring(index + match.length).trim();
+   // 去掉img标签
    data.content = data.excerpt.replace(/<img(.*)>/, '') + data.more;
    return '<a id="more"></a>';
 });
@@ -320,190 +328,119 @@ content.replace(rExcerpt, function(match, index) {
 
 **说明：**文章摘要预览图不会在文章正文中显示。
 
-## 文章归档按月归档
+## 更好地支持Shell代码高亮
 
-需修改文件`yourtheme/layout/_partial/archive.ejs`。
+由于 [highlight.js]() 对 Shell 语法高亮解析效果并不理想，为此我对 [languages/shell.js](https://github.com/fan-haobai/highlight.js/blob/master/src/languages/shell.js) 部分做了修改来更好地支持 Shell，你只需要 [pull](https://github.com/fan-haobai/highlight.js) 并替换掉原 [languages/shell.js]() 文件即可。
 
-将：
+```Shell
+$ git clone https://github.com/fan-haobai/highlight.js.git
+$ cp highlight.js/src/languages/shell.js node_modules/highlight.js/lib/languages/shell.js
+```
+
+并将 [shell.js]() 中的如下部分：
 
 ```Js
-var y = item.date.year();
+function(hljs)
 ```
 
 修改为：
 
 ```Js
-var y = date(item.date, 'YYYY年MM月');
+module.exports = function(hljs)
 ```
 
-修改后，归档如下图：
+## 评论
 
-![](https://img1.fanhaobai.com/2017/03/install-hexo/es8bUSE01LiIgQtbSESyEWxW.png)
+由于后来多说的关站，就再也找不到合适的第三方评论服务了。换来换去，最后还是觉得只有 [Disqus](https://disqus.com) 合适，但是需要先解决被墙的问题，不过 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案—— [disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
 
-## 样式修改
-
-1） 去除文字不够一行时居中分散样式
-需修改文件`yourtheme/source/css/_partial/article.styl`。
-
-删除以下样式代码：
+我部署后域名为 [disqus.fanhaobai.com](https://disqus.fanhaobai.com)。首先在`layout/_partial/article.ejs`文件中追加以下内容：
 
 ```Js
-text-align justify
+<% if (!index && post.comments){ %>
+  <% if (theme.disqus || theme.disqus.shortname){ %>
+  <%- partial('post/disqus', {
+      title: post.title,
+      url: config.url+url_for(post.path)
+    }) %>
+  <% } %>
+<% } %>
 ```
 
-2） 代码块自动换行
-
-在`yourtheme/source/css/lib/prettify-tomorrow-night-eighties.css`文件中增加如下样式：
-
-```CSS
-.line span {
-  word-break: break-all;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-}
-```
-
-## 多说头像HTTPS代理
-
-由于本站全战采用了 HTTPS，而多说头像依然为 HTTP，故这里通过 Nginx 将 HTTP 代理为 HTTPS。
-
-1） Nginx 增加如下代理配置：
-
-```Bash
-server {
-   ... ...
-   location ~ ^/proxy/(.*)$ {               # proxy为标识
-       proxy_connect_timeout    10s;        proxy_read_timeout       10s;
-       proxy_read_timeout       10s;
-       proxy_pass               http://$1;
-       proxy_redirect off;
-       proxy_set_header X-Real-IP $remote_addr;
-       proxy_set_header X-Forwarded-For $remote_addr;
-       expires max;
-   }
-   ... ...
-}
-```
-
-2） 下载并修改多说embed.js文件
-
-首先，替换 embed.js 文件中头像的路径。在`return e.avatar_url||rt.data.default_avatar_url`之前插入如下代码：
+然后，在`layout/_partial/post`目录下创建`disqus.ejs`文件，内容如下：
 
 ```Js
-var site = "https://yoursite/proxy/";
-if (e.avatar_url) {
-    e.avatar_url = (document.location.protocol == "https:") 
-    ? e.avatar_url.replace(/^http\:\/\//, site)
-    : e.avatar_url;
-} else {
-    rt.data.default_avatar_url = (document.location.protocol == "https:")
-    ? rt.data.default_avatar_url.replace(/^http\:\/\//, site)
-    : rt.data.default_avatar_url;
-}
+<div id="disqus_thread"></div>
+<link rel="stylesheet" href="/disqus.css">
+<script src="/disqus.js"></script>
+<script>
+  (function () {
+    var disqus = new iDisqus('disqus_thread', {
+      forum: '<%= theme.disqus.shortname %>',
+      site: '<%= config.url %>',
+      api: '<%= theme.disqus.api %>',
+      url: '<%= url %>',
+      mode: 2,
+      timeout: 3000,
+      init: true,
+      autoCreate: true,
+      relatedType: false
+    });
+    disqus.count();
+  })();
+</script>
 ```
 
-最后，替换 embed.js 文件中表情的路径。替换`t+=s.message+'</p><div class="ds-comment-footer ds-comment-actions'`中的`s.message`为如下代码：
+最后，在`_config.yml`增加如下配置：
 
-```Js
-((s.message.indexOf("src=\"http:\/\/") == -1) 
-? s.message : ((document.location.protocol == "https:") 
-? s.message.replace(/src=\"http\:\/\//, "src=\"https://yoursite/proxy/")
-: s.message))
+```YAML
+disqus:
+  shortname: 'fanhaobai'
+  api: '//disqus.fanhaobai.com'
 ```
 
-3） 修改加载路径
-
-将修改完的 embed.js 文件放置于资源文件夹`/source/js`下，在位置为`yourtheme/layout/_partial/plugin/comment.ejs` 的模板文件中，修改加载 embed.js 文件路径。
-
-将：
-
-```Js
-ds.src = (document.location.protocol == 'https:' ? 'https:'
-   : 'http:') + '//static.duoshuo.com/embed.js';
-```
-
-修改为：
-
-```Js
-ds.src = (document.location.protocol == 'https:' ? 'https:'
-   : 'http:') + '//www.fanhaobai.com/js/embed.js';
-```
+> 有关 Disqus 更详细的配置，见 [Disqus 设置](https://github.com/fan-haobai/disqus-php-api#disqus-%E8%AE%BE%E7%BD%AE) 部分。
 
 ## 百度统计
 
-在`yourblog/themes/raytaylorism/layout/_partial/plugin/analytics.ejs`文件中追加如下代码：
+首先，在`layout/_partial/after-footer.ejs`文件中追加如下代码：
+
+```Js
+<%- partial('baidu-analytics') %>
+```
+
+并在`layout/_partial`目录下创建`baidu-analytics.ejs`文件，内容为：
 
 ```Js
 <% if (theme.baidu_analytics){ %>
 <script>
+var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?<%= theme.baidu_analytics %>";
-  var s = document.getElementsByTagName("script")[0];
+  var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
 <% } %>
 ```
 
-并在配置文件`_config.yml`中，加入如下配置信息：
+然后，在配置文件`_config.yml`中，增加如下配置信息：
 
 ```Js
 # 百度分析Uid，若为空则不启用
 baidu_analytics: 9f0ecfa73797e6a907d8ea6a285df6a5
 ```
 
-## 百度分享
-
-由于百度分享也不支持 HTTPS 站点，但是 [hrwhisper](https://github.com/hrwhisper) 已经在 Github 上提供了解决办法，[见这里](https://github.com/hrwhisper/baiduShare)。
-
-1） 下载源码
-
-从 [Github](https://codeload.github.com/hrwhisper/baiduShare/zip/master) 直接下载源码，解压缩后放置于资源文件夹`source`中，因为 Hexo 会压缩 Js 文件，可能会导致 share.js 会报错，可以通过配置`_config.yml`解决。
-
-```Js
-skip_render:
-  - "static/**"
-```
-
-2） 添加加载
-
-从百度分享获取分享代码，插入主题模板文件`yourtheme/layout/_partial/article.ejs`中。
-
-将分享 HTML 代码插入如下位置：
-
-```Html
-<div class="card-content">               # 追加到这个div中
-  ... ...
-  <div style="height:15px;"></div>
-  <div class="bdsharebuttonbox">
-    <a href="" class="bds_more" data-cmd="more"></a>
-    <a href="" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-    <a href="" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-    <a href="" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-  </div>
-</div>
-```
-
-
-最后，注意将引用 share.js 的 **路径** 替换为自己的站点路径。
-
-```Js
-appendChild(createElement('script')).src='https://www.fanhaobai.com
-/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)
-```
-
 ## 百度主动推送
 
 为了更好的收录本站文章，这里引进了百度 [主动推送功能](http://zhanzhang.baidu.com/college/courseinfo?id=267&page=2)，只需添加如下 JS代码，每当文章被浏览时都会自动向百度提交链接，这种方式以用户为驱动，较为方便和实用。
 
-在主题模板文件`yourthemes/layout/_partial/article.ejs`中，插入以下代码：
+在主题模板文件`layout/_partial/article.ejs`中，追加以下代码：
 
 ```Js
+<% if (!index){ %>
 <script>
-(function () {
+  (function () {
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
     if (curProtocol === 'https') {
@@ -513,18 +450,20 @@ appendChild(createElement('script')).src='https://www.fanhaobai.com
     }
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s)
-})();
+  })();
 </script>
+<% } %>
 ```
 
 到这里，也终于算是搭建结束了。至于 404 页面打算采用 [腾讯的公益404页面](http://www.qq.com/404/) 来做，[见这里](https://www.fanhaobai.com/404.html)。
 
 <strong>更新 [»]()</strong>
 
-* [主题更换为hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)<span>（2017-10-30）</span>
-* [替换百度分享为自定义分享](#)<span>（2017-11-28）</span>
+* [主题更换为 hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)<span>（2017-10-30）</span>
+* [自定义分享](#)<span>（2017-11-28）</span>
 * [去除百度统计](#)<span>（2018-07-04）</span>
-* [科学使用disqus](https://github.com/fan-haobai/disqus-php-api)<span>（2018-07-04）</span>
+* [科学使用 Disqus](#评论)<span>（2018-07-04）</span>
+* [更好地支持 Shell 代码高亮](#更好地支持Shell代码高亮)<span>（2018-09-09）</span>
 
 <strong>相关文章 [»]()</strong>
 

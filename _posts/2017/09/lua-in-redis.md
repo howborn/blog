@@ -182,7 +182,7 @@ loglevel 参数可以是 redis.LOG_DEBUG、redis.LOG_VERBOSE、redis.LOG_NOTICE�
 
 查看`redis.conf`日志配置信息：
 
-```Bash
+```Shell
 # logleval必须一致才会记录
 loglevel notice
 logfile "/home/logs/redis.log"

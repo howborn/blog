@@ -22,7 +22,7 @@ categories:
 
 查询**成都**的天气信息，命令为：
 
-```Bash
+```Shell
 $ curl wttr.in/chengdu
 Weather for City: Chengdu, China
 
@@ -43,14 +43,14 @@ Weather for City: Chengdu, China
 
 查询本地的 IP 归属地：
 
-```Bash
+```Shell
 $ curl ip.cn
 当前 IP：123.57.32.54 来自：北京市 阿里云
 ```
 
 当然也可以查询**指定** IP 的归属地，IP 地址通过`GET`方式传递即可（注意添加上index.php）。例如：
 
-```Bash
+```Shell
 $ curl ip.cn/index.php?ip=103.233.131.130
 IP：103.233.131.130 来自：北京市 四维同创
 ```

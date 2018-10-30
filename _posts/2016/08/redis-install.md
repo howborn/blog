@@ -20,7 +20,7 @@ categories:
 
 从 [Redis官网](http://redis.io/download) 下载最新的稳定版源码包。
 
-```Bash
+```Shell
 $ cd /usr/src/
 #下载源码包
 $ wget http://download.redis.io/releases/redis-3.0.6.tar.gz
@@ -30,7 +30,7 @@ $ wget http://download.redis.io/releases/redis-3.0.6.tar.gz
 
 解压缩源码包，得到源码文件。
 
-```Bash
+```Shell
 $ tar -zxvf ./redis-3.0.6.tar.gz
 $ cd ./redis-3.0.6
 ```
@@ -43,7 +43,7 @@ $ cd ./redis-3.0.6
 
 注意：会直接把软件安装到当前目录下的`src`下。
 
-```Bash
+```Shell
 $ make
 ```
 
@@ -51,7 +51,7 @@ $ make
 
 我习惯将软件都安装在`/usr/local/`下，所以将 Redis 安装软件移动到`/usr/local/redis`。
 
-```Bash
+```Shell
 $ cp -r ./src/* /usr/local/redis
 #添加redis服务端软连接
 $ ln -s /usr/local/redis/redis-server /usr/bin/redis-server
@@ -63,14 +63,14 @@ $ ln -s /usr/local/redis/redis-cli /usr/bin/redis-cli
 
 复制默认的配置文件到安装目录下。
 
-```Bash
+```Shell
 $ cp ./redis.conf /usr/local/redis/redis.conf
 $ vim /usr/local/redis/redis.conf
 ```
 
 对配置文件，做如下更改：
 
-```Bash
+```Shell
 #将守护模式开启
 $ daemonize yes
 #连接密码
@@ -79,36 +79,47 @@ $ requirepass ***
 
 # 启动
 
-## 启动服务端
+## 服务端
 
 启动 Redis 服务端，查看安装是否成功。
 
-```Bash
+```Shell
 $ redis-server /usr/local/redis/redis.conf
+```
+
+在`/etc/init.d`下新建名为`redis`的 [启动脚本](https://github.com/fan-haobai/tools/blob/master/init/redis)，并设置为自启动：
+
+```Shell
+$ chmod +x redis
+$ chkconfig --add redis
+$ chkconfig redis on
+
+# 启动
+$ service redis start
 ```
 
 查看端口监听情况，`netstat -tupl | 6379`，如下情况表示安装成功：
 
-```Bash
+```Shell
 tcp    0    0 *:6379      *:*     LISTEN    28647/redis-server 
 ```
 
-## 启动客户端
+## 客户端
 
 启动客户端，进行简单连接测试。
 
-```Bash
+```Shell
 $ redis-cli                                   #连接redis 
 ```
 使用命令`keys * `，查看所有的 key，会显示无权限。需要先进行授权：
 
-```Bash
+```Shell
 > auth ***                                    #授权连接  
 ```
 
 然后设置并查看一个键值对，如下：
 
-```Bash
+```Shell
 > set fhb fanhaobai
 > get fhb
 ```
