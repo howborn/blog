@@ -20,7 +20,7 @@ categories:
 
 从 [Hub](https://hub.docker.com) 拉取 Solr [官方镜像](https://hub.docker.com/_/solr/) 到本地，这里只选择 5.5 版本：
 
-```Bash
+```Shell
 $ docker pull solr:5.5
 ```
 
@@ -28,19 +28,19 @@ $ docker pull solr:5.5
 
 Docker 需要通过挂载宿主机目录的方式持久化数据，先创建供挂载目录（注意目录读写权限）：
 
-```Bash
+```Shell
 $ mkdir -p /home/docker/solr
 ```
 
 **启动** 容器，挂载数据目录，隐射监听端口：
 
-```Bash
+```Shell
 $ docker --name solr -p 127.0.0.1:8983:8983 -v /home/docker/solr:/opt/solr/server/solr -d solr:5.5
 ```
 
 我们往往需要修改容器的一些默认参数（Solr 的配置），需要我们登入容器：
 
-```Bash
+```Shell
 $ docker exec -it solr /bin/bash
 ```
 
@@ -56,7 +56,7 @@ Solr 容器启动成功后，配置 Web 服务器到 8983 端口，访问后看�
 
 Core 默认路径为`/opt/solr/server/solr`。有两种方式新建 Core，**方式一** 是使用命令：
 
-```Bash
+```Shell
 $ bin/solr create_core -c books
 Creating new core 'books'
 {
@@ -76,7 +76,7 @@ Creating new core 'books'
 
 新建 Core 后，可选中 books 核，点击 “Files”，这里列举出后面需要使用的 2 个配置文件：
 
-```Bash
+```Shell
 $ pwd
 /opt/solr/server/solr/bools/conf
 #使用命令创建后自动生成，后续新建文档的字段类型描述需加入其中
@@ -148,7 +148,7 @@ Solr 支持的数据源类型较多，为 xml、json、csv 等格式。
 
 **方式一**：使用 post 命令：
 
-```Bash
+```Shell
 #post工具
 $ bin/post -c books server/solr/data/books.json 
 ```
@@ -206,7 +206,7 @@ Response:
 
 **方式一**：同样使用 post 命令：
 
-```Bash
+```Shell
 $ bin/post -c books server/solr/data/del-book.xml
 #这里会自动提交commit,所以del-book.xml中无commit也可以
 COMMITting Solr index changes to http://localhost:8983/solr/books/update..

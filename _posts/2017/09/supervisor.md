@@ -17,7 +17,7 @@ Supervisor [官方](http://www.supervisord.org/installing.html) 提供的安装�
 
 ### 安装pip
 
-```Bash
+```Shell
 $ yum install python-pip
 # 升级pip
 $ pip install --upgrade pip
@@ -29,14 +29,14 @@ pip 9.0.1
 
 通过 pip 安装 Supervisor：
 
-```Bash
+```Shell
 $ pip install supervisor
 Successfully installed supervisor-3.3.3
 ```
 
 安装 Supervisor 后，会出现 supervisorctl 和 supervisord 两个程序，其中 supervisorctl 为服务监控终端，而 supervisord 才是所有监控服务的大脑。查看 supervisord 是否安装成功：
 
-```Bash
+```Shell
 $ supervisord -v
 3.3.3
 ```
@@ -47,7 +47,7 @@ $ supervisord -v
 
 修改关键路径配置：
 
-```Bash
+```Shell
 PIDFILE=/var/run/supervisord.pid
 LOCKFILE=/var/lock/subsys/supervisord
 OPTIONS="-c /etc/supervisord.conf"
@@ -55,13 +55,14 @@ OPTIONS="-c /etc/supervisord.conf"
 
 移到该文件到`/etc/init.d`目录下，并重命名为 supervisor，添加可执行权限：
 
-```Bash
+```Shell
 $ chmod 777 /etc/init.d/supervisor
 ```
 
 配置成开机启动服务：
 
-```Bash
+```Shell
+$ chkconfig --add supervisor
 $ chkconfig supervisor on
 $ chkconfig --list | grep "supervisor"
 supervisor  0:off 1:off 2:on 3:on 4:on 5:on 6:off
@@ -73,7 +74,7 @@ supervisor  0:off 1:off 2:on 3:on 4:on 5:on 6:off
 
 Supervisord 安装后，需要使用如下命令生成配置文件。
 
-```Bash
+```Shell
 $ mkdir /etc/supervisor
 $ echo_supervisord_conf > /etc/supervisor/supervisord.conf
 ```
@@ -167,7 +168,7 @@ stdout_logfile=/data/logs/work.log ; 进程的stdout的日志路径
 
 配置完成后，启动 supervisord 守护服务：
 
-```Bash
+```Shell
 $ supervisord -c /etc/supervisor/supervisord.conf
 ```
 
@@ -180,7 +181,7 @@ $ supervisord -c /etc/supervisor/supervisord.conf
 
 查看 supervisord 启动情况：
 
-```Bash
+```Shell
 $ ps -ef | grep "supervisor"
 root  24901  1  0 Sep23 ? 00:00:30 /usr/bin/python /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 $ netstat -tunpl
@@ -195,7 +196,7 @@ Supervisor 提供了多种监控服务的方式，包括 supervisorctl 命令行
 
 直接使用 supervisorctl 即可在命令行终端查看所有服务的情况，如下：
 
-```Bash
+```Shell
 $ supervisorctl 
 work:0      RUNNING   pid 31313, uptime 0:00:07
 work:1      RUNNING   pid 31318, uptime 0:00:06

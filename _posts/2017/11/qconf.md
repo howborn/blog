@@ -23,7 +23,7 @@ QConf 是奇虎 360 广泛使用的配置管理服务，现已开源 [QConf Sour
 
 - 首先，**部署 QConf**，QConf 采用 cmake 构建，依次执行如下命令。
 
-```Bash
+```Shell
 cmake
 ..
 make && make install

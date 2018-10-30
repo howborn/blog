@@ -18,7 +18,7 @@ categories:
 
 ELK 需要 JAVA 8 以上的运行环境，若未安装则按如下步骤安装：
 
-```Bash
+```Shell
 # 查看是否安装
 $ rpm -qa | grep java
 # 批量卸载
@@ -30,8 +30,8 @@ openjdk version "1.8.0_151"
 
 在文件`/etc/profile`配置环境变量：
 
-```Bash
-# 指向安装目录
+```Shell
+# 指向安装目录，其中1.8.0.151需与版本号保持一致
 JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64
 PATH=$JAVA_HOME/bin:$PATH
 CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
@@ -45,9 +45,11 @@ export JAVA_HOME JAVACMD CLASSPATH PATH
 
 由于后续采用 yum 安装，所以需要下载并安装 GPG-KEY：
 
-```Bash
+```Shell
 $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 ```
+
+>yum 命令会安装最新的版本，若需安装较旧的版本，请先从 [官方地址](https://www.elastic.co/downloads/past-releases) 下载对应的旧版本 rpm 包，然后使用`rpm -ivh`命令安装。
 
 ## Elasticsearch
 
@@ -55,7 +57,7 @@ $ rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
 通过 [官方地址](https://www.elastic.co/downloads/past-releases) 下载选择最新版本，然后解压：
 
-```Bash
+```Shell
 $ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.1.tar.gz
 $ mkdir -p /usr/local/elk
 $ tar zxvf elasticsearch-6.1.1.tar.gz -C /usr/local/elk
@@ -64,7 +66,7 @@ $ mv /usr/local/elk/elasticsearch-6.1.1 /usr/local/elk/elasticsearch
 
 启动前，需要修改配置文件`jvm.options`中 JVM 大小，否则可能会内存溢出，导致启动失败。
 
-```Bash
+```Shell
 $ vim config/jvm.options
 # 根据实际情况修改
 -Xms128m
@@ -73,7 +75,7 @@ $ vim config/jvm.options
 
 由于 Elasticsearch 新版本不允许以 [root]() 身份启动，因此先创建 elk 用户。这里使用 [service](https://github.com/fan-haobai/init-script/blob/master/elasticsearch/elasticsearch) 服务方式管理 Elasticsearch，修改启动用户和安装目录。
 
-```Bash
+```Shell
 $ useradd elk
 $ chown -R elk:elk /usr/local/elk/elasticsearch
 
@@ -89,7 +91,7 @@ DATA_DIR="$ES_HOME/data"
 
 设置开机启动服务，启动 Elasticsearch，其默认监听 9200 端口。
 
-```Bash
+```Shell
 # 开启服务
 $ chkconfig --add elasticsearch
 $ chkconfig elasticsearch on
@@ -104,7 +106,7 @@ $ curl http://127.0.0.1:9200
 
 最后，安装使用到的插件：
 
-```Bash
+```Shell
 $ cd /usr/local/elk/elasticsearch
 # ingest-geoip和ingest-user-agent分别为ip解析插件和agent解析插件
 $ bin/elasticsearch-plugin install ingest-geoip
@@ -121,7 +123,7 @@ $ bin/x-pack/setup-passwords interactive
 
 首先，在`/etc/yum.repos.d`目录下创建名为`kibana.repo`的 yum 源文件：
 
-```Bash
+```Ini
 [kibana-5.x]
 name=Kibana repository for 5.x packages
 baseurl=https://artifacts.elastic.co/packages/5.x/yum
@@ -134,7 +136,7 @@ type=rpm-md
 
 使用 yum 命令安装：
 
-```Bash
+```Shell
 $ yum install -y kibana
 $ mkdir -p /usr/local/elk
 $ ln -s /usr/share/kibana /usr/local/elk/kibana
@@ -143,7 +145,7 @@ $ cd /usr/local/elk/kibana
 
 修改配置文件`kibana.yml`以下配置项：
 
-```Bash
+```Shell
 $ mkdir -p /usr/local/elk/kibana/config
 $ mv /etc/kibana/kibana.yml /usr/local/elk/kibana/config
 $ vim config/kibana.yml
@@ -159,14 +161,23 @@ elasticsearch.password: "changeme"          # 密码
 
 安装常用插件，例如 x-pack：
 
-```Bash
+```Shell
 $ bin/kibana-plugin install x-pack
+```
+
+Kibana 运行时 NodeJs 默认会最大分配 1G 内存，可以在启动时增加`max-old-space-size`参数，以限制其运行内存大小：
+
+```Shell
+$ vim bin/kibana
+
+# 增加--max-old-space-size=140参数
+NODE_ENV=production exec "${NODE}" $NODE_OPTIONS --max-old-space-size=140 --no-warnings "${DIR}/src/cli" ${@}
 ```
 
 修改 [init]() 启动脚本，并启动 Kibana：
 
-```Bash
-vim /etc/init.d/kibana
+```Shell
+$ vim /etc/init.d/kibana
 
 home=/usr/share/kibana
 program=$home/bin/kibana
@@ -188,7 +199,7 @@ $ service kibana start
 
 首先，在`/etc/yum.repos.d`目录下创建`logstash.repo`文件：
 
-```Bash
+```Ini
 [logstash-5.x]
 name=Elastic repository for 5.x packages
 baseurl=https://artifacts.elastic.co/packages/5.x/yum
@@ -201,7 +212,7 @@ type=rpm-md
 
 使用 yum 安装 Logstash，并测试：
 
-```Bash
+```Shell
 # 安装logstash 5.x
 $ yum install -y logstash
 # 默认安装路径/usr/share
@@ -216,15 +227,34 @@ elk
 2017-11-21T22:25:07.264Z fhb elk
 ```
 
+修改配置文件路径：
+
+```Shell
+$ mv /etc/logstash /usr/local/elk/logstash/config
+# 修改文件权限
+$ chown -R elk:elk /usr/local/elk/logstash
+```
+
+修改 JVM 内存大小，防止出现内存溢出异常：
+
+```Shell
+$ vim config/jvm.options
+# 根据实际情况修改
+-Xms80m
+-Xmx150m
+```
+
 生成并修改 [init]() 启动脚本：
 
-```Bash
+```Shell
 $ bin/system-install /etc/logstash/startup.options sysv
 $ vim /etc/init.d/logstash
 home=/usr/share/logstash
 name=logstash
 program=$home/bin/logstash
 args=--path.settings\ $home/config
+user="elk"
+group="elk"
 # 添加启动
 $ chkconfig --add logstash
 $ chkconfig logstash on
@@ -232,7 +262,7 @@ $ chkconfig logstash on
 
 安装 x-pack 插件，基本状态信息的监控:
 
-```Bash
+```Shell
 $ bin/logstash-plugin install x-pack
 ```
 
@@ -256,7 +286,7 @@ xpack.monitoring.elasticsearch.password: changeme
 
 创建一个简单的管道（inputs → filters → outputs），配置文件为`conf.d/filebeat.conf`。日志过滤处理后，直接推送到 Elasticsearch，在 output 部分需配置 Elasticsearch 的用户名和密码。
 
-```Conf
+```Nginx
 input {
     beats {
         port => 5044
@@ -294,7 +324,7 @@ output {
 
 ### 启动
 
-```Bash
+```Shell
 $ service logstash start
 # 完成监听
 $ netstat -tnpl | grep 5044
@@ -309,7 +339,7 @@ tcp   0      0 0.0.0.0:5044     0.0.0.0:*    LISTEN      10132/java
 
 由于同 Elasticsearch 使用一个源，所以直接使用 yum 安装：
 
-```Bash
+```Shell
 # 安装filebeat 5.6.6
 $ yum install -y filebeat
 $ mkdir -p /usr/local/elk/beats
@@ -319,18 +349,18 @@ $ cd /usr/local/elk/beats/filebeat
 
 修改 init 启动脚本：
 
-```Bash
+```Shell
 $ vim /etc/init.d/filebeat
 
 home=/usr/share/filebeat
 pidfile=${PIDFILE-/var/run/filebeat.pid}
 agent=${BEATS_AGENT-$home/bin/filebeat}
-args="-c $home/filebeat.yml -path.home $home -path.config $home -path.data $home/bin/data -path.logs $home/bin/logs"
+args="-c $home/filebeat.yml -path.home $home -path.config $home -path.data $home/data -path.logs $home/logs"
 ```
 
 配置启动服务：
 
-```Bash
+```Shell
 $ chkconfig --add filebeat
 $ chkconfig filebeat on
 ```
@@ -367,7 +397,7 @@ output.logstash:                             #输出到Logstash
 
 #### 启动
 
-```Bash
+```Shell
 $ service filebeat start
 # 查看推送日志
 $ tailf /usr/local/elk/beats/filebeat/bin/logs/filebeat

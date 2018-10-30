@@ -25,7 +25,7 @@ DNS （Domain Name System 的缩写）的作用非常简单，就是根据域名
 虽然只需要返回一个 IP 地址，但是 DNS 的查询过程非常复杂，分成多个步骤。
 工具软件 [dig]() 可以显示整个查询过程。
 
-```Bash
+```Shell
 # 安装dig
 $ yum install bind-utils
 $ dig math.stackexchange.com
@@ -44,7 +44,7 @@ $ dig math.stackexchange.com
 
 第二段是查询内容。
 
-```Bash
+```Shell
 ;; QUESTION SECTION:
 ;math.stackexchange.com.		IN	A
 ```
@@ -84,7 +84,7 @@ ns-1832.awsdns-37.co.uk.  171393 IN  A   205.251.199.40
 
 第六段是 DNS 服务器的一些传输信息。
 
-```Bash
+```Shell
 ;; Query time: 242 msec
 ;; SERVER: 192.168.1.253#53(192.168.1.253)
 ;; WHEN: Sat Jun 24 20:23:47 2017
@@ -94,7 +94,7 @@ ns-1832.awsdns-37.co.uk.  171393 IN  A   205.251.199.40
 上面结果显示，本机的 DNS 服务器是 192.168.1.253，查询端口是 53（DNS 服务器的默认端口），以及回应长度是 104 字节。
 如果不想看到这么多内容，可以使用`+short`参数。
 
-```Bash
+```Shell
 $ dig +short math.stackexchange.com
 
 151.101.193.69
@@ -137,7 +137,7 @@ DNS 服务器怎么会知道每个域名的 IP 地址呢？答案是 **分级查
 根域名的下一级，叫做"顶级域名"（top-level domain，缩写为 TLD），比如`.com`、`.net`；再下一级叫做"次级域名"（second-level domain，缩写为 SLD），比如`www.example.com`里面的`.example`，这一级域名是用户可以注册的；再下一级是主机名（host），比如`www.example.com`里面的 www，又称为"三级域名"，这是用户在自己的域里面为服务器分配的名称，是用户可以任意分配的。
 总结一下，域名的层级结构如下。
 
-```Bash
+```Shell
 主机名.次级域名.顶级域名.根域名
 # 即
 host.sld.tld.root
@@ -320,7 +320,7 @@ $ dig -x 192.30.252.153
 
 dig 命令可以查看指定的记录类型。
 
-```Bash
+```Shell
 $ dig a github.com
 $ dig ns github.com
 $ dig mx github.com
@@ -381,7 +381,7 @@ Address: 103.245.222.133
 
 whois 命令用来查看域名的注册情况。
 
-```Bash
+```Shell
 $ whois github.com
 ```
 

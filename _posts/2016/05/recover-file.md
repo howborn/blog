@@ -15,20 +15,20 @@ categories:
 
 当时我的工作目录是`/source/needrecovered`。
 
-```Bash
+```Shell
 $ pwd
 /source/needrecovered
 ```
 
 原本打算清空其中的一个子文件。
 
-```Bash
+```Shell
 $ rm -rf canbedeleted/html
 ```
 
 却打成如下命令：
 
-```Bash
+```Shell
 $ rm -rf canbedeleted/ *
 ```
 
@@ -40,7 +40,7 @@ $ rm -rf canbedeleted/ *
 
 以下的操作尽量使用 root 操作，以提高数据恢复的成功率。
 
-```Bash
+```Shell
 #该命令用于列出操作该分区的进程
 $ fuser -v -m /source
 #如果没有很重要的进程，利用下面的命令将其全部 kill 掉
@@ -58,7 +58,7 @@ $ fuser -k -v -m /source
 
 接下来我们看看磁盘分区情况：
 
-```Bash
+```Shell
 $ df -Th
 Filesystem    Type    Size  Used Avail Use% Mounted on
 /dev/sda8     ext3    7.9G  6.3G  1.2G  84% /source
@@ -69,14 +69,14 @@ Filesystem    Type    Size  Used Avail Use% Mounted on
 
 先将此分区卸载，并在`/data`分区建立一个用于存储备份数据的文件夹。
 
-```Bash
+```Shell
 $ umount -v /source
 $ mkdir -p /data/recovery
 ```
 
 现在轮到主角登场了，先去下载一份 ext3grep 的源码，并安装：
 
-```Bash
+```Shell
 $ cd /data/recovery
 #此链接地址以官网最新版本为准
 $ wget http://ext3grep.googlecode.com/files/ext3grep-0.10.2.tar.gz
@@ -88,7 +88,7 @@ $ make && make install
 
 接下来就进入正式的恢复工作，先对需要恢复的磁盘进行扫描。
 
-```Bash
+```Shell
 $ cd /data/recovery
 #建议使用 nohup 和 &，因为如果分区很大的话耗时比较长
 $ nohup /data/recovery/bin/ext3grep /dev/sda8 --ls --inode 2 &
@@ -98,7 +98,7 @@ $ nohup /data/recovery/bin/ext3grep /dev/sda8 --ls --inode 2 &
 
 由于我需要备份的文件很多，几十个 G，就用下面这个命令进行全部恢复。
 
-```Bash
+```Shell
 $ cd /data/recovery'
 #建议使用 nohup 和 &，因为如果分区很大的话耗时比较长
 $ nohup /data/recovery/ext3grep/bin/ext3grep /dev/sda8 --restore-all &

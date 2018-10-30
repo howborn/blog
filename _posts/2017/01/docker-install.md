@@ -20,7 +20,7 @@ Docker 使用 EPEL 发布，RHEL 系的 OS 在安装前，要确保已经持有 
 
 安装 Docker 前，先查看系统的版本信息。
 
-```Bash
+```Shell
 $ cat /etc/redhat-release
 CentOS release 6.8 (Final)
 ```
@@ -29,7 +29,7 @@ CentOS release 6.8 (Final)
 
 OS 版本为 CentOS 6.8，而 Docker 官方要求最低支持 CentOS 7，这里通过安装 EPEL 解决。
 
-```Bash
+```Shell
 $ sudo rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 $ sudo yum update -y
 ```
@@ -42,13 +42,13 @@ $ sudo yum update -y
 
 可以使用脚本`curl -sSL https://get.docker.com/ | sh`自动安装 Docker 。但这里，使用 rpm 安装神器的 yum 来完成 Docker 的安装。
 
-```Bash
+```Shell
 $ sudo yum -y install docker-io
 ```
 
 安装成功后，查看 Docker 版本信息：
 
-```Bash
+```Shell
 $ docker version
 Client version: 1.7.1
 Client API version: 1.19
@@ -62,13 +62,13 @@ Git commit (client): 786b29d/1.7.1
 
 首先，建立 docker 用户组：
 
-```Bash
+```Shell
 $ groupadd docker
 ```
 
 再创建需要使用 Docker 的用户，并将其加入 docker 用户组：
 
-```Bash
+```Shell
 $ useradd docker -g docker
 $ passwd docker
 ```
@@ -77,13 +77,13 @@ $ passwd docker
 
 一切就绪后，以 root 用户启动 Docker  引擎：
 
-```Bash
+```Shell
 $ service docker start
 ```
 
 提示：如下命令分别为 **停止** 和 **重启** Docker 引擎。
 
-```Bash
+```Shell
 $ service docker stop
 $ service docker restart
 ```
@@ -92,7 +92,7 @@ $ service docker restart
 
 使用 docker 命令可以查看 Docker 所有的命令，列表如下：
 
-```Bash
+```Shell
 attach    Attach to a running container                 # 当前 shell 下 attach 连接指定运行镜像
 build     Build an image from a Dockerfile              # 通过 Dockerfile 定制镜像
 commit    Create a new image from a container changes   # 提交当前容器为新的镜像
@@ -155,14 +155,14 @@ CentOS 7 下镜像加速器的配置，[见官方文档](https://yeasy.gitbooks.
 
 CentOS 6 下配置 Docker 镜像加速器，是通过编辑 **`/etc/sysconfig/docker`** 配置文件来完成，即将配置项`other_args`修改为：
 
-```Bash
+```Shell
 other_args="--registry-mirror=https://jxus37ad.mirror.aliyuncs.com"    
 # your address
 ```
 
 然后通过下述命令，重启`docker daemon`：
 
-```Bash
+```Shell
 $ service docker restart
 ```
 
@@ -170,13 +170,13 @@ $ service docker restart
 
 Linux 系统下配置完 **加速器需要检查是否生效**，执行以下命令：
 
-```Bash
+```Shell
 $ ps -ef | grep docker
 ```
 
 如果从结果中看到了配置的`--registry-mirror`参数说明配置成功，如下所示：
 
-```Bash
+```Shell
 root  20728 1  0 23:27 pts/1  00:00:00 /usr/bin/docker -d --registry-mirror=https://2ykl5eof.mirror.aliyuncs.com
 ```
 
@@ -188,19 +188,19 @@ root  20728 1  0 23:27 pts/1  00:00:00 /usr/bin/docker -d --registry-mirror=http
 
 从 Docker Registry 获取镜像的命令是`docker pull`。其命令格式为：
 
-```Bash
+```Shell
 $ docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
 ```
 
 获取 MongoDB 命令为：
 
-```Bash
+```Shell
 $ docker pull mongo
 ```
 
 想要列出 **本地镜像**，可以使用`docker images`命令：
 
-```Bash
+```Shell
 $ docker images
 REPOSITORY  TAG      IMAGE ID     CREATED    VIRTUAL SIZE
 mongo    latest    35dc92f524d0   4 days ago     402 MB
@@ -210,7 +210,7 @@ mongo    latest    35dc92f524d0   4 days ago     402 MB
 
 使用命令`docker run`，即可通过新获取的镜像新建和启动一个容器了。如下：
 
-```Bash
+```Shell
 $ docker run --name mongodb -p 27017:27017 -d mongo
 ```
 
@@ -226,7 +226,7 @@ $ docker run --name mongodb -p 27017:27017 -d mongo
 
 用`docker ps`命令可以查看已经创建的容器，使用如下命令可以查看 **所有已经创建** 的包括 **终止状态** 的 **容器**：
 
-```Bash
+```Shell
 $ docker ps -a
 CONTAINER ID  IMAGE   COMMAND          CREATED       STATUS         PORTS                   NAMES
 8dbabb08f3d5  mongo  "/entrypoint.sh mong 10 hours ago Up 19 minutes  0.0.0.0:27017->27017/tcp  mongodb
@@ -234,7 +234,7 @@ CONTAINER ID  IMAGE   COMMAND          CREATED       STATUS         PORTS       
 
 查看宿主端口监听状态：
 
-```Bash
+```Shell
 $ netstat -tunpl
 Proto Recv-Q Send-Q  Local Address Foreign Address State  PID/Program name         
 tcp   0       0      0.0.0.0:27017   0.0.0.0:*    LISTEN  20997/docker-proxy 

@@ -15,7 +15,7 @@ categories:
 
 uname 参数如下：
 
-```Bash
+```Shell
 -a, --all		      # 以如下次序输出所有信息
 -s, --kernel-name	      # 输出内核名称
 -n, --nodename		      # 输出网络节点上的主机名
@@ -31,7 +31,7 @@ uname 参数如下：
 
 故可以使用`uname -a`命令查看内核信息。
 
-```Bash
+```Shell
 $ uname -a
 Linux fhb-6.6 2.6.32-642.13.1.el6.i686 #1 SMP i686 i686 i386 GNU/Linux
 ```
@@ -40,7 +40,7 @@ Linux fhb-6.6 2.6.32-642.13.1.el6.i686 #1 SMP i686 i686 i386 GNU/Linux
 
 直接查看`/proc/version`文件，获取系统版本信息。
 
-```Bash
+```Shell
 $ cat /proc/version 
 Linux version 2.6.32-642.13.1.el6.i686 (mockbuild@c1bm.rdu2.centos.org) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC) ) #1 SMP
 ```
@@ -51,7 +51,7 @@ Linux version 2.6.32-642.13.1.el6.i686 (mockbuild@c1bm.rdu2.centos.org) (gcc ver
 
 查看发行版本信息如下：
 
-```Bash
+```Shell
 $ lsb_release -a
 LSB Version:	:base-4.0-ia32:base-4.0-noarch:core-4.0-ia32:core-4.0-noarch:graphics-4.0-ia32:graphics-4.0-noarch:printing-4.0-ia32:printing-4.0-noarch
 Distributor ID:	CentOS
@@ -66,7 +66,7 @@ Codename:	Final
 
 直接查看`/etc/issue`文件，获取发行版本信息。
 
-```Bash
+```Shell
 $ cat /etc/issue
 CentOS release 6.8 (Final)
 Kernel \r on an \m
@@ -76,7 +76,7 @@ Kernel \r on an \m
 
 直接查看`/etc/redhat-release`文件，获取发行版本信息。
 
-```Bash
+```Shell
 $ cat /etc/redhat-release
 CentOS release 6.8 (Final)
 ```

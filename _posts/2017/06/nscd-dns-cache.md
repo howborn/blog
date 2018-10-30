@@ -13,7 +13,7 @@ categories:
 
 ## 安装
 
-```Bash
+```Shell
 $ yum install nscd
 ```
 安装后，nscd 的缓存文件路径为`/var/db/nscd/`。
@@ -24,7 +24,7 @@ nscd 的配置文件默认路径为`/etc/nscd.conf`。
 
 阿里云主机的 nscd 配置信息如下：
 
-```Bash
+```Shell
 # 日志文件
 #logfile        /var/log/nscd.log
 # 调试级别
@@ -101,14 +101,14 @@ hosts cache:
 
 * 清除缓存
 
-```Bash
+```Shell
 # 当更改完域名指向后，清除dns缓存
 $ nscd -i hosts
 ```
 
 * 关闭服务
 
-```Bash
+```Shell
 $ nscd -K
 ```
 

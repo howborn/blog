@@ -21,7 +21,7 @@ lua-nginx-module 依赖于 LuaJIT 和 ngx_devel_kit。LuaJIT 需要安装，ngx_
 
 首先确保系统已安装如下依赖库。
 
-```Bash
+```Shell
 $ yum install readline-devel pcre-devel openssl-devel gcc
 ```
 
@@ -29,7 +29,7 @@ $ yum install readline-devel pcre-devel openssl-devel gcc
 
 首先，安装 [LuaJIT](http://luajit.org/index.html) 环境，如下所示：
 
-```Bash
+```Shell
 $ wget http://luajit.org/download/LuaJIT-2.0.5.tar.gz
 $ tar zxvf LuaJIT-2.0.5.tar.gz
 $ cd LuaJIT-2.0.5
@@ -40,7 +40,7 @@ $ make install
 
 设置 LuaJIT 有关的环境变量。
 
-```Bash
+```Shell
 $ export LUAJIT_LIB=/usr/local/lib
 $ export LUAJIT_INC=/usr/local/include/luajit-2.0
 $ echo "/usr/local/lib" > /etc/ld.so.conf.d/usr_local_lib.conf
@@ -51,7 +51,7 @@ $ ldconfig
 
 下载 [ngx_devel_kit](https://github.com/simpl/ngx_devel_kit/tags) 源码包，如下：
 
-```Bash
+```Shell
 $ wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz
 $ tar zxvf v0.3.0.tar.gz
 # 解压缩后目录名
@@ -60,7 +60,7 @@ ngx_devel_kit-0.3.0
 
 **接下来**，下载 Lua 模块  [lua-nginx-module](https://github.com/openresty/lua-nginx-module) 源码包，为 Nginx 编译作准备。
 
-```Bash
+```Shell
 $ wget https://github.com/openresty/lua-nginx-module/archive/v0.10.10.tar.gz
 $ tar zxvf v0.10.10.tar.gz
 # 解压缩后目录名
@@ -71,14 +71,14 @@ lua-nginx-module-0.10.10
 
 Nginx 1.9 版本后可以动态加载模块，但这里由于版本太低只能重新编译安装 Nginx。下载 Nginx 源码包并解压：
 
-```Bash
+```Shell
 $ wget http://nginx.org/download/nginx-1.13.5.tar.gz
 $ tar zxvf nginx-1.13.5.tar.gz
 ```
 
 编译并重新安装 Nginx：
 
-```Bash
+```Shell
 $ cd nginx-1.13.5
 # 增加--add-module=/usr/src/lua-nginx-module-0.10.10 --add-module=/usr/src/ngx_devel_kit-0.3.0
 $ ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-pcre --add-module=/usr/src/lua-nginx-module-0.10.10 --add-module=/usr/src/ngx_devel_kit-0.3.0
@@ -115,7 +115,7 @@ server {
 
 测试安装和配置是否正常：
 
-```Bash
+```Shell
 $ service nginx test
 $ service nginx reload
 # 访问地址/lua_content输出

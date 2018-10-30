@@ -17,7 +17,7 @@ categories:
 
 CodeSniffer 支持 [5](https://github.com/squizlabs/PHP_CodeSniffer#installation) 种安装方式，这里使用 [pear](pear.php.net) 方式安装。如果本地未安装 pear，参考 [pear 安装方法](http://pear.php.net/manual/en/installation.getting.php) 安装：
 
-```Bash
+```Shell
 $ wget https://pear.php.net/go-pear.phar
 # 按1可以选择安装目录，我安装的目录为/usr/local/pear
 $ php go-pear.phar
@@ -28,7 +28,7 @@ $ source /etc/profile
 
 安装 PHP_CodeSniffer：
 
-```Bash
+```Shell
 # 安装1.5.3版本
 $ pear install PHP_CodeSniffer-1.5.3
 install ok: channel://pear.php.net/PHP_CodeSniffer-1.5.3
@@ -42,7 +42,7 @@ PHP_CodeSniffer version 1.5.3
 
 配置 CodeSniffer 的检测规则，如下：
 
-```Bash
+```Shell
 # 设置编码字符集
 $ phpcs --config-set encoding utf-8
 # 设置规范标准,内置标准有PEAR、PHPCS、PSR1、PSR2、Squiz、Zend
@@ -62,7 +62,7 @@ CodeSniffer 内置 PEAR、PHPCS、PSR1、PSR2、Squiz 和 Zend 等几套代码�
 
 一切配置妥当后，就可以进行代码规范检测了。
 
-```Bash
+```Shell
 $ phpcs /home/www/init.php
 FILE: /home/www/init.php
 -------------------------------------------------------------
@@ -136,7 +136,7 @@ eval phpcs $args $php_files
 
 在`.hg/hgrc`中配置使其生效：
 
-```Bash
+```Ini
 [hooks]
 precommit.phpcs = \path\to\pre-commit
 ```
@@ -187,7 +187,7 @@ def phpcs(ui, repo, hooktype, node=None, source=None, **kwargs):
 
 在`.hg/hgrc`配置使其生效：
 
-```Bash
+```Ini
 [hooks]
 precommit.phpcs = python:C:\path\to\pre-commit.py:phpcs
 ```

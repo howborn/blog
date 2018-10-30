@@ -95,7 +95,7 @@ if ($num < $max) {
 
 通过日志定位到 Incr 操作问题，便 Telnet 连接到线上 Redis 服务，发现了异常情况：
 
-```Bash
+```Shell
 # 查看值
 GET key
 100

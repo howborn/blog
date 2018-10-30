@@ -15,7 +15,7 @@ categories:
 
 下面是我整理的常用 Git 命令清单。几个专用名词的译名如下。
 
-```Bash
+```Shell
 - Workspace：工作区
 - Index / Stage：暂存区
 - Repository：仓库区（或本地仓库）
@@ -24,7 +24,7 @@ categories:
 
 ## 一、新建代码库
 
-```Bash
+```Shell
 # 在当前目录新建一个Git代码库
 $ git init
 # 新建一个目录，将其初始化为Git代码库
@@ -37,7 +37,7 @@ $ git clone [url]
 
 Git 的设置文件为`.gitconfig`，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。
 
-```Bash
+```Shell
 # 显示当前的Git配置
 $ git config --list
 # 编辑Git配置文件
@@ -49,7 +49,7 @@ $ git config [--global] user.email "[email address]"
 
 ## 三、增加/删除文件
 
-```Bash
+```Shell
 # 添加指定文件到暂存区
 $ git add [file1] [file2] ...
 # 添加指定目录到暂存区，包括子目录
@@ -69,7 +69,7 @@ $ git mv [file-original] [file-renamed]
 
 ## 四、代码提交
 
-```Bash
+```Shell
 # 提交暂存区到仓库区
 $ git commit -m [message]
 # 提交暂存区的指定文件到仓库区
@@ -87,7 +87,7 @@ $ git commit --amend [file1] [file2] ...
 
 ## 五、分支
 
-```Bash
+```Shell
 # 列出所有本地分支
 $ git branch
 # 列出所有远程分支
@@ -121,7 +121,7 @@ $ git branch -dr [remote/branch]
 
 ## 六、标签
 
-```Bash
+```Shell
 # 列出所有tag
 $ git tag
 # 新建一个tag在当前commit
@@ -144,7 +144,7 @@ $ git checkout -b [branch] [tag]
 
 ## 七、查看信息
 
-```Bash
+```Shell
 # 显示有变更的文件
 $ git status
 # 显示当前分支的版本历史
@@ -190,7 +190,7 @@ $ git reflog
 
 ## 八、远程同步
 
-```Bash
+```Shell
 # 下载远程仓库的所有变动
 $ git fetch [remote]
 # 显示所有远程仓库
@@ -211,7 +211,7 @@ $ git push [remote] --all
 
 ## 九、撤销
 
-```Bash
+```Shell
 # 恢复暂存区的指定文件到工作区
 $ git checkout [file]
 # 恢复某个commit的指定文件到暂存区和工作区
@@ -238,7 +238,7 @@ $ git stash pop
 
 ## 十、其他
 
-```Bash
+```Shell
 # 生成一个可供发布的压缩包
 $ git archive
 ```

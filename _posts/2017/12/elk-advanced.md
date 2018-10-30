@@ -9,7 +9,32 @@ categories:
 ---
 
 部署 [ELK](https://www.fanhaobai.com/2017/12/elk-install.html) 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
-![](https://img3.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+![预览图](https://img3.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+
+## Elasticsearch证书
+
+为了获得 Elasticsearch 更好的体验，我们需要获得 [Elastic](https://register.elastic.co/registration) 的使用授权，安装颁发的永久 License 证书。
+
+首先，前往 [registration](https://register.elastic.co/registration) 地址注册，稍后我们会收到 License 的下载地址：
+
+![邮件](https://www.fanhaobai.com/2017/12/elk-advanced/0f9b0271-108b-47d4-acc2-6fde4e4f9ff7.png)
+
+接着，点击邮件中的 [地址](http://license.elastic.co/registration/download/de804a8e-97e1-478b-a843-613aecac1a6e) 下载 License 文件，并另存为`fan-haobai-dbc3f18c-f87e-40e4-9a1d-f496e58a591e-v5.json`：
+
+![License文件](https://www.fanhaobai.com/2017/12/elk-advanced/c618f544-7093-4530-9bda-b63ab58832ea.png)
+
+然后，通过 Elasticsearch 的 API 更新 License：
+
+```Shell
+# 文件名前有@符号
+$ curl -XPOST -u elastic:changeme http://127.0.0.1:9200/_xpack/license/start_basic?acknowledge=true -H "Content-Type: application/json" -d @fan-haobai-dbc3f18c-f87e-40e4-9a1d-f496e58a591e-v5.json
+# 返回如下信息则成功
+{"acknowledged":true,"basic_was_started":true}
+```
+
+通过 [Kibana](http://elk.fanhaobai.com/app/kibana#/management/elasticsearch/license_management) 查看新的证书信息：
+
+![证书信息](https://www.fanhaobai.com/2017/12/elk-advanced/575f23bd-f21a-4b53-a7f3-5581f9c25c01.png)
 
 ## Logstash管道进阶
 
@@ -19,7 +44,7 @@ Input 插件指定了 Logstash 事件的输入源，已经支持 [beats](https:/
 
 例如，配置 Beats 源为输入，且端口为 5044：
 
-```Yaml
+```Bash
 input {
     beats { port => 5044 }
 }
@@ -42,7 +67,7 @@ Filter 插件主要功能是数据过滤和格式化，通过简洁的表达式�
 
 [Drop](https://www.elastic.co/guide/en/logstash/current/plugins-filters-drop.html) 插件用来过滤掉无价值的数据，例如过滤掉静态文件日志信息：
 
-```Yaml
+```Bash
 if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
     drop {}
 }
@@ -54,7 +79,7 @@ if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
 
 例如，将 time 字段值格式化为`dd/MMM/YYYY:H:m:s Z`形式：
 
-```Yaml
+```Bash
 date { match => [ "[time]", "dd/MMM/YYYY:H:m:s Z" ] }
 ```
 
@@ -64,7 +89,7 @@ date { match => [ "[time]", "dd/MMM/YYYY:H:m:s Z" ] }
 
 例如，将字段`@timestamp`重命名（rename 或 replace）为 read_timestamp：
 
-```Yaml
+```Bash
 mutate { rename => { "@timestamp" => "read_timestamp" } }
 ```
 
@@ -74,7 +99,7 @@ mutate { rename => { "@timestamp" => "read_timestamp" } }
 
 例如，将 response_code 字段值转换为整型：
 
-```Yaml
+```Bash
 mutate { convert => { "fieldname" => "integer" } }
 ```
 
@@ -82,7 +107,7 @@ mutate { convert => { "fieldname" => "integer" } }
 
 例如，将经纬度坐标用数组表示：
 
-```Yaml
+```Bash
 mutate { split => { "location" => "," } }
 ```
 
@@ -90,7 +115,7 @@ mutate { split => { "location" => "," } }
 
 例如，将经纬度坐标合并：
 
-```Yaml
+```Bash
 mutate { join => { "location" => "," } }
 ```
 
@@ -100,7 +125,7 @@ mutate { join => { "location" => "," } }
 
 例如，获取形如`?name=cat&type=2`GET 请求的参数：
 
-```Yaml
+```Bash
 kv { field_split => "&?" }
 ```
 
@@ -113,7 +138,7 @@ kv { field_split => "&?" }
 
 [Json](https://www.elastic.co/guide/en/logstash/current/plugins-filters-json.html) 插件当然是用来解析 Json 字符串，而 [Json_encode](https://www.elastic.co/guide/en/logstash/current/plugins-filters-json_encode.html) 插件是对字段编码为 Json 字符串。例如，Nginx 日志为 Json 格式，则：
 
-```Yaml
+```Bash
 json { source => "message" }
 ```
 
@@ -123,7 +148,7 @@ json { source => "message" }
 
 例如，形如`55.3.244.1 GET /index.html 15824 0.043`的请求日志，则对应的表达式应为`%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}`，配置如下：
 
-```Yaml
+```Bash
 grok {
     match => { "message" => "%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}" }
 }
@@ -147,7 +172,7 @@ Output 插件配置 Logstash 输出对象，可以为 [elasticsearch](https://ww
 
 例如，配置过滤后存储在 Elasticsearch 中：
 
-```Yaml
+```Bash
 output {
     elasticsearch {
         hosts => "localhost:9200"
@@ -167,7 +192,7 @@ output {
 
 实现基于 Nginx 日志进行过滤处理，并且通过 useragent 和 geoip 插件获取用户客户端和地理位置信息。详细配置如下：
 
-```Yaml
+```Bash
 input {
     beats { port => 5044 }
 }
@@ -177,6 +202,9 @@ filter {
             grok {
                 match => { "message" => ["%{IPORHOST:[@metadata][remote_ip]} - %{DATA:[user_name]} \[%{HTTPDATE:[time]}\] \"%{WORD:[method]} %{DATA:[url]} HTTP/%{NUMBER:[http_version]}\" %{NUMBER:[response_code]} %{NUMBER:[body_sent][bytes]} \"%{DATA:[referrer]}\" \"%{DATA:[@metadata][agent]}\""] }
                 remove_field => "message"
+            }
+            grok {
+                match => { "referrer" => "%{URIPROTO}://%{URIHOST:referrer_domain}" }
             }
             if [url] =~ "\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css|woff)" {
                 drop {}
@@ -260,7 +288,7 @@ Logstash 推送数据到 Elasticsearch 时，可以通过以下几种方式指�
 
 ### grok
 
-```Yaml
+```Bash
 grok {
     match => { "message" => "%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}" }
 }
@@ -272,7 +300,7 @@ grok {
 
 通过 Mutate 过滤插件的 convert 配置项，可以转换字段值类型。
 
-```Yaml
+```Bash
 mutate { convert => { "fieldname" => "integer" } }
 ```
 
@@ -347,7 +375,7 @@ PUT /_template/logstash
 
 配置定期清理过期日志的任务：
 
-```Bash
+```Shell
 0 0 * * * /usr/bin/curl -u elastic:changeme  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
 ```
 
@@ -424,7 +452,7 @@ enabled=1
 
 使用 yum 命令安装：
 
-```Bash
+```Shell
 $ rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 $ yum install -y elasticsearch-curator
 
@@ -491,7 +519,7 @@ Curator 支持配置多个任务，其中 [action](https://www.elastic.co/guide/
 
 测试删除过期索引：
 
-```Bash
+```Shell
 #删除前
 $ curator_cli --config /etc/curator/curator.yml show_indices --verbose | grep test-
 test-2017.11.16      open   162.0B       0   3   0 2017-12-17T06:10:04Z
@@ -505,7 +533,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 配置每天执行任务：
 
-```Bash
+```Shell
 0 0 * * * /usr/bin/curator --config /etc/curator/curator.yml /etc/curator/delete-index.yml
 ```
 
@@ -545,20 +573,13 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 
 ![](https://img1.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
 
-## OutOfMemory错误或CPU爆表问题
+## Logstash出现OutOfMemory异常
 
-当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 [OutOfMemory 错误，并且服务器 CPU 处于爆表状态](#)。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
+当 Logstash 运行一段时间后，你可能会发现日志中出现大量的 [OutOfMemory 错误，并且服务器 CPU 处于 100% 状态](#)。产生原因是因为 Logstash 堆栈溢出，进而要频繁进行 GC 操作导致。
 
-我服务器内存只有 2G，自然 JVM 配置不能太阔。如下：
+尽管在 [安装](https://www.fanhaobai.com/2017/12/elk-install.html#安装) 过程中调整了 Logstash 内存大小，这个由于服务器硬件限制导致的问题还是没法根本解决，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期重启 Logstash 即可。定时任务为：
 
-```Yaml
--Xms64m
--Xmx128m
-```
-
-这个问题是由于内存硬件限制，所以没法从根本上解决问题，但是可以规避问题嘛。很简单，这种堆栈溢出只会长期运行出现，所以只需要定期（周期根据配置决定）重启 Logstash 即可。我的定时任务为：
-
-```Bash
+```Shell
 0 */12 * * * /sbin/service logstash restart
 ```
 
