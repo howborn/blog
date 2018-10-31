@@ -6,6 +6,7 @@
 
 ### 杂谈
 
+* [和她的第一次重庆之旅](https://www.fanhaobai.com/2018/10/journey-chongqing.html)（2018-10-29）
 * [从北京回到成都的这3个月](https://www.fanhaobai.com/2018/06/beijing-to-chengdu.html)（2018-06-27）
 
 ### 架构
