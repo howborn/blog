@@ -72,6 +72,13 @@
     ],
     "reading": [
       {
+        "title": "算法之美",
+        "cover": "/douban/lpic/s29762735.jpg",
+        "review": "",
+        "score": "7.3",
+        "doubanLink": "https://book.douban.com/subject/30155731/"
+      },
+      {
         "title": "Head First设计模式",
         "cover": "/douban/lpic/s2414323.jpg",
         "review": "",
