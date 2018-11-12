@@ -1,4 +1,4 @@
-# robots.txt for www.fanhaobai.com 2018.11.03
+# robots.txt for www.fanhaobai.com 2018.11.12
 User-agent: *
 Disallow: /404.html
 Disallow: /categories
