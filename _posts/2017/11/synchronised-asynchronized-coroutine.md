@@ -258,3 +258,8 @@ Swoole 在 2.0 开始内置协程（Coroutine）的能力，提供了具备协�
 * [http://www.ruanyifeng.com/blog/2015/04/generator.html](http://www.ruanyifeng.com/blog/2015/04/generator.html)
 * [http://callbackhell.com/](http://callbackhell.com/)
 * [http://www.ruanyifeng.com/blog/2016/12/user_space_vs_kernel_space.html](http://www.ruanyifeng.com/blog/2016/12/user_space_vs_kernel_space.html)
+
+<strong>相关文章 [»]()</strong>
+
+* [用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) <span>（2018-08-28）</span>
+* [用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html) <span>（2018-09-02）</span>
