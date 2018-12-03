@@ -121,7 +121,7 @@ $services = [
 假设有 N 台实例 S = {S1, S2, …, Sn}，权重 W = {W1, W2, ..., Wn}，指示变量 currentPos 表示当前选择的实例 ID，初始化为 -1；变量 currentWeight 表示当前权重，初始值为 max(S)；max(S) 表示 N 台实例的最大权重值，gcd(S) 表示 N 台实例权重的最大公约数。
 
 算法可以描述为：
-1、请求到来时，赋值变量 i 为 currentPos，自加 i；
+1、请求到来时，i 从 currentPos 起自加，遍历每个实例；
 2、若所有实例已被遍历过一次（上一次遍历时 i 指向了最后一个实例），则重置 i 为 0；且 currentWeight 减小为 currentWeight - gcd(S)，若 currentWeight 小于或等于 0，则重置为 max(S)；
 3、**直到** i 指向的实例的权重大于或等于 currentWeight，赋值 currentPos 为 i；
 
