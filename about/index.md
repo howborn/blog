@@ -2,7 +2,7 @@ title: 关于
 layout: about
 date: 2016-02-10
 ---
-[本站所有文章，仅代表个人思想，与其他任何个人或组织无关！]()
+[本站所有文章，仅代表个人思想，与其他任何个人或组织无关！](#)
 
 ## 个人介绍
 
@@ -11,7 +11,7 @@ date: 2016-02-10
 ### 联系我
 
 * <i class="fa fa-envelope"></i> [i@fanhaobai.com](mailto:i@fanhaobai.com)
-* <i class="fa fa-qq"></i> [292476774]()
+* <i class="fa fa-qq"></i> [292476774](#)
 
 ### 学习方法
 

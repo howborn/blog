@@ -140,7 +140,7 @@ $ php bin/satis build satis.json /home/www/packagist -v
 
 1) 先将需要发布的包发布到代码管理仓库，例如 GitHub；
 
-直接 fork 阿里云 OSS 官方 SDK 封装，地址为：[git@github.com:fan-haobai/yii2-aliyun-oss.git]()，并打一个 V1.0.0 版本的标签，这样 Satis 默认可以将 tag 名称作为包版本号。
+直接 fork 阿里云 OSS 官方 SDK 封装，地址为：[git@github.com:fan-haobai/yii2-aliyun-oss.git](#)，并打一个 V1.0.0 版本的标签，这样 Satis 默认可以将 tag 名称作为包版本号。
 
 2) 在配置文件`satis.json`中增加包仓库地址，以及索引版本；
 
@@ -213,6 +213,6 @@ Generating autoload files
 
 > 注意：操作 satisfy 后，只是更新了`satis.json`文件的 repositories 地址，所以 satisfy 只适用于私有云仓库的情况；同时操作 satisfy 并没有触发 satis 进行 build，所以从 satisfy 中新增和删除一个包后，Composer 仓库包并没有立即发生变化，需要主动触发 satis 进行一次 build，当然可以使用 crontab 周期性来进行 build。 
 
-<strong>更新 [»]()</strong>
+<strong>更新 [»](#)</strong>
 
 * [包管理工具](https://www.fanhaobai.com/2017/05/composer.html#包管理工具)（2017-07-30）

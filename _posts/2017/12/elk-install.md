@@ -73,7 +73,7 @@ $ vim config/jvm.options
 -Xmx256m
 ```
 
-由于 Elasticsearch 新版本不允许以 [root]() 身份启动，因此先创建 elk 用户。这里使用 [service](https://github.com/fan-haobai/init-script/blob/master/elasticsearch/elasticsearch) 服务方式管理 Elasticsearch，修改启动用户和安装目录。
+由于 Elasticsearch 新版本不允许以 [root](#) 身份启动，因此先创建 elk 用户。这里使用 [service](https://github.com/fan-haobai/init-script/blob/master/elasticsearch/elasticsearch) 服务方式管理 Elasticsearch，修改启动用户和安装目录。
 
 ```Shell
 $ useradd elk
@@ -174,7 +174,7 @@ $ vim bin/kibana
 NODE_ENV=production exec "${NODE}" $NODE_OPTIONS --max-old-space-size=140 --no-warnings "${DIR}/src/cli" ${@}
 ```
 
-修改 [init]() 启动脚本，并启动 Kibana：
+修改 [init](#) 启动脚本，并启动 Kibana：
 
 ```Shell
 $ vim /etc/init.d/kibana
@@ -244,7 +244,7 @@ $ vim config/jvm.options
 -Xmx150m
 ```
 
-生成并修改 [init]() 启动脚本：
+生成并修改 [init](#) 启动脚本：
 
 ```Shell
 $ bin/system-install /etc/logstash/startup.options sysv
@@ -452,7 +452,7 @@ Filebeat 推送到 Logstash 过滤后，Elasticsearch 存储的数据格式为�
 
 ![](https://img3.fanhaobai.com/2017/12/elk-install/a1ff2131-8dd8-4ad1-8ba3-c2d2ebeffc91.png)
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html) <span>（2017-12-16）</span>
 * [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-22）</span>

@@ -28,7 +28,7 @@ error_log path/error.log
 
 <strong>[ debug | info | notice | warn | error | crit | alert | emerg ]</strong>
 
-这里暂且称之为 **第一级别等级** 。按照上述顺序，从 [**左至右日志记录等级逐次降低**]()，debug 最详细，而 emerg 最粗略。例如：默认等级 error ，则表示 error，crit，alert，emerg 的信息会被记录到错误日志中。当然，这些都可以从`ngx_log.h`源码文件中得到验证。
+这里暂且称之为 **第一级别等级** 。按照上述顺序，从 [**左至右日志记录等级逐次降低**](#)，debug 最详细，而 emerg 最粗略。例如：默认等级 error ，则表示 error，crit，alert，emerg 的信息会被记录到错误日志中。当然，这些都可以从`ngx_log.h`源码文件中得到验证。
 
 ```C
 #define NGX_LOG_EMERG             1
@@ -126,7 +126,7 @@ error_log path/error.log info;  
 [emerg]: duplicate log level "info" in /path/conf/nginx.conf:xx
 ```
 
-但是值得注意的是，[**在配置文件中不同 block 中时允许重新定义错误日志的**]() 。
+但是值得注意的是，[**在配置文件中不同 block 中时允许重新定义错误日志的**](#) 。
 
 2） **第二级别日志是可多选关系**
 

@@ -619,7 +619,7 @@ ws.run "C:\Windows\System32\bash.exe -c 'sudo /usr/sbin/service ssh --full-resta
 
 再次启动后，sshd 服务就能正常启动了。
 
-**更新 [»]()**
+**更新 [»](#)**
 
 * [使用 Docker 来部署开发环境](https://hub.docker.com/r/fanhaobai/lnmp/)（2017-08-26）
 * [启用 Win10 的 Linux 子系统](#启用Win10的Linux子系统)（2018-04-12）

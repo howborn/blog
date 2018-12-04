@@ -10,7 +10,7 @@ categories:
 来到 ziroom 后，我使用 Solr 支持业务也有段时间了，大多数情况下 Solr 满足业务需求，但由于 Solr 随着数据量急剧上升后检索性能和更新索引效率衰退较快，同时一些历史遗留原因导致字段较多不易维护，现架构上已将搜索引擎迁移到了 ES。在这里整理记录自己使用 Solr 的点滴，供后续学习和使用时参考。
 ![](https://img3.fanhaobai.com/2017/08/solr-install-push/43735106-acb6-4f42-a136-dd5ab347ef49.png)<!--more-->
 
-[Solr的使用]() 系列的重点应是 Solr 的检索，如果需要可以直接传送到 [Sorl检索](https://www.fanhaobai.com/2017/08/solr-search.html) 部分。
+[Solr的使用](#) 系列的重点应是 Solr 的检索，如果需要可以直接传送到 [Sorl检索](https://www.fanhaobai.com/2017/08/solr-search.html) 部分。
 
 ## 部署
 
@@ -222,6 +222,6 @@ COMMITting Solr index changes to http://localhost:8983/solr/books/update..
 
 本文仅仅叙述了 Solr 的 Docker 单节点部署和简单的数据推送实现，由于个人能力和时间限制，并未涉及到其生成环境的应用环节。后续的一篇文章将会记录 Solr 的检索语法和 PHP 作为客户端调用 Solr 服务的一种方案。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [Solr的使用 — 检索](https://www.fanhaobai.com/2017/08/solr-search.html) <span>（2017-08-13）</span>

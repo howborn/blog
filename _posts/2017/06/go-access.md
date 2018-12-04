@@ -171,7 +171,7 @@ tcp   0   0 0.0.0.0:7890      0.0.0.0:*     LISTEN      21136/goaccess
 
 ![](https://img5.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html) <span>（2017-12-16）</span>
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-22）</span>

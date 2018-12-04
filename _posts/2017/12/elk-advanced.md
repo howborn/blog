@@ -144,7 +144,7 @@ json { source => "message" }
 
 #### Grok
 
-[Grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) 插件可以根据指定的表达式 [结构化]() 文本数据，表达式需形如`%{SYNTAX:SEMANTIC}`格式，SYNTAX 指定字段值类型，可以为 IP、WORD、DATA、NUMBER 等。
+[Grok](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html) 插件可以根据指定的表达式 [结构化](#) 文本数据，表达式需形如`%{SYNTAX:SEMANTIC}`格式，SYNTAX 指定字段值类型，可以为 IP、WORD、DATA、NUMBER 等。
 
 例如，形如`55.3.244.1 GET /index.html 15824 0.043`的请求日志，则对应的表达式应为`%{IP:client} %{WORD:method} %{WORD:request} %{NUMBER:bytes} %{NUMBER:duration}`，配置如下：
 
@@ -280,7 +280,7 @@ PUT _template/logstash
 }
 ```
 
-其中 [index_patterns]() 为匹配模式，表示含有 access 和 error 的索引才会使用该模板。[mappings]()  为字段映射规则，可以配置更多的字段映射规则，已配置字段根据索引模板规则映射，未配置字段则动态映射。
+其中 [index_patterns](#) 为匹配模式，表示含有 access 和 error 的索引才会使用该模板。[mappings](#)  为字段映射规则，可以配置更多的字段映射规则，已配置字段根据索引模板规则映射，未配置字段则动态映射。
 
 ## 指定数据存储类型
 
@@ -306,7 +306,7 @@ mutate { convert => { "fieldname" => "integer" } }
 
 ### 索引模板
 
-若想要根据用户 IP 地址解析后的地理位置信息，得出访问用户的地理分布情况，就需要在 Elasticsearch 中将用户地理坐标存储为 [geo_point]() 类型，而 Logstash 并不能自动完成这个步骤，我们可以在索引模板中指定 location 字段的类型为 geo_point。
+若想要根据用户 IP 地址解析后的地理位置信息，得出访问用户的地理分布情况，就需要在 Elasticsearch 中将用户地理坐标存储为 [geo_point](#) 类型，而 Logstash 并不能自动完成这个步骤，我们可以在索引模板中指定 location 字段的类型为 geo_point。
 
 Elasticsearch 待存储的地理位置数据，格式如下：
 
@@ -583,7 +583,7 @@ test-2017.12.16      open   486.0B       0   3   0 2017-12-17T05:58:07Z
 0 */12 * * * /sbin/service logstash restart
 ```
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html) <span>（2017-12-16）</span>
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-22）</span>

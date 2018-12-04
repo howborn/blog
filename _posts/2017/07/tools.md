@@ -193,7 +193,7 @@ RSHIFT & s::Send, {Down}
 * [使用GoAccess分析Nginx日志](https://www.fanhaobai.com/2017/06/go-access.html)
 * [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)
 
-<strong>更新 [»]()</strong>
+<strong>更新 [»](#)</strong>
 * [Postman](#Postman)（2017-07-30）
 * [Charles](#Charles)（2017-08-04）
 * [SwitchHosts](#SwitchHosts)（2018-04-13）

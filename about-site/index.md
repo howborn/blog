@@ -26,10 +26,10 @@ date: 2016-12-11 13:12:10
 * 2017.04.06：增加 Solr 支持，见 [Solr Admin](http://solr.fanhaobai.com)。
 * 2017.03.01：博客迁移到 [Hexo](https://www.fanhaobai.com/2017/03/install-hexo.html)。
 * 2017.02.10：将 Nginx 配置增加 [限制恶意IP访问](https://www.fanhaobai.com/2017/02/lock-ip.html)。
-* 2017.02.07：增加 Nginx 配置，防止其他 [域名恶意解析]() 到本服务器。
+* 2017.02.07：增加 Nginx 配置，防止其他 [域名恶意解析](#) 到本服务器。
 * 2017.01.20：增加使用 MongoDB，运行于 Docker 环境，[见这里](https://www.fanhaobai.com/2017/01/mongo-docker-install.html)。
 * 2017.01.18：增加使用 [Docker](https://www.fanhaobai.com/post/docker-install.html)。
-* 2017.01.16：将 Nginx 配置增加 [防盗链]()。
+* 2017.01.16：将 Nginx 配置增加 [防盗链](#)。
 * 2017.01.14：统一流量入口，Nginx 配置主站域名重定向到 [www.fanhaobai.com](https://www.fanhaobai.com)。
 * 2017.01.12：增加使用 [Robots](https://www.fanhaobai.com/2017/01/robots.html)，协议文件 [robots.txt](http://www.fanhaobai.com/robots.txt) ，网站地图文件  [XML格式](http://www.fanhaobai.com/sitemap.xml)。
 * 2016.12.13：增加多少评论的用户头像，将 HTTP 代理为 HTTPS， [见这里](https://www.fanhaobai.com/2017/03/install-hexo.html#多说头像HTTPS代理)。
@@ -328,7 +328,7 @@ Sitemap: http://www.fanhaobai.com/map.xml
 
 本站站点地图文件 [XML格式](http://www.fanhaobai.com/sitemap.xml)，并部署为自动更新。
 
-**SEO专题文章 [»]()**
+**SEO专题文章 [»](#)**
 
 * [如何向搜索引擎提交链接](https://www.fanhaobai.com/2017/01/push-links.html)<span>（2017-01-17）</span>
 * [自动更新站点地图的部署](https://www.fanhaobai.com/2017/01/update-sitemap.html)<span>（2017-01-16）</span>

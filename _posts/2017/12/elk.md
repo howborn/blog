@@ -81,7 +81,7 @@ ELK 集中式日志平台，总体上来说，部署在应用服务器上的数�
 
 比较成熟的 ELK+Beats 架构，因其扩展性很强，是集中式日志平台的首选方案。在实际部署时，是否引入消息队列，根据业务系统量来确定，早期也可以不引入消息队列，简单部署，后续需要扩展再接入消息队列。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html) <span>（2017-12-21）</span>
 * [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html) <span>（2017-12-22）</span>

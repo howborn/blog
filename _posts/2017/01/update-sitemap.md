@@ -23,7 +23,7 @@ categories:
 
 # 指定路径
 
-站点建立了 robots.txt 文件后， [HTML格式]() 和 [XML格式](http://www.fanhaobai.com/sitemap.xml) 的站点地图路径就在 robots.txt 文件中指定， 即在该文件最后行加入如下代码：
+站点建立了 robots.txt 文件后， [HTML格式](#) 和 [XML格式](http://www.fanhaobai.com/sitemap.xml) 的站点地图路径就在 robots.txt 文件中指定， 即在该文件最后行加入如下代码：
 
 ```Ini
 Sitemap: http://www.fanhaobai.com/map.xml                 #谷歌推荐格式
@@ -231,13 +231,13 @@ $map->run();
 3） 分别从模板文件中获取 HTML 格式和 XML 格式模板，并分别用②中`<ul>`和`<url>`标签替换模板中的指定字符；
 4） 将替换后的模板内容写入到站点地图文件；
 
-上述过程是通过 [**Linux 的 crontab 定时机制，实现每隔 2 天循环一次执行的更新频率**]()。
+上述过程是通过 [**Linux 的 crontab 定时机制，实现每隔 2 天循环一次执行的更新频率**](#)。
 
 ```Shell
 0 1 */2 * * /usr/local/php7/bin/php /data/html/www/sitemap/map_create.php
 ```
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [如何向搜索引擎提交链接](https://www.fanhaobai.com/2017/01/push-links.html) <span>（2017-01-17）</span>
 * [Robots协议的那些事](https://www.fanhaobai.com/2017/01/robots.html) <span>（2017-01-12）</span>
