@@ -142,7 +142,7 @@ $services = [
 这里使用 PHP 来实现，源码见 [fan-haobai/load-balance](https://github.com/fan-haobai/load-balance) 部分。
 
 ```PHP
-class WeightRobin implements RobinInterface
+class WeightedRobin implements RobinInterface
 {
     private $services = array();
 
