@@ -122,7 +122,7 @@ $services = [
 
 算法可以描述为：
 1、请求到来时，i 从 currentPos 起自加，遍历每个实例；
-2、若所有实例已被遍历过一次（上一次遍历时 i 指向了最后一个实例），则重置 i 为 0；且 currentWeight 减小为 currentWeight - gcd(S)，若 currentWeight 小于或等于 0，则重置为 max(S)；
+2、若所有实例已被遍历过一次（上一次遍历时 i 指向了最后一个实例），则减小 currentWeight 为 currentWeight - gcd(S)，若 currentWeight 小于或等于 0，则重置为 max(S)，并重置 i 为 0；
 3、**直到** i 指向的实例的权重大于或等于 currentWeight，赋值 currentPos 为 i；
 
 例如，上述 4 个服务，最大权重 max(S) 为 4，最大公约数 gcd(S) 为 1。其调度过程如下：
