@@ -467,7 +467,7 @@ function pjax(options) {
 
 除了使用 pjax 解决局部刷新并支持前进和后退问题外，也可以使用 [browserstate/history.js](https://github.com/browserstate/history.js) + ajax 方案来实现。 
 
-<strong>参考文章 [»]()</strong>
+<strong>参考文章 [»](#)</strong>
 
 * [pjax使用小结](http://www.jianshu.com/p/557cad38e7dd)
 * [pjax是如何工作的？](https://www.zhihu.com/question/20289254)

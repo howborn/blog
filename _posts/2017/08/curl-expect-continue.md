@@ -49,7 +49,7 @@ E..A......2.
 
 ## 解决办法
 
-如果查看过一些开源类库（guzzle、qq第三方api，不过 [solarium](https://github.com/solariumphp/solarium) 并未支持），你就会发现他们在 curl 时已经注意到并解决这个问题了，只需 [设置 Expect 请求头为空]() 即可。
+如果查看过一些开源类库（guzzle、qq第三方api，不过 [solarium](https://github.com/solariumphp/solarium) 并未支持），你就会发现他们在 curl 时已经注意到并解决这个问题了，只需 [设置 Expect 请求头为空](#) 即可。
 
 ```PHP
 // qq第三方api

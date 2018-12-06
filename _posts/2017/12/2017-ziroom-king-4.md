@@ -43,7 +43,7 @@ $p_n$ -> $p_{n-1}$
 n-1 -> n-k+1
 n -> n-k
 
-这样，我们就得到一个递推关系式：[$p_n = (p_{n-1} + k)$ % $n$]()，初始条件 $p_1 = 1$（1 个人时幸存者为自己），当然该提递推公式同样适用于 n < k 的情况。
+这样，我们就得到一个递推关系式：[$p_n = (p_{n-1} + k)$ % $n$](#)，初始条件 $p_1 = 1$（1 个人时幸存者为自己），当然该提递推公式同样适用于 n < k 的情况。
 
 ## [编码实现](https://github.com/fan-haobai/2017-ziroom-king/blob/master/src/6.php)
 
@@ -72,7 +72,7 @@ echo josephus($arr['n'], $arr['e']), PHP_EOL;
 
 由于本题只是需要求出最终的幸存者编号，所以可以直接使用递推公式求解，算法时间复杂度为 $O(n)$。若需要模拟整个游戏过程，则需要使用 [链表](http://blog.csdn.net/sxhelijian/article/details/9052891) 模拟实现。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [王者编程大赛之一](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1.html) <span>（2017-12-05）</span>
 * [王者编程大赛之二 — 蓄水池](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html) <span>（2017-12-05）</span>

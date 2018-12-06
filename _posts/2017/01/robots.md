@@ -138,7 +138,7 @@ Sitemap: http://www.fanhaobai.com/map.xml
 Sitemap: http://www.fanhaobai.com/map.html
 ```
 
-查看本站的 **网站地图**，[HTML格式]() 和 [XML格式](https://www.fanhaobai.com/sitemap.xml) 。
+查看本站的 **网站地图**，[HTML格式](#) 和 [XML格式](https://www.fanhaobai.com/sitemap.xml) 。
 
 * ** 本站维基 **
 
@@ -167,9 +167,9 @@ Disallow: /
 
 Robots 协议只是爬虫抓取站点内容的一种规则，需要搜索引擎爬虫的配合才行，并不是每个搜索引擎爬虫都遵守的。但是，目前看来，绝大多数的搜索引擎爬虫都遵守 Robots 协议的规则。
 
-值得注意的是，robots.txt 文件虽说是提供给爬虫使用，但是正如它的名称——网络爬虫排除标准，它具有消极的排爬虫抓取作用。所以百度官方建议，** [仅当网站包含不希望被搜索引擎收录的内容时，才需要使用 robots.txt 文件。如果您希望搜索引擎收录网站上所有内容，请勿建立robots.txt 文件]() **。
+值得注意的是，robots.txt 文件虽说是提供给爬虫使用，但是正如它的名称——网络爬虫排除标准，它具有消极的排爬虫抓取作用。所以百度官方建议，** [仅当网站包含不希望被搜索引擎收录的内容时，才需要使用 robots.txt 文件。如果您希望搜索引擎收录网站上所有内容，请勿建立robots.txt 文件](#) **。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [如何向搜索引擎提交链接](https://www.fanhaobai.com/2017/01/push-links.html) <span>（2017-01-17）</span>
 * [自动更新站点地图的部署](https://www.fanhaobai.com/2017/01/update-sitemap.html) <span>（2017-01-16）</span>

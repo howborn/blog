@@ -15,7 +15,7 @@ categories:
 
 # 安装
 
-Hexo 如官方介绍一样，安装方便快捷。安装前请确保 Node 和 Nginx 环境已经存在，需要安装可以参考 [CentOS 6 安装 Node]() 和 [Nginx 安装]()。
+Hexo 如官方介绍一样，安装方便快捷。安装前请确保 Node 和 Nginx 环境已经存在，需要安装可以参考 [CentOS 6 安装 Node](#) 和 [Nginx 安装](#)。
 
 只需使用如下命令即可安装 Hexo。
 
@@ -139,7 +139,7 @@ tags:                 # 标签为无序
 
 Typora 和 马克飞象 的对比：
 
-* Typora 可以在本地使用相对路径预览文章图片，文章中插入图片方法，[见配置部分]()。
+* Typora 可以在本地使用相对路径预览文章图片，文章中插入图片方法，[见配置部分](#)。
 * 马克飞象在线编辑，可以同印象笔记时时同步，但是想预览图片，就必须是线上图片地址。
 
 使用编辑器预览编辑完文章后，导出 md 文件替换新建文章时生成的同名 md 文件即可。
@@ -230,7 +230,7 @@ post_asset_folder: true
 
 开启该项配置后，Hexo 将会在你每一次通过`hexo new [layout] <title>`命令创建新文章时自动创建一个文件名同 md 文件的文件夹。将所有与你的文章有关的资源放在这个关联文件夹中之后，就可以通过相对路径来引用它们。
 
-写文章时你只需在 Markdown 中插入相对 md 文件的 **相对路径** 的图片即可，[hexo-asset-image]() 自动转化为网站 **绝对路径**。此时，可以直接使用 Hexo 提供的标签`asset_img`来插入图片，但是这样违背了 Markdown 语法，无法及时预览，不便于编辑文章。
+写文章时你只需在 Markdown 中插入相对 md 文件的 **相对路径** 的图片即可，[hexo-asset-image](#) 自动转化为网站 **绝对路径**。此时，可以直接使用 Hexo 提供的标签`asset_img`来插入图片，但是这样违背了 Markdown 语法，无法及时预览，不便于编辑文章。
 
 可以通过以下 Markdown 语法在文章中插入图片，这种方式同时也支持本地 Markdown 编辑器实时预览。
 
@@ -299,7 +299,7 @@ deploy:
   ignore_errors: [true|false]          # 忽略错误
 ```
 
-显然，该方案适用于使用服务器搭建博客的用户，但是需要在本地安装 Rsync 客户端（[cwRsync](http://pan.baidu.com/s/1jHTNpVC)）。同时，需要在服务器搭建和配置 Rsync 服务，[见这里]()。
+显然，该方案适用于使用服务器搭建博客的用户，但是需要在本地安装 Rsync 客户端（[cwRsync](http://pan.baidu.com/s/1jHTNpVC)）。同时，需要在服务器搭建和配置 Rsync 服务，[见这里](#)。
 
 > 我尝试在 Win10 下实现这种方案，但是遇到了很多问题，例如 rsync 服务端采用 SSH 认证方式，但是 cwRsync 使用的 SSH 客户端呆板的从`/home/.ssh`目录查找 SSH 配置和公钥，很悲剧 Win10 下无法识别这个路径，导致无法免密登录 SSH，Rsync 同步也无法进行。
 
@@ -330,14 +330,14 @@ content.replace(rExcerpt, function(match, index) {
 
 ## 更好地支持Shell代码高亮
 
-由于 [highlight.js]() 对 Shell 语法高亮解析效果并不理想，为此我对 [languages/shell.js](https://github.com/fan-haobai/highlight.js/blob/master/src/languages/shell.js) 部分做了修改来更好地支持 Shell，你只需要 [pull](https://github.com/fan-haobai/highlight.js) 并替换掉原 [languages/shell.js]() 文件即可。
+由于 [highlight.js](#) 对 Shell 语法高亮解析效果并不理想，为此我对 [languages/shell.js](https://github.com/fan-haobai/highlight.js/blob/master/src/languages/shell.js) 部分做了修改来更好地支持 Shell，你只需要 [pull](https://github.com/fan-haobai/highlight.js) 并替换掉原 [languages/shell.js](#) 文件即可。
 
 ```Shell
 $ git clone https://github.com/fan-haobai/highlight.js.git
 $ cp highlight.js/src/languages/shell.js node_modules/highlight.js/lib/languages/shell.js
 ```
 
-并将 [shell.js]() 中的如下部分：
+并将 [shell.js](#) 中的如下部分：
 
 ```Js
 function(hljs)
@@ -457,7 +457,7 @@ baidu_analytics: 9f0ecfa73797e6a907d8ea6a285df6a5
 
 到这里，也终于算是搭建结束了。至于 404 页面打算采用 [腾讯的公益404页面](http://www.qq.com/404/) 来做，[见这里](https://www.fanhaobai.com/404.html)。
 
-<strong>更新 [»]()</strong>
+<strong>更新 [»](#)</strong>
 
 * [主题更换为 hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia)<span>（2017-10-30）</span>
 * [自定义分享](#)<span>（2017-11-28）</span>
@@ -465,6 +465,6 @@ baidu_analytics: 9f0ecfa73797e6a907d8ea6a285df6a5
 * [科学使用 Disqus](#评论)<span>（2018-07-04）</span>
 * [更好地支持 Shell 代码高亮](#更好地支持Shell代码高亮)<span>（2018-09-09）</span>
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)<span>（2018-03-03）</span>

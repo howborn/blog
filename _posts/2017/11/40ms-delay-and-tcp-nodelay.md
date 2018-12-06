@@ -9,7 +9,7 @@ categories:
 
 >原文：[神秘的40毫秒延迟与 TCP_NODELAY - Jerry's Blog](http://jerrypeng.me/2013/08/mythical-40ms-delay-and-tcp-nodelay/)
 
-最近排查 Redis 的 Redis server went away 问题时，发现 Redis 的 PHP 扩展里面特意使用 [setsockopt()]() 函数设置了 sock 套接字的 [TCP_NODELAY](https://en.wikipedia.org/wiki/Nagle%27s_algorithm) 项，用来禁用了 Nagle’s Algorithm 算法，遂后搜索到该文章。
+最近排查 Redis 的 Redis server went away 问题时，发现 Redis 的 PHP 扩展里面特意使用 [setsockopt()](#) 函数设置了 sock 套接字的 [TCP_NODELAY](https://en.wikipedia.org/wiki/Nagle%27s_algorithm) 项，用来禁用了 Nagle’s Algorithm 算法，遂后搜索到该文章。
 ![](https://img1.fanhaobai.com/2017/11/40ms-delay-and-tcp-nodelay/d8706486-963b-4f46-ab68-be8390747898.png)<!--more-->
 ![](https://img2.fanhaobai.com/2017/11/40ms-delay-and-tcp-nodelay/d8706486-963b-4f46-ab68-be8390747898.png)
 
@@ -142,8 +142,8 @@ Percentage of the requests served within a certain time (ms)
 
 Nagle’s Algorithm 是为了提高带宽利用率设计的算法，其做法是合并小的TCP 包为一个，避免了过多的小报文的 TCP 头所浪费的带宽。如果开启了这个算法 （默认），则协议栈会累积数据直到以下两个条件之一满足的时候才真正发送出去：
 
-1. [积累的数据量到达最大的 TCP Segment Size]()
-2. [收到了一个 Ack]()
+1. [积累的数据量到达最大的 TCP Segment Size](#)
+2. [收到了一个 Ack](#)
 
 TCP Delayed Acknoledgement 也是为了类似的目的被设计出来的，它的作用就 是延迟 Ack 包的发送，使得协议栈有机会合并多个 Ack，提高网络性能。
 

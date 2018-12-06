@@ -7,7 +7,7 @@ categories:
 - Lucene
 ---
 
-文章 [Elasticsearch检索实战](https://www.fanhaobai.com/2017/08/elasticsearch-search.html) 已经讲述了 Elasticsearch 基本检索使用，已满足大部分检索场景，但是某些特定项目中会使用到 [聚合]() 和 [LBS]() 这类高级检索，以满足检索需求。这里将讲述 Elasticsearch 的聚合和 LBS 检索使用方法。
+文章 [Elasticsearch检索实战](https://www.fanhaobai.com/2017/08/elasticsearch-search.html) 已经讲述了 Elasticsearch 基本检索使用，已满足大部分检索场景，但是某些特定项目中会使用到 [聚合](#) 和 [LBS](#) 这类高级检索，以满足检索需求。这里将讲述 Elasticsearch 的聚合和 LBS 检索使用方法。
 
 ![](https://img4.fanhaobai.com/2017/08/elasticsearch-advanced-search/d758139c-86ce-4472-89e8-7eb385cf7991.jpg)<!--more-->
 
@@ -28,7 +28,7 @@ aggs 子句聚合是 Elasticsearch 常规的聚合实现方式。
 | 桶（Buckets）  | 满足特定条件的文档的集合 |
 | 指标（Metrics） | 对桶内的文档进行统计计算 |
 
-每个聚合都是 [一个或者多个桶和零个或者多个指标]() 的组合，聚合可能只有一个桶，可能只有一个指标，或者可能两个都有。例如这个 SQL：
+每个聚合都是 [一个或者多个桶和零个或者多个指标](#) 的组合，聚合可能只有一个桶，可能只有一个指标，或者可能两个都有。例如这个 SQL：
 
 ```SQL
 SELECT COUNT(field_name) FROM table GROUP BY field_name
@@ -118,7 +118,7 @@ Elasticsearch 聚合为：
   }
 }}
 ```
-可见，此时聚合的结果有且只有分组后文档的  [数量]()，只适合做一些分组后文档数的统计。
+可见，此时聚合的结果有且只有分组后文档的  [数量](#)，只适合做一些分组后文档数的统计。
 
 * 例2，去重统计西二旗小区的数量：
 
@@ -464,8 +464,8 @@ LBS 检索的结果为：
 
 ## 总结
 
-本文讲述了使用 Elasticsearch 进行 [聚合]() 和 [LBS]() 检索，尽管文中只是以示例形式进行说明，会存在很多不全面的地方，还是希望对你我学习 Elasticsearch 能有所帮助。
+本文讲述了使用 Elasticsearch 进行 [聚合](#) 和 [LBS](#) 检索，尽管文中只是以示例形式进行说明，会存在很多不全面的地方，还是希望对你我学习 Elasticsearch 能有所帮助。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [Elasticsearch检索实战](https://www.fanhaobai.com/2017/08/elasticsearch-search.html) <span>（2017-08-09）</span>

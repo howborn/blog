@@ -251,6 +251,6 @@ if (e.avatar_url) {
 s.message.replace(/src=\"http\:\/\//, "src=\"https://yoursite.com/proxy/") : s.message))
 ```
 
-**更新 [»]()**
+**更新 [»](#)**
 
 * [本站Nginx配置](https://www.fanhaobai.com/about-site/)<span>（2017-01-16）</span>

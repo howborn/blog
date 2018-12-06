@@ -134,6 +134,6 @@ $pwd/node_modules/hexo/bin/hexo g
 
 当然，有很多办法可以解决当前问题，比如可以使用 [持续集成](https://formulahendry.github.io/2016/12/04/hexo-ci/)。本文只是提供一个发布思路，在项目的生成环境中，我们也很容易应用上这种发布思路，开发出自己的发布系统。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)<span>（2017-03-01）</span>

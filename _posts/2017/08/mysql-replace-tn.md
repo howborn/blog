@@ -32,7 +32,7 @@ SELECT * FROM table_a WHERE uid = "340ae30a-724e-12c5-6b92-************";
 
 ![](https://img1.fanhaobai.com/2017/08/mysql-replace-tn/78e7f070-e9ac-45f6-958d-f5d282afec0e.png)
 
-仔细观察不难发现，第 1 行 uid 数据比第 2 行数据前多了“←┘”符号，所以确定是 Oracel 表导入 MySQL 表后导致某些列（uid ）值前多了 [换行符]()，查询条件与真实数据不一致 ，因此无法查询到结果。
+仔细观察不难发现，第 1 行 uid 数据比第 2 行数据前多了“←┘”符号，所以确定是 Oracel 表导入 MySQL 表后导致某些列（uid ）值前多了 [换行符](#)，查询条件与真实数据不一致 ，因此无法查询到结果。
 
 ## 解决
 
@@ -42,7 +42,7 @@ SELECT * FROM table_a WHERE uid = "340ae30a-724e-12c5-6b92-************";
 UPDATE table_a SET uid = REPLACE(REPLACE(uid, CHAR(10), ''), CHAR(13), '');
 ```
 
-在 MySQL 中，CHAR(10) 和 CHAR(13) 分别代 [换行符]() 和 [回车符]()，这里都替换掉。再次查询：
+在 MySQL 中，CHAR(10) 和 CHAR(13) 分别代 [换行符](#) 和 [回车符](#)，这里都替换掉。再次查询：
 
 ```SQL
 SELECT * FROM table_a WHERE uid = "340ae30a-724e-12c5-6b92-************";

@@ -16,7 +16,7 @@ categories:
 
 ### 15位
 
-15 位身份证编码规则为：[DDDDDD YYMMDD XXS]()
+15 位身份证编码规则为：[DDDDDD YYMMDD XXS](#)
 
 各组成部分说明：
 
@@ -30,7 +30,7 @@ categories:
 
 ### 18位
 
-18 位身份证较 15 位身份证，出生年月改变为 8 位，并引入了校验位。编码规则为：[DDDDDD YYYYMMDD XXX Y]()
+18 位身份证较 15 位身份证，出生年月改变为 8 位，并引入了校验位。编码规则为：[DDDDDD YYYYMMDD XXX Y](#)
 
 各组成部分说明：
 

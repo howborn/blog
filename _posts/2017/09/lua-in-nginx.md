@@ -458,7 +458,7 @@ end
 return
 ```
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [进入Lua的世界](https://www.fanhaobai.com/2017/09/lua.html) <span>（2017-09-03）</span>
 * [Lua在Redis的应用](https://www.fanhaobai.com/2017/09/lua-in-redis.html) <span>（2017-09-04）</span>

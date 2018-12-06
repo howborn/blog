@@ -205,13 +205,13 @@ work:1      RUNNING   pid 31318, uptime 0:00:06
 
 supervisorctl 常用命令列表如下；
 
-* [status]()：查看服务状态
-* [update]()：重新加载配置文件
-* [restart]()：重新启动服务
-* [stop]()：停止服务
-* [pid]()：查看某服务的 pid
-* [tail]()：输出最新的 log 信息
-* [shutdown]()：关闭 supervisord 服务
+* [status](#)：查看服务状态
+* [update](#)：重新加载配置文件
+* [restart](#)：重新启动服务
+* [stop](#)：停止服务
+* [pid](#)：查看某服务的 pid
+* [tail](#)：输出最新的 log 信息
+* [shutdown](#)：关闭 supervisord 服务
 
 ### Web
 
