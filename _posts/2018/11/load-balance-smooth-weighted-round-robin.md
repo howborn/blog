@@ -106,7 +106,7 @@ class SmoothWeightedRobin implements RobinInterface
 }
 ```
 
-其中，`getSumWeight()`为每个实例个配置权重和；`getCurrentWeight()`和 `setCurrentWeight()`分别用于获取和设置指定实例的当前有效权重；`getMaxCurrentWeightPos()`求得最大当前有效权重的实例位置，实现如下：
+其中，`getSumWeight()`为所有实例的配置权重和；`getCurrentWeight()`和 `setCurrentWeight()`分别用于获取和设置指定实例的当前有效权重；`getMaxCurrentWeightPos()`求得最大当前有效权重的实例位置，实现如下：
 
 ```PHP
 public function getMaxCurrentWeightPos()
@@ -188,7 +188,9 @@ $(x_i - 1) \* (x_i - S) + x_i <= (x_i - 1) \* -1 + x_i = -x_i + 1 + x_i = 1$
 
 ## 总结
 
-尽管，平滑加权轮询算法改善了加权轮询算法调度的缺陷，即调度序列分散的不均匀，避免了实例负载突然加重的可能，但是仍然不能动态感知每个实例的负载。若由于实例权重配置不合理，或者一些其他原因加重系统负载的情况，平滑加权轮询都无法实现每个实例的负载均衡，这时就需要 [有状态](#) 的调度算法来完成。
+尽管，平滑加权轮询算法改善了加权轮询算法调度的缺陷，即调度序列分散的不均匀，避免了实例负载突然加重的可能，但是仍然不能动态感知每个实例的负载。
+
+若由于实例权重配置不合理，或者一些其他原因加重系统负载的情况，平滑加权轮询都无法实现每个实例的负载均衡，这时就需要 [有状态](#) 的调度算法来完成。
 
 <strong>相关文章 [»](#)</strong>
 
