@@ -28,8 +28,9 @@ categories:
 ### 算法描述
 
 假设有 N 台实例 S = {S1, S2, …, Sn}，指示变量 currentPos 表示当前选择的实例 ID，初始化为 -1。算法可以描述为：
-1、请求到来时，自加变量 currentPos，使其指向下一个实例；
-2、若所有实例已被 **调度** 过一次（上一次调度时 currentPos 指向了最后一个实例），则重置为 0；
+1、调度到下一个实例；
+2、若所有实例已被 **调度** 过一次，则从头开始调度；
+3、每次调度重复步骤 1、2；
 
 调度过程，如下：
 
@@ -121,9 +122,10 @@ $services = [
 假设有 N 台实例 S = {S1, S2, …, Sn}，权重 W = {W1, W2, ..., Wn}，指示变量 currentPos 表示当前选择的实例 ID，初始化为 -1；变量 currentWeight 表示当前权重，初始值为 max(S)；max(S) 表示 N 台实例的最大权重值，gcd(S) 表示 N 台实例权重的最大公约数。
 
 算法可以描述为：
-1、请求到来时，i 从 currentPos 起自加，遍历每个实例；
-2、若所有实例已被遍历过一次（上一次遍历时 i 指向了最后一个实例），则减小 currentWeight 为 currentWeight - gcd(S)，并重置 i 为 0；若 currentWeight 小于或等于 0，则重置为 max(S)；
-3、**直到** i 指向的实例的权重大于或等于 currentWeight，赋值 currentPos 为 i；
+1、从上一次调度实例起，遍历后面的每个实例；
+2、若所有实例已被遍历过一次，则减小 currentWeight 为 currentWeight - gcd(S)，并从头开始遍历；若 currentWeight 小于等于 0，则重置为 max(S)；
+3、**直到** 遍历的实例的权重大于等于 currentWeight 时结束，此时实例为需调度的实例；
+4、每次调度重复步骤 1、2、3；
 
 例如，上述 4 个服务，最大权重 max(S) 为 4，最大公约数 gcd(S) 为 1。其调度过程如下：
 
@@ -142,7 +144,7 @@ $services = [
 这里使用 PHP 来实现，源码见 [fan-haobai/load-balance](https://github.com/fan-haobai/load-balance) 部分。
 
 ```PHP
-class WeightRobin implements RobinInterface
+class WeightedRobin implements RobinInterface
 {
     private $services = array();
 
