@@ -44,7 +44,7 @@ date: 2016-02-10
 ## 站点导航
 
 * 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
-* Wiki 站，[wiki.fanhaobai.com](htts://wiki.fanhaobai.com)
+* Wiki 站，[wiki.fanhaobai.com](http://wiki.fanhaobai.com)
 * Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
 * 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
 * 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
