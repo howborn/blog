@@ -233,6 +233,12 @@ end
 return users
 ```
 
+## 注意事项
+
+虽然使用 Lua 脚本给我们带来了许多便利，但是需要注意几个使用事项：
+* Lua 脚本在执行时是阻塞的，不应该在 Lua 脚本中有耗时的处理逻辑；
+* 在集群模式时，Lua 脚本必须使用参数 key 传递需操作的 Redis 的 key，且要求所操作的 key 都在同一个 slot 节点上，可以使用以`{}`标记的 hash tag 方式解决。
+
 <strong>相关文章 [»](#)</strong>
 
 * [进入Lua的世界](https://www.fanhaobai.com/2017/09/lua.html) <span>（2017-09-03）</span>
