@@ -44,9 +44,8 @@ date: 2016-02-10
 ## 站点导航
 
 * 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
-* Wiki 站，[wiki.fanhaobai.com](https://wiki.fanhaobai.com)
+* Wiki 站，[wiki.fanhaobai.com](htts://wiki.fanhaobai.com)
 * Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
-* Redis 管理工具 phpRedisAdmin，[admin.fanhaobai.com](https://admin.fanhaobai.com)
 * 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
 * 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
 * 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）
