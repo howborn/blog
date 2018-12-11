@@ -10,13 +10,13 @@ categories:
 
 Redis 的 [管道](https://redis.io/topics/pipelining) （pipelining）是用来打包多条无关命令批量执行，以减少多个命令分别执行带来的网络交互时间。在一些批量操作数据的场景，使用管道可以显著提升 Redis 的读写性能。
 
-![](/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)<!--more-->
+![预览图](http://img1.fanhaobai.com/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)<!--more-->
 
 ## 原理演示
 
 Redis 的管道实质就是命令打包批量执行，多次网络交互减少到单次。使用管道和不使用管道时的交互过程如下：
 
-![](/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)
+![原理图](http://img2.fanhaobai.com/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)
 
 我们使用 nc 命令来直观感受下 Redis 管道的使用过程：
 

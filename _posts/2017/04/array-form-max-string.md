@@ -13,7 +13,7 @@ categories:
 
 ![预览图](https://img5.fanhaobai.com/2017/04/array-form-max-string/57f35c24-2eeb-4c68-bf28-0771b11cad34.png)<!--more-->
 
-本文废话较多，可以直接跳转到 [编码实现](/2017/04/array-form-max-string.html#编码实现) 部分。
+本文废话较多，可以直接跳转到 [编码实现](#编码实现) 部分。
 
 ## 背景描述 ##
 
