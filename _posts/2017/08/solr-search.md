@@ -429,6 +429,6 @@ $result = $client->select($query);
 
 到这里，Solr 系列就整理完毕了，未涉及的部分后续接触时再补充。这两天利用休息时间充电，自己在 Solr 方面的技能也算是上了一个台阶了。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [Solr的使用 — 部署和数据推送](https://www.fanhaobai.com/2017/08/solr-install-push.html) <span>（2017-08-12）</span>

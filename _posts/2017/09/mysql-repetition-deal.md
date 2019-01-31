@@ -26,7 +26,7 @@ INSERT INTO `allowed_user` (`uid`, `last_time`) VALUES ('8e9b8c14-fae8-49d4-bbac
 
 ## Replace Into
 
-Replace Into 方式的行为为当存在 Unique 相同的记录，则 [覆盖]() 原有记录。实则为 Delete 和 Insert 两组合的原子操作，会改变该条记录的主键。
+Replace Into 方式的行为为当存在 Unique 相同的记录，则 [覆盖](#) 原有记录。实则为 Delete 和 Insert 两组合的原子操作，会改变该条记录的主键。
 
 ```SQL
 REPLACE INTO `allowed_user` (`uid`, `last_time`) VALUES ('8e9b8c14-fae8-49d4-bbac-a733c09ec82f', '2017-09-01 19:31:15')

@@ -2,7 +2,7 @@ title: 关于
 layout: about
 date: 2016-02-10
 ---
-[本站所有文章，仅代表个人思想，与其他任何个人或组织无关！]()
+[本站所有文章，仅代表个人思想，与其他任何个人或组织无关！](#)
 
 ## 个人介绍
 
@@ -11,7 +11,7 @@ date: 2016-02-10
 ### 联系我
 
 * <i class="fa fa-envelope"></i> [i@fanhaobai.com](mailto:i@fanhaobai.com)
-* <i class="fa fa-qq"></i> [292476774]()
+* <i class="fa fa-qq"></i> [292476774](#)
 
 ### 学习方法
 
@@ -44,9 +44,8 @@ date: 2016-02-10
 ## 站点导航
 
 * 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
-* Wiki 站，[wiki.fanhaobai.com](https://wiki.fanhaobai.com)
+* Wiki 站，[wiki.fanhaobai.com](http://wiki.fanhaobai.com)
 * Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
-* Redis 管理工具 phpRedisAdmin，[admin.fanhaobai.com](https://admin.fanhaobai.com)
 * 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
 * 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
 * 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）

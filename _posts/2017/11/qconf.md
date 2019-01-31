@@ -166,6 +166,6 @@ QConf 除了存储配置的基本功能外，还在公司内提供了一套简�
 
 QConf 因为其对配置信息的定位，使得整个结构非常简单，容易部署和使用。在 Github 可以找到完整代码，[QConf Source Code](https://github.com/Qihoo360/QConf) 欢迎关注。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [配置管理服务横向对比 ](http://www.cnblogs.com/zhangxh20/p/5464103.html)

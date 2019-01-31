@@ -40,7 +40,7 @@ categories:
 
 那么大致猜测可能导致的原因是：调用登录接口的请求（①处）和跳转到成功回调地址的请求（②处）的 COOKIE 不一致或者丢失，导致存于 COOKIE 中的 SessionID 不一致或者丢失，无法获取到当前已登录用户的登录状态（③处）。
 
-通过询问公司后台 JAVA 开发人员，得知他们是通过 AJAX 调用我提供的登录接口，那么接下来工作就是需要让登录 [问题复现]() 。
+通过询问公司后台 JAVA 开发人员，得知他们是通过 AJAX 调用我提供的登录接口，那么接下来工作就是需要让登录 [问题复现](#) 。
 
 # 问题复现
 
@@ -155,7 +155,7 @@ Referer:http://company.vxin365.com/index.php/home/login/index
 User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36
 ```
 
-可以看出第二次请求登录接口，也并未带上 COOKIE 信息，那么就验证了导致登录失败原因是：[由于 AJAX 跨域请求，默认是不获取和设置 COOKIE 信息的]() 。
+可以看出第二次请求登录接口，也并未带上 COOKIE 信息，那么就验证了导致登录失败原因是：[由于 AJAX 跨域请求，默认是不获取和设置 COOKIE 信息的](#) 。
 
 
 # 解决问题

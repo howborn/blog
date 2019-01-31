@@ -10,13 +10,13 @@ categories:
 
 Redis 的 [管道](https://redis.io/topics/pipelining) （pipelining）是用来打包多条无关命令批量执行，以减少多个命令分别执行带来的网络交互时间。在一些批量操作数据的场景，使用管道可以显著提升 Redis 的读写性能。
 
-![](/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)<!--more-->
+![预览图](http://img1.fanhaobai.com/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)<!--more-->
 
 ## 原理演示
 
 Redis 的管道实质就是命令打包批量执行，多次网络交互减少到单次。使用管道和不使用管道时的交互过程如下：
 
-![](/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)
+![原理图](http://img2.fanhaobai.com/2017/08/redis-pipelining/abc8ae13-9f76-4cd0-902d-a4fbb9fedd4f.png)
 
 我们使用 nc 命令来直观感受下 Redis 管道的使用过程：
 
@@ -87,7 +87,7 @@ echo '时间：', nowTime() - $start, 'ms', PHP_EOL;
 时间：39ms
 ```
 
-执行所用时间：[39ms]()
+执行所用时间：[39ms](#)
 
 
 ### 使用管道
@@ -107,7 +107,7 @@ echo '时间：', nowTime() - $start, 'ms', PHP_EOL;
 时间：6ms
 ```
 
-使用管道后，执行时间显著地减少为：[6ms]()。使用 tcpdump 抓取打包后的命令如下：
+使用管道后，执行时间显著地减少为：[6ms](#)。使用 tcpdump 抓取打包后的命令如下：
 
 ```Tcp
 10:45:03.029049 IP localhost.58176 > localhost.6379: Flags [P.], seq 2255478840:2255479211, ack 3144685411, win 342, options [nop,nop,TS val 17640474 ecr 17640474], length 371
@@ -130,7 +130,7 @@ $7
 ## 适用场景
 
 在批量操作（查询和写入）数据时，我们应尽量避免多次跟 Redis 的网络交互。这时，可以使用管道实现，也可以 Redis 内嵌 Lua 脚本实现。**需要注意的是**：
-* [管道只适用于无因果关联的多命令操作]()，否则就需要借助 Lua 脚本实现批量操作；
+* [管道只适用于无因果关联的多命令操作](#)，否则就需要借助 Lua 脚本实现批量操作；
 * 在实际应用中，Redis 往往不可能是单机部署，如果想要在集群中使用管道，可以部署为一主多从架构，此时所有节点的数据都一致，随机选取节点使用管道即可；
 
 ## 总结

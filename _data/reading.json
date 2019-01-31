@@ -68,6 +68,13 @@
         "review": "",
         "score": "7.9",
         "doubanLink": "https://book.douban.com/subject/25723064/"
+      },
+      {
+        "title": "程序员面试笔试宝典",
+        "cover": "https://img0.fanhaobai.com/douban/lpic/s23121995.jpg",
+        "review": "",
+        "score": "8.0",
+        "doubanLink": "https://book.douban.com/subject/20270192/"
       }
     ],
     "reading": [
@@ -95,11 +102,11 @@
     ],
     "wanted": [
       {
-        "title": "程序是怎样跑起来的",
-        "cover": "https://img0.fanhaobai.com/douban/lpic/s28047380.jpg",
+        "title": "高扩展性网站的50条原则",
+        "cover": "https://img0.fanhaobai.com/douban/lpic/s9126724.jpg",
         "review": "",
-        "score": "8.0",
-        "doubanLink": "https://book.douban.com/subject/26365491/"
+        "score": "7.5",
+        "doubanLink": "https://book.douban.com/subject/10756899/"
       },
       {
         "title": "代码大全（第2版）",
@@ -107,13 +114,6 @@
         "review": "",
         "score": "9.3",
         "doubanLink": "https://book.douban.com/subject/1477390/"
-      },
-      {
-        "title": "剑指Offer",
-        "cover": "https://img2.fanhaobai.com/douban/lpic/s27991506.jpg",
-        "review": "",
-        "score": "9.2",
-        "doubanLink": "https://book.douban.com/subject/25910559/"
       },
       {
         "title": "代码整洁之道",
@@ -130,18 +130,11 @@
         "doubanLink": "https://book.douban.com/subject/1148282/"
       },
       {
-        "title": "数学之美",
-        "cover": "https://img5.fanhaobai.com/douban/lpic/s27653128.jpg",
+        "title": "剑指Offer",
+        "cover": "https://img2.fanhaobai.com/douban/lpic/s27991506.jpg",
         "review": "",
-        "score": "9.0",
-        "doubanLink": "https://book.douban.com/subject/26163454/"
-      },
-      {
-        "title": "程序员面试笔试宝典",
-        "cover": "https://img0.fanhaobai.com/douban/lpic/s23121995.jpg",
-        "review": "",
-        "score": "8.0",
-        "doubanLink": "https://book.douban.com/subject/20270192/"
+        "score": "9.2",
+        "doubanLink": "https://book.douban.com/subject/25910559/"
       },
       {
         "title": "算法图解",
@@ -156,6 +149,13 @@
         "review": "",
         "score": "8.1",
         "doubanLink": "https://book.douban.com/subject/25930025/"
+      },
+      {
+        "title": "数学之美",
+        "cover": "https://img0.fanhaobai.com/douban/lpic/s29961188.jpg",
+        "review": "",
+        "score": "8.9",
+        "doubanLink": "https://book.douban.com/subject/26163454/"
       }
     ]
   }

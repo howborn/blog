@@ -217,7 +217,7 @@ echo $path->getDistance(), ' ', implode('-', $path->getPath()), PHP_EOL;
 
 本问题是求无向图源点的最短路径，时间复杂度为 $O(n^2)$，若求解有向图源点的最短路径，只需将相邻顶点的逆向路径置为 ∞，即修改初始图的矩阵。不得不说的是，比求单源点最短路径更加复杂的求某一对顶点的最短路径问题，也可以以每一个顶点为源点使用 Dijkstra 算法求解，但是有更加简洁的 [Floyd](https://zh.wikipedia.org/wiki/Floyd-Warshall%E7%AE%97%E6%B3%95) 算法。
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [王者编程大赛之一](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1.html) <span>（2017-12-05）</span>
 * [王者编程大赛之二 — 蓄水池](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html) <span>（2017-12-05）</span>

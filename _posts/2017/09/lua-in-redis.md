@@ -15,7 +15,7 @@ Redis 从 2.6 版本起，也已开始支持 [Lua 脚本](https://redis.io/comma
 
 ## 为什么要使用Lua
 
-我们先看一个抢购场景下 [商品库存]() 的问题，用 PHP 可简单实现为：
+我们先看一个抢购场景下 [商品库存](#) 的问题，用 PHP 可简单实现为：
 
 ```PHP
 $key = 'number:string';
@@ -28,7 +28,7 @@ $redis->decr($key);
 return $number--;
 ```
 
-这段代码其实存在问题，高并发时会出现库存超卖的情况，因为上述操作在 Redis 中不是原子操作，会导致库存逻辑的判断失效。尽管可以通过优化代码来解决问题，比如使用 [Decr]() 原子操作命令、或者使用 [锁]() 的方式，但这里使用 Lua 脚本来解决。
+这段代码其实存在问题，高并发时会出现库存超卖的情况，因为上述操作在 Redis 中不是原子操作，会导致库存逻辑的判断失效。尽管可以通过优化代码来解决问题，比如使用 [Decr](#) 原子操作命令、或者使用 [锁](#) 的方式，但这里使用 Lua 脚本来解决。
 
 ```Lua
 local key = 'number:string'
@@ -44,9 +44,9 @@ return number--
 
 Redis 中嵌入 Lua 脚本，所具有的几个特性为：
 
-* [原子操作]()：Redis 将整个 Lua 脚本作为一个原子执行，无需考虑并发，无需使用事务来保证数据一致性；
-* [高性能]()：嵌入 Lua 脚本后，可以减少多个命令执行的网络开销，进而间接提高 Redis 性能；
-* [可复用]()：Lua 脚本会保存于 Redis 中，客户端都可以使用这些脚本；
+* [原子操作](#)：Redis 将整个 Lua 脚本作为一个原子执行，无需考虑并发，无需使用事务来保证数据一致性；
+* [高性能](#)：嵌入 Lua 脚本后，可以减少多个命令执行的网络开销，进而间接提高 Redis 性能；
+* [可复用](#)：Lua 脚本会保存于 Redis 中，客户端都可以使用这些脚本；
 
 ## 在Redis中嵌入Lua
 
@@ -56,8 +56,8 @@ Redis 中嵌入 Lua 脚本，所具有的几个特性为：
 
 Redis 提供了 EVAL（直接执行脚本） 和 EVALSHA（执行 SHA1 值的脚本） 这两个命令，可以使用内置的 Lua 解析器执行 Lua 脚本。语法格式为：
 
-* [EVAL]()  script  numkeys  key [key ...]  arg [arg ...] 
-* [EVALSHA]()  sha1  numkeys  key [key ...]  arg [arg ...] 
+* [EVAL](#)  script  numkeys  key [key ...]  arg [arg ...] 
+* [EVALSHA](#)  sha1  numkeys  key [key ...]  arg [arg ...] 
 
 参数说明：
 
@@ -87,7 +87,7 @@ EVAL 命令的使用示例：
 
 > Redis 中执行 Lua 脚本都是以原子方式执行，所以是原子操作。另外，redis-cli 命令行客户端支持直接使用`--eval lua_file`参数执行 Lua 脚本。
 
-Redis 中有关脚本的命令除了 EVAL 和 EVALSHA 外，[其他常用命令]() 如下：
+Redis 中有关脚本的命令除了 EVAL 和 EVALSHA 外，[其他常用命令](#) 如下：
 
 | 命令                                | 描述                           |
 | --------------------------------- | ---------------------------- |
@@ -122,7 +122,7 @@ Lua 到 Redis 类型转换与 Redis 到 Lua 类型转换相同部分关系：
 (nil)
 ```
 
-需要注意的是，从 Lua 转化为 Redis 类型比 Redis 转化为 Lua 类型多了一条 [额外]() 规则：
+需要注意的是，从 Lua 转化为 Redis 类型比 Redis 转化为 Lua 类型多了一条 [额外](#) 规则：
 
 | Lua 类型       | Redis 返回类型 | 说明     |
 | ------------ | ---------- | ------ |
@@ -133,7 +133,7 @@ Lua 到 Redis 类型转换与 Redis 到 Lua 类型转换相同部分关系：
 (integer) 1
 ```
 
-总而言之，[类型转换的原则]() 是将一个 Redis 值转换成 Lua 值，之后再将转换所得的 Lua 值转换回 Redis 值，那么这个转换所得的 Redis 值应该和最初时的 Redis 值一样。
+总而言之，[类型转换的原则](#) 是将一个 Redis 值转换成 Lua 值，之后再将转换所得的 Lua 值转换回 Redis 值，那么这个转换所得的 Redis 值应该和最初时的 Redis 值一样。
 
 ### 全局变量保护
 
@@ -233,7 +233,13 @@ end
 return users
 ```
 
-<strong>相关文章 [»]()</strong>
+## 注意事项
+
+虽然使用 Lua 脚本给我们带来了许多便利，但是需要注意几个使用事项：
+* Lua 脚本在执行时是阻塞的，不应该在 Lua 脚本中有耗时的处理逻辑；
+* 在集群模式时，Lua 脚本必须使用参数 key 传递需操作的 Redis 的 key，且要求所操作的 key 都在同一个 slot 节点上，可以使用以`{}`标记的 hash tag 方式解决。
+
+<strong>相关文章 [»](#)</strong>
 
 * [进入Lua的世界](https://www.fanhaobai.com/2017/09/lua.html) <span>（2017-09-03）</span>
 * [Lua在Nginx的应用](https://www.fanhaobai.com/2017/09/lua-in-nginx.html) <span>（2017-09-09）</span>

@@ -277,7 +277,7 @@ REST Client 工具用来调试 API，点击“Tools >> Test RESTful Web Service�
 
 ![](https://img1.fanhaobai.com/2017/05/phpstorm-posture/711dbc8e-3e30-11e8-b467-0ed5f89f718b.png)
 
-<strong>更新 [»]()</strong>
+<strong>更新 [»](#)</strong>
 * [Database](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Database)（2017-08-06）
 * [Git](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Git)（2017-08-06）
 * [Xdebug](https://www.fanhaobai.com/2017/05/phpstorm-posture.html#Xdebug)（2017-09-01）

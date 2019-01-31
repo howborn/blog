@@ -185,7 +185,7 @@ categories:
 
 ![](https://img2.fanhaobai.com/2017/07/b-/397c217f-b0bf-4a11-84b4-34b82d2c6642.jpg)
 
-<strong>漫画算法系列 [»]()</strong>
+<strong>漫画算法系列 [»](#)</strong>
 
 * [漫画算法：最小栈的实现](http://mp.weixin.qq.com/s?__biz=MzI1MTIzMzI2MA==&mid=2650560419&idx=1&sn=535073d4d69cf7fc45074ccb8c25ba1e&chksm=f1fee120c68968367597137515f21ef8d7a8ab68c9f4fce051dae5f2631afdc48ec11a30dd0e&scene=21#wechat_redirect)
 * [漫画算法：判断 2 的乘方](http://mp.weixin.qq.com/s?__biz=MzI1MTIzMzI2MA==&mid=2650560448&idx=1&sn=b4ca3d01a438fac78be4077f270974ca&chksm=f1fee143c6896855179eff005164be47c7c662d4c8badf571a79c4acd9e2aca9fd84839ca093&scene=21#wechat_redirect)

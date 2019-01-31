@@ -142,6 +142,6 @@ $ redis-cli                                   #连接redis
 
 [phpRedisAdmin](https://github.com/erikdubbelboer/phpRedisAdmin) 是用 PHP 开发的一款 WEB 版 Redis 管理工具，支持权限认证，使用也极为方便。
 
-**更新 [»]()**
+**更新 [»](#)**
 
 * [图形化工具](#图形化工具)<span>（2017-06-24）</span>

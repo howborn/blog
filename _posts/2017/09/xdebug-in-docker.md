@@ -48,7 +48,7 @@ E: Could not connect to client. :-(
 
 ## 分析问题
 
-查看这些问题表述，基本上可以定位为 Xdebug 和 PhpStorm 之间的 [网络通信]() 问题，接下来一步步定位具体问题。
+查看这些问题表述，基本上可以定位为 Xdebug 和 PhpStorm 之间的 [网络通信](#) 问题，接下来一步步定位具体问题。
 
 ### 排查本地9001端口
 
@@ -107,7 +107,7 @@ E..(.]@.@..M........#).........-P....B..
 
 ![](https://www.fanhaobai.com/2017/09/xdebug-in-docker/6d0a816e-54b9-4061-83a2-fd4e8a2f3d8f.gif)
 
-由于 IDE 的 IP 未知或者 IDE 存在多个 ，那么 Xdebug 无法提前预知 DBGP 交互时的目标 IP，所以不能直接配置 xdebug.remote_host 项（remote_port 项可以确定），必须设置 [xdebug.remote_connect_back](https://xdebug.org/docs/all_settings#remote_connect_back) 为 On 标识（会忽略 xdebug.remote_host 项）。这时，Xdebug 会优先获取 [HTTP_X_FORWARDED_FOR]() 和 [REMOTE_ADDR]() 中的一个值作为通信时 IDE 端的目标 IP，通过`Xdebug.log`记录可以确认。
+由于 IDE 的 IP 未知或者 IDE 存在多个 ，那么 Xdebug 无法提前预知 DBGP 交互时的目标 IP，所以不能直接配置 xdebug.remote_host 项（remote_port 项可以确定），必须设置 [xdebug.remote_connect_back](https://xdebug.org/docs/all_settings#remote_connect_back) 为 On 标识（会忽略 xdebug.remote_host 项）。这时，Xdebug 会优先获取 [HTTP_X_FORWARDED_FOR](#) 和 [REMOTE_ADDR](#) 中的一个值作为通信时 IDE 端的目标 IP，通过`Xdebug.log`记录可以确认。
 
 ```PHP
 I: Checking remote connect back address.
@@ -142,7 +142,7 @@ Accept-Encoding: gzip,deflate
 
 ## 解决问题
 
-由于 Docker 容器里获取真正客户端 IP 比较复杂，这里使用 Xdebug 的 [远程模式 1]() 明确 IDE 端 IP 来规避源 IP 被修改的情况，最终解决 Xdebug 调试问题。
+由于 Docker 容器里获取真正客户端 IP 比较复杂，这里使用 Xdebug 的 [远程模式 1](#) 明确 IDE 端 IP 来规避源 IP 被修改的情况，最终解决 Xdebug 调试问题。
 
 模式 1 的 Xdebug 主要配置为：
 

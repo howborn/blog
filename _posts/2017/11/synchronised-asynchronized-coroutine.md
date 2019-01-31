@@ -240,9 +240,9 @@ Swoole 在 2.0 开始内置协程（Coroutine）的能力，提供了具备协�
 
 ## 四、协程与异步和并发的联系
 
-[协程与异步]()：协程并不是说替换异步，协程一样可以利用异步实现高并发。 
+[协程与异步](#)：协程并不是说替换异步，协程一样可以利用异步实现高并发。 
 
-[协程与并发]()：协程要利用多核优势就需要比如通过调度器来实现多协程在多线程上运行，这时也就具有了并行的特性。如果多协程运行在单线程或单进程上也就只能说具有并发特性。
+[协程与并发](#)：协程要利用多核优势就需要比如通过调度器来实现多协程在多线程上运行，这时也就具有了并行的特性。如果多协程运行在单线程或单进程上也就只能说具有并发特性。
 
 ## 五、引用
 * [协程 - 廖雪峰的官方网站](http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0013868328689835ecd883d910145dfa8227b539725e5ed000)
@@ -259,7 +259,7 @@ Swoole 在 2.0 开始内置协程（Coroutine）的能力，提供了具备协�
 * [http://callbackhell.com/](http://callbackhell.com/)
 * [http://www.ruanyifeng.com/blog/2016/12/user_space_vs_kernel_space.html](http://www.ruanyifeng.com/blog/2016/12/user_space_vs_kernel_space.html)
 
-<strong>相关文章 [»]()</strong>
+<strong>相关文章 [»](#)</strong>
 
 * [用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) <span>（2018-08-28）</span>
 * [用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html) <span>（2018-09-02）</span>
