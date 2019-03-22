@@ -1,3 +1,4 @@
+---
 title: 关于
 layout: about
 date: 2016-02-10
