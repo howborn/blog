@@ -68,9 +68,9 @@ categories:
 
 #### 机制原理
 
-![透传地区标识机制](https://img3.fanhaobai.com/2019/02/multi-currency-price/4ff6ceb3-44c9-4edf-bfdb-23cf50b22c6f.png)
-
 思路就是，先将地区标识放在全局上下文中，API 接口通过 Header 头`X-Location`携带地区标识；而对于 RPC 接口，我们的 RPC 框架已支持了 Context，不需要改造。
+
+![透传地区标识机制](https://img3.fanhaobai.com/2019/02/multi-currency-price/4ff6ceb3-44c9-4edf-bfdb-23cf50b22c6f.png)
 
 #### 代码实现
 
@@ -200,7 +200,7 @@ class ReadBase
     
     public function getAll(array $cond, $fields)
     {
-        $data = $this->getReader()->select($this->getFields($fields))->from($this->getTableName())->where($cond)->queryRow();
+        $data = $this->getReader()->select($this->getFields($fields))->from($this->getTableName())->where($cond)->queryAll();
         
         if ($data) {
             foreach ($data as &$one) {
