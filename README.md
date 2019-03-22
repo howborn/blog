@@ -11,6 +11,7 @@
 
 ### 架构
 
+* [商品价格的多币种方案](https://www.fanhaobai.com/2019/02/multi-currency-price.html)（2018-03-03）
 * [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)（2018-03-03）
 * [自如2018新年活动系统 — 抢红包](https://www.fanhaobai.com/2018/01/2018-new-year-activity.html)（2018-01-30）
 * [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html)（2017-12-22）
