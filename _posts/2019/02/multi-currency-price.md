@@ -288,7 +288,7 @@ public static function getExchangePrice($price)
 }
 ```
 
-其中，`getExchangePrice()`方法会调用`Location::getLocation()`获取地区标识，并根据汇率计算实时价格。
+其中，`getExchangePrice()`方法会调用`Location::get()`获取地区标识，并根据汇率计算实时价格。
 
 最终，商品中心改造后，得到的部分商品价格信息，如下：
 
