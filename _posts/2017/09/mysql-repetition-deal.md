@@ -1,5 +1,5 @@
 ---
-title: MySQL中处理重复数据的方法
+title: MySQL中处理重复数据
 date: 2017-09-02 13:53:49
 tags:
 - MySQL
