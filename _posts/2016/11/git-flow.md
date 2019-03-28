@@ -7,7 +7,7 @@ categories:
 - 工具
 ---
 
-> 原文：http://www.ruanyifeng.com/blog/2012/07/git.html
+> 原文：阮一峰老师的 [《Git分支管理策略》](http://www.ruanyifeng.com/blog/2012/07/git.html)
 
 如果你严肃对待编程，就必定会使用 "[版本管理系统](http://www.ruanyifeng.com/blog/2008/12/a_visual_guide_to_version_control.html)"（Version Control System）。眼下最流行的"版本管理系统"，非 [Git](http://git-scm.com/) 莫属。
 

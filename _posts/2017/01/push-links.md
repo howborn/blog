@@ -106,5 +106,4 @@ echo $result;
 
 <strong>相关文章 [»](#)</strong>
 
-* [自动更新站点地图的部署](https://www.fanhaobai.com/2017/01/update-sitemap.html) <span>（2017-01-16）</span>
 * [Robots协议的那些事](https://www.fanhaobai.com/2017/01/robots.html) <span>（2017-01-12）</span>
