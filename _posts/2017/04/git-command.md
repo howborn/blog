@@ -7,7 +7,7 @@ categories:
 - 工具
 ---
 
-> 原文：http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
+> 原文：阮一峰老师的 [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 我每天使用 Git ，但是很多命令记不住。一般来说，日常使用只要记住下图 6 个命令，就可以了。但是熟练使用，恐怕要记住 60～100 个命令。
 
@@ -89,7 +89,7 @@ $ git commit --amend [file1] [file2] ...
 
 ### 提交规范
 
-> 来自阮一峰的 [《Commit message 和 Change log 编写指南》](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+> 来自阮一峰老师的 [《Commit message 和 Change log 编写指南》](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
 
 每次提交，Commit 的 message 都包括三个部分：Header，Body 和 Footer。
 
@@ -109,7 +109,6 @@ Header 部分只有一行，包括三个字段：type（必需）、scope（可�
 
 type 用于说明 commit 的类别，只允许使用下面 7 个标识。
 
-```HTML
 * feat：新功能（feature）
 * fix：修补bug
 * docs：文档（documentation）
@@ -117,7 +116,6 @@ type 用于说明 commit 的类别，只允许使用下面 7 个标识。
 * refactor：重构（即不是新增功能，也不是修改bug的代码变动）
 * test：增加测试
 * chore：构建过程或辅助工具的变动
-```
 
 如果 type 为 feat 和 fix，则该 commit 将肯定出现在 Change log 之中。其他情况（docs、chore、style、refactor、test）由你决定，要不要放入 Change log，建议是不要。
 
