@@ -7,6 +7,13 @@
   "contents": {
     "readed": [
       {
+        "title": "Go语言编程",
+        "cover": "https://img3.fanhaobai.com/douban/lpic/s11162016.jpg",
+        "review": "",
+        "score": "7.1",
+        "doubanLink": "https://book.douban.com/subject/11577300/"
+      },
+      {
         "title": "Head First设计模式",
         "cover": "https://img4.fanhaobai.com/douban/lpic/s2414323.jpg",
         "review": "",
@@ -85,13 +92,6 @@
       }
     ],
     "reading": [
-      {
-        "title": "Go语言编程",
-        "cover": "https://img3.fanhaobai.com/douban/lpic/s11162016.jpg",
-        "review": "",
-        "score": "7.1",
-        "doubanLink": "https://book.douban.com/subject/11577300/"
-      },
       {
         "title": "算法之美",
         "cover": "https://img3.fanhaobai.com/douban/lpic/s29762735.jpg",
