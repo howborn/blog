@@ -113,8 +113,6 @@ $ bin/elasticsearch-plugin install ingest-geoip
 $ bin/elasticsearch-plugin install ingest-user-agent
 # 用户管理和monitor管理
 $ bin/elasticsearch-plugin install x-pack
-# 修改用户密码
-$ bin/x-pack/setup-passwords interactive
 ```
 
 > 安装 x-pack 插件后，对 Elasticsearch 的操作都需要授权，默认用户名为 elastic，默认密码为 changeme。
@@ -155,8 +153,6 @@ server.host: "0.0.0.0"                      # 绑定地址
 server.name: "elk.fanhaobai.com"            # 域名
 elasticsearch.url: "http://127.0.0.1:9200"  # es
 kibana.index: ".kibana"                     # 索引名
-elasticsearch.username: "elastic"           # 用户名
-elasticsearch.password: "changeme"          # 密码
 ```
 
 安装常用插件，例如 x-pack：
@@ -277,9 +273,6 @@ path.data: /var/lib/logstash
 path.logs: /usr/share/logstash/logs
 # 配置
 path.config: /usr/share/logstash/config/conf.d
-# elasticsearch用户名和密码
-xpack.monitoring.elasticsearch.username: elastic
-xpack.monitoring.elasticsearch.password: changeme
 ```
 
 #### [配置管道](https://www.elastic.co/guide/en/logstash/current/event-dependent-configuration.html)
