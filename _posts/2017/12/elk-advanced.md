@@ -27,7 +27,7 @@ categories:
 
 ```Shell
 # 文件名前有@符号
-$ curl -XPOST -u elastic:changeme http://127.0.0.1:9200/_xpack/license/start_basic?acknowledge=true -H "Content-Type: application/json" -d @fan-haobai-dbc3f18c-f87e-40e4-9a1d-f496e58a591e-v5.json
+$ curl -XPOST http://127.0.0.1:9200/_xpack/license/start_basic?acknowledge=true -H "Content-Type: application/json" -d @fan-haobai-dbc3f18c-f87e-40e4-9a1d-f496e58a591e-v5.json
 # 返回如下信息则成功
 {"acknowledged":true,"basic_was_started":true}
 ```
@@ -235,8 +235,6 @@ output {
         index => "%{[@metadata][type]}-%{+YYYY.MM}"
         document_type => "%{[fields][env]}"
         template_name => "logstash"
-        user => "elastic"
-        password => "changeme"
     }
 }
 ```
@@ -376,10 +374,10 @@ PUT /_template/logstash
 配置定期清理过期日志的任务：
 
 ```Shell
-0 0 * * * /usr/bin/curl -u elastic:changeme  -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
+0 0 * * * /usr/bin/curl -H'Content-Type:application/json' -d'query' -XPOST "host/*/_delete_by_query?pretty" > path.log
 ```
 
-其中，`elastic`和`changeme`分别为 Elasticsearch 的用户名和密码，`query`为待清理日志的查询条件，`path.log`为日志文件路径。
+其中，`query`为待清理日志的查询条件，`path.log`为日志文件路径。
 
 > 该方式只是删除了过期的日志文档，并不会删除过期的索引信息，适用于对特定索引下的日志文档进行定期清理的场景。
 
@@ -397,8 +395,6 @@ SEARCH_PREG="nginx-www-access-20[0-9][0-9](\.[0-9]{2})+"
 KEEP_DAYS=7
 URL=http://es.fanhaobai.com
 PORT=
-USER=elastic
-PASSWORD=changeme
 
 date2stamp () {
     date --utc --date "$1" +%s
@@ -457,7 +453,7 @@ $ rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
 $ yum install -y elasticsearch-curator
 
 # 获取所有索引
-$ curator_cli --http_auth elastic:changeme --host es.fanhaobai.com --port 80 show_indices --verbose
+$ curator_cli --host es.fanhaobai.com --port 80 show_indices --verbose
 
 .kibana     open   15.7KB       3   1   0 2017-12-15T06:15:07Z
 ```
@@ -473,7 +469,6 @@ client:
   hosts:
     - es.fanhaobai.com         #集群配置形如["10.0.0.1", "10.0.0.2"]
   port: 80
-  http_auth: elastic:changeme  #授权信息
   url_prefix:
   use_ssl: false
   certificate:
