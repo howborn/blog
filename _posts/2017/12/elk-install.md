@@ -77,11 +77,9 @@ $ vim config/jvm.options
 
 ```Shell
 $ useradd elk
-$ chown -R elk:elk /usr/local/elk/elasticsearch
+$ chown -R elasticsearch /usr/local/elk/elasticsearch
 
 $ vim /etc/init.d/elasticsearch
-ES_USER="elk"
-ES_GROUP="elk"
 ES_HOME="/usr/local/elk/elasticsearch"
 MAX_OPEN_FILES=65536
 MAX_MAP_COUNT=262144
@@ -149,10 +147,7 @@ $ mv /etc/kibana/kibana.yml /usr/local/elk/kibana/config
 $ vim config/kibana.yml
 
 server.port: 5601                           # 监听端口
-server.host: "0.0.0.0"                      # 绑定地址
 server.name: "elk.fanhaobai.com"            # 域名
-elasticsearch.url: "http://127.0.0.1:9200"  # es
-kibana.index: ".kibana"                     # 索引名
 ```
 
 安装常用插件，例如 x-pack：
@@ -228,7 +223,7 @@ elk
 ```Shell
 $ mv /etc/logstash /usr/local/elk/logstash/config
 # 修改文件权限
-$ chown -R elk:elk /usr/local/elk/logstash
+$ chown -R logstash:logstash /usr/local/elk/logstash
 ```
 
 修改 JVM 内存大小，防止出现内存溢出异常：
@@ -249,8 +244,6 @@ home=/usr/share/logstash
 name=logstash
 program=$home/bin/logstash
 args=--path.settings\ $home/config
-user="elk"
-group="elk"
 # 添加启动
 $ chkconfig --add logstash
 $ chkconfig logstash on
