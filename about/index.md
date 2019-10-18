@@ -28,11 +28,11 @@ date: 2016-02-10
 
 ### 专业技能
 
-* 熟悉：PHP, Lua
-* 了解：Go, Shell, C, Python
+* 熟悉：Go, PHP, Shell, Lua
 * 数据库：MySQL, MongoDB
+* 消息：Kafka
 * 缓存：Redis
-* 搜索引擎：Solr, Elasticsearch
+* 搜索引擎：Elasticsearch, Solr
 
 点击 [这里](/project/)，查看更多信息。
 
