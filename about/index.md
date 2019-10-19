@@ -45,7 +45,7 @@ date: 2016-02-10
 ## 站点导航
 
 * 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
-* 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）
+* 消息队列 Kafka，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）
 * ELK 集中式日志平台，[elk.fanhaobai.com](http://elk.fanhaobai.com)（用户名 elastic，密码 elastic）
 * 二维码服务，[img.fanhaobai.com/qrcode.php](https://img5.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)
 
