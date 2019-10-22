@@ -28,11 +28,11 @@ date: 2016-02-10
 
 ### 专业技能
 
-* 熟悉：PHP, Lua
-* 了解：Go, Shell, C, Python
+* 熟悉：Go, PHP, Shell, Lua
 * 数据库：MySQL, MongoDB
+* 消息：Kafka
 * 缓存：Redis
-* 搜索引擎：Solr, Elasticsearch
+* 搜索引擎：Elasticsearch, Solr
 
 点击 [这里](/project/)，查看更多信息。
 
@@ -40,17 +40,12 @@ date: 2016-02-10
 
 本站的更新历程，见 [本站特性](https://www.fanhaobai.com/about-site/)。
 
-<div class="row"><div class="col m3 s4">![](https://img0.fanhaobai.com/about/index/O_tDRRtwdgwUJGleCTb-fJvl.jpg)</div><div class="col m3 s4">![](https://img1.fanhaobai.com/about/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](https://img2.fanhaobai.com/about/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](https://img3.fanhaobai.com/about/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](https://img4.fanhaobai.com/about/index/vvZnp6Cdl4KDz02shzLvJsfN.png)</div><div class="col m3 s4">![](https://img5.fanhaobai.com/about/index/C6ADglLNRxwYUdhfid1qzI1u.jpg)</div><div class="col m3 s4">![](https://img0.fanhaobai.com/about/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](https://img1.fanhaobai.com/about/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](https://img2.fanhaobai.com/about/index/ds31b8RAFgTPJ65AAY7esGe2.jpg)</div><div class="col m3 s4">![](https://img3.fanhaobai.com/about/index/0f32aeff3ccf8e5dc3d196ee8fd4.png)</div><div class="col m3 s4">![](https://img4.fanhaobai.com/about/index/019c7ef7-d0a1-4585-ab37-02f850954bcb.jpg)</div><div class="col m3 s4">![](https://img5.fanhaobai.com/about/index/67d33f0b-45b1-4f3c-8f4e-c55dff9b4cc8.png)</div><div class="col m3 s4">![](https://img0.fanhaobai.com/about/index/7fbbc22c-3a0f-466b-87bb-d8d27367c419.gif)</div><div class="col m3 s4">![](https://img1.fanhaobai.com/about/index/7e4fd599-07ac-4eac-8711-eae8a8f2efb9.png)</div><div class="col m3 s4">![](https://img2.fanhaobai.com/about/index/fa0fed17-ed7c-4cd4-aff1-665423bc99b9.png)</div><div class="col m3 s4">![](https://img3.fanhaobai.com/about/index/b1e2f482-5c77-4336-a083-e3a8dea6069b.png)</div><div class="col m3 s4">![](https://img4.fanhaobai.com/about/index/7f5c2e7f-2dc8-46eb-9867-ca1c3fbd5fda.jpg)</div></div>
+<div class="row"><div class="col m3 s4">![](https://img0.fanhaobai.com/about/index/6e6ade44-bc83-4a25-8b36-b41c5a0186a0.jpg)</div><div class="col m3 s4">![](https://img1.fanhaobai.com/about/index/oIvyC4BVfC358zcqI3_8kQua.png)</div><div class="col m3 s4">![](https://img2.fanhaobai.com/about/index/7fbbc22c-3a0f-466b-87bb-d8d27367c419.gif)</div><div class="col m3 s4">![](https://img3.fanhaobai.com/about/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg)</div><div class="col m3 s4">![](https://img4.fanhaobai.com/about/index/9fPXD11M-qsaym50SNAkwFl_.png)</div><div class="col m3 s4">![](https://img3.fanhaobai.com/about/index/UtjFTjHOIYx92yaA6wsdh0GD.png)</div><div class="col m3 s4">![](https://img1.fanhaobai.com/about/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg)</div><div class="col m3 s4">![](https://img5.fanhaobai.com/about/index/8aded4ae-807e-41fa-913d-5f28726a447d.png)</div><div class="col m3 s4">![](https://img0.fanhaobai.com/about/index/O_tDRRtwdgwUJGleCTb-fJvl.jpg)</div><div class="col m3 s4">![](https://img4.fanhaobai.com/about/index/98857854-705b-4306-a360-a32f78d87390.png)</div><div class="col m3 s4">![](https://img2.fanhaobai.com/about/index/ffd01abc-1dc8-41b9-b6c4-004f779dddf3.png)</div></div>
 
 ## 站点导航
 
 * 主站 Blog，[www.fanhaobai.com](https://www.fanhaobai.com)
-* Wiki 站，[wiki.fanhaobai.com](http://wiki.fanhaobai.com)
-* Composer 私有仓库，[packagist.fanhaobai.com](http://packagist.fanhaobai.com)
-* 搜索引擎 Solr，[solr.fanhaobai.com](http://solr.fanhaobai.com)
-* 搜索引擎 Elasticsearch，[es.fanhaobai.com](http://es.fanhaobai.com)
-* 消息队列 RabbitMQ，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）
-* Supervisor 管理面板，[supervisor.fanhaobai.com](http://supervisor.fanhaobai.com)（用户名 admin，密码 fhb）
+* 消息队列 Kafka，[mq.fanhaobai.com](http://mq.fanhaobai.com)（用户名 guest，密码 guest）
 * ELK 集中式日志平台，[elk.fanhaobai.com](http://elk.fanhaobai.com)（用户名 elastic，密码 elastic）
 * 二维码服务，[img.fanhaobai.com/qrcode.php](https://img5.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)
 
