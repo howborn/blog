@@ -65,7 +65,7 @@ INSERT IGNORE INTO `allowed_user` (`uid`, `last_time`) VALUES ('8e9b8c14-fae8-49
 ```PHP
 try {
     $user = $model->query("SELECT * FROM `allowed_user` WHERE `uid` = '8e9b8c14-fae8-49d4-bbac-a733c09ec82f'");
-    if (user) {
+    if ($user) {
        $model->exec("UPDATE `allowed_user` SET `last_time` = '2017-09-01 19:50:15' WHERE `uid` = '8e9b8c14-fae8-49d4-bbac-a733c09ec82f'");
     } else {
        $model->exec("INSERT INTO `allowed_user` (`uid`, `last_time`) VALUES ('8e9b8c14-fae8-49d4-bbac-a733c09ec82f', '2017-09-01 19:50:15'");
