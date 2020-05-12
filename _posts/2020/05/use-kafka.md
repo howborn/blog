@@ -15,7 +15,7 @@ categories:
 
 ## 消息TOPIC
 
-根据不同业务，拆分不同的 TOPIC。
+根据不同业务，拆分不同的 Topic。
 
 ## 消息结构
 
