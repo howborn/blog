@@ -206,7 +206,7 @@ func (c *defaultConsumer) ConsumeClaim(session sarama.ConsumerGroupSession, clai
 
 ```Go
   consume.Listen("order-pay-sms", message.PaySms{}.Handle)
-  consume.Listen("order-pay-sms", message.PaySms{}.Handle)
+  consume.Listen("order-pay-wx", message.PayWx{}.Handle)
 ```
 
 ## 容错处理
