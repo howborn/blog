@@ -10,6 +10,7 @@ categories:
 
 在分布式系统中，常常使用消息系统进行系统解藕，并实现一些异步业务逻辑，保证系统最终数据一致性。这里主要介绍在实际中落地使用 Kafka 的一些事项。
 
+![预览图](https://img2.fanhaobai.com/2020/05/use-kafka/1589262505081.jpg)<!--more-->
 ![预览图](https://img2.fanhaobai.com/2020/05/use-kafka/1589262505081.jpg)
 
 ## 消息TOPIC
