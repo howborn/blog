@@ -114,7 +114,7 @@ func (h PaySms) Handle(msg *cevent.PbEventMessage) error {
    
    // 只消费自己关注的 Type 类型消息
    if !msg.Unmarshal(event, msg) {
-		return nil
+       return nil
    }
 
 
