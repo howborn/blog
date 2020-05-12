@@ -11,6 +11,7 @@
 
 ### 架构
 
+* [在分布式系统使用Kafka](https://www.fanhaobai.com/2020/05/use-kafka.html)（2020-05-12）
 * [商品价格的多币种方案](https://www.fanhaobai.com/2019/02/multi-currency-price.html)（2019-02-28）
 * [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)（2018-03-03）
 * [自如2018新年活动系统 — 抢红包](https://www.fanhaobai.com/2018/01/2018-new-year-activity.html)（2018-01-30）
