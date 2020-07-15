@@ -10,8 +10,8 @@ categories:
 
 网关（API Gateway）是请求流量的唯一入口，可以适配各类渠道和业务，处理各种协议接入、路由与报文转换、同步异步调用等，来管理 API 接口和进行请求流量控制，在微服务架构中，网关尤为重要。
 
-![预览图](https://img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.png)<!--more-->
-![预览图](https://img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.png)
+![预览图](https://img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.jpeg)<!--more-->
+![预览图](https://img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.jpeg)
 
 ## 背景
 
@@ -26,23 +26,18 @@ categories:
 #### 接口鉴权
 
 * 请求 5s 自动过期
-
 * 参数 md5 签名
-
 * 模块粒度的权限控制
 
 #### 接口版本控制
 
 * 支持转发到不同服务
-
 * 支持转发到同一个服务不同接口
 
 #### 事件回调
 
 * 事件订阅
-
 * 最大重试 3 次
-
 * 重试时间采用衰减策略（30s、60s、180s）
 
 ### 系统架构
@@ -51,7 +46,7 @@ categories:
 
 从事件回调请求链路来说，服务层通过 HTTP 协议发起事件回调请求到 OpenAPI 网关，并立即返回成功。OpenAPI 网关异步完成第三方渠道事件回调请求。 
 
-![系统架构](https://img2.fanhaobai.com/2020/07/openapi/f227c462-b9b9-4846-aeae-23c579b05087.png)
+![系统架构](https://img2.fanhaobai.com/2020/07/openapi/f227c462-b9b9-4846-aeae-23c579b05087.jpeg)
 
 ## 实现
 
@@ -64,9 +59,7 @@ categories:
 配置分为以下 3 类：
 
 * 第三方 AppId 配置
-
 * 内外 API 映射关系
-
 * 内部服务地址
 
 #### 配置结构
@@ -111,37 +104,35 @@ c、内外 API 映射关系
 签名采用 md5 加密方式，算法可描述为：
 
 1、将参数 p、m、a、t、v、ak、secret 的 值按顺序拼接，得到字符串；
-
 2、md5 第 1 步的字符串并截取前 16 位， 得到新字符串；
-
 3、将第 2 步的字符串转化为小写，即为签名；
 
 PHP 版的请求，如下：
 
 ```PHP
-  $appId = 'app id';
-  $appSecret = 'app secret';
-  $api = 'api method';
+$appId = 'app id';
+$appSecret = 'app secret';
+$api = 'api method';
 
-  // 业务参数
-  $businessParams = [
-      'orderId' => '123123132',
-  ];
+// 业务参数
+$businessParams = [
+  'orderId' => '123123132',
+];
 
-  $time = time();
-  $params = [
-      'p'  => json_encode($businessParams),
-      'm'  => 'inquiry',
-      'a'  => $api,
-      't'  => $time,
-      'v'  => 1,
-      'ak' => $appId,
-  ];
+$time = time();
+$params = [
+  'p'  => json_encode($businessParams),
+  'm'  => 'inquiry',
+  'a'  => $api,
+  't'  => $time,
+  'v'  => 1,
+  'ak' => $appId,
+];
 
-  $signStr = implode('', array_values($params)) . $appSecret;
-  $sign = strtolower(substr(md5($signStr), 0, 16));
+$signStr = implode('', array_values($params)) . $appSecret;
+$sign = strtolower(substr(md5($signStr), 0, 16));
 
-  $params['s'] = $sign;
+$params['s'] = $sign;
 ```
 
 #### 接口版本控制
