@@ -1,0 +1,9 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - "$PWD/dockerfiles/nginx/conf.d:/etc/nginx/conf.d"
+    container_name: "nginx"
