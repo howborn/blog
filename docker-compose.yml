@@ -8,3 +8,12 @@ services:
       - "$PWD/dockerfiles/nginx:/etc/nginx"
       - "/var/www/blog:/var/www/blog"
     container_name: "nginx"
+  hexo:
+    image: zeusro/hexo:latest
+    environment:
+      - PUBLIC_HEXO_GITHUB_URL=https://github.com/zeusro/docker-hexo.git
+    ports:
+      - "4000:4000"
+    volumes:
+      - "/var/www/blog:/var/www/blog"
+    container_name: "hexo"
