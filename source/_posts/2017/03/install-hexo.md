@@ -57,13 +57,13 @@ Hexo 提供的可选 [主题](https://hexo.io/themes/) 比较多，总有一款�
 # 进入博客目录
 $ cd yourblog
 # 克隆主题源码到hexo的themes文件夹下
-$ git clone https://github.com/fan-haobai/hexo-theme-yilia.git themes/hexo-theme-yilia
+$ git clone https://github.com/fan-haobai/hexo-theme-yilia.git themes/yilia
 ```
 
 最后一步，在`_config.yml`配置中启用新主题。
 
 ```Shell
-theme: hexo-theme-yilia
+theme: yilia
 ```
 
 关于主题的相关配置，参考主题源码中的 README.md 文档。
@@ -245,7 +245,7 @@ post_asset_folder: true
 Hexo 默认 URL 地址为`year/month/day/title/`形式，而这种形式并不友好，需更改为`year/month/title.html`形式。这里我已经将`source`目录下的 md 文件按`year/month`手动归档了，所以 Hexo 发布时只需要`title.html`这部分。配置如下：
 
 ```YAML
-permalink: title.html
+permalink: :title.html
 ```
 
 ## 去除代码块行号
@@ -311,23 +311,6 @@ deploy:
 
 # 自定义修改——非必须
 
-## 在文章摘要中加入预览图
-
-需修改文件`node_modules/hexo/lib/plugins/filter/after_post_render/excerpt.js`，内容修改为如下：
-
-```Js
-// 此处有更改
-content.replace(rExcerpt, function(match, index) {
-   data.excerpt = content.substring(0, index).trim();
-   data.more = content.substring(index + match.length).trim();
-   // 去掉img标签
-   data.content = data.excerpt.replace(/<img(.*)>/, '') + data.more;
-   return '<a id="more"></a>';
-});
-```
-
-**说明：**文章摘要预览图不会在文章正文中显示。
-
 ## 更好地支持Shell代码高亮
 
 由于 [highlight.js](#) 对 Shell 语法高亮解析效果并不理想，为此我对 [languages/shell.js](https://github.com/fan-haobai/highlight.js/blob/master/src/languages/shell.js) 部分做了修改来更好地支持 Shell，你只需要 [pull](https://github.com/fan-haobai/highlight.js) 并替换掉原 [languages/shell.js](#) 文件即可。
@@ -351,7 +334,7 @@ module.exports = function(hljs)
 
 ## 评论
 
-由于后来多说的关站，就再也找不到合适的第三方评论服务了。换来换去，最后还是觉得只有 [Disqus](https://disqus.com) 合适，但是需要先解决被墙的问题，不过 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案—— [disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
+换来换去，最后还是觉得只有 [Disqus](https://disqus.com) 合适，但是需要先解决被墙的问题，不过 [fooleap](https://github.com/fooleap) 已经提供了一个较好的解决方案—— [disqus-php-api](https://github.com/fooleap/disqus-php-ap)。你只需要 [pull](https://github.com/fan-haobai/disqus-php-api) 代码到境外服务器，部署一个 PHP 服务即可。
 
 我部署后域名为 [disqus.fanhaobai.com](https://disqus.fanhaobai.com)。首先在`layout/_partial/article.ejs`文件中追加以下内容：
 

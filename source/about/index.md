@@ -34,7 +34,7 @@ date: 2016-02-10
 * 缓存：Redis
 * 搜索引擎：Elasticsearch, Solr
 
-点击 [这里](/project/)，查看更多信息。
+点击 [这里](/source/project/)，查看更多信息。
 
 ## 本站特性
 

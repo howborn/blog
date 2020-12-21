@@ -11,7 +11,6 @@ categories:
 网关（API Gateway）是请求流量的唯一入口，可以适配各类渠道和业务，处理各种协议接入、路由与报文转换、同步异步调用等，来管理 API 接口和进行请求流量控制，在微服务架构中，网关尤为重要。
 
 ![预览图](https://img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.jpeg)<!--more-->
-![预览图](https://img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.jpeg)
 
 ## 背景
 
