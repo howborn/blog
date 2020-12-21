@@ -10,4 +10,4 @@ RUN echo "Asia/Shanghai" > /etc/timezone \
 
 EXPOSE 4000
 
-ENTRYPOINT ["sh","/build.sh"]
+ENTRYPOINT ["sh", "/build.sh"]

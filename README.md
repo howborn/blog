@@ -165,4 +165,4 @@
 * [Nginx错误日志的配置](https://www.fanhaobai.com/2017/01/nginx-error-log.html)（2017-01-14）
 * [CentOS6.5安装NodeJS](https://www.fanhaobai.com/2016/12/nodejs-install.html)（2016-12-10）
 
-本站所有的文章 Markdown 文件，请移步 [这里](https://github.com/fan-haobai/blog/tree/master/_posts)。
+本站所有的文章 Markdown 文件，请移步 [这里](https://github.com/fan-haobai/blog/tree/master/source/_posts)。
