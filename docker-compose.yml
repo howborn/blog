@@ -5,5 +5,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - "$PWD/dockerfiles/nginx/conf.d:/etc/nginx/conf.d"
+      - "$PWD/dockerfiles/nginx:/etc/nginx"
+      - "/var/www/blog:/var/www/blog"
     container_name: "nginx"
