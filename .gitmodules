@@ -1,3 +1,6 @@
 [submodule "themes/yilia"]
 	path = themes/yilia
 	url = https://github.com/fan-haobai/hexo-theme-yilia.git
+[submodule "disqus"]
+	path = disqus
+	url = https://github.com/fan-haobai/disqus-php-api.git
