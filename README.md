@@ -26,8 +26,6 @@ git submodule foreach git pull
 
 本项目采用 docker 管理代码运行环境，请先安装 [docker-compose](https://docs.docker.com/compose/)。
 
-构建环境命令：
-
 ```bash
 docker-compose up --force-recreate --build
 ```
