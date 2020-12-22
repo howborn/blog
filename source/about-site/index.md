@@ -46,7 +46,7 @@ date: 2016-12-11 13:12:10
 ```Nginx
 user www www;
 worker_processes  4;
-error_log  /data/logs/error.log;
+error_log  /var/logs/error.log;
 #worker_rlimit_nofile 655350;
 
 events {
@@ -61,7 +61,7 @@ http {
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for" "$request_body"';
-    access_log /data/logs/$server_name.access.log main;
+    access_log /var/logs/$server_name.access.log main;
     
     index index.html index.php;
     #错误页面
@@ -84,31 +84,21 @@ http {
     gzip_types text/plain application/x-javascript text/css application/xml application/json text/javascript application/x-httpd-php image/jpeg image/gif image/png;
     gzip_vary on;
     #https配置,全站同一个证书
-    ssl_certificate /data/ssl/chained.pem;
-    ssl_certificate_key /data/ssl/domain.key;
+    ssl_certificate /var/www/ssl/chained.pem;
+    ssl_certificate_key /var/www/ssl/domain.key;
     ssl_session_timeout 5m;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA;
     ssl_session_cache shared:SSL:50m;
-    ssl_dhparam /data/ssl/dhparams.pem;
+    ssl_dhparam /var/www/ssl/dhparams.pem;
     ssl_prefer_server_ciphers on;
     resolver                   114.114.114.114 valid=300s;
     resolver_timeout           10s;
-    #proxy设置
-    proxy_connect_timeout  2s;
-    proxy_read_timeout     2s;
-    proxy_redirect off;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $remote_addr;
-    proxy_temp_path   /home/www/temp;
-    proxy_cache_path  /home/www/cache levels=1:2 keys_zone=cache_one:50m inactive=2h max_size=10g;
+
     #限流
     limit_req_zone $binary_remote_addr zone=one:10m rate=10r/s;
-    #加载lua文件和库
-    lua_package_path '/usr/local/include/luajit-2.0/lib/?.lua;;';
-    lua_package_cpath '/usr/local/include/luajit-2.0/lib/?.so;;';
 
-    include        vhost/*.conf;
+    include        conf.d/*.conf;
     
     #防止恶意解析
 }
@@ -166,7 +156,7 @@ server {
     server_name fanhaobai.com www.fanhaobai.com;
     #https配置
     ssl on;
-    root  /data/html/hexo/public;
+    root  /var/www/blog/public;
 
     #fanhaobai.com重定向到www.fanhaobai.com
     if ($host ~ ^fanhaobai.com$) {
@@ -188,8 +178,8 @@ server {
         }
     }
 
-    include vhost/common;
-    include vhost/rewrite;
+    include conf.d/common;
+    include conf.d/rewrite;
 }
  
 server {
@@ -198,12 +188,12 @@ server {
     access_log off;
     server_name fanhaobai.com www.fanhaobai.com;
 
-    include vhost/common;
+    include conf.d/common;
     if ($request_uri !~ '(sitemap|map\.html|xml)|(robots\.txt)') {
         #重定向到https
         return    301  https://www.fanhaobai.com$request_uri;
     }
-    include vhost/rewrite;
+    include conf.d/rewrite;
 }
 ```
 
@@ -235,67 +225,6 @@ rewrite ^/post/letsencrypt(.*) /2016/12/lets-encrypt$1 permanent;
 rewrite ^/post/linux-tool-website(.*) /2017/02/linux-tool-website$1 permanent;
 rewrite ^/rss /atom.xml last;
 rewrite ^/map /sitemap.xml last;
-```
-
-### 维基——wiki.conf
-
-```Nginx
-server {
-    listen 443;
-    server_name wiki.fanhaobai.com;
-    ssl on;
-    root  /data/html/wiki;
-    
-    try_files $uri $uri/ @rewrite;
-    location @rewrite {
-        if (!-e $request_filename) {
-           rewrite  ^(.*)$  /index.php?s=$1  last;
-           break;
-        }
-    }
-    location ~ \.php {
-        fastcgi_pass  127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_split_path_info ^(.+\.php)(.*)$;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
-    }
-
-    include vhost/common;
-}
-```
-
-### ES——es.conf
-
-```Nginx
-server {
-    listen 80;
-    server_name es.fanhaobai.com;
-    #携带es服务地址
-    location = / {
-        rewrite . /head/?base_uri=http://$server_name permanent;
-    }
-    #es-head
-    location ~ ^/head/ {
-        rewrite ^/head/(.*)$ /$1 break;
-        proxy_pass http://127.0.0.1:9100;
-    }
-    #es服务
-    location / {
-        #使用Lua做访问权限控制
-        set $allowed '115.171.226.212';
-        access_by_lua_block {
-            if ngx.re.match(ngx.req.get_method(), "PUT|POST|DELETE") and not ngx.re.match(ngx.var.request_uri, "_search") then
-            start, _ = string.find(ngx.var.allowed, ngx.var.remote_addr)
-                if not start then
-                    ngx.exit(403)
-                end
-            end
-        }
-        proxy_pass http://127.0.0.1:9200$request_uri;
-    }
-}
 ```
 
 ### 防止域名恶意解析
