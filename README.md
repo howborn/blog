@@ -45,7 +45,7 @@ cp docker.example.env docker.env
 * 启动容器
 
 ```bash
-docker-compose up --force-recreate --build
+docker-compose up --force-recreate --build -d
 ```
 
 ## 文章
