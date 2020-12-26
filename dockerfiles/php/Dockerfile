@@ -1,6 +1,5 @@
 FROM php:7.3.7-fpm-alpine3.9
 
-ADD conf.d/* $PHP_INI_DIR/conf.d/
 RUN echo 'https://mirrors.aliyun.com/alpine/v3.9/main/' > /etc/apk/repositories && \
     echo 'https://mirrors.aliyun.com/alpine/v3.9/community/' >> /etc/apk/repositories
 
@@ -29,3 +28,5 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 #    && php composer-setup.php \
 #    && php -r "unlink('composer-setup.php');" \
 #    && mv composer.phar /usr/local/bin/composer
+
+ADD conf.d/* $PHP_INI_DIR/conf.d/

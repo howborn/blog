@@ -1,7 +1,9 @@
 .idea
 .DS_Store
+
 package-lock.json
 db.json
+docker.env
 
 public
 node_modules

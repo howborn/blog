@@ -1,0 +1,21 @@
+if ($http_user_agent ~ "DNSPod") {
+    return 200;
+}
+
+#https证书申请使用,不再往下匹配
+location ^~ /.well-known/acme-challenge/ {
+    alias /var/www/ssl/challenges/;
+    try_files $uri = 404;
+}
+
+#网站地图地址
+location ~ /sitemap|map\.(html|xml)$ {
+    expires off;
+}
+
+
+#防止图片盗链,1天的过期时间
+location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
+    access_log   off;
+    expires      1d;
+}

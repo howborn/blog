@@ -24,7 +24,25 @@ git submodule foreach git pull
 
 ### 运行环境
 
-本项目采用 docker 管理代码运行环境，请先安装 [docker-compose](https://docs.docker.com/compose/)。
+本项目采用 docker 管理项目环境，请先安装 [docker-compose](https://docs.docker.com/compose/)。
+
+* 配置环境变量
+
+```bash
+cp docker.example.env docker.env
+```
+
+> 其中，各环境变量意义见`docker.example.env`文件中的注释说明，可以根据实际情况修改各环境变量参数的值。
+
+* 获取HTTPS证书
+
+```bash
+/bin/bash dockerfiles/nginx/ssl/init_ssl.sh
+```
+
+> 注意：如果无需支持HTTPS协议，则跳过此步骤，并将环境变量`ENABLE_SSL`修改为`false`。
+
+* 启动容器
 
 ```bash
 docker-compose up --force-recreate --build

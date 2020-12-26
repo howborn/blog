@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd /var/www/blog
 
 npm install --force
