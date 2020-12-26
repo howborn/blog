@@ -8,84 +8,84 @@
     "readed": [
       {
         "title": "Go语言编程",
-        "cover": "https://img3.fanhaobai.com/douban/lpic/s11162016.jpg",
+        "cover": "//img3.fanhaobai.com/douban/lpic/s11162016.jpg",
         "review": "",
         "score": "7.1",
         "doubanLink": "https://book.douban.com/subject/11577300/"
       },
       {
         "title": "Head First设计模式",
-        "cover": "https://img4.fanhaobai.com/douban/lpic/s2414323.jpg",
+        "cover": "//img4.fanhaobai.com/douban/lpic/s2414323.jpg",
         "review": "",
         "score": "9.2",
         "doubanLink": "https://book.douban.com/subject/2243615/"
       },
       {
         "title": "程序员面试笔试宝典",
-        "cover": "https://img0.fanhaobai.com/douban/lpic/s23121995.jpg",
+        "cover": "//img0.fanhaobai.com/douban/lpic/s23121995.jpg",
         "review": "",
         "score": "8.0",
         "doubanLink": "https://book.douban.com/subject/20270192/"
       },
       {
         "title": "大型网站技术架构",
-        "cover": "https://img2.fanhaobai.com/douban/lpic/s27250675.jpg",
+        "cover": "//img2.fanhaobai.com/douban/lpic/s27250675.jpg",
         "review": "",
         "score": "7.9",
         "doubanLink": "https://book.douban.com/subject/25723064/"
       },
       {
         "title": "淘宝技术这十年",
-        "cover": "https://img1.fanhaobai.com/douban/lpic/s26713863.jpg",
+        "cover": "//img1.fanhaobai.com/douban/lpic/s26713863.jpg",
         "review": "",
         "score": "7.3",
         "doubanLink": "https://book.douban.com/subject/24335672/"
       },
       {
         "title": "愿有人陪你颠沛流离",
-        "cover": "https://img0.fanhaobai.com/douban/lpic/s27317967.jpg",
+        "cover": "//img0.fanhaobai.com/douban/lpic/s27317967.jpg",
         "review": "这本书是我离校时，一位学妹赠送的。卢思浩出品，可以跟随作者的脚步融入另一个世界，品味他的人生经历，我也喜欢自己的人生如书名一样，有人陪我颠沛流离。",
         "score": "6.8",
         "doubanLink": "https://book.douban.com/subject/25921293/"
       },
       {
         "title": "图解HTTP",
-        "cover": "https://img5.fanhaobai.com/douban/lpic/s27283822.jpg",
+        "cover": "//img5.fanhaobai.com/douban/lpic/s27283822.jpg",
         "review": "",
         "score": "8.1",
         "doubanLink": "https://book.douban.com/subject/25863515/"
       },
       {
         "title": "打造facebook",
-        "cover": "https://img3.fanhaobai.com/douban/lpic/s24581301.jpg",
+        "cover": "//img3.fanhaobai.com/douban/lpic/s24581301.jpg",
         "review": "有一群人，他们的驱动力是不断学习和不断创造，他们的理想是将世界变得更好，并投身于此，积极进取。他们是理想主义者，胸怀大志；他们也是实干家，为更好的世界每日添砖加瓦。他们每时每刻都在为世界创造真正的价值。这类人，酷一点的名字叫黑客（Hacker）或者极客（Geek），亲切一点的名字叫做工程师（Engineer）",
         "score": "7.5",
         "doubanLink": "https://book.douban.com/subject/20471120/"
       },
       {
         "title": "富爸爸穷爸爸",
-        "cover": "https://img0.fanhaobai.com/douban/lpic/s27274192.jpg",
+        "cover": "//img0.fanhaobai.com/douban/lpic/s27274192.jpg",
         "review": "",
         "score": "8.5",
         "doubanLink": "https://book.douban.com/subject/25816940/"
       },
       {
         "title": "20个月赚130亿",
-        "cover": "https://img4.fanhaobai.com/douban/lpic/s6982859.jpg",
+        "cover": "//img4.fanhaobai.com/douban/lpic/s6982859.jpg",
         "review": "YouTube联合创始人陈士骏在书中以朴实亲切的口吻讲述了他的人生经历，以及对学业、事业、梦想、财富、生死等的种种感悟，同时也是很真实的硅谷开发者生活方式的介绍。",
         "score": "7.6",
         "doubanLink": "https://book.douban.com/subject/6920100/"
       },
       {
         "title": "数据结构（C语言版）",
-        "cover": "https://img1.fanhaobai.com/douban/lpic/s26540471.jpg",
+        "cover": "//img1.fanhaobai.com/douban/lpic/s26540471.jpg",
         "review": "这本书绝对是经典，可以夯实基础的一本书籍，属计算机从业者必看类。",
         "score": "6.4",
         "doubanLink": "https://book.douban.com/subject/24699581/"
       },
       {
         "title": "参与感",
-        "cover": "https://img2.fanhaobai.com/douban/lpic/s27359667.jpg",
+        "cover": "//img2.fanhaobai.com/douban/lpic/s27359667.jpg",
         "review": "小米联合创始人黎万强所著，是小米营销方式的真实写照，通过这本书，可以了解到小米内部的真实运作情况。",
         "score": "7.5",
         "doubanLink": "https://book.douban.com/subject/25942507/"
@@ -94,14 +94,14 @@
     "reading": [
       {
         "title": "算法之美",
-        "cover": "https://img3.fanhaobai.com/douban/lpic/s29762735.jpg",
+        "cover": "//img3.fanhaobai.com/douban/lpic/s29762735.jpg",
         "review": "",
         "score": "7.3",
         "doubanLink": "https://book.douban.com/subject/30155731/"
       },
       {
         "title": "高性能MySQL",
-        "cover": "https://img5.fanhaobai.com/douban/lpic/s27783358.jpg",
+        "cover": "//img5.fanhaobai.com/douban/lpic/s27783358.jpg",
         "review": "",
         "score": "9.3",
         "doubanLink": "https://book.douban.com/subject/23008813/"
@@ -110,56 +110,56 @@
     "wanted": [
       {
         "title": "高扩展性网站的50条原则",
-        "cover": "https://img0.fanhaobai.com/douban/lpic/s9126724.jpg",
+        "cover": "//img0.fanhaobai.com/douban/lpic/s9126724.jpg",
         "review": "",
         "score": "7.5",
         "doubanLink": "https://book.douban.com/subject/10756899/"
       },
       {
         "title": "代码大全（第2版）",
-        "cover": "https://img1.fanhaobai.com/douban/lpic/s1495029.jpg",
+        "cover": "//img1.fanhaobai.com/douban/lpic/s1495029.jpg",
         "review": "",
         "score": "9.3",
         "doubanLink": "https://book.douban.com/subject/1477390/"
       },
       {
         "title": "代码整洁之道",
-        "cover": "https://img3.fanhaobai.com/douban/lpic/s6268784.jpg",
+        "cover": "//img3.fanhaobai.com/douban/lpic/s6268784.jpg",
         "review": "",
         "score": "9.1",
         "doubanLink": "https://book.douban.com/subject/5442024/"
       },
       {
         "title": "计算机程序的构造和解释",
-        "cover": "https://img4.fanhaobai.com/douban/lpic/s1113106.jpg",
+        "cover": "//img4.fanhaobai.com/douban/lpic/s1113106.jpg",
         "review": "",
         "score": "9.5",
         "doubanLink": "https://book.douban.com/subject/1148282/"
       },
       {
         "title": "剑指Offer",
-        "cover": "https://img2.fanhaobai.com/douban/lpic/s27991506.jpg",
+        "cover": "//img2.fanhaobai.com/douban/lpic/s27991506.jpg",
         "review": "",
         "score": "9.2",
         "doubanLink": "https://book.douban.com/subject/25910559/"
       },
       {
         "title": "算法图解",
-        "cover": "https://img1.fanhaobai.com/douban/lpic/s29358625.jpg",
+        "cover": "//img1.fanhaobai.com/douban/lpic/s29358625.jpg",
         "review": "",
         "score": "8.4",
         "doubanLink": "https://book.douban.com/subject/26979890/"
       },
       {
         "title": "只是为了好玩",
-        "cover": "https://img2.fanhaobai.com/douban/lpic/s27329267.jpg",
+        "cover": "//img2.fanhaobai.com/douban/lpic/s27329267.jpg",
         "review": "",
         "score": "8.1",
         "doubanLink": "https://book.douban.com/subject/25930025/"
       },
       {
         "title": "数学之美",
-        "cover": "https://img0.fanhaobai.com/douban/lpic/s29961188.jpg",
+        "cover": "//img0.fanhaobai.com/douban/lpic/s29961188.jpg",
         "review": "",
         "score": "8.9",
         "doubanLink": "https://book.douban.com/subject/26163454/"

@@ -11,8 +11,8 @@ categories:
 
 机机是个好动又好学的孩子，某一天机机到北海公园游玩，肚肚饿了于是打开手机地图，搜索北海公园附近的餐馆，并选了其中一家用餐。饭饱之后机机开始反思了，地图如何根据自己所在位置查询来查询附近餐馆的呢？
 
-![](https://img0.fanhaobai.com/2017/08/geohash/848ae91e-8403-45ef-8cd4-c63c9bdf99fd.jpg)<!-- more-->
-![](https://img1.fanhaobai.com/2017/08/geohash/848ae91e-8403-45ef-8cd4-c63c9bdf99fd.jpg)
+![](//img0.fanhaobai.com/2017/08/geohash/848ae91e-8403-45ef-8cd4-c63c9bdf99fd.jpg)<!-- more-->
+![](//img1.fanhaobai.com/2017/08/geohash/848ae91e-8403-45ef-8cd4-c63c9bdf99fd.jpg)
 
 苦思冥想了半天，机机想出了个方法：计算所在位置 P 与北京所有餐馆的距离，然后返回距离 <=1000m 的餐馆。但是，机机发现北京的餐馆何其多啊，这样计算不得了，既然知道经纬度了，那它应该知道自己在西城区，那应该计算所在位置 P 与西城区所有餐馆的距离，机机运用了递归的思想。想到了西城区也很多餐馆啊，应该计算所在位置 P 与所在街道所有餐馆的距离，这样计算量又小了，效率也提升了。
 
@@ -30,19 +30,19 @@ categories:
 
 比如下图展示了北京 9 个区域的 GeoHash 字符串，分别是 WX4ER，WX4G2、WX4G3 等等，每一个字符串代表了某一矩形区域。也就是说，这个矩形区域内所有的点（经纬度坐标）都共享相同的 GeoHash 字符串，这样既可以保护隐私（只表示大概区域位置而不是具体的点），又比较容易做缓存。
 
-![](https://img2.fanhaobai.com/2017/08/geohash/09185339-add66a56b3da417ab00370e354c74667.png)
+![](//img2.fanhaobai.com/2017/08/geohash/09185339-add66a56b3da417ab00370e354c74667.png)
 
 * 字符串越长，表示的范围越精确
 
 如图所示，5 位的编码能表示 10 平方千米范围的矩形区域，而 6 位编码能表示更精细的区域（约 0.34 平方千米）。
 
-![](https://img3.fanhaobai.com/2017/08/geohash/09185339-add66a56b3da417ab00370e354c74667.png)
+![](//img3.fanhaobai.com/2017/08/geohash/09185339-add66a56b3da417ab00370e354c74667.png)
 
 * 相似的字符串表示距离相近，可以利用前缀匹配查询附近的 POI 信息
 
 如下两个图所示，一个在城区，一个在郊区，城区的 GeoHash 字符串之间比较相似，郊区的字符串之间也比较相似，而城区和郊区的 GeoHash 字符串相似程度要低些。
 
-![](https://img4.fanhaobai.com/2017/08/geohash/09185429-61ee10089e3546819e4aee54e01b21d5.png)
+![](//img4.fanhaobai.com/2017/08/geohash/09185429-61ee10089e3546819e4aee54e01b21d5.png)
 
 
 通过上面的介绍我们知道了 GeoHash 就是一种将经纬度转换成字符串的方法，并且使得在大部分情况下，字符串前缀匹配越多的距离越近，回到我们的案例，根据所在位置查询来查询附近餐馆时，只需要将所在位置经纬度转换成 GeoHash 字符串，并与各个餐馆的 GeoHash 字符串进行前缀匹配，匹配越多的距离越近。
@@ -51,7 +51,7 @@ categories:
 
 下面以北海公园为例介绍 GeoHash 算法的计算步骤
 
-![](https://img5.fanhaobai.com/2017/08/geohash/09185643-54781d96efc94b9191a3c21134e182d7.png)
+![](//img5.fanhaobai.com/2017/08/geohash/09185643-54781d96efc94b9191a3c21134e182d7.png)
 
 ### 根据经纬度计算GeoHash二进制编码
 
@@ -101,13 +101,13 @@ categories:
 
 Base32 编码规则如下：
 
-![](https://img0.fanhaobai.com/2017/08/geohash/09185841-f7b45cc7e26b45aeac6ff6dc5fa9708c.png)
+![](//img0.fanhaobai.com/2017/08/geohash/09185841-f7b45cc7e26b45aeac6ff6dc5fa9708c.png)
 
 ### Base32编码长度与精度
 
 下表为摘自 [维基百科](http://en.wikipedia.org/wiki/Geohash) 的 Base32 编码长度与精度，也可以作为经纬度距离粗略换算标准：
 
-![](https://img1.fanhaobai.com/2017/08/geohash/f43a4e7e-5cc5-41a4-a532-e07ca147c607.png)
+![](//img1.fanhaobai.com/2017/08/geohash/f43a4e7e-5cc5-41a4-a532-e07ca147c607.png)
 
 可以看出，当 Geohash 使用 base32编码长度为 8 时，精度在 19 米左右，而当编码长度为 9  时，精度在 2 米左右，编码长度需要根据数据情况进行选择。
 
@@ -115,13 +115,13 @@ Base32 编码规则如下：
 
 上文讲了 GeoHash 的计算步骤，仅仅说明是什么而没有说明为什么？为什么分别给经度和维度编码？为什么需要将经纬度两串编码交叉组合成一串编码？本节试图回答这一问题。
 
-![](https://img2.fanhaobai.com/2017/08/geohash/09185941-53f7b0f1a9b6407eb5cd06b028d98fb8.png)
+![](//img2.fanhaobai.com/2017/08/geohash/09185941-53f7b0f1a9b6407eb5cd06b028d98fb8.png)
 
 如图所示，我们将二进制编码的结果填写到空间中，当将空间划分为四块时候，编码的顺序分别是左下角 00，左上角 01，右下脚 10，右上角 11，也就是类似于 Z 的曲线，当我们递归的将各个块分解成更小的子块时，编码的顺序是自相似的（分形），每一个子快也形成 Z 曲线，这种类型的曲线被称为 [Peano](https://en.wikipedia.org/wiki/Peano_curve) 空间填充曲线。
 
 这种类型的空间填充曲线的优点是将二维空间转换成一维曲线（事实上是分形维），对大部分而言，编码相似的距离也相近， 但 Peano 空间填充曲线最大的缺点就是 [突变性](#)，有些编码相邻但距离却相差很远，比如 0111 与 1000，编码是相邻的，但距离相差很大。
 
-![](https://img3.fanhaobai.com/2017/08/geohash/09190057-edd8e085d8b84456ba1afd1b4bf99318.png)
+![](//img3.fanhaobai.com/2017/08/geohash/09190057-edd8e085d8b84456ba1afd1b4bf99318.png)
 
 除 Peano 空间填充曲线外，还有很多空间填充曲线，如图所示，其中效果公认较好是 Hilbert 空间填充曲线，相较于 Peano 曲线而言，Hilbert 曲线没有较大的突变。为什么 GeoHash 不选择 Hilbert 空间填充曲线呢？可能是 Peano 曲线思路以及计算上比较简单吧，事实上，Peano 曲线就是一种四叉树线性编码方式。
 
@@ -129,7 +129,7 @@ Base32 编码规则如下：
 
 * 由于 GeoHash 是将区域划分为一个个规则矩形，并对每个矩形进行编码，这样在查询附近 POI 信息时会导致一些问题。比如红色的点是我们的位置，绿色的两个点分别是附近的两个餐馆，但是在查询的时候会发现距离较远餐馆的 GeoHash 编码与我们一样（因为在同一个 GeoHash 区域块上），而较近餐馆的 GeoHash 编码与我们不一致。这个问题往往产生在边界处。
 
-![](https://img4.fanhaobai.com/2017/08/geohash/09190137-edd3b1fe3d754c5d836e2812ac298674.png)
+![](//img4.fanhaobai.com/2017/08/geohash/09190137-edd3b1fe3d754c5d836e2812ac298674.png)
 
 解决的思路很简单，我们查询时，除了使用定位点的 GeoHash 编码进行匹配外，还使用周围 8 个区域的 GeoHash 编码，这样可以避免这个问题。 
 

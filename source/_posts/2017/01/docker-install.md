@@ -8,7 +8,7 @@ categories:
 ---
 
 [Docker](https://www.docker.com/) 使用 Go 语言开发实现，基于 Linux 内核的 cgroup、namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于操作系统层面的 **虚拟化技术**，也被称之为容器。Docker 在容器的基础上，进行了进一步的封装，极大的简化了容器的创建和维护，使得 Docker 技术比虚拟机技术更为轻便、快捷。
-![](https://img3.fanhaobai.com/2017/01/docker-install/kiHBGrNdKNv5n0xKauf6mjKK.png)<!--more-->
+![](//img3.fanhaobai.com/2017/01/docker-install/kiHBGrNdKNv5n0xKauf6mjKK.png)<!--more-->
 
 下面就以 **CentOS 6.8** 为例，简述 Docker 的安装，[原文见这里](https://yq.aliyun.com/articles/68321?spm=5176.100240.searchblog.165.c9fyZL) 。
 

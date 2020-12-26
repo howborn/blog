@@ -10,7 +10,7 @@ categories:
 
 由于 NodeJS 需要 gcc4.8+ 版本支持，如果是 CentOS6.5 的系统需要先升级系统 gcc 版本，[升级见这里](https://www.fanhaobai.com/2016/12/upgrade-gcc.html) 。
 
-![](https://img2.fanhaobai.com/2016/12/nodejs-install/qd54z6dfa56nAROmP2QyPOhb.jpg)<!--more-->
+![](//img2.fanhaobai.com/2016/12/nodejs-install/qd54z6dfa56nAROmP2QyPOhb.jpg)<!--more-->
 
 # 编译前准备
 

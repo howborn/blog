@@ -11,7 +11,7 @@ categories:
 
 作为一名后端码农，常用的 vim 快捷键，你了解多少呢？
 
-![](https://img0.fanhaobai.com/2016/06/vim-shortcut/SYZgz3rtMAjJutBWOVw9Wxtj.png)<!--more-->
+![](//img0.fanhaobai.com/2016/06/vim-shortcut/SYZgz3rtMAjJutBWOVw9Wxtj.png)<!--more-->
 
 ## 移动光标
 
@@ -135,4 +135,4 @@ categories:
 
 来一张键位图，好好学习。
 
-![](https://img1.fanhaobai.com/2016/06/vim-shortcut/qPGPXPzaHzq32G7rIZ3SX8Qd.png)
+![](//img1.fanhaobai.com/2016/06/vim-shortcut/qPGPXPzaHzq32G7rIZ3SX8Qd.png)

@@ -7,12 +7,10 @@ date: 2016-12-11 13:12:10
 
 # 更新说明
 
-* 2018.07.26：图片支持 [img0](https://img0.fanhaobai.com) 和 [img1](https://img1.fanhaobai.com) 多域名。
+* 2018.07.26：图片支持 [img0](//img0.fanhaobai.com) 和 [img1](//img1.fanhaobai.com) 多域名。
 * 2018.07.04：科学使用 [Disqus](https://github.com/fan-haobai/disqus-php-api)。
-* 2018.06.22：增加 [二维码服务](https://img0.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)。
-* 2018.04.20：[404 访问日志](#主站——www.conf) 增加黑名单。
+* 2018.06.22：增加 [二维码服务](https://disqus.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)。
 * 2018.02.12：兼容迁移 Hexo 之前的文章 [URL](#主站——www-conf)。
-* 2018.01.06：接入 [Cloudflare](https://www.cloudflare.com) 提供的免费 CDN。
 * 2017.12.16：搭建 [ELK](https://www.fanhaobai.com/2017/12/elk.html) 集中式日志平台。
 * 2017.12.09：Hexo 结合 [Webhook](https://github.com/fan-haobai/webhook) 支持自动发布。
 * 2017.09.23：增加使用 [Supervisor](https://www.fanhaobai.com/2017/09/supervisor.html)。
@@ -46,7 +44,7 @@ date: 2016-12-11 13:12:10
 ```Nginx
 user www www;
 worker_processes  4;
-error_log  /var/logs/error.log;
+error_log  /var/log/nginx/error.log;
 #worker_rlimit_nofile 655350;
 
 events {
@@ -61,7 +59,7 @@ http {
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for" "$request_body"';
-    access_log /var/logs/$server_name.access.log main;
+    access_log /var/log/nginx/$server_name.access.log main;
     
     index index.html index.php;
     #错误页面
@@ -113,7 +111,7 @@ if ($http_user_agent ~ "DNSPod") {
 
 #https证书申请使用,不再往下匹配
 location ^~ /.well-known/acme-challenge/ {
-    alias /data/html/challenges/;
+    alias /var/www/ssl/challenges/;
     try_files $uri = 404;
 }
 
@@ -122,25 +120,11 @@ location ~ /sitemap|map\.(html|xml)$ {
     expires off;
 }
 
-#二维码
-location ~ \.php {
-    root /data/html/pro;
-
-    fastcgi_pass  127.0.0.1:9000;
-    fastcgi_split_path_info ^(.+\.php)(.*)$;
-    fastcgi_param PATH_INFO $fastcgi_path_info;
-    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-    include        fastcgi_params;
-    
-    #30天失效
-    expires 30d;
-}
-
 #防止图片盗链,1天的过期时间
 location ~ .*\.(jpg|jpeg|gif|png|bmp|swf|fla|flv|mp3|ico|js|css)$ {
     access_log   off;
     expires      1d;
-    
+
     valid_referers none blocked *.fanhaobai.com server_names ~\.google\. ~\.baidu\.;
     if ($invalid_referer) {
         return  403;

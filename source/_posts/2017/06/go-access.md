@@ -9,7 +9,7 @@ categories:
 
 为了查看本站点的健康状况以及用户访问情况，就需要定期的分析服务器的 access 日志。但是由于没有使用日志分析工具，只能使用 cat、awk、sed 等命令做一些简单的日志分析统计，这样分析结果不理想也不全面，方法也极不高效。作为个人站点更适合引入轻量级的日志分析工具，例如 [GoAccess](https://goaccess.io) ，其使用简单且分析效果较好，[见这里](https://www.fanhaobai.com/go-access.html)。
 
-![](https://img2.fanhaobai.com/2017/06/go-access/f0652e34-e1ce-46ab-8c0f-b2fef5f36577.png)<!--more-->
+![](//img2.fanhaobai.com/2017/06/go-access/f0652e34-e1ce-46ab-8c0f-b2fef5f36577.png)<!--more-->
 
 ## Nginx配置
 
@@ -105,7 +105,7 @@ $ goaccess -h
 ```Shell
 $ goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf
 ```
-![](https://img3.fanhaobai.com/2017/06/go-access/f0652e34-e1ce-46ab-8c0f-b2fef5f36577.png)
+![](//img3.fanhaobai.com/2017/06/go-access/f0652e34-e1ce-46ab-8c0f-b2fef5f36577.png)
 
 控制台下的操作方法：
 
@@ -130,7 +130,7 @@ G    移动到最后一个模块底部
 $ goaccess -a -d -f /data/logs/fanhaobai.com.access.log -p /etc/goaccess.conf -o /data/html/hexo/public/go-access.html
 ```
 
-![](https://img4.fanhaobai.com/2017/06/go-access/cc86d3ce-9287-4151-8a0c-ead3e0dffac5.png)
+![](//img4.fanhaobai.com/2017/06/go-access/cc86d3ce-9287-4151-8a0c-ead3e0dffac5.png)
 
 本站分析出的报表效果，[见这里](https://www.fanhaobai.com/go-access.html)。这个分析报表是通过手动执行命令生成，所以需要实现 GoAccess 自动地创建报表。
 
@@ -169,7 +169,7 @@ tcp   0   0 0.0.0.0:7890      0.0.0.0:*     LISTEN      21136/goaccess
 尽管 GoAccess 很强大，但是它无法制定自定义监控规则，无法满足对站点更细粒度更全面的监控需求。到 2017 年底，本站已经使用 [ELK 日志平台](http://elk.fanhaobai.com) 来分析站点的访问情况和流量分析了，效果见 [ELK 集中式日志平台](https://www.fanhaobai.com/about/#站点导航
 )。
 
-![](https://img5.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
+![](//img5.fanhaobai.com/2017/12/elk-advanced/b27378ac-e7e8-11e7-80c1-9a214cf093ae.png)
 
 <strong>相关文章 [»](#)</strong>
 

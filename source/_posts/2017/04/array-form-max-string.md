@@ -11,7 +11,7 @@ categories:
 
 问题叙述：将一个非负元素数组中的所有元素排列组合在一起，找出值最大的那个排列情况。例如 [0, 9, 523, 94, 10, 4]，排列组合后值最大数为：9945234100。
 
-![预览图](https://img5.fanhaobai.com/2017/04/array-form-max-string/57f35c24-2eeb-4c68-bf28-0771b11cad34.png)<!--more-->
+![预览图](//img5.fanhaobai.com/2017/04/array-form-max-string/57f35c24-2eeb-4c68-bf28-0771b11cad34.png)<!--more-->
 
 本文废话较多，可以直接跳转到 [编码实现](#编码实现) 部分。
 
@@ -60,7 +60,7 @@ categories:
 
 使用冒泡排序来说明上述用例的排序过程。
 
-![](https://img0.fanhaobai.com/2017/04/array-form-max-string/65FD0FD202413415D266AC754A75AAF3.png)
+![](//img0.fanhaobai.com/2017/04/array-form-max-string/65FD0FD202413415D266AC754A75AAF3.png)
 
 ### 比较规则 ###
 

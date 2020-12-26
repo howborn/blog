@@ -8,7 +8,7 @@ categories:
 ---
 
 来到 ziroom 后，我使用 Solr 支持业务也有段时间了，大多数情况下 Solr 满足业务需求，但由于 Solr 随着数据量急剧上升后检索性能和更新索引效率衰退较快，同时一些历史遗留原因导致字段较多不易维护，现架构上已将搜索引擎迁移到了 ES。在这里整理记录自己使用 Solr 的点滴，供后续学习和使用时参考。
-![](https://img3.fanhaobai.com/2017/08/solr-install-push/43735106-acb6-4f42-a136-dd5ab347ef49.png)<!--more-->
+![](//img3.fanhaobai.com/2017/08/solr-install-push/43735106-acb6-4f42-a136-dd5ab347ef49.png)<!--more-->
 
 [Solr的使用](#) 系列的重点应是 Solr 的检索，如果需要可以直接传送到 [Sorl检索](https://www.fanhaobai.com/2017/08/solr-search.html) 部分。
 

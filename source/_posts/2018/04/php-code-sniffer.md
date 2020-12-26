@@ -9,7 +9,7 @@ categories:
 
 当你看到一个代码乱七八糟的项目时，心里肯定很各种  /_ \，代码阅读性特差，又不易维护。优秀的项目应该是看起来像是出自一个人之手，这就需要一套代码规范来约束，当然还必须要求项目成员落实这套规范。
 
-![预览图](https://img2.fanhaobai.com/2018/04/php-code-sniffer/4b3745ff-6a6a-4381-9b25-5bb2a8033c3f.jpg)<!--more-->
+![预览图](//img2.fanhaobai.com/2018/04/php-code-sniffer/4b3745ff-6a6a-4381-9b25-5bb2a8033c3f.jpg)<!--more-->
 
 这里推荐一款自动化的 PHP 代码规范检查工具 —— [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)，当 CodeSniffer 结合 PhpStrom 和 Git 时，自动化代码规范极为方便可靠。
 
@@ -79,16 +79,16 @@ FOUND 2 ERROR(S) AFFECTING 2 LINE(S)
 
 首先，在 “Settings” -> "Code Sniffer" 配置中，“Configuration” 项后点击`...`并输入 phpcs 路径，可以使用 "Validate" 按钮验证 phpcs 路径是否正确。
 
-![phpcs路径面板](https://img3.fanhaobai.com/2018/04/php-code-sniffer/482b161b-7c73-40ad-94d1-27cf67393ced.png)
-![选择phpcs路径](https://img4.fanhaobai.com/2018/04/php-code-sniffer/7c4a474b-266e-4da5-9261-3e40caef10f7.png)
+![phpcs路径面板](//img3.fanhaobai.com/2018/04/php-code-sniffer/482b161b-7c73-40ad-94d1-27cf67393ced.png)
+![选择phpcs路径](//img4.fanhaobai.com/2018/04/php-code-sniffer/7c4a474b-266e-4da5-9261-3e40caef10f7.png)
 
 然后，在 “Settings” -> "Inspections" 配置项中，勾选上 "PHP Code Sniffer validation"。为了醒目，可以将所有 Warning 更改为 Error，如下图：
 
-![启用validation项](https://img5.fanhaobai.com/2018/04/php-code-sniffer/8ef974a6-3e2f-11e8-b467-0ed5f89f718b.png)
+![启用validation项](//img5.fanhaobai.com/2018/04/php-code-sniffer/8ef974a6-3e2f-11e8-b467-0ed5f89f718b.png)
 
 最后，就可以在 PhpStrom 中提醒出不符合规范的代码了。
 
-![不符合代码规范提醒](https://img0.fanhaobai.com/2018/04/php-code-sniffer/711dbc8e-3e30-11e8-b467-0ed5f89f718b.png)
+![不符合代码规范提醒](//img0.fanhaobai.com/2018/04/php-code-sniffer/711dbc8e-3e30-11e8-b467-0ed5f89f718b.png)
 
 ## 配置hook
 

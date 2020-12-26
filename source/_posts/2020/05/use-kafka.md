@@ -10,8 +10,8 @@ categories:
 
 在分布式系统中，常常使用消息系统进行系统解藕，并实现一些异步业务逻辑，保证系统最终数据一致性。这里主要介绍在实际中落地使用 Kafka 的一些事项。
 
-![预览图](https://img0.fanhaobai.com/2020/05/use-kafka/1589262505081.png)<!--more-->
-![预览图](https://img0.fanhaobai.com/2020/05/use-kafka/1589262505081.png)
+![预览图](//img0.fanhaobai.com/2020/05/use-kafka/1589262505081.png)<!--more-->
+![预览图](//img0.fanhaobai.com/2020/05/use-kafka/1589262505081.png)
 
 ## 消息TOPIC
 
@@ -219,19 +219,19 @@ func (c *defaultConsumer) ConsumeClaim(session sarama.ConsumerGroupSession, clai
 
 投递消息使用同步应答模式，当消息推送失败时，这里才用 [最大努力尝试]() 策略保持数据最终一致性。
 
-![推送失败重试机制](https://img1.fanhaobai.com/2020/05/use-kafka/1589251986346.png)
+![推送失败重试机制](//img1.fanhaobai.com/2020/05/use-kafka/1589251986346.png)
 
 ### Consumer
 
 2、消费异常重试机制
 
-![消费异常重试机制](https://img2.fanhaobai.com/2020/05/use-kafka/1589258896838.jpg)
+![消费异常重试机制](//img2.fanhaobai.com/2020/05/use-kafka/1589258896838.jpg)
 
 > 特别注意需要处理脏数据，防止因为错误数据导致消费阻塞。
 
 3、只消费自己关注的 Type 类型消息
 
-![关注只关注Type类型消息](https://img3.fanhaobai.com/2020/05/use-kafka/1589258912991.jpg)
+![关注只关注Type类型消息](//img3.fanhaobai.com/2020/05/use-kafka/1589258912991.jpg)
 
 具体实现，见 [业务消费](#业务消费) 部分。
 

@@ -11,7 +11,7 @@ categories:
 
 今天，又是一年一度的 1024 程序员节。数字 1024 是 2 的 10 次方，是二进制计数的基本计量单位之一，1024MB 即 1GB，而 1GB 的谐音含有 [一级棒](#) 的意义。那么这一年你是否有所成长和收获，倘若你一直都在忙忙碌碌，那就请对今天的自己好一点。
 
-![预览图](https://img1.fanhaobai.com/2018/10/1th-coder-census/20f655ea-7779-4f65-956a-3b9a67929f45.png)<!--more-->![预览图](https://img1.fanhaobai.com/2018/10/1th-coder-census/20f655ea-7779-4f65-956a-3b9a67929f45.png)
+![预览图](//img1.fanhaobai.com/2018/10/1th-coder-census/20f655ea-7779-4f65-956a-3b9a67929f45.png)<!--more-->![预览图](//img1.fanhaobai.com/2018/10/1th-coder-census/20f655ea-7779-4f65-956a-3b9a67929f45.png)
 
 作为程序员的我们，一直相信 [靠键盘上的双手可以改变世界](#)。当然除了埋头苦干外，还应该时不时抬头看看外面的风向。下面甩出的这十套只有资深程序员才知道的问题，你敢来试试吗？
 
@@ -83,4 +83,4 @@ F. 以上都是
 
 这场程序员人口普查参与统计样本数逾 18300 人，普查报表见 [第一次全国程序员人口普查结果](https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650998840&idx=2&sn=9544f5f6a099f6412353b1519f270738&chksm=bdbef06b8ac9797d738fed0d3db110079f69cac4600c34271c1c8e052baa30dd58ebbc092ace&scene=21#wechat_redirect)。
 
-![目标](https://img2.fanhaobai.com/2018/10/1th-coder-census/42d7242d-881a-4f10-aa75-3b05f99eb2ab.png)
+![目标](//img2.fanhaobai.com/2018/10/1th-coder-census/42d7242d-881a-4f10-aa75-3b05f99eb2ab.png)

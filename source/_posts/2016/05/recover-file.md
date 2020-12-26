@@ -11,7 +11,7 @@ categories:
 
 以前总是在网上看到很多人问怎么恢复 Linux 下误删除的文件，现在记录自己的恢复文件全过程。
 
-![](https://img5.fanhaobai.com/2016/05/recover-file/Vv0jLUo_qMOT_N5y4Ha4KhBA.jpg)<!--more-->
+![](//img5.fanhaobai.com/2016/05/recover-file/Vv0jLUo_qMOT_N5y4Ha4KhBA.jpg)<!--more-->
 
 当时我的工作目录是`/source/needrecovered`。
 

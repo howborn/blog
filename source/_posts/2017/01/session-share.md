@@ -10,7 +10,7 @@ categories:
 
 随着应用访问量的增加，单台服务器已经扛不住这样的访问压力，所以需要部署多台服务器，并需要做负载均衡。那么，默认的 SESSION 存储方式会造成用户不同时间访问不同服务器时 SESSION 丢失，进而导致用户登录状态丢失，这时需要使用 [SESSION共享](http://www.onmpw.com/tm/xwzj/network_144.html) 来解决。
 
-![](https://img0.fanhaobai.com/2017/01/session-share/nC3zafy-N82Vr7NgGZKHiyOL.png)<!--more-->
+![](//img0.fanhaobai.com/2017/01/session-share/nC3zafy-N82Vr7NgGZKHiyOL.png)<!--more-->
 
 
 # SESSION共享方案
@@ -40,7 +40,7 @@ NFS是 [Net FileSystem](#) 的简称，该方案相对简单，无需做过多�
 
 基于 Redis 的 SESSION 共享方案结构大致如下：
 
-![](https://img1.fanhaobai.com/2017/01/session-share/JGwh9o3k7y41aMqKRQa4vCgT.jpg)
+![](//img1.fanhaobai.com/2017/01/session-share/JGwh9o3k7y41aMqKRQa4vCgT.jpg)
 
 ## 搭建Redis环境
 
@@ -62,7 +62,7 @@ session.save_path ="tcp://fanhaobai.com:6379?database=0&auth=fhb"
 
 配置成功后，查看`phpinfo`如下图。
 
-![](https://img2.fanhaobai.com/2017/01/session-share/K-fAtQd9WszI3rhXLWzfk2Ve.png)
+![](//img2.fanhaobai.com/2017/01/session-share/K-fAtQd9WszI3rhXLWzfk2Ve.png)
 
 2） 通过ini_set()设置配置
 

@@ -9,31 +9,31 @@ categories:
 
 俗话说，工欲善其事，必先利其器。顺手的工具能提高我们的工作效率，减少时间成本。这里记录我开发过程中所使用到的一些高效工具。
 
-![](https://img0.fanhaobai.com/2017/07/tools/4e4a0e11-4c0d-4909-a838-2a60c47986d2.jpg)<!--more-->
+![](//img0.fanhaobai.com/2017/07/tools/4e4a0e11-4c0d-4909-a838-2a60c47986d2.jpg)<!--more-->
 
 ## Host Switch Plus
 
 Host Switch Plus 是 Google Chrome 的一个小插件，它能狗快速切换 Domain-IP 配置而不需要编辑 Hosts 文件，并方便的添加、修改、分组（批量开关）。
 
-![](https://img1.fanhaobai.com/2017/07/tools/a68431a9-aa50-4e03-a54c-25da1383fb49.png)
+![](//img1.fanhaobai.com/2017/07/tools/a68431a9-aa50-4e03-a54c-25da1383fb49.png)
 
 ### 安装
 
 前往 Google [商城](https://chrome.google.com/webstore/category/extensions)，搜索 host switch plus，然后点击 “添加至 CHROME”，即可完成安装。
 
-![](https://img2.fanhaobai.com/2017/07/tools/d432be9d-c671-42cf-ac5c-2239443f0ced.png)
+![](//img2.fanhaobai.com/2017/07/tools/d432be9d-c671-42cf-ac5c-2239443f0ced.png)
 
 ### 添加host
 
 打开 Host Switch Plus 后，选择 Add 后即可添加一行 host 解析记录。
 
-![](https://img3.fanhaobai.com/2017/07/tools/43750698-8113-4ce8-b0a7-3dbd38d481de.png)
+![](//img3.fanhaobai.com/2017/07/tools/43750698-8113-4ce8-b0a7-3dbd38d481de.png)
 
 ### 启用host
 
 添加一条 host 后，在浏览器右上角单击 Host Switch Plus 图标，在弹出的窗口中双击需要启用的记录，即可启用该条 host 解析。
 
-![](https://img4.fanhaobai.com/2017/07/tools/5f54093a-5e69-4b3e-b78a-fc0c51363cb8.png)
+![](//img4.fanhaobai.com/2017/07/tools/5f54093a-5e69-4b3e-b78a-fc0c51363cb8.png)
 
 成功解析 host 后，可在 Google Chrome 和 Postman 中使用。
 
@@ -49,7 +49,7 @@ Postman 是 Google Chrome 的一个插件，前往 Google [应用商城](https:/
 
 我们平常使用最多的莫过于使用 Postman 发送模拟请求，调试我们开发的接口。
 
-![](https://img5.fanhaobai.com/2017/07/tools/ec2dc0e8-d369-40a8-ad7d-fc1e3d061d16.png)
+![](//img5.fanhaobai.com/2017/07/tools/ec2dc0e8-d369-40a8-ad7d-fc1e3d061d16.png)
 
 如上图所示，Postman 可以满足许多场景的接口模拟，且操作比较简单，这里不做过多陈述。
 
@@ -59,13 +59,13 @@ Postman 支持按照项目来对接口进行分门别类，进行方便查找和
 
 首先在左侧栏点击 “Collections” 切换项目栏目，点击 “创建文件夹” 图标并填写项目描述即可创建一个名为 "fanhaobai.com” 的项目，如下：
 
-![](https://img0.fanhaobai.com/2017/07/tools/59a36935-0068-4a4c-a004-786bf78993d5.png)
+![](//img0.fanhaobai.com/2017/07/tools/59a36935-0068-4a4c-a004-786bf78993d5.png)
 
 例如地址为`https://www.fanhaobai.com/content.json`接口，这时需要将它放置在 “fanhaobai.com” 项目下，以方便后续反复多次调试。
 
 在接口地址栏后，点击 “Save” 即可保存该接口，在 “Save to existing collection” 项选择 “fanhaobai.com”，如下如所示：
 
-![](https://img1.fanhaobai.com/2017/07/tools/a25a2996-6a5e-4292-b773-651b868d5523.png)
+![](//img1.fanhaobai.com/2017/07/tools/a25a2996-6a5e-4292-b773-651b868d5523.png)
 
 如果后续需要调试该接口时，只需要选择 ”fanhaobai.com“ 项目下对应地址的接口，即可快速方便地调试。
 
@@ -87,11 +87,11 @@ Postman 支持按照项目来对接口进行分门别类，进行方便查找和
 
 接下来，以 phoenix 项目为例，配置每个环境的环境变量。点击 Postman 右上角 “设置” 图标，如下图：
 
-![](https://img2.fanhaobai.com/2017/07/tools/974dbaee-be3f-4a9c-874c-68c5de584403.png)
+![](//img2.fanhaobai.com/2017/07/tools/974dbaee-be3f-4a9c-874c-68c5de584403.png)
 
 点击 ”Manage Environments“，即可配置环境变量。Postman 支持全局环境变量，点击 “Globals” 可以设置全局环境变量，这里点击 ”Add“ 配置一个开发环境和测试环境，如图：
 
-![](https://img3.fanhaobai.com/2017/07/tools/e3089043-bd3d-4a0f-b284-669b6f07a791.png)
+![](//img3.fanhaobai.com/2017/07/tools/e3089043-bd3d-4a0f-b284-669b6f07a791.png)
 
 host-api 这个环境变量的值，取决于相应环境，每个环境都定义了各自的接口地址值。这里只是将 host-api 配置在各个环境变量中，而将 app_version、os、timestamp、sign 跟客户端相关的特性配置成 **全局环境变量**。
 
@@ -99,7 +99,7 @@ host-api 这个环境变量的值，取决于相应环境，每个环境都定�
 
 使用环境变量后，接口地址和请求参数类似如下：
 
-![](https://img4.fanhaobai.com/2017/07/tools/a3b57584-fb7b-470f-84e4-5213f25113ea.png)
+![](//img4.fanhaobai.com/2017/07/tools/a3b57584-fb7b-470f-84e4-5213f25113ea.png)
 
 ### 自动测试
 
@@ -128,11 +128,11 @@ tests['response is success'] = (responseJSON.status === 'success');
 
 接下来，就可以测试该接口了，点击主面板左上角的 “Runner”，如下图所示：
 
-![](https://img5.fanhaobai.com/2017/07/tools/365e357b-8a3f-48c7-a9a3-76611d66986a.png)
+![](//img5.fanhaobai.com/2017/07/tools/365e357b-8a3f-48c7-a9a3-76611d66986a.png)
 
 设置测试 “项目” 和 “环境”，点击 “Start Test”。最后，测试结果如下：
 
-![](https://img0.fanhaobai.com/2017/07/tools/972d2bac-0d4b-4095-b0ba-28a5f252f314.png)
+![](//img0.fanhaobai.com/2017/07/tools/972d2bac-0d4b-4095-b0ba-28a5f252f314.png)
 
 按照这些步骤，只要配置了每个接口的测试规则，Postman 就可以自动测试完项目的所有接口，并给出测试结果。
 
@@ -140,7 +140,7 @@ tests['response is success'] = (responseJSON.status === 'success');
 
 Charles 是在 Mac 下常用的截取网络封包的工具（现在也支持 Win），在开发工程中，我们常需要截取网络包并分析通讯协议，这时使用 Charles 就可轻松完成。
 
-![](https://img1.fanhaobai.com/2017/07/tools/0dc3e6f6-250e-4172-af30-83b91cfddf76.png)
+![](//img1.fanhaobai.com/2017/07/tools/0dc3e6f6-250e-4172-af30-83b91cfddf76.png)
 
 Charles 的使用指南，[见这里](https://www.fanhaobai.com/2017/07/charles.html)。
 
@@ -148,7 +148,7 @@ Charles 的使用指南，[见这里](https://www.fanhaobai.com/2017/07/charles.
 
 [SwitchHosts](https://github.com/oldj/SwitchHosts/blob/master/README_cn.md) 是一个免费开源的 Hosts 管理软件，使用它切换和配置 host 极为方便。
 
-![预览图](https://img2.fanhaobai.com/2017/07/tools/f5a0c313-9404-4152-9bd1-ea24f7b1edc1.png)
+![预览图](//img2.fanhaobai.com/2017/07/tools/f5a0c313-9404-4152-9bd1-ea24f7b1edc1.png)
 
 从 [官方地址](https://github.com/oldj/SwitchHosts/releases) 下载自己系统的安装包，安装即可。
 
@@ -158,7 +158,7 @@ Charles 的使用指南，[见这里](https://www.fanhaobai.com/2017/07/charles.
 
 需求：在 Win10 下我希望使用 A（左）、D（右）、W（上）、S（下）来替代方向键，因为这样操作方便，下面通过 AutoHotKey 来示例。 
 
-![预览图](https://img3.fanhaobai.com/2017/07/tools/11be684a-44ad-40e8-a291-e123d0df58ca.png)
+![预览图](//img3.fanhaobai.com/2017/07/tools/11be684a-44ad-40e8-a291-e123d0df58ca.png)
 
 首先，从 [官方地址](https://www.autohotkey.com/download/) 下载安装包，安装后鼠标 “右键 >> 新建” 菜单会增加 “AutoHotKey Script” 项，点击 “AutoHotKey Script” 即可创建脚本。
 

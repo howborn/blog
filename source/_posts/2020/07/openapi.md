@@ -10,7 +10,7 @@ categories:
 
 网关（API Gateway）是请求流量的唯一入口，可以适配各类渠道和业务，处理各种协议接入、路由与报文转换、同步异步调用等，来管理 API 接口和进行请求流量控制，在微服务架构中，网关尤为重要。
 
-![预览图](https://img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.jpeg)<!--more-->
+![预览图](//img1.fanhaobai.com/2020/07/openapi/ffc6e25d-7044-467d-8b7c-910831249968.jpeg)<!--more-->
 
 ## 背景
 
@@ -45,7 +45,7 @@ categories:
 
 从事件回调请求链路来说，服务层通过 HTTP 协议发起事件回调请求到 OpenAPI 网关，并立即返回成功。OpenAPI 网关异步完成第三方渠道事件回调请求。 
 
-![系统架构](https://img2.fanhaobai.com/2020/07/openapi/f227c462-b9b9-4846-aeae-23c579b05087.jpeg)
+![系统架构](//img2.fanhaobai.com/2020/07/openapi/f227c462-b9b9-4846-aeae-23c579b05087.jpeg)
 
 ## 实现
 
@@ -65,38 +65,38 @@ categories:
 
 a、第三方 AppId 配置
 
-![AppId配置](https://img3.fanhaobai.com/2020/07/openapi/9655aec3-aa6c-4353-819e-a095a0fdd5bf.png)
+![AppId配置](//img3.fanhaobai.com/2020/07/openapi/9655aec3-aa6c-4353-819e-a095a0fdd5bf.png)
 
 b、内部服务地址
 
-![内部服务地址](https://img4.fanhaobai.com/2020/07/openapi/48e89e9b-eede-4aec-b98f-ce50cc112c99.png)
+![内部服务地址](//img4.fanhaobai.com/2020/07/openapi/48e89e9b-eede-4aec-b98f-ce50cc112c99.png)
 
 c、内外 API 映射关系
 
-![API映射关系](https://img5.fanhaobai.com/2020/07/openapi/676dcc84-628d-493c-8ab6-c9f2ec3053df.png)
+![API映射关系](//img5.fanhaobai.com/2020/07/openapi/676dcc84-628d-493c-8ab6-c9f2ec3053df.png)
 
 #### 配置更新
 
 利用 ETCD 的 watch 监听，可以轻易实现配置的热更新。
 
-![配置热更新](https://img0.fanhaobai.com/2020/07/openapi/549e72de-cdbd-4b8d-a238-085f226d7555.jpg)
+![配置热更新](//img0.fanhaobai.com/2020/07/openapi/549e72de-cdbd-4b8d-a238-085f226d7555.jpg)
 
 当然也还是需要主动拉取配置的情况，如重启服务的时候。
 
-![拉取热更新](https://img1.fanhaobai.com/2020/07/openapi/ae062ec1-7f3c-4535-916b-c9cd08734a7d.jpg)
+![拉取热更新](//img1.fanhaobai.com/2020/07/openapi/ae062ec1-7f3c-4535-916b-c9cd08734a7d.jpg)
 
 
 ### API 接口
 
 第三方调用 API 接口的时序，大致如下：
 
-![API调用时序](https://img2.fanhaobai.com/2020/07/openapi/a4768e8e-f961-4270-ba9d-69d2a317d49b.png)
+![API调用时序](//img2.fanhaobai.com/2020/07/openapi/a4768e8e-f961-4270-ba9d-69d2a317d49b.png)
 
 #### 参数格式
 
 为了简化对接流程，我们统一了 API 接口的请求参数格式。请求方式支持 POST 或者 GET。
 
-![API调用时序](https://img3.fanhaobai.com/2020/07/openapi/d0131310-b7f8-4deb-aa9e-fcc6b28a47a2.png)
+![API调用时序](//img3.fanhaobai.com/2020/07/openapi/d0131310-b7f8-4deb-aa9e-fcc6b28a47a2.png)
 
 #### 接口签名
 
@@ -138,14 +138,14 @@ $params['s'] = $sign;
 
 不同的接口版本，可以转发请求到不同的服务，或同一个服务的不同接口。
 
-![接口版本控制](https://img4.fanhaobai.com/2020/07/openapi/c6987388-682d-403f-8621-caa1fa6cd266.png)
+![接口版本控制](//img4.fanhaobai.com/2020/07/openapi/c6987388-682d-403f-8621-caa1fa6cd266.png)
 
 
 ### 事件回调
 
 通过事件回调机制，第三方可以订阅自己关注的事件。
 
-![接口版本控制](https://img5.fanhaobai.com/2020/07/openapi/4b6660db-0e0c-4c6d-9716-0e63820f45e1.png)
+![接口版本控制](//img5.fanhaobai.com/2020/07/openapi/4b6660db-0e0c-4c6d-9716-0e63820f45e1.png)
 
 ## 对接接入
 
@@ -153,7 +153,7 @@ $params['s'] = $sign;
 
 只需要配置第三方 AppId 信息，包括 secret、回调地址、模块权限。
 
-![渠道AppId配置](https://img0.fanhaobai.com/2020/07/openapi/3321e082-1857-4c2b-8d19-a60334f9b4f5.png)
+![渠道AppId配置](//img0.fanhaobai.com/2020/07/openapi/3321e082-1857-4c2b-8d19-a60334f9b4f5.png)
 
 即，需要在 ETCD 执行如下操作：
 
@@ -175,7 +175,7 @@ $ etcdctl set /openapi/app/baidu '{
 
 a、配置内部服务地址
 
-![配置内部服务地址](https://img1.fanhaobai.com/2020/07/openapi/1a902abb-fb35-42e1-9f3a-c18e12074f11.png)
+![配置内部服务地址](//img1.fanhaobai.com/2020/07/openapi/1a902abb-fb35-42e1-9f3a-c18e12074f11.png)
 
 即，需要在 ETCD 执行如下操作：
 
@@ -188,7 +188,7 @@ $ etcdctl set /openapi/backend/form_openapi '{
 
 b、配置内外 API 映射关系
 
-![配置内部服务地址](https://img2.fanhaobai.com/2020/07/openapi/39befe95-381e-47ad-879d-e5433e778078.png)
+![配置内部服务地址](//img2.fanhaobai.com/2020/07/openapi/39befe95-381e-47ad-879d-e5433e778078.png)
 
 同样，需要在 ETCD 执行如下操作：
 
@@ -207,7 +207,7 @@ c、接入事件回调
 
 接入服务也需要按照第三方接入方式，并申请 AppId。回调业务参数约定为：
 
-![配置内部服务地址](https://img3.fanhaobai.com/2020/07/openapi/ba4a385e-add6-40fe-aa30-40866f8e4f40.png)
+![配置内部服务地址](//img3.fanhaobai.com/2020/07/openapi/ba4a385e-add6-40fe-aa30-40866f8e4f40.png)
 
 Golang 版本的接入，如下：
 

@@ -9,7 +9,7 @@ categories:
 ---
 
 平常我们遇到跨域问题时，常使用 cors（Cross-origin resource sharin）方式解决。不知你是否注意到，在设置响应头 Access-Control-Allow-Origin 域的值时，只允许设置一个域名，这意味着不能同时设置多个域名来共享资源。而在 Yii2 中直接使用`'Origin' => ['http://www.site1.com', 'http://www.site2.com']`的形式却可以设置多个 cors 域名值，Why?
-![](https://img5.fanhaobai.com/2017/08/yii-cors/b353a007-0c9c-4ee2-b0a9-85ccc205a145.png)<!--more-->
+![](//img5.fanhaobai.com/2017/08/yii-cors/b353a007-0c9c-4ee2-b0a9-85ccc205a145.png)<!--more-->
 
 其实，Yii2 中采用了动态设置 Access-Control-Allow-Origin 域值的方法来解决这个问题。
 

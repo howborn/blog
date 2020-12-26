@@ -10,7 +10,7 @@ categories:
 
 假若，你是某个国内电商平台的商品中心项目负责人。突然今天，接到了一个这样的需求：商品在原人民币价格的基础架构上，须支持卢比（印度）价格。
 
-![预览图](https://img1.fanhaobai.com/2019/02/multi-currency-price/434ddc25-3b51-4753-b5d5-b765ac5ca30c.jpg)<!--more-->
+![预览图](//img1.fanhaobai.com/2019/02/multi-currency-price/434ddc25-3b51-4753-b5d5-b765ac5ca30c.jpg)<!--more-->
 
 ## 需求
 
@@ -58,7 +58,7 @@ categories:
 
 最终，为了系统的可扩展性，我们选择了方案 ②。
 
-![解决方案](https://img2.fanhaobai.com/2019/02/multi-currency-price/b5c63729-fd94-4f3b-b107-1b345d26c1c6.png)
+![解决方案](//img2.fanhaobai.com/2019/02/multi-currency-price/b5c63729-fd94-4f3b-b107-1b345d26c1c6.png)
 
 这里主要改造了商品中心，主要解决 [透传地区标识](#透传地区标识) 和 [支持多币种价格](#支持多币种价格) 这 2 个问题。
 
@@ -70,7 +70,7 @@ categories:
 
 思路就是，先将地区标识放在全局上下文中，API 接口通过 Header 头`X-Location`携带地区标识；而对于 RPC 接口，我们的 RPC 框架已支持了 Context，不需要改造。
 
-![透传地区标识机制](https://img3.fanhaobai.com/2019/02/multi-currency-price/4ff6ceb3-44c9-4edf-bfdb-23cf50b22c6f.png)
+![透传地区标识机制](//img3.fanhaobai.com/2019/02/multi-currency-price/4ff6ceb3-44c9-4edf-bfdb-23cf50b22c6f.png)
 
 #### 代码实现
 

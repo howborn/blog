@@ -10,7 +10,7 @@ categories:
 
 [pjax](https://github.com/defunkt/jquery-pjax) 即 pushState + ajax，它被封装成了一个 jQuery 扩展以方便使用。pjax 主要用来解决 HTML 页面局部刷新 url 不更新和不支持后退和前进的问题，提升用户体验。
 
-![](https://img4.fanhaobai.com/2017/07/pjax/f8cac50d-d3bb-41ac-a20f-4a24227b4ea1.png)<!--more-->
+![](//img4.fanhaobai.com/2017/07/pjax/f8cac50d-d3bb-41ac-a20f-4a24227b4ea1.png)<!--more-->
 
 ## pjax原理
 
@@ -18,7 +18,7 @@ pjax 的实现是利用 HTML5 的 pushState() 和 replaceState() 新特性和 aj
 
 ### 工作流程图
 
-![](https://img5.fanhaobai.com/2017/07/pjax/6d32e303-5b64-86c1-4a71-69352a815941.png)
+![](//img5.fanhaobai.com/2017/07/pjax/6d32e303-5b64-86c1-4a71-69352a815941.png)
 
 ### 源码分析
 
