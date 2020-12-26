@@ -19,7 +19,7 @@ git clone --recursive https://github.com/fan-haobai/blog.git
 * pull 命令
 
 ```bash
-git submodule foreach git pull origin master
+git pull && git submodule foreach git pull origin master
 ```
 
 ### 运行环境
