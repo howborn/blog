@@ -19,9 +19,9 @@ categories:
 
 ### 云服务器
 
-由于没有了 Google Cloud 的免费使用资格，只能在国内挑选较便宜的 腾讯云 云服务器厂商，购买了一台低配云服务器。
+由于没有了 Google Cloud 的免费使用资格，只能在国内挑选较便宜的腾讯云云服务器厂商，购买了一台低配云服务器。
 
-这台服务器的操作系统是 [CentOS](), 我们选用 [Docker Compose](https://docs.docker.com/compose/install/) 作为容器编排工具。
+这台服务器的操作系统是 [CentOS]()，我们选用 [Docker Compose](https://docs.docker.com/compose/install/) 作为容器编排工具。
 
 ### 安装 Docker
 
@@ -93,9 +93,10 @@ docker-compose version 1.27.4, build 40524192
 └── package.json          # Hexo依赖包
 ```
 
-其中，`disqus` 和 `yilia` 目录分别对应 [disqus-php-api](https://github.com/fan-haobai/disqus-php-api) 和 [hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia) 这 2 个子项目，因此采用`submodule`模式管理源代码。
+其中，`disqus` 和 `yilia` 目录分别对应 [disqus-php-api](https://github.com/fan-haobai/disqus-php-api) 和 [hexo-theme-yilia](https://github.com/fan-haobai/hexo-theme-yilia) 这 2 个子项目，并采用 `submodule` 模式管理这些源代码。
 
-> 在 submodule 模式下，clone 和 pull 命令会有一些变化，分别为 `git clone --recursive https://github.com/fan-haobai/blog.git` 和 `git pull && git submodule foreach git pull origin master`。
+> 在 `submodule` 模式下，`clone` 和 `pull` 命令会有一些变化，分别为 `git clone --recursive https://github.com/fan-haobai/blog.git`
+和 `git pull && git submodule foreach git pull origin master`。
 
 ### 编排容器
 
@@ -398,4 +399,4 @@ e8ef7a1e9271   blog_nginx    "/docker-entrypoint.…"   2 days ago   Up 2 days  
 af7baad788c5   blog_php      "docker-php-entrypoi…"   2 days ago   Up 2 days   9000/tcp                 php
 ```
 
-通过 [www.fanhaobai.com]((https://www.fanhaobai.com)) 域名也可以直接访问到本站了。
+通过 [www.fanhaobai.com](https://www.fanhaobai.com) 域名也可以直接访问到本站了。
