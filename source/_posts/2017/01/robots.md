@@ -11,7 +11,7 @@ categories:
 
 ![](//img2.fanhaobai.com/2017/01/robots/n9DQpbXNbazisDMy_bouP7HN.png)<!--more-->
 
-Robots 协议代表了互联网领域的一种契约精神，互联网企业只有遵守这一规则，才能保证网站及用户的隐私数据不被侵犯，违背 Robots 协议将带来巨大安全隐忧——例如，[百度诉奇虎360违反“Robots协议”抓取、复制其网站内容侵权一案](http://tech.ifeng.com/internet/special/baidupk360/content-1/detail_2012_08/29/17183239_0.shtml)。
+Robots 协议代表了互联网领域的一种契约精神，互联网企业只有遵守这一规则，才能保证网站及用户的隐私数据不被侵犯，违背 Robots 协议将带来巨大安全隐忧。例如，[百度诉奇虎360违反“Robots协议”抓取、复制其网站内容侵权一案](http://tech.ifeng.com/internet/special/baidupk360/content-1/detail_2012_08/29/17183239_0.shtml)。
 
 # 爬取过程
 
