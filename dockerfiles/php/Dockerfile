@@ -8,9 +8,9 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && apk add --no-cache libstdc++ libzip-dev vim\
     && apk update \
 #   && pecl install redis-4.3.0 \
-    && pecl install zip \
+#    && pecl install zip \
 #   && docker-php-ext-enable redis zip \
-    && docker-php-ext-enable zip \
+#    && docker-php-ext-enable zip \
     && apk del $PHPIZE_DEPS
 # docker-php-ext-install 指令已经包含编译辅助类库的删除逻辑
 RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev \

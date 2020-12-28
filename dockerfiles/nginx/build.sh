@@ -5,7 +5,7 @@ certs_dir="$dir/certs"
 
 mkdir -p $dir/challenges
 
-# HTTPS
+# 是否启用HTTPS
 if [ "$ENABLE_SSL" = "false" ]; then
 
     # 修改nginx配置, 不启用HTTPS

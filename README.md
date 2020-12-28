@@ -13,7 +13,7 @@
 * clone 命令
 
 ```bash
-git clone --recursive https://github.com/fan-haobai/blog.git 
+git clone --recursive https://github.com/fan-haobai/blog.git
 ```
 
 * pull 命令
