@@ -59,6 +59,7 @@ docker-compose up --force-recreate --build -d
 
 ### 架构
 
+* [使用Docker轻松部署Hexo博客系统](https://www.fanhaobai.com/2020/12/hexo-to-docker.html)（2020-12-27）
 * [自建一个简易的OpenAPI网关](https://www.fanhaobai.com/2020/07/openapi.html)（2020-07-15）
 * [在分布式系统使用Kafka](https://www.fanhaobai.com/2020/05/use-kafka.html)（2020-05-12）
 * [商品价格的多币种方案](https://www.fanhaobai.com/2019/02/multi-currency-price.html)（2019-02-28）

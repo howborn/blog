@@ -3,8 +3,9 @@ title: 使用Docker轻松部署Hexo博客系统
 date: 2020-12-27 14:00:00
 tags:
 - 工具
+- 系统设计
 categories:
-- 工具
+- 系统设计
 ---
 
 我的 [博客](https://www.fanhaobai.com) 停服已经有几个月了，主要原因是使用的 [Google Cloud](https://cloud.google.com/free/) 免费服务器已经到期了，而整个博客系统的迁移成本很大，因此迟迟没有开启服务。
