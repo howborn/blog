@@ -16,7 +16,7 @@ categories:
 
 我的写作环境为 [Typora](https://www.typora.io/)（Win10），博客发布在阿里云的 [ECS](https://www.fanhaobai.com)（CentOS）上，文章托管在 [GitHub](https://github.com/fan-haobai/blog)。
 
-## 需求迭代
+## 需求升级
 
 随着时间成本的增高，只能利用碎片时间来进行写作。因此，我的写作场景变成了这样：
 
@@ -60,13 +60,13 @@ categories:
 
 #### 发布流程
 
-采用 master 发布策略，当需要发布时，需要将对应开发分支 merge 到 master 分支，然后`push master`分支，即可实现发布。
+采用 master 发布策略，当需要发布时，需要将对应开发分支 merge 到 master 分支，然后 `push master` 分支，即可实现发布。
 
 ![发布流程](//img5.fanhaobai.com/2018/03/hexo-deploy/12b62d2e-7e26-4a3c-a770-e0d16d5c2254.png)
 
 #### 构建流程
 
-这里使用到 Webhook 机制，触发服务器执行构建操作，构建脚本见 [Webhook 脚本](#Webhook脚本) 部分。
+这里使用到 Webhook 机制，触发代码更新并部署操作。
 
 当流程 ① 和 ② 结束后，Git 仓库都会向服务器发起一次 HTTP 请求，记录如下：
 
@@ -76,56 +76,70 @@ categories:
 
 ![构建流程图](//img1.fanhaobai.com/2018/03/hexo-deploy/3b8f20b3-f3b2-498d-afa4-d60391c47db5.png)
 
-首先检查当前变更分支，只有为 master 分支时，执行 pull 操作拉取 md 文件更新，然后再执行 `hexo g`完成静态文件的构建。 
+首先检查当前变更分支，只有为 master 分支时，执行 pull 操作拉取 md 文件更新，然后再执行 `hexo g` 完成静态文件的构建。 
 
 ### Webhook脚本
 
-[Webhook](https://github.com/fan-haobai/webhook) 脚本使用 PHP 实现，代码如下：
+这里直接使用 [webhook-cli](https://github.com/sigoden/webhook) 工具，只需简单配置即可使用。
 
-主流程方法如下：
+新增 `hook.json` 配置文件，内容如下：
 
-```PHP
-public function run()
-{
-    //校验token
-    if ($this->checkToken()) {
-        echo 'ok';
-    } else {
-        echo 'error';
+```bash
+[
+  {
+    "id": "webhook-deploy-hexo",
+    "execute-command": "/build_hexo.sh",
+    "include-command-output-in-response": true,
+    "trigger-rule":
+    {
+      "and":
+      [
+        {
+          "match":
+          {
+            "type": "payload-hash-sha1",
+            "secret": "88E7fe7aDf58d8a42108F0b7c2065d55dF3204D7",
+            "parameter":
+            {
+              "source": "header",
+              "name": "X-Hub-Signature"
+            }
+          }
+        },
+        {
+          "match":
+          {
+            "type": "value",
+            "value": "refs/heads/master",
+            "parameter":
+            {
+              "source": "payload",
+              "name": "ref"
+            }
+          }
+        }
+      ]
     }
-    fastcgi_finish_request();       //返回响应
-    if ($this->checkBranch()) {     //校验分支
-        $this->exec();              //执行操作逻辑
-    }
-}
+  }
+]
 ```
 
-这里使用 shell 脚本实现构建所需的所有操作，方便扩展。执行操作方法如下：
+其中，`execute-command` 为部署脚本路径，`secret` 为 webhook 参数加密密钥。
 
-```PHP
-public function exec()
-{
-    //shell文件
-    $path = $this->config['bash_path'];
-    $result = shell_exec("sh $path 2>&1");
-    $this->accessLog($result);
-    return $result;
-}
-```
-
-构建 shell 脚本如下：
+部署脚本 `execute-command` 的内容如下：
 
 ```Bash
-#!/usr/bin/env bash
+#!/bin/bash
 
-export NODE_HOME=/usr/local/node
-export PATH=$NODE_HOME/bin:$PATH
+cd /var/www/blog
 
-pwd='/data/html/hexo'
-cd $pwd/source
+# 更新代码
 git pull
-cd $pwd
-$pwd/node_modules/hexo/bin/hexo g
+
+# 生成静态资源
+npm install --force
+# hexo clean
+hexo g
 ```
 
 ## 总结
