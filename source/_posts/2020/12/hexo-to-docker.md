@@ -173,7 +173,7 @@ Dockerfile 文件统一放在 `dockerfiles` 目录下，并分别建立 `nodejs`
 
 #### NodeJS
 
-该容器下需要安装 `git`、`npm`，Dockerfile 文件如下：
+该容器下需要安装 `git`、`npm`。Dockerfile 文件如下：
 
 ```bash
 FROM node:12-alpine
@@ -184,15 +184,28 @@ RUN echo "Asia/Shanghai" > /etc/timezone \
     && apk add --no-cache git \
     && npm install hexo-cli -g
 
-ADD build.sh build.sh
-RUN chmod 777 /build.sh
+ADD *.sh /
+RUN chmod 777 /*.sh
 
 EXPOSE 4000
 
 ENTRYPOINT ["sh", "/build.sh"]
 ```
 
-其中，`build.sh` 为容器的启动脚本，主要作用为更新代码并生成静态资源文件。内容如下：
+其中，`build.sh` 为容器的启动脚本，主要作用为生成静态资源文件。内容如下：
+
+```bash
+#!/bin/bash
+
+cd /var/www/blog
+
+# 生成静态资源
+/bin/sh /build_hexo.sh
+
+hexo s
+```
+
+脚本 `build_hexo.sh` 内容如下：
 
 ```bash
 #!/bin/bash
@@ -204,9 +217,8 @@ git pull && git submodule foreach git pull origin master
 
 # 生成静态资源
 npm install --force
-hexo clean
+# hexo clean
 hexo g
-hexo s
 ```
 
 #### PHP
@@ -401,3 +413,5 @@ af7baad788c5   blog_php      "docker-php-entrypoi…"   2 days ago   Up 2 days  
 ```
 
 通过 [www.fanhaobai.com](https://www.fanhaobai.com) 域名也可以直接访问到本站了。
+
+> 使用 [webhook-cli](https://github.com/sigoden/webhook) 工具可以支持代码自动部署，详细见 [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。

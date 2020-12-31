@@ -14,11 +14,14 @@ services:
       - docker.env
     container_name: "nginx"
   nodejs:
+    restart: always
     build: ./dockerfiles/nodejs
     ports:
       - "4000:4000"
     volumes:
       - "/var/www/blog:/var/www/blog"
+    env_file:
+      - docker.env
     container_name: "nodejs"
   php:
     restart: always
@@ -27,4 +30,6 @@ services:
       - "9000"
     volumes:
       - "/var/www/blog:/var/www/blog"
+    env_file:
+      - docker.env
     container_name: "php"
