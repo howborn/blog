@@ -151,6 +151,7 @@ services:
 * volumes：挂载目录
 * command：容器启动后执行的命令
 * env_file：环境变量文件
+* extra_hosts：域名IP映射
 * container_name：容器名称
 
 > Docker Compose 支持多配置文件，且为覆盖关系。因此将 `ssl-override.yml` 作为获取 HTTPS 证书时启动容器的配置文件。
@@ -336,7 +337,7 @@ openssl req -new -sha256 -key domain.key -subj "/" -reqexts SAN -config \
     <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=$domains")) > domain.csr
 
 echo "### Download acme_tiny script ..."
-wget https://gist.githubusercontent.com/JonLundy/f25c99ee0770e19dc595/raw/6035c1c8938fae85810de6aad1ecf6e2db663e26/conv.py -O acme_tiny.py
+wget https://raw.githubusercontent.com/diafygi/acme-tiny/master/acme_tiny.py -O acme_tiny.py
 
 echo "### Gen chained cert ..."
 python acme_tiny.py --account-key account.key --csr domain.csr --acme-dir $dir/challenges/ > signed.crt || exit

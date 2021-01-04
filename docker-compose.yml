@@ -12,6 +12,8 @@ services:
     command: /bin/bash /build.sh
     env_file:
       - docker.env
+    extra_hosts:
+      - "raw.githubusercontent.com:199.232.96.133"
     container_name: "nginx"
   nodejs:
     restart: always
