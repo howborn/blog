@@ -1,9 +1,7 @@
 #!/bin/bash
 
 dir="/var/www/ssl"
-certs_dir="$dir/certs"
-
-mkdir -p "$dir/challenges"
+mkdir -p $dir/challenges
 
 # 是否启用HTTPS
 if [ "$ENABLE_SSL" = "false" ]; then

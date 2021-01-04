@@ -3,8 +3,8 @@
 dir='/var/www/ssl'
 certs_dir="$dir/certs"
 
-mkdir -p certs_dir
-cd certs_dir
+mkdir -p $certs_dir
+cd $certs_dir
 
 if [ -z "$SSL_DOMAINS" ]; then
     echo "### Domains is empty"

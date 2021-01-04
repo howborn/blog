@@ -317,8 +317,8 @@ docker exec nginx nginx -s reload
 dir='/var/www/ssl'
 certs_dir="$dir/certs"
 
-mkdir -p certs_dir
-cd certs_dir
+mkdir -p $certs_dir
+cd $certs_dir
 
 if [ -z "$SSL_DOMAINS" ]; then
     echo "### Domains is empty"
@@ -356,8 +356,6 @@ echo "### End ssl ..."
 #!/bin/bash
 
 dir="/var/www/ssl"
-certs_dir="$dir/certs"
-
 mkdir -p "$dir/challenges"
 
 # 是否启用HTTPS
