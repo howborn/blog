@@ -341,6 +341,7 @@ wget https://raw.githubusercontent.com/diafygi/acme-tiny/master/acme_tiny.py -O 
 
 echo "### Gen chained cert ..."
 python acme_tiny.py --account-key account.key --csr domain.csr --acme-dir $dir/challenges/ > signed.crt || exit
+openssl dhparam -out dhparams.pem 2048
 wget -O - https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem > intermediate.pem
 cat signed.crt intermediate.pem > chained.pem
 
