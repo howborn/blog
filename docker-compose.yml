@@ -5,6 +5,7 @@ services:
     build: ./dockerfiles/nginx
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - "/var/www/blog:/var/www/blog"
       - "/var/www/ssl/certs:/var/www/ssl/certs"

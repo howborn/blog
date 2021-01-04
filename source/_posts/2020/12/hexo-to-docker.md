@@ -115,6 +115,7 @@ services:
     build: ./dockerfiles/nginx
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       # 博客源代码
       - "/var/www/blog:/var/www/blog"
