@@ -7,7 +7,7 @@ mkdir -p $dir/challenges
 if [ "$ENABLE_SSL" = "false" ]; then
 
     # 修改nginx配置, 不启用HTTPS
-    sed -i '/ssl/d' /etc/nginx/nginx.conf
+    sed -i '/https/d' /etc/nginx/nginx.conf
 else
 
     # 每2个月更新一次, 并重启nginx容器

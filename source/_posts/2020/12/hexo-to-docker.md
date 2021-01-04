@@ -126,6 +126,8 @@ services:
     command: /bin/bash /build.sh
     env_file:
       - docker.env
+    extra_hosts:
+      - "raw.githubusercontent.com:199.232.96.133"
     container_name: "nginx"
   nodejs:
     build: ./dockerfiles/nodejs
@@ -365,7 +367,7 @@ mkdir -p "$dir/challenges"
 if [ "$ENABLE_SSL" = "false" ]; then
 
     # 修改nginx配置, 不启用HTTPS
-    sed -i '/ssl/d' /etc/nginx/nginx.conf
+    sed -i '/https/d' /etc/nginx/nginx.conf
 else
 
     # 每2个月更新一次, 并重启nginx容器
