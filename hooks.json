@@ -1,7 +1,7 @@
 [
   {
     "id": "webhook-deploy-hexo",
-    "execute-command": "/build_hexo.sh",
+    "execute-command": "/bin/sh /build_hexo.sh",
     "include-command-output-in-response": true,
     "trigger-rule":
     {
