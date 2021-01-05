@@ -1,7 +1,8 @@
 [
   {
     "id": "webhook-deploy-hexo",
-    "execute-command": "netstat -tnpl | grep :4000 | awk '{print $7}' | awk -F '/' '{print $1}' | xargs kill",
+    "execute-command": "/restart.sh",
+    "command-working-directory": "/",
     "include-command-output-in-response": true,
     "trigger-rule":
     {
