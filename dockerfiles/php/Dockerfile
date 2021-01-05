@@ -24,10 +24,10 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # composer
-#RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
-#    && php composer-setup.php \
-#    && php -r "unlink('composer-setup.php');" \
-#    && mv composer.phar /usr/local/bin/composer
+RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" \
+    && php composer-setup.php \
+    && php -r "unlink('composer-setup.php');" \
+    && mv composer.phar /usr/local/bin/composer
 
 ADD conf.d/* $PHP_INI_DIR/conf.d/
 ADD *.sh /
