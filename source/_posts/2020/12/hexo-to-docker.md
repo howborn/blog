@@ -203,19 +203,6 @@ ENTRYPOINT ["sh", "/build.sh"]
 
 cd /var/www/blog
 
-# 生成静态资源
-/bin/sh /build_hexo.sh
-
-hexo s
-```
-
-脚本 `build_hexo.sh` 内容如下：
-
-```bash
-#!/bin/bash
-
-cd /var/www/blog
-
 # 更新代码
 git pull && git submodule foreach git pull origin master
 
@@ -223,6 +210,7 @@ git pull && git submodule foreach git pull origin master
 npm install --force
 # hexo clean
 hexo g
+hexo s
 ```
 
 #### PHP
