@@ -7,6 +7,7 @@ date: 2016-12-11 13:12:10
 
 # 更新说明
 
+* 2020.12.30：支持 [Docker](https://www.fanhaobai.com/2020/12/hexo-to-docker.html) 自动部署。
 * 2018.07.26：图片支持 [img0](//img0.fanhaobai.com) 和 [img1](//img1.fanhaobai.com) 多域名。
 * 2018.07.04：科学使用 [Disqus](https://github.com/fan-haobai/disqus-php-api)。
 * 2018.06.22：增加 [二维码服务](https://disqus.fanhaobai.com/qrcode.php?url=https://www.fanhaobai.com)。
