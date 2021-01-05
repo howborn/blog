@@ -147,14 +147,6 @@ server {
         return 301 https://www.fanhaobai.com$request_uri;
     }
     
-    #豆瓣代理
-    location ~ ^/douban/(.*)$ {
-	proxy_set_header Host img3.doubanio.com;
-	proxy_set_header Referer https://book.douban.com;
-        proxy_pass       http://img3.doubanio.com/$1;
-        expires max;
-    }
-    
     #404特殊页面日志排除
     location ~ /404.html {
         if ($request_uri ~* '/(file/upload)|jianshu|hangqing|qinghua|script|lib|pifa|(apple\-touch)|(wp\-login))' {
