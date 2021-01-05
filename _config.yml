@@ -18,7 +18,7 @@ permalink: :title.html
 permalink_defaults:
   lang: en
 pretty_urls:
-  trailing_index: false
+  trailing_index: true
   trailing_html: true
 
 # Directory
