@@ -10,7 +10,7 @@ services:
       - "/var/www/blog:/var/www/blog"
       - "/var/www/ssl/certs:/var/www/ssl/certs"
       - "$PWD/dockerfiles/nginx/conf.d:/etc/nginx/conf.d"
-    command: /bin/bash /build.sh
+    command: /bin/bash /start.sh
     env_file:
       - docker.env
     extra_hosts:
@@ -33,6 +33,7 @@ services:
       - "9000"
     volumes:
       - "/var/www/blog:/var/www/blog"
+    command: /bin/sh /start.sh
     env_file:
       - docker.env
     container_name: "php"

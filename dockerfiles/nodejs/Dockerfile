@@ -12,4 +12,4 @@ RUN chmod 777 /*.sh
 
 EXPOSE 4000
 
-ENTRYPOINT ["sh", "/build.sh"]
+ENTRYPOINT ["sh", "/start.sh"]

@@ -30,3 +30,5 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 #    && mv composer.phar /usr/local/bin/composer
 
 ADD conf.d/* $PHP_INI_DIR/conf.d/
+ADD *.sh /
+RUN chmod 777 /*.sh

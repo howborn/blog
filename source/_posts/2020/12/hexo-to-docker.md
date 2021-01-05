@@ -123,7 +123,7 @@ services:
       - "/var/www/ssl/certs:/var/www/ssl/certs"
       # Nginx配置
       - "$PWD/dockerfiles/nginx/conf.d:/etc/nginx/conf.d"
-    command: /bin/bash /build.sh
+    command: /bin/bash /start.sh
     env_file:
       - docker.env
     extra_hosts:
@@ -193,10 +193,10 @@ RUN chmod 777 /*.sh
 
 EXPOSE 4000
 
-ENTRYPOINT ["sh", "/build.sh"]
+ENTRYPOINT ["sh", "/start.sh"]
 ```
 
-其中，`build.sh` 为容器的启动脚本，主要作用为生成静态资源文件。内容如下：
+其中，`start.sh` 为容器的启动脚本，主要作用为生成静态资源文件。内容如下：
 
 ```bash
 #!/bin/bash
@@ -256,7 +256,7 @@ RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
     && apt-get update && apt-get install -y cron wget python
 
 # 启动脚本和配置
-ADD build.sh build.sh
+ADD *.sh /
 ADD nginx.conf /etc/nginx/nginx.conf
 
 # HTTPS证书生成脚本
@@ -343,7 +343,7 @@ echo "### End ssl ..."
 
 * 容器启动脚本
 
-在该容器启动后，会执行 `build.sh` 脚本。其内容如下：
+在该容器启动后，会执行 `start.sh` 脚本。其内容如下：
 
 ```bash
 #!/bin/bash
@@ -398,7 +398,7 @@ docker-compose up --force-recreate --build -d
 ```bash
 docker ps -a
 CONTAINER ID   IMAGE         COMMAND                  CREATED      STATUS      PORTS                    NAMES
-b0307bac08d7   blog_nodejs   "sh /build.sh"           2 days ago   Up 2 days   0.0.0.0:4000->4000/tcp   nodejs
+b0307bac08d7   blog_nodejs   "sh /start.sh"           2 days ago   Up 2 days   0.0.0.0:4000->4000/tcp   nodejs
 e8ef7a1e9271   blog_nginx    "/docker-entrypoint.…"   2 days ago   Up 2 days   0.0.0.0:80->80/tcp       nginx
 af7baad788c5   blog_php      "docker-php-entrypoi…"   2 days ago   Up 2 days   9000/tcp                 php
 ```
