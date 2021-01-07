@@ -2,4 +2,4 @@
 User-agent: *
 Disallow: /404.html
 Disallow: /categories
-Sitemap: http://www.fanhaobai.com/map.xml
+Sitemap: http://www.fanhaobai.com/sitemap.xml
