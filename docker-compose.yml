@@ -9,7 +9,7 @@ services:
     volumes:
       - "/var/www/blog:/var/www/blog"
       - "/var/www/ssl/certs:/var/www/ssl/certs"
-      - "$PWD/dockerfiles/nginx/conf.d:/etc/nginx/conf.d"
+      - "./dockerfiles/nginx/conf.d:/etc/nginx/conf.d"
     command: /bin/bash /start.sh
     env_file:
       - docker.env
