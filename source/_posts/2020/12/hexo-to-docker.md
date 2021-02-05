@@ -406,3 +406,7 @@ af7baad788c5   blog_php      "docker-php-entrypoi…"   2 days ago   Up 2 days  
 通过 [www.fanhaobai.com](https://www.fanhaobai.com) 域名也可以直接访问到本站了。
 
 > 使用 [webhook-cli](https://github.com/sigoden/webhook) 工具可以支持代码自动部署，详细见 [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)。
+
+<strong>更新 [»](#)</strong>
+
+* [disqus-php-api](https://github.com/fan-haobai/disqus-php-api) 已替换为开源的 [DisqusJS](https://developer.aliyun.com/mirror/npm/package/disqusjs)，无需再单独部署。
