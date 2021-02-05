@@ -1,7 +1,6 @@
 #!/bin/bash
 
 dir=/var/www/blog
-cd $dir/disqus
 
 # 更新composer
 composer update
