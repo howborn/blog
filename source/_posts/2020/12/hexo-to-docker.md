@@ -409,4 +409,4 @@ af7baad788c5   blog_php      "docker-php-entrypoi…"   2 days ago   Up 2 days  
 
 <strong>更新 [»](#)</strong>
 
-* [disqus-php-api](https://github.com/fan-haobai/disqus-php-api) 已替换为开源的 [DisqusJS](https://developer.aliyun.com/mirror/npm/package/disqusjs)，无需再单独部署。
+* [disqus-php-api](https://github.com/fan-haobai/disqus-php-api) 已替换为开源的 [DisqusJS](https://github.com/SukkaW/DisqusJS)，无需再单独部署。
