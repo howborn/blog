@@ -4,9 +4,7 @@
 
 ![预览图](https://www.fanhaobai.com/view.png)
 
-## 说明
-
-### 源代码
+## 项目代码
 
 本项目采用 git submodule 方式管理源代码。
 
@@ -22,7 +20,7 @@ git clone --recursive https://github.com/fan-haobai/blog.git
 git pull && git submodule foreach git pull origin master
 ```
 
-### 运行环境
+## 部署环境
 
 本项目采用 docker 管理项目环境，请先安装 [docker-compose](https://docs.docker.com/compose/)。
 
@@ -48,7 +46,7 @@ cp docker.example.env docker.env
 docker-compose up --force-recreate --build -d
 ```
 
-## 文章
+## 文章内容
 
 本站所有的文章 Markdown 文件，请移步 [这里](https://github.com/fan-haobai/blog/tree/master/source/_posts)。
 
