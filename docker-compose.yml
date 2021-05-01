@@ -26,14 +26,3 @@ services:
     env_file:
       - docker.env
     container_name: "nodejs"
-  php:
-    restart: always
-    build: ./dockerfiles/php
-    expose:
-      - "9000"
-    volumes:
-      - "/var/www/blog:/var/www/blog"
-    command: /bin/sh /start.sh
-    env_file:
-      - docker.env
-    container_name: "php"

@@ -3,5 +3,3 @@ services:
   nginx:
     environment:
       - ENABLE_SSL=false
-    extra_hosts:
-      - 'php:127.0.0.1'
