@@ -99,7 +99,6 @@ docker-compose up --force-recreate --build -d
 * [身份证的编码规则](https://www.fanhaobai.com/2017/08/id-card.html)（2017-08-20）
 * [APP接口多版本处理](https://www.fanhaobai.com/2017/08/api-version.html)（2017-08-19）
 * [从foreach方法引出的PHP内存分析](https://www.fanhaobai.com/2017/07/array-reference.html)（2017-07-16）
-* [PHP定时脚本的那些事](https://www.fanhaobai.com/2017/07/php-cli-setting.html)（2017-07-10）
 * [简易实现一个后台程序](https://www.fanhaobai.com/2017/06/php-daemonize.html)（2017-06-15）
 * [按照奖品概率分布抽奖的实现](https://www.fanhaobai.com/2017/05/draw-by-prob.html)（2017-05-18）
 * [求非负元素数组所有元素能组合的最大字符串](https://www.fanhaobai.com/2017/04/array-form-max-string.html)（2017-04-03）
@@ -109,13 +108,6 @@ docker-compose up --force-recreate --build -d
 * [正则表达式 — 环视](https://www.fanhaobai.com/2017/01/regex-lookaround.html)（2017-01-19）
 * [SESSION共享问题](https://www.fanhaobai.com/2017/01/session-share.html)（2017-01-10）
 * [PHP文件锁机制](https://www.fanhaobai.com/2016/10/file-flock.html)（2016-10-19）
-* [in_array()函数的坑](https://www.fanhaobai.com/2016/07/functions-in-array.html)（2016-07-06）
-
-##### Yii
-
-* [Yii支持多域名cors原理](https://www.fanhaobai.com/2017/08/yii-cors.html)（2017-08-05）
-* [解决YII2验证码不刷新问题](https://www.fanhaobai.com/2017/06/yii-captcha.html)（2017-06-21）
-* [安全使用调试模式](https://www.fanhaobai.com/2017/04/debug-config.html)（2017-04-18）
 
 #### Lua
 
@@ -161,11 +153,7 @@ docker-compose up --force-recreate --build -d
 * [工欲善其事，必先利其器](https://www.fanhaobai.com/2017/07/tools.html)（2017-07-17）
 * [使用GoAccess分析Nginx日志](https://www.fanhaobai.com/2017/06/go-access.html)（2017-06-17）
 * [PhpStorm的使用姿势](https://www.fanhaobai.com/2017/05/phpstorm-posture.html)（2017-05-23）
-* [Composer安装和使用](https://www.fanhaobai.com/2017/05/composer.html)（2017-05-03）
 * [常用Git命令清单](https://www.fanhaobai.com/2017/04/git-command.html)（2017-04-18）
-* [搭建本地GitLab仓库](https://www.fanhaobai.com/2017/02/gitlab-install.html)（2017-02-24）
-* [CentOS-6.8安装Docker](https://www.fanhaobai.com/2017/01/docker-install.html)（2017-01-19）
-* [Git分支管理策略](https://www.fanhaobai.com/2016/11/git-flow.html)（2016-11-18）
 * [SSH使用的安全技巧](https://www.fanhaobai.com/2016/08/ssh-safely-use.html)（2016-08-16）
 * [安装LNMP开发环境](https://www.fanhaobai.com/2016/05/lnmp.html)（2016-05-24）
 * [AB压力测试工具](https://www.fanhaobai.com/2016/02/ab.html)（2016-02-17）
@@ -184,11 +172,6 @@ docker-compose up --force-recreate --build -d
 * [记录 — Redis与接口签名问题](https://www.fanhaobai.com/2017/09/record-question-1.html)（2017-09-21）
 * [Lua在Redis的应用](https://www.fanhaobai.com/2017/09/lua-in-redis.html)（2017-09-04）
 * [使用Redis管道提升性能](https://www.fanhaobai.com/2017/08/redis-pipelining.html)（2017-08-31）
-* [CentOS源码安装Redis](https://www.fanhaobai.com/2016/08/redis-install.html)（2016-08-23）
-
-#### MongoDB
-
-* [MongoDB在Docker中的部署](https://www.fanhaobai.com/2017/01/mongo-docker-install.html)（2017-01-20）
 
 #### 搜索
 
@@ -200,7 +183,6 @@ docker-compose up --force-recreate --build -d
 ### 日常
 
 * [第一次全国程序员人口普查](https://www.fanhaobai.com/2018/10/1th-coder-census.html)（2018-10-24）
-* [2017年程序员高考试卷来了](https://www.fanhaobai.com/2017/06/code-nemt.html)（2017-06-08）
 * [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)（2017-03-01）
 * [如何向搜索引擎提交链接](https://www.fanhaobai.com/2017/01/push-links.html)（2017-01-17）
 * [自动更新站点地图的部署](https://www.fanhaobai.com/2017/01/update-sitemap.html)（2017-01-16）
@@ -210,4 +192,3 @@ docker-compose up --force-recreate --build -d
 
 * [Lua在Nginx的应用](https://www.fanhaobai.com/2017/09/lua-in-nginx.html)（2017-09-09）
 * [Nginx错误日志的配置](https://www.fanhaobai.com/2017/01/nginx-error-log.html)（2017-01-14）
-* [CentOS6.5安装NodeJS](https://www.fanhaobai.com/2016/12/nodejs-install.html)（2016-12-10）
