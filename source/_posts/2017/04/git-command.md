@@ -1,5 +1,5 @@
 ---
-title: 常用Git命令清单
+title: Git使用技巧
 date: 2017-04-18 23:02:22
 tags:
 - 工具

@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 个人笔记
+title: Howborn个人笔记
 subtitle: 知识搬运工
 description: 目前专注于后端研发，关注分布式系统性能优化。
 keywords: "架构,后端,Go,PHP,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek"
-author: fan-haobai
+author: howborn
 language: zh-CN
 
 # URLh

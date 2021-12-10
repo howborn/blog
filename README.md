@@ -138,7 +138,7 @@ docker-compose up --force-recreate --build -d
 * [使用Supervisor管理进程](https://www.fanhaobai.com/2017/09/supervisor.html)（2017-09-23）
 * [使用Charles抓包](https://www.fanhaobai.com/2017/07/charles.html)（2017-07-22）
 * [使用GoAccess分析Nginx日志](https://www.fanhaobai.com/2017/06/go-access.html)（2017-06-17）
-* [常用Git命令清单](https://www.fanhaobai.com/2017/04/git-command.html)（2017-04-18）
+* [Git使用技巧](https://www.fanhaobai.com/2017/04/git-command.html)（2017-04-18）
 
 ### DB
 
@@ -162,8 +162,6 @@ docker-compose up --force-recreate --build -d
 ### 日常
 
 * [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)（2017-03-01）
-* [自动更新站点地图的部署](https://www.fanhaobai.com/2017/01/update-sitemap.html)（2017-01-16）
-* [颜值超高的FireKylin博客系统](https://www.fanhaobai.com/2016/12/firekylin.html)（2016-12-11）
 
 ### Web服务器
 
