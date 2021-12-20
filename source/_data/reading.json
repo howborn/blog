@@ -7,13 +7,6 @@
   "contents": {
     "readed": [
       {
-        "title": "Go语言编程",
-        "cover": "//img3.doubanio.com/lpic/s11162016.jpg",
-        "review": "",
-        "score": "7.1",
-        "doubanLink": "https://book.douban.com/subject/11577300/"
-      },
-      {
         "title": "Head First设计模式",
         "cover": "//img3.doubanio.com/lpic/s2414323.jpg",
         "review": "",
@@ -35,25 +28,11 @@
         "doubanLink": "https://book.douban.com/subject/25723064/"
       },
       {
-        "title": "淘宝技术这十年",
-        "cover": "//img3.doubanio.com/lpic/s26713863.jpg",
-        "review": "",
-        "score": "7.3",
-        "doubanLink": "https://book.douban.com/subject/24335672/"
-      },
-      {
         "title": "愿有人陪你颠沛流离",
         "cover": "//img3.doubanio.com/lpic/s27317967.jpg",
         "review": "这本书是我离校时，一位学妹赠送的。卢思浩出品，可以跟随作者的脚步融入另一个世界，品味他的人生经历，我也喜欢自己的人生如书名一样，有人陪我颠沛流离。",
         "score": "6.8",
         "doubanLink": "https://book.douban.com/subject/25921293/"
-      },
-      {
-        "title": "图解HTTP",
-        "cover": "//img3.doubanio.com/lpic/s27283822.jpg",
-        "review": "",
-        "score": "8.1",
-        "doubanLink": "https://book.douban.com/subject/25863515/"
       },
       {
         "title": "打造facebook",
@@ -70,20 +49,6 @@
         "doubanLink": "https://book.douban.com/subject/25816940/"
       },
       {
-        "title": "20个月赚130亿",
-        "cover": "//img3.doubanio.com/lpic/s6982859.jpg",
-        "review": "YouTube联合创始人陈士骏在书中以朴实亲切的口吻讲述了他的人生经历，以及对学业、事业、梦想、财富、生死等的种种感悟，同时也是很真实的硅谷开发者生活方式的介绍。",
-        "score": "7.6",
-        "doubanLink": "https://book.douban.com/subject/6920100/"
-      },
-      {
-        "title": "数据结构（C语言版）",
-        "cover": "//img3.doubanio.com/lpic/s26540471.jpg",
-        "review": "这本书绝对是经典，可以夯实基础的一本书籍，属计算机从业者必看类。",
-        "score": "6.4",
-        "doubanLink": "https://book.douban.com/subject/24699581/"
-      },
-      {
         "title": "参与感",
         "cover": "//img3.doubanio.com/lpic/s27359667.jpg",
         "review": "小米联合创始人黎万强所著，是小米营销方式的真实写照，通过这本书，可以了解到小米内部的真实运作情况。",
@@ -98,13 +63,6 @@
         "review": "",
         "score": "7.3",
         "doubanLink": "https://book.douban.com/subject/30155731/"
-      },
-      {
-        "title": "高性能MySQL",
-        "cover": "//img3.doubanio.com/lpic/s27783358.jpg",
-        "review": "",
-        "score": "9.3",
-        "doubanLink": "https://book.douban.com/subject/23008813/"
       }
     ],
     "wanted": [
