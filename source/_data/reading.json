@@ -9,59 +9,37 @@
       {
         "title": "Head First设计模式",
         "cover": "//img3.doubanio.com/lpic/s2414323.jpg",
-        "review": "",
-        "score": "9.2",
+        "time": "2016",
         "doubanLink": "https://book.douban.com/subject/2243615/"
-      },
-      {
-        "title": "程序员面试笔试宝典",
-        "cover": "//img3.doubanio.com/lpic/s23121995.jpg",
-        "review": "",
-        "score": "8.0",
-        "doubanLink": "https://book.douban.com/subject/20270192/"
       },
       {
         "title": "大型网站技术架构",
         "cover": "//img3.doubanio.com/lpic/s27250675.jpg",
-        "review": "",
-        "score": "7.9",
+        "time": "2017",
         "doubanLink": "https://book.douban.com/subject/25723064/"
-      },
-      {
-        "title": "愿有人陪你颠沛流离",
-        "cover": "//img3.doubanio.com/lpic/s27317967.jpg",
-        "review": "这本书是我离校时，一位学妹赠送的。卢思浩出品，可以跟随作者的脚步融入另一个世界，品味他的人生经历，我也喜欢自己的人生如书名一样，有人陪我颠沛流离。",
-        "score": "6.8",
-        "doubanLink": "https://book.douban.com/subject/25921293/"
       },
       {
         "title": "打造facebook",
         "cover": "//img3.doubanio.com/lpic/s24581301.jpg",
-        "review": "有一群人，他们的驱动力是不断学习和不断创造，他们的理想是将世界变得更好，并投身于此，积极进取。他们是理想主义者，胸怀大志；他们也是实干家，为更好的世界每日添砖加瓦。他们每时每刻都在为世界创造真正的价值。这类人，酷一点的名字叫黑客（Hacker）或者极客（Geek），亲切一点的名字叫做工程师（Engineer）",
-        "score": "7.5",
+        "time": "2017",
         "doubanLink": "https://book.douban.com/subject/20471120/"
       },
       {
         "title": "富爸爸穷爸爸",
         "cover": "//img3.doubanio.com/lpic/s27274192.jpg",
-        "review": "",
-        "score": "8.5",
+        "time": "2018",
         "doubanLink": "https://book.douban.com/subject/25816940/"
-      },
-      {
-        "title": "参与感",
-        "cover": "//img3.doubanio.com/lpic/s27359667.jpg",
-        "review": "小米联合创始人黎万强所著，是小米营销方式的真实写照，通过这本书，可以了解到小米内部的真实运作情况。",
-        "score": "7.5",
-        "doubanLink": "https://book.douban.com/subject/25942507/"
       }
     ],
     "reading": [
       {
+        "title": "底层逻辑",
+        "cover": "//img3.doubanio.com/lpic/s34012502.jpg",
+        "doubanLink": "https://book.douban.com/subject/30155731/"
+      },
+      {
         "title": "算法之美",
         "cover": "//img3.doubanio.com/lpic/s29762735.jpg",
-        "review": "",
-        "score": "7.3",
         "doubanLink": "https://book.douban.com/subject/30155731/"
       }
     ],
@@ -69,58 +47,12 @@
       {
         "title": "高扩展性网站的50条原则",
         "cover": "//img3.doubanio.com/lpic/s9126724.jpg",
-        "review": "",
-        "score": "7.5",
         "doubanLink": "https://book.douban.com/subject/10756899/"
-      },
-      {
-        "title": "代码大全（第2版）",
-        "cover": "//img3.doubanio.com/lpic/s1495029.jpg",
-        "review": "",
-        "score": "9.3",
-        "doubanLink": "https://book.douban.com/subject/1477390/"
       },
       {
         "title": "代码整洁之道",
         "cover": "//img3.doubanio.com/lpic/s6268784.jpg",
-        "review": "",
-        "score": "9.1",
         "doubanLink": "https://book.douban.com/subject/5442024/"
-      },
-      {
-        "title": "计算机程序的构造和解释",
-        "cover": "//img3.doubanio.com/lpic/s1113106.jpg",
-        "review": "",
-        "score": "9.5",
-        "doubanLink": "https://book.douban.com/subject/1148282/"
-      },
-      {
-        "title": "剑指Offer",
-        "cover": "//img3.doubanio.com/lpic/s27991506.jpg",
-        "review": "",
-        "score": "9.2",
-        "doubanLink": "https://book.douban.com/subject/25910559/"
-      },
-      {
-        "title": "算法图解",
-        "cover": "//img3.doubanio.com/lpic/s29358625.jpg",
-        "review": "",
-        "score": "8.4",
-        "doubanLink": "https://book.douban.com/subject/26979890/"
-      },
-      {
-        "title": "只是为了好玩",
-        "cover": "//img3.doubanio.com/lpic/s27329267.jpg",
-        "review": "",
-        "score": "8.1",
-        "doubanLink": "https://book.douban.com/subject/25930025/"
-      },
-      {
-        "title": "数学之美",
-        "cover": "//img3.doubanio.com/lpic/s29961188.jpg",
-        "review": "",
-        "score": "8.9",
-        "doubanLink": "https://book.douban.com/subject/26163454/"
       }
     ]
   }
