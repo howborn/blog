@@ -10,7 +10,7 @@ categories:
 
 在分布式系统中，为了实现负载均衡，必然会涉及到负载调度算法，如 Nginx 和 RPC 服务发现等场景。常见的负载均衡算法有  [轮询](#)、[源地址 Hash](#)、[最少连接数](#)，而 **轮询** 是最简单且应用最广的算法。
 
-![预览图](//img1.fanhaobai.com/2018/11/load-balance-round-robin/1e858872-6235-4131-98ba-433690eb32c1.jpg)<!--more-->![预览图](//img1.fanhaobai.com/2018/11/load-balance-round-robin/1e858872-6235-4131-98ba-433690eb32c1.jpg)
+![预览图](//img1.fanhaobai.com/2018/11/load-balance-round-robin/1e858872-6235-4131-98ba-433690eb32c1.jpg)<!--more-->
 
 3 种常见的轮询调度算法，分别为 [简单轮询](#简单轮询)、[加权轮询](#加权轮询)、[平滑加权轮询](#)。本文将用如下 4 个服务，来详细说明轮询调度过程。
 

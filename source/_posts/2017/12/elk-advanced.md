@@ -9,7 +9,7 @@ categories:
 ---
 
 部署 [ELK](https://www.fanhaobai.com/2017/12/elk-install.html) 后，日志平台就搭建完成了，基本上可以投入使用，但是其配置并不完善，也并未提供实时监控和流量分析功能，本文将对 ELK 部署后的一些常见使用问题给出解决办法。
-![预览图](//img3.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->![](https://www.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)
+![预览图](//img3.fanhaobai.com/2017/12/elk-advanced/993155ac-718b-4e4b-9d36-d9d73357b162.png)<!--more-->
 
 ## Elasticsearch证书
 

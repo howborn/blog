@@ -9,7 +9,7 @@ categories:
 
 今年 3 月从 [自如](http://www.ziroom.com) 离职，然后就回成都并加入了 [聚美](http://www.jumei.com)，我的北漂记忆也就定格在了自如。回来 3 个月，为了这个伟大的决定，一直想写篇文章，今天刚刚好，这篇文章将叙述自己回成都后经历的事和见闻，有想来成都发展的小伙伴可以以此为参考。
 
-![成都](//img1.fanhaobai.com/2018/06/beijing-to-chengdu/234987d5-3dd2-4736-b32c-b843ff42505e.jpg)<!--more-->![成都](//img2.fanhaobai.com/2018/06/beijing-to-chengdu/234987d5-3dd2-4736-b32c-b843ff42505e.jpg)
+![成都](//img1.fanhaobai.com/2018/06/beijing-to-chengdu/234987d5-3dd2-4736-b32c-b843ff42505e.jpg)<!--more-->
 
 ## 公司
 
