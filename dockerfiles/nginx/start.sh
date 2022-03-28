@@ -11,7 +11,7 @@ if [ "$ENABLE_SSL" = "false" ]; then
 else
 
     # 每2个月更新一次, 并重启nginx容器
-    ssl_cron="0 0 1 */2 * $dir/refresh_cert.sh && nginx -s reload 2>> /var/log/acme_tiny.log"
+    ssl_cron="0 0 1 */1 * $dir/refresh_cert.sh && nginx -s reload 2>> /var/log/acme_tiny.log"
     crontab -l | { cat; echo "$ssl_cron"; } | crontab -
 fi
 
