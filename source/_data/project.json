@@ -6,16 +6,16 @@
   "contents": {
     "diy": [
       {
-        "title": "点阵打字机",
-        "cover": "//img.fanhaobai.com/project/index/W44BkT8TENzNCoih07mEyLN-.jpg",
-        "review": "",
-        "link": "https://github.com/howborn/dot-matrix-printer"
-      },
-      {
         "title": "飞思卡尔智能车",
         "cover": "//img.fanhaobai.com/project/index/CVyYJnKtigzaHiRQOKmtfMZE.jpg",
         "review": "",
         "link": "https://github.com/howborn/smart-car-freescale"
+      },
+      {
+        "title": "点阵打字机",
+        "cover": "//img.fanhaobai.com/project/index/W44BkT8TENzNCoih07mEyLN-.jpg",
+        "review": "",
+        "link": "https://github.com/howborn/dot-matrix-printer"
       },
       {
         "title": "四旋翼",
