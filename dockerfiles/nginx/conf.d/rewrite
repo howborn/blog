@@ -1,3 +1,4 @@
+rewrite ^/2021/01/2021-personal-summary(.*) /2022/01/2021-personal-summary$1 permanent;
 rewrite ^/2017/08/solr-insatll(.*) /2017/08/solr-install$1 permanent;
 rewrite ^/2017/11/elk(.*) /2017/12/elk$1 permanent;
 rewrite ^/post/upgrade-gcc-4.8(.*) /2016/12/upgrade-gcc$1 permanent;
