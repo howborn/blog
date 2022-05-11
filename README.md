@@ -52,6 +52,7 @@ docker-compose up --force-recreate --build -d
 
 ### 杂谈
 
+* [2021年终总结](https://www.fanhaobai.com/2022/01/2021-personal-summary.html)（2022-01-12）
 * [和她的第一次重庆之旅](https://www.fanhaobai.com/2018/10/journey-chongqing.html)（2018-10-29）
 * [从北京回到成都的这3个月](https://www.fanhaobai.com/2018/06/beijing-to-chengdu.html)（2018-06-27）
 
@@ -70,7 +71,6 @@ docker-compose up --force-recreate --build -d
 #### 分布式
 
 * [分布式配置管理Qconf](https://www.fanhaobai.com/2017/11/qconf.html)（2017-11-03）
-* [Gearman的安装和使用](https://www.fanhaobai.com/2017/08/gearman.html)（2017-08-27）
 
 ### 算法与数据结构
 
@@ -102,7 +102,6 @@ docker-compose up --force-recreate --build -d
 * [按照奖品概率分布抽奖的实现](https://www.fanhaobai.com/2017/05/draw-by-prob.html)（2017-05-18）
 * [求非负元素数组所有元素能组合的最大字符串](https://www.fanhaobai.com/2017/04/array-form-max-string.html)（2017-04-03）
 * [PHP生成随机红包算法](https://www.fanhaobai.com/2017/02/reward.html)（2017-02-13）
-* [正则表达式 — 环视](https://www.fanhaobai.com/2017/01/regex-lookaround.html)（2017-01-19）
 
 #### Lua
 
@@ -110,16 +109,9 @@ docker-compose up --force-recreate --build -d
 * [Lua在Redis的应用](https://www.fanhaobai.com/2017/09/lua-in-redis.html)（2017-09-04）
 * [进入Lua的世界](https://www.fanhaobai.com/2017/09/lua.html)（2017-09-03）
 
-#### Shell
-
-#### C/C++
-
-### 系统
-
 #### 系统原理
 
 * [异步、并发、协程原理](https://www.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine.html)（2017-11-13）
-* [DNS原理入门](https://www.fanhaobai.com/2017/06/dns.html)（2017-06-24）
 
 #### 进程
 
@@ -133,11 +125,9 @@ docker-compose up --force-recreate --build -d
 
 ### 工具
 
-* [自动化代码规范检测 — PHP_CodeSniffer](https://www.fanhaobai.com/2018/04/php-code-sniffer.html)（2018-04-12）
 * [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)（2018-03-03）
 * [使用Supervisor管理进程](https://www.fanhaobai.com/2017/09/supervisor.html)（2017-09-23）
 * [使用Charles抓包](https://www.fanhaobai.com/2017/07/charles.html)（2017-07-22）
-* [使用GoAccess分析Nginx日志](https://www.fanhaobai.com/2017/06/go-access.html)（2017-06-17）
 * [Git使用技巧](https://www.fanhaobai.com/2017/04/git-command.html)（2017-04-18）
 
 ### DB
