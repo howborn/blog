@@ -4,6 +4,10 @@
 
 ![预览图](https://www.fanhaobai.com/view.png)
 
+## 关注公众号获取文章推送
+
+![公众号](https://www.fanhaobai.com/wechat.jpeg)
+
 ## 项目代码
 
 本项目采用 git submodule 方式管理源代码。
