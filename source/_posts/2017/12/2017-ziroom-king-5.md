@@ -92,7 +92,7 @@ Dijkstra 算法是运用了最短路径的最优子结构性质，最优子结�
 
 ## [编码实现](https://github.com/fan-haobai/2017-ziroom-king/blob/master/src/7.php)
 
-实现的类结构如下，特殊的方法已提取出，并将一一详细说明。
+实现的代码如下，并将一一详细说明。
 
 ```PHP
 define('MAX', 9999999999);

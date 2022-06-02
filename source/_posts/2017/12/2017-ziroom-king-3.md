@@ -95,7 +95,7 @@ wv(i,j) \neq wv(i-1,j)
 
 ## [编码实现](https://github.com/fan-haobai/2017-ziroom-king/blob/master/src/5.php)
 
-实现的类结构如下，特殊的方法已提取出，并将一一详细说明。
+实现的代码如下，并将一一详细说明。
 
 ```PHP
 class Knapsack
