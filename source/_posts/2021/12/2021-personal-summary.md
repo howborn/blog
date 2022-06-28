@@ -1,6 +1,6 @@
 ---
 title: 2021年终总结
-date: 2022-1-12 21:00:00
+date: 2021-12-31 21:00:00
 tags:
 - 成长
 ---
@@ -9,7 +9,7 @@ tags:
 
 这一年信息量还是挺大，做了很多项目，但是业务产出较少（有一些外部因素），职级也未能得到晋升。经过这一年的时间沉淀，不再自以为是，以更开放的心态接受身边事物的改变。
 
-![预览图](//img0.fanhaobai.com/2022/01/2021-personal-summary/10183cff-d8cc-4e5f-97cb-b897a256bd41.png)<!--more-->
+![预览图](//img0.fanhaobai.com/2021/12/2021-personal-summary/10183cff-d8cc-4e5f-97cb-b897a256bd41.png)<!--more-->
 
 
 ## 业务
@@ -126,7 +126,7 @@ tags:
 
 负责的业务更多了，大部分事情都会先到我这里。可一天时间就这么多（995 又咋样），怎么办？搬出我的时间四象限：
 
-![预览图](//img0.fanhaobai.com/2022/01/2021-personal-summary/a2d1e849-2e1f-42a3-a054-69005e91755b.jpg)
+![预览图](//img0.fanhaobai.com/2021/12/2021-personal-summary/a2d1e849-2e1f-42a3-a054-69005e91755b.jpg)
 
 
 ## 明年TODO
