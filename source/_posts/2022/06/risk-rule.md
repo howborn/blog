@@ -9,7 +9,7 @@ tags:
 
 ![风控抽象过程](//img0.fanhaobai.com/2022/06/risk-rule/24476377-1566-4cfd-bcd6-3d8af562e57c.png)<!--more-->
 
-用公式可以表达出风控规则和风险数据的系统关系：**z=f(x,y)**，f 为系统风控规则，x 为系统实时输入风险数据，y 为系统的事实数据。
+用公式可以表达出风控规则和风险数据的系统关系：z=f(x, y)，f 为系统风控规则，x 为系统实时输入风险数据，y 为系统的事实数据。
 
 ## 挑战性
 
@@ -205,10 +205,10 @@ CREATE TABLE `risk_input_order` (
 ```golang
 // 订单风控
 service RiskOrder {
-// 风险识别
-rpc CheckRisk (CheckRiskReq) returns (CheckRiskResp);
-// 数据/事件上报
-rpc Report (ReportReq) returns (ReportResp);
+    // 风险识别
+    rpc CheckRisk (CheckRiskReq) returns (CheckRiskResp);
+    // 数据/事件上报
+    rpc Report (ReportReq) returns (ReportResp);
 }
 ```
 
