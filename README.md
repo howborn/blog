@@ -62,6 +62,7 @@ docker-compose up --force-recreate --build -d
 
 ### 架构
 
+* [Flink在用户画像上的应用](https://www.fanhaobai.com/2022/12/user-profile-use-flink.html)（2022-12-23）
 * [基于准实时规则引擎的业务风控方案](https://www.fanhaobai.com/2022/06/risk-rule.html)（2022-06-28）
 * [使用Docker轻松部署Hexo博客系统](https://www.fanhaobai.com/2020/12/hexo-to-docker.html)（2020-12-27）
 * [自建一个简易的OpenAPI网关](https://www.fanhaobai.com/2020/07/openapi.html)（2020-07-15）
