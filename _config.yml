@@ -34,6 +34,8 @@ skip_render:
   - "**/*.(png)|(jpg)|(jpeg)|(ico)"
   - "**/*.txt"
   - "404.html"
+  - "*.md"
+  - "CNAME"
 
 # Writing
 new_post_name: :title.md
