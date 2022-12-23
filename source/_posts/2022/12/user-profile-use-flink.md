@@ -10,8 +10,8 @@ tags:
 
 ## 关键词
 
-- 大数据计算
-- SQL
+* 大数据计算
+* SQL
 
 ## 痛点
 
@@ -31,18 +31,18 @@ Flink 是一个分布式计算引擎，可以用来做批处理，即处理历�
 
 Flink 特点：
 
-- 性能突出：计算量大-百亿级、延迟低-秒级
-- 支持 SQL 作业：只需要写 SQL 逻辑，简单上手快
-- 有状态支持容错：即发生了失败，也不会丢失、多计算或者少计算
+* 性能突出：计算量大-百亿级、延迟低-秒级
+* 支持 SQL 作业：只需要写 SQL 逻辑，简单上手快
+* 有状态支持容错：即发生了失败，也不会丢失、多计算或者少计算
 
-- Flink 支持丰富的数据源，能满足大部分的业务场景需求。数据输入源支持 MySQL、Mongo 等数据库，也支持 Kafka 等事件消息中心；数据输出源支持 MySQL、Mongo、Redis 等数据库，也支持 Hbase、Hive 等数据仓库。
+Flink 支持丰富的数据源，能满足大部分的业务场景需求。数据输入源支持 MySQL、Mongo 等数据库，也支持 Kafka 等事件消息中心；数据输出源支持 MySQL、Mongo、Redis 等数据库，也支持 Hbase、Hive 等数据仓库。
 
 ### 当前行业现状
 
 Flink 已成为了大数据计算引擎的首选，国内各大厂都有相应的落地实践案例，技术比较成熟。各云厂商也都提供了相应的云计算产品：
 
-- 腾讯云：[Oceanus](https://cloud.tencent.com/product/oceanus)
-- 阿里云：[Flink](https://www.aliyun.com/product/bigdata/sc)
+* 腾讯云：[Oceanus](https://cloud.tencent.com/product/oceanus)
+* 阿里云：[Flink](https://www.aliyun.com/product/bigdata/sc)
 
 ## 解决方案介绍
 ### Flink 怎样接入
