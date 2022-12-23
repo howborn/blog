@@ -1,5 +1,6 @@
 .idea
 .DS_Store
+.deploy_git
 
 package-lock.json
 db.json

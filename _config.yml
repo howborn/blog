@@ -102,3 +102,9 @@ jsonContent:
     excerpt: false
     categories: false
     tags: true
+
+deploy:
+  type: git
+  repo: git@github.com:howborn/howborn.github.io.git
+  # example, https://github.com/hexojs/hexojs.github.io
+  branch: master
