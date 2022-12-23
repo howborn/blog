@@ -8,7 +8,7 @@ categories:
 ---
 
 本文是延续 [Solr的使用](https://www.fanhaobai.com/2017/08/solr-insatll-push.html) 系列，前一篇文章已经讲了 Solr 的部署和数据推送，这里主要以示例方式讲述 Solr 的常见查询语法，同时介绍如何使用 PHP 语言的客户端 [solarium](https://github.com/fan-haobai/solarium)  同 Solr 集群进行数据交互。
-![](//img4.fanhaobai.com/2017/08/solr-search/c4665602-82dc-4cc3-9eaf-c0ed12935d08.png)<!--more-->
+![](//www.fanhaobai.com/2017/08/solr-search/c4665602-82dc-4cc3-9eaf-c0ed12935d08.png)<!--more-->
 
 想要详细地了解 Solr 查询语法，可参考 [官方wiki](https://cwiki.apache.org/confluence/display/solr/Query+Syntax+and+Parsing)。
 

@@ -9,7 +9,7 @@ categories:
 
 作为技术人员，Linux 系统可以说是我们使用最多的操作系统，但我们可能并不是很了解它。在这里我将自己日常遇到的 Linux 使用技巧记录下来，方便以后查询使用。
 
-![预览图](//img0.fanhaobai.com/2018/02/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
+![预览图](//www.fanhaobai.com/2018/02/linux-skill/2a82ad6b-ab25-409f-858c-22312826ac06.jpg)<!--more-->
 
 ## 常用命令
 
@@ -342,7 +342,7 @@ open("/lib64/libc.so.6", O_RDONLY)      = 3
 
 在脚本或者代码中，有时候需要在控制终端输出醒目的提示信息，以便引起我们的关注。其实，在 Linux 终端下很容易就能搞定，如下：
 
-![彩色的命令行](//img1.fanhaobai.com/2018/02/linux-skill/7bb99049-49bd-427b-a338-3afff4268fb3.jpg)
+![彩色的命令行](//www.fanhaobai.com/2018/02/linux-skill/7bb99049-49bd-427b-a338-3afff4268fb3.jpg)
 
 实现的源代码，内容为：
 

@@ -12,7 +12,7 @@ categories:
 
 PHP 代码中 Foreach 结构随处可见，我们在使用时，是否了解其行为呢？我们这篇文章通过一些例子来分析下 Foreach 结构的内存行为。如果你想了解 PHP 内存相关的内容，不妨把这篇文章作为一个参考。
 
-![](//img0.fanhaobai.com/2017/07/array-reference/c8d33036-7d58-4ace-b7f8-e6b5a6b910e9.png)<!--more-->
+![](//www.fanhaobai.com/2017/07/array-reference/c8d33036-7d58-4ace-b7f8-e6b5a6b910e9.png)<!--more-->
 
 ## 问题
 
@@ -100,7 +100,7 @@ var_dump(($mem_end - $mem_start)/1024/1024);
 
 PHP 的 Array 是基于哈希表实现的，那么哈希表长什么样呢？先看下面这张图（参考 *zend_hash.h*）
 
-![](//img1.fanhaobai.com/2017/07/array-reference/96887b87-97b3-4606-9f88-af015169cbbb.png)
+![](//www.fanhaobai.com/2017/07/array-reference/96887b87-97b3-4606-9f88-af015169cbbb.png)
 
 关于哈希表的定义，请参 *zend_hash.h* (55-84 行)，对于哈希表，我们需要记住以下几点：
 

@@ -10,7 +10,7 @@ categories:
 
 在开发 APP 端 API 接口时，随着 APP 的版本迭代，尽管通常 APP 只需要保持 4-5 个版本可用，过老版本会强制更新，但 API 接口避免不了出现多个版本的情况，那么 API 接口的多版本问题服务端怎么解决呢？
 
-![](//img4.fanhaobai.com/2017/08/api-version/114d5a46452f82018a1f0aaee82fdfab.png)<!--more-->
+![](//www.fanhaobai.com/2017/08/api-version/114d5a46452f82018a1f0aaee82fdfab.png)<!--more-->
 
 要实现 API 的版本控制，常见的方法就是引入版本号。本文结合 Yii 2 来进行演示。
 

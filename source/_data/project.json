@@ -7,25 +7,25 @@
     "diy": [
       {
         "title": "飞思卡尔智能车",
-        "cover": "//img.fanhaobai.com/project/index/CVyYJnKtigzaHiRQOKmtfMZE.jpg",
+        "cover": "//www.fanhaobai.com/project/index/CVyYJnKtigzaHiRQOKmtfMZE.jpg",
         "review": "",
         "link": "https://github.com/howborn/smart-car-freescale"
       },
       {
         "title": "点阵打字机",
-        "cover": "//img.fanhaobai.com/project/index/W44BkT8TENzNCoih07mEyLN-.jpg",
+        "cover": "//www.fanhaobai.com/project/index/W44BkT8TENzNCoih07mEyLN-.jpg",
         "review": "",
         "link": "https://github.com/howborn/dot-matrix-printer"
       },
       {
         "title": "四旋翼",
-        "cover": "//img.fanhaobai.com/project/index/6WaPq-7Kfi1wLVo5ZE2P1d0y.jpg",
+        "cover": "//www.fanhaobai.com/project/index/6WaPq-7Kfi1wLVo5ZE2P1d0y.jpg",
         "review": "",
         "link": "https://github.com/howborn/quadrotor-uav"
       },
       {
         "title": "电子元器件3D模型",
-        "cover": "//img.fanhaobai.com/project/index/electron-component-3d.png",
+        "cover": "//www.fanhaobai.com/project/index/electron-component-3d.png",
         "review": "",
         "link": "https://github.com/howborn/electron-component-3d"
       }
@@ -33,7 +33,7 @@
     "coder": [
       {
         "title": "php-server",
-        "cover": "//img.fanhaobai.com/project/index/php-server.jpg",
+        "cover": "//www.fanhaobai.com/project/index/php-server.jpg",
         "review": "",
         "link": "https://github.com/howborn/php-server"
       }

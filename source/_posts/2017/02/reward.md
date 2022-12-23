@@ -13,7 +13,7 @@ categories:
 
 前一阵公司业务有一个生成红包的需求，分为固定红包和随机红包两种，固定红包没什么好说的了，随机红包要求指定最小值，和最大值，必须至少有一个最大值，可以没有最小值，但任何红包不能小于最小值。
 
-![](//img1.fanhaobai.com/2017/02/reward/p4GlWAFMrXts5zPMnA88Zsm_.png)<!--more-->
+![](//www.fanhaobai.com/2017/02/reward/p4GlWAFMrXts5zPMnA88Zsm_.png)<!--more-->
 
 以前从来没做过这方面，有点懵B，于是去百度了一番，结果发现能找到的红包算法都有各种各样的 bug，要么会算出负值，要么超过最大值，所以决定自己撸一套出来。
 
@@ -266,7 +266,7 @@ function microtime_float()
 
 运行结果：
 
-![](//img2.fanhaobai.com/2017/02/reward/Dd5AQhhljSVuOdmUAngQ0Zka.png)
+![](//www.fanhaobai.com/2017/02/reward/Dd5AQhhljSVuOdmUAngQ0Zka.png)
 
 ## 数据检查
 
@@ -301,7 +301,7 @@ echo "<br />最大值:".($val/100).',共有'.$max_count.'个最大值，共有'.
 
 运行结果：
 
-![](//img3.fanhaobai.com/2017/02/reward/JXPHry2Rdd_PuvEwsaZrFJTq.png)
+![](//www.fanhaobai.com/2017/02/reward/JXPHry2Rdd_PuvEwsaZrFJTq.png)
 
 **2） 正态分布情况**
 
@@ -331,7 +331,7 @@ echo "</table>";
 
 运行结果：
 
-![](//img4.fanhaobai.com/2017/02/reward/p4GlWAFMrXts5zPMnA88Zsm_.png)
+![](//www.fanhaobai.com/2017/02/reward/p4GlWAFMrXts5zPMnA88Zsm_.png)
 
 >**PS**：有朋友问我生成的数据有没有通过数学方法来验证其是否符合标准正态分布，因为我的数学不好，这个还真没算过，只是看着觉得像，就当他是了。既然遇到了这个问题，就一定要解决嘛，所以我就用 php 内置函数算了一下，算出来的结果在数据量小的时候还是比较接近正态分布的，但是数据量大起来的时候就不能看了，我整不太明白这个，大家感兴趣的可以找一下原因哟。 php 的四个函数：stats_standard_deviation（标准差），stats_variance（方差）， stats_kurtosis（(峰度），stats_skew（偏度）。使用上面的函数需要安装 [stats]((http://pecl.php.net/package/stats) 扩展。
 

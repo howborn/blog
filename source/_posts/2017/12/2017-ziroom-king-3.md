@@ -10,7 +10,7 @@ categories:
 
 服务目前每月会对搬家师傅进行评级，根据师傅的评级排名结果，我们将优先保证最优师傅的全天订单。
 
-![](//img3.fanhaobai.com/2017/12/2017-ziroom-king-3/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)<!--more-->
+![](//www.fanhaobai.com/2017/12/2017-ziroom-king-3/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)<!--more-->
 
 假设师傅每天工作 8 个小时，给定一天 n 个订单，每个订单其占用时间长为 $T_i$，挣取价值为 $V_i$，现请您为师傅安排订单，并保证师傅挣取价值最大。
 
@@ -59,7 +59,7 @@ max(wx(i-1,j),wv(i-1,j-w(i))+v(i))(j \geq w(i))
 
 可以确定边界条件 $wx(0,j) = wx(i, 0) = 0$，$wx(0,j)$ 表示一个订单都没安排，再怎么耗时价值都为 0，$wx(i,0)$ 表示没有耗时，安排多少订单价值都为 0。
 
-![](//img4.fanhaobai.com/2017/12/2017-ziroom-king-3/18359c82-3ff9-48c7-825e-77fe17419621.png)
+![](//www.fanhaobai.com/2017/12/2017-ziroom-king-3/18359c82-3ff9-48c7-825e-77fe17419621.png)
 
 ### 求解
 
@@ -70,7 +70,7 @@ max(wx(i-1,j),wv(i-1,j-w(i))+v(i))(j \geq w(i))
 3) 如此下去，直至填到最后一个，i=5,j=8 时，有 $j<w(i)$，故 $wx(5,8) = max(wx(5-1,8), wx(5-1,8-w(5)) + v(5) = 730$；
 4) 在耗时没有超过 8 小时的前提下，当前 5 个订单都被安排过时，$wx(5,8) = 730$ 即为所求的最大价值；
 
-![](//img5.fanhaobai.com/2017/12/2017-ziroom-king-3/366c6f00-35a1-46c6-ba98-76e3c7b3bae4.png)
+![](//www.fanhaobai.com/2017/12/2017-ziroom-king-3/366c6f00-35a1-46c6-ba98-76e3c7b3bae4.png)
 
 ### 解的组成
 
@@ -85,7 +85,7 @@ wv(i,j) \neq wv(i-1,j)
 
 从表格右下到左上为寻解方向，寻解过程如下：
 
-![](//img0.fanhaobai.com/2017/12/2017-ziroom-king-3/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)
+![](//www.fanhaobai.com/2017/12/2017-ziroom-king-3/9f4a2cb2-ab32-4b28-b054-b479c04270e5.png)
 
 1) i=5,j=8 时，有 $wv(5,8) != wv(4,8)$，故 $x(5) = 1$，此时 $j -= w(5)$，$j = 5$；
 2) i=4 时，无论 j 取何值，都有 $wv(4,j) == wv(3,j)$，故 $x(5) = 0$，此时 $j = 5$；

@@ -10,7 +10,7 @@ categories:
 
 经过 [用 PHP 玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html) 的回顾复习，我们已经掌握了进程的基础知识，现在可以尝试用 PHP 做一些简单的进程控制和管理，来加深我们对进程的理解。接下来，我将用多进程模型实现一个简单的 PHPServer，基于它你可以做任何事。
 
-![预览图](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/34f35d33-57b2-41d7-b738-f0c1c712102f.png)<!--more-->
+![预览图](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/34f35d33-57b2-41d7-b738-f0c1c712102f.png)<!--more-->
 
 PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.com/fan-haobai/php-server) 获取。
 
@@ -18,7 +18,7 @@ PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.
 
 该 PHPServer 的 Master 和 Worker 进程主要控制流程，如下图所示：
 
-![控制流程](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/e0e86073-3093-4e5f-be20-b64510e61575.png)
+![控制流程](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/e0e86073-3093-4e5f-be20-b64510e61575.png)
 
 其中，主要涉及 **3 个对象**，分别为 [入口脚本](#)、[Master 进程](#)、[Worker 进程](#)。它们扮演的角色如下：
 * [入口脚本](#)：主要实现 PHPServer 的启动、停止、重载功能，即触发 Master 进程`start`、`stop`、`reload`流程；
@@ -43,7 +43,7 @@ PHPServer 完整的源代码，可前往 [fan-haobai/php-server](https://github.
 
 首先，在入口脚本中`fork`一个子进程，然后该进程退出，并设置新的子进程为会话组长，此时的这个子进程就会脱离当前终端的控制。如下图所示：
 
-![守护进程流程](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/22ed9e46-971c-4983-8bf5-65d321585d42.png)
+![守护进程流程](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/22ed9e46-971c-4983-8bf5-65d321585d42.png)
 
 这里使用了 2 次`fork`，所以最后`fork`的一个子进程才是 Master 进程，其实一次`fork`也是可以的。代码如下：
 
@@ -181,7 +181,7 @@ protected static function forkWorkers()
 
 Worker 进程的持续运行，见 [流程 ③](#总流程) 。其内部调度流程，如下图：
 
-![Worker进程的持续运行](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/ad804eb2-9300-4d34-ae63-3b820d81d4b1.png)
+![Worker进程的持续运行](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/ad804eb2-9300-4d34-ae63-3b820d81d4b1.png)
 
 对于 Worker 进程，`run()`方法主要执行具体业务逻辑，当然 Worker 进程会被阻塞于此。对于 [任务 ①](#) 这里简单地使用`while`来模拟调度，实际中应该使用事件（Select 等）驱动。
 
@@ -209,7 +209,7 @@ public static function run()
 
 Master 进程的持续监控，见 [流程 ②](#总流程) 。其内部调度流程，如下图：
 
-![Master持续监控流程](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/8e65456f-8e08-4ae8-84f8-e6f2278410e4.png)
+![Master持续监控流程](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/8e65456f-8e08-4ae8-84f8-e6f2278410e4.png)
 
 对于 Master 进程的调度，这里也使用了`while`，但是引入了`wait`的系统调用，它会挂起当前进程，直到一个子进程退出或接收到一个信号。
 
@@ -240,7 +240,7 @@ protected static function monitor()
 
 由于 Worker 进程执行繁重的业务逻辑，所以可能会异常崩溃。因此 Master 进程需要监控 Worker 进程健康状态，并尝试维持一定数量的 Worker 进程。健康检查流程，如下图：
 
-![健康检查流程](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/db333298-5a10-4de3-b0b2-41088cafc77f.png)
+![健康检查流程](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/db333298-5a10-4de3-b0b2-41088cafc77f.png)
 
 代码实现，如下：
 
@@ -262,7 +262,7 @@ protected static function checkWorkerAlive()
 
 Master 进程的持续监控，见 [流程 ④](#总流程) 。其详细流程，如下图：
 
-![停止流程](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/fc458e5f-fccc-477f-9e18-eada5d856289.png)
+![停止流程](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/fc458e5f-fccc-477f-9e18-eada5d856289.png)
 
 入口脚本给 Master 进程发送 SIGINT  信号，Master 进程捕获到该信号并执行 [信号处理器](#注册信号处理器)，调用`stop()`方法。如下：
 
@@ -314,7 +314,7 @@ protected static function stopAllWorkers()
 
 代码发布后，往往都需要进行重新加载。其实，重载过程只需要重启所有 Worker 进程即可。流程如下图：
 
-![重载流程](//img0.fanhaobai.com/2018/09/process-php-multiprocess-server/4c5ec8d3-e56e-4367-8856-beaf23ee7602.png)
+![重载流程](//www.fanhaobai.com/2018/09/process-php-multiprocess-server/4c5ec8d3-e56e-4367-8856-beaf23ee7602.png)
 
 整个过程共有 2 个流程，流程 ① 终止所有的 Worker 进程，流程 ② 为  [Worker 进程的健康检查](#Worker进程的健康检查) 。其中流程 ① ，入口脚本给 Master 进程发送 SIGUSR1 信号，Master 进程捕获到该信号，执行信号处理器调用`reload()`方法，`reload()`方法调用`stopAllWorkers()`方法。如下：
 

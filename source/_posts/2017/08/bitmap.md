@@ -11,19 +11,19 @@ categories:
 
 本文的灵感来源于京东金融数据部张洪雨同学的项目经历，感谢这位大神的技术分享。
 
-![](//img5.fanhaobai.com/2017/08/bitmap/e897a05e-90c5-442f-8700-b07650c5bb79.png)<!--more-->
+![](//www.fanhaobai.com/2017/08/bitmap/e897a05e-90c5-442f-8700-b07650c5bb79.png)<!--more-->
 
-![](//img0.fanhaobai.com/2017/08/bitmap/de158ff0-a75a-4742-890f-7f8fa54e8429.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/de158ff0-a75a-4742-890f-7f8fa54e8429.jpg)
 
-![](//img1.fanhaobai.com/2017/08/bitmap/b94d2ee6-08b8-46bb-bc14-648d25f3d1b0.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/b94d2ee6-08b8-46bb-bc14-648d25f3d1b0.jpg)
 
-![](//img2.fanhaobai.com/2017/08/bitmap/2ecb7934-8521-4b03-a13d-27a884d2cb18.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/2ecb7934-8521-4b03-a13d-27a884d2cb18.jpg)
 
-![](//img3.fanhaobai.com/2017/08/bitmap/f9dc49b3-503c-427e-8256-7db81b39466f.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/f9dc49b3-503c-427e-8256-7db81b39466f.jpg)
 
 为满足用户标签的统计需求，小灰利用 MySQL 设计了如下的表结构，每一个维度的标签都对应着 MySQL 表的一列：
 
-![](//img4.fanhaobai.com/2017/08/bitmap/98132f45-baeb-4317-823f-28994b6a1b53.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/98132f45-baeb-4317-823f-28994b6a1b53.jpg)
 
 要想统计所有 90 后的程序员该怎么做呢？
 
@@ -41,86 +41,86 @@ SELECT COUNT(DISTINCT name) AS 用户数 FROM table WHERE phone = '苹果' OR ag
 
 两个月之后——
 
-![](//img5.fanhaobai.com/2017/08/bitmap/57833b05-cf4c-4f30-8ff2-a5c5f3682139.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/57833b05-cf4c-4f30-8ff2-a5c5f3682139.jpg)
 
 ———————————————
 
-![](//img0.fanhaobai.com/2017/08/bitmap/f0c74969-652b-4fa2-b980-fc4f5f99c61d.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/f0c74969-652b-4fa2-b980-fc4f5f99c61d.jpg)
 
-![](//img1.fanhaobai.com/2017/08/bitmap/b94201a7-beaf-4613-beda-f7a3674f5228.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/b94201a7-beaf-4613-beda-f7a3674f5228.jpg)
 
-![](//img2.fanhaobai.com/2017/08/bitmap/bf6bf8d3-3801-4fca-b229-8cc83ea5ba81.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/bf6bf8d3-3801-4fca-b229-8cc83ea5ba81.jpg)
 
-![](//img3.fanhaobai.com/2017/08/bitmap/bf0f2d59-b0de-4f96-b598-ffccb8677758.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/bf0f2d59-b0de-4f96-b598-ffccb8677758.jpg)
 
 1.给定长度是 10 的 bitmap，每一个 bit 位分别对应着从 0 到 9 的 10 个整型数。此时 bitmap 的所有位都是 0。
 
-![](//img4.fanhaobai.com/2017/08/bitmap/5ad4199b-e5d1-45f9-9657-98f2f2c34960.png)
+![](//www.fanhaobai.com/2017/08/bitmap/5ad4199b-e5d1-45f9-9657-98f2f2c34960.png)
 
 2.把整型数 4 存入 bitmap，对应存储的位置就是下标为 4 的位置，将此 bit 置为 1。
 
-![](//img5.fanhaobai.com/2017/08/bitmap/2f3a90c8-afe8-4d5c-995a-d064ac1f5336.png)
+![](//www.fanhaobai.com/2017/08/bitmap/2f3a90c8-afe8-4d5c-995a-d064ac1f5336.png)
 
 3.把整型数 2 存入 bitmap，对应存储的位置就是下标为 2 的位置，将此 bit 置为 1。
 
-![](//img0.fanhaobai.com/2017/08/bitmap/fc1939b6-a486-4998-9507-c3e5825bce9a.png)
+![](//www.fanhaobai.com/2017/08/bitmap/fc1939b6-a486-4998-9507-c3e5825bce9a.png)
 
 4.把整型数 1 存入 bitmap，对应存储的位置就是下标为 1 的位置，将此 bit 置为 1。
 
-![](//img1.fanhaobai.com/2017/08/bitmap/eda83296-8ff6-4558-975c-a73860cccc54.png)
+![](//www.fanhaobai.com/2017/08/bitmap/eda83296-8ff6-4558-975c-a73860cccc54.png)
 
 5.把整型数 3 存入 bitmap，对应存储的位置就是下标为 3 的位置，将此 bit 置为 1。
 
-![](//img2.fanhaobai.com/2017/08/bitmap/f4079a06-d308-4f25-ad37-46f2d1baf851.png)
+![](//www.fanhaobai.com/2017/08/bitmap/f4079a06-d308-4f25-ad37-46f2d1baf851.png)
 
 要问此时 bitmap 里存储了哪些元素？显然是 4,3,2,1，一目了然。
 
 bitmap 不仅方便查询，还可以去除掉重复的整型数。
 
-![](//img3.fanhaobai.com/2017/08/bitmap/92401d1b-02ac-446f-908e-3057fa9c7fd4.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/92401d1b-02ac-446f-908e-3057fa9c7fd4.jpg)
 
-![](//img4.fanhaobai.com/2017/08/bitmap/8be164ef-9f6a-4a56-8a5d-53b417c9310a.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/8be164ef-9f6a-4a56-8a5d-53b417c9310a.jpg)
 
-![](//img5.fanhaobai.com/2017/08/bitmap/3933f7cb-934c-42e7-8fc7-989b3e021010.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/3933f7cb-934c-42e7-8fc7-989b3e021010.jpg)
 
-![](//img0.fanhaobai.com/2017/08/bitmap/e0e6f586-03ce-4d11-a390-34ff3c25400b.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/e0e6f586-03ce-4d11-a390-34ff3c25400b.jpg)
 
 1.建立用户名和用户 ID 的映射。
 
-![](//img1.fanhaobai.com/2017/08/bitmap/a134be42-9acb-41c6-bc80-469b86de8ba0.png)
+![](//www.fanhaobai.com/2017/08/bitmap/a134be42-9acb-41c6-bc80-469b86de8ba0.png)
 
 2.让每一个标签存储包含此标签的所有用户 ID，每一个标签都是一个独立的 bitmap。
 
-![](//img2.fanhaobai.com/2017/08/bitmap/1dbec168-cbf6-4b42-bb56-ca143f559d06.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/1dbec168-cbf6-4b42-bb56-ca143f559d06.jpg)
 
 3.这样，实现用户的去重和查询统计，就变得一目了然。
 
-![](//img3.fanhaobai.com/2017/08/bitmap/3c423c70-2ed7-4cc4-a6fa-ce56bf285a5b.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/3c423c70-2ed7-4cc4-a6fa-ce56bf285a5b.jpg)
 
 
-![](//img4.fanhaobai.com/2017/08/bitmap/63f0f0a2-22e4-49dd-bcec-47e43fc69787.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/63f0f0a2-22e4-49dd-bcec-47e43fc69787.jpg)
 
-![](//img5.fanhaobai.com/2017/08/bitmap/1da4242d-018f-4cf4-82c3-e3421b4cf003.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/1da4242d-018f-4cf4-82c3-e3421b4cf003.jpg)
 
-![](//img0.fanhaobai.com/2017/08/bitmap/a9997194-b4d8-4cf5-bb3e-33a68229729b.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/a9997194-b4d8-4cf5-bb3e-33a68229729b.jpg)
 
 1.如何查找使用苹果手机的程序员用户？
 
-![](//img1.fanhaobai.com/2017/08/bitmap/d68e8fa2-433a-47dc-8aed-ff1b993cf082.png)
+![](//www.fanhaobai.com/2017/08/bitmap/d68e8fa2-433a-47dc-8aed-ff1b993cf082.png)
 
 2.如何查找所有男性或者00后的用户？
 
-![](//img2.fanhaobai.com/2017/08/bitmap/45ef8692-b1d3-4b4b-a6ed-dbe105fb3f97.png)
+![](//www.fanhaobai.com/2017/08/bitmap/45ef8692-b1d3-4b4b-a6ed-dbe105fb3f97.png)
 
-![](//img3.fanhaobai.com/2017/08/bitmap/97c98774-03b3-47ed-852c-71d1a546a65c.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/97c98774-03b3-47ed-852c-71d1a546a65c.jpg)
 
-![](//img4.fanhaobai.com/2017/08/bitmap/d14eff84-5eb1-4268-87ae-4776c66af4a5.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/d14eff84-5eb1-4268-87ae-4776c66af4a5.jpg)
 
-![](//img5.fanhaobai.com/2017/08/bitmap/1605c694-bf55-4500-9531-9832df13b082.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/1605c694-bf55-4500-9531-9832df13b082.jpg)
 
-![](//img0.fanhaobai.com/2017/08/bitmap/24836d0b-efb2-450f-9307-d078722e2c72.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/24836d0b-efb2-450f-9307-d078722e2c72.jpg)
 
-![](//img1.fanhaobai.com/2017/08/bitmap/e72e268a-facd-4480-85be-c779db24ee74.jpg)
+![](//www.fanhaobai.com/2017/08/bitmap/e72e268a-facd-4480-85be-c779db24ee74.jpg)
 
 [说明](#)：该项目最初的技术选型并非 MySQL，而是内存数据库 hana。本文为了便于理解，把最初的存储方案写成了 MySQL 数据库。
 

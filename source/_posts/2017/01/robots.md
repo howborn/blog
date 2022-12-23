@@ -9,7 +9,7 @@ categories:
 
 由于本站文章搜索引擎搜索机器人（以下简称：爬虫）爬取效果不是很理想，出现了导航链接大量被爬取，而文章链接爬取较少。所以准备对本站加入 SEO，其实也就是引入了 [Robots协议](http://baike.baidu.com/link?url=2cB03FvdeTNWMUFlQEQxT4E6FxQ7DGXQr7Q6tAt702pNePMjVODT4Sj1vxp9W5ehdG9QP6dUZBrsiIJNYphnkPz6M9D8nHmbo7sdLNEydcg7QVqgnu4LUIGKTg5v-3ii0JqcHLrvxcBzN1UNBBH3fWBWmVlh3Jh0kSpoybswT7_) 。Robots 协议（也称为爬虫协议、机器人协议等）的全称是「[网络爬虫排除标准](http://baike.baidu.com/link?url=qZmXuLBjgnHeD9Q-gV4Rg1QAZOF04_MbuFOQRLaA_jZqIBgqVkbtVA-8YAzHo3mFwtrL2l0vrfmgw97OlU2R36hMv0KGgRTFOnl2lonhJ7J4Uspy3WCTiGCtpGK65BCc)」（Robots Exclusion Protocol）。网站通过 Robots 协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取，而 **robots.txt 文本文件** 就是 Robots 协议的表述。
 
-![](//img2.fanhaobai.com/2017/01/robots/n9DQpbXNbazisDMy_bouP7HN.png)<!--more-->
+![](//www.fanhaobai.com/2017/01/robots/n9DQpbXNbazisDMy_bouP7HN.png)<!--more-->
 
 Robots 协议代表了互联网领域的一种契约精神，互联网企业只有遵守这一规则，才能保证网站及用户的隐私数据不被侵犯，违背 Robots 协议将带来巨大安全隐忧。例如，[百度诉奇虎360违反“Robots协议”抓取、复制其网站内容侵权一案](http://tech.ifeng.com/internet/special/baidupk360/content-1/detail_2012_08/29/17183239_0.shtml)。
 
@@ -17,7 +17,7 @@ Robots 协议代表了互联网领域的一种契约精神，互联网企业只�
 
 互联网的网页都是通过超链接互相关联的，进而形成了网页的网状结构。所以爬虫的工作方法就如蜘蛛在网络上沿着超链接按照一定的爬取规则爬取网页。
 
-![](//img3.fanhaobai.com/2017/01/robots/FozbmxH8U0MTs0N-teFaCtWa.jpg)
+![](//www.fanhaobai.com/2017/01/robots/FozbmxH8U0MTs0N-teFaCtWa.jpg)
 
 基本流程大致为：
 
@@ -155,11 +155,11 @@ Disallow: /
 
 1） [谷歌测试工具](https://www.google.com/webmasters/tools/robots-testing-tool?hl=zh-CN)
 
-![](//img4.fanhaobai.com/2017/01/robots/5PCU9neptZdG3aY5veYsls0v.png)
+![](//www.fanhaobai.com/2017/01/robots/5PCU9neptZdG3aY5veYsls0v.png)
 
 2） [百度测试工具](http://zhanzhang.baidu.com/robots/index)
 
-![](//img5.fanhaobai.com/2017/01/robots/xWjjcJzJrrhkjH6lWy7aZib_.png)
+![](//www.fanhaobai.com/2017/01/robots/xWjjcJzJrrhkjH6lWy7aZib_.png)
 
 按照对应提示操作即可，出现上图情况则表示 robots.txt 手动提交成功。
 

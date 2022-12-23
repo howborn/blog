@@ -10,7 +10,7 @@ categories:
 
 > 原文：https://github.com/pangudashu/php7-internal/blob/master/1/fpm.md
 
-FPM（FastCGI Process Manager）是 PHP FastCGI 运行模式的一个进程管理器，从它的定义可以看出，FPM 的核心功能是进程管理，那么它用来管理什么进程呢？这个问题就需要从 FastCGI 说起了。![](//img2.fanhaobai.com/2017/10/internal-php-fpm/2ed1b400-61ae-cdbe-405a-8353ab28aa74.png)<!--more-->
+FPM（FastCGI Process Manager）是 PHP FastCGI 运行模式的一个进程管理器，从它的定义可以看出，FPM 的核心功能是进程管理，那么它用来管理什么进程呢？这个问题就需要从 FastCGI 说起了。![](//www.fanhaobai.com/2017/10/internal-php-fpm/2ed1b400-61ae-cdbe-405a-8353ab28aa74.png)<!--more-->
 
 ## 概述
 
@@ -18,7 +18,7 @@ FastCGI 是 Web 服务器（如：Nginx、Apache）和处理程序之间的一�
 
 前面曾一再强调，PHP 只是一个脚本解析器，你可以把它理解为一个普通的函数，输入是 PHP 脚本。输出是执行结果，假如我们想用 PHP 代替 shell，在命令行中执行一个文件，那么就可以写一个程序来嵌入 PHP 解析器，这就是 cli 模式，这种模式下 PHP 就是普通的一个命令工具。接着我们又想：能不能让 PHP 处理 http 请求呢？这时就涉及到了网络处理，PHP 需要接收请求、解析协议，然后处理完成返回请求。在网络应用场景下，PHP 并没有像 Golang 那样实现 http 网络库，而是实现了 FastCGI 协议，然后与 web 服务器配合实现了 http 的处理，web 服务器来处理 http 请求，然后将解析的结果再通过 FastCGI 协议转发给处理程序，处理程序处理完成后将结果返回给 web 服务器，web 服务器再返回给用户，如下图所示。
 
-![](//img3.fanhaobai.com/2017/10/internal-php-fpm/2ed1b400-61ae-cdbe-405a-8353ab28aa74.png)
+![](//www.fanhaobai.com/2017/10/internal-php-fpm/2ed1b400-61ae-cdbe-405a-8353ab28aa74.png)
 
 PHP 实现了 FastCGI 协议的解析，但是并没有具体实现网络处理，一般的处理模型：多进程、多线程，多进程模型通常是主进程只负责管理子进程，而基本的网络事件由各个子进程处理，nginx、fpm 就是这种模式；另一种多线程模型与多进程类似，只是它是线程粒度，通常会由主线程监听、接收请求，然后交由子线程处理，memcached 就是这种模式，有的也是采用多进程那种模式：主线程只负责管理子线程不处理网络事件，各个子线程监听、接收、处理请求，memcached 使用 udp 协议时采用的是这种模式。
 
@@ -30,7 +30,7 @@ fpm 的 master 进程与 worker 进程之间不会直接进行通信，master �
 
 fpm 可以同时监听多个端口，每个端口对应一个 worker pool，而每个 pool 下对应多个 worker 进程，类似 nginx 中 server 概念。
 
-![](//img4.fanhaobai.com/2017/10/internal-php-fpm/cf7663c1-850b-43b3-abfa-566fcfc79b29.png)
+![](//www.fanhaobai.com/2017/10/internal-php-fpm/cf7663c1-850b-43b3-abfa-566fcfc79b29.png)
 
 在 php-fpm.conf 中通过`[pool name]`声明一个 worker pool：
 
@@ -115,7 +115,7 @@ __(2)fpm_scoreboard_init_main():__
 
 分配用于记录 worker 进程运行信息的共享内存，按照 worker pool 的最大 worker 进程数分配，每个 worker pool 分配一个`fpm_scoreboard_s`结构，pool 下对应的每个 worker 进程分配一个`fpm_scoreboard_proc_s`结构，各结构的对应关系如下图。
 
-![](//img5.fanhaobai.com/2017/10/internal-php-fpm/9d9d0bb5-d970-4536-aa55-0f885648e551.png)
+![](//www.fanhaobai.com/2017/10/internal-php-fpm/9d9d0bb5-d970-4536-aa55-0f885648e551.png)
 
 __(3)fpm_signals_init_main():__ 
 
@@ -301,7 +301,7 @@ __(1)sp[1]管道可读事件：__
 
 在`fpm_init()`阶段 master 曾创建了一个全双工的管道：sp，然后在这里创建了一个 sp[0] 可读的事件，当 sp[0] 可读时将交由`fpm_got_signal()`处理，向 sp[1] 写数据时 sp[0] 才会可读，那么什么时机会向 sp[1] 写数据呢？前面已经提到了：当 master 收到注册的那几种信号时会写入 sp[1] 端，这个时候将触发 sp[0] 可读事件。
 
-![](//img0.fanhaobai.com/2017/10/internal-php-fpm/1a1eb0c1-d2f3-4b98-aee6-5603ca924b3c.png)
+![](//www.fanhaobai.com/2017/10/internal-php-fpm/1a1eb0c1-d2f3-4b98-aee6-5603ca924b3c.png)
 
 这个事件是 master 用于处理信号的，我们根据 master 注册的信号逐个看下不同用途：
 

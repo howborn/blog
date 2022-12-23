@@ -7,7 +7,7 @@ tags:
 
 在当今复杂的互联网环境下，我们的系统时时刻刻都暴露在风险（刷单党、羊毛党）的攻击之中，如果我们不采取有效防御措施，那么这些风险就会对业务造成很大的损失。
 
-![风控抽象过程](//img0.fanhaobai.com/2022/06/risk-rule/24476377-1566-4cfd-bcd6-3d8af562e57c.png)<!--more-->
+![风控抽象过程](//www.fanhaobai.com/2022/06/risk-rule/24476377-1566-4cfd-bcd6-3d8af562e57c.png)<!--more-->
 
 用公式可以表达出风控规则和风险数据的系统关系：z=f(x, y)，f 为系统风控规则，x 为系统实时输入风险数据，y 为系统的事实数据。
 
@@ -16,7 +16,7 @@ tags:
 * **数据量大**，计算延时严重
 * **风控策略多变**
 
-![挑战性](//img0.fanhaobai.com/2022/06/risk-rule/c3d8e074-443d-4b14-9533-ff45fd32a4c7.png)
+![挑战性](//www.fanhaobai.com/2022/06/risk-rule/c3d8e074-443d-4b14-9533-ff45fd32a4c7.png)
 
 ## 目标
 
@@ -27,7 +27,7 @@ tags:
 
 基于大数据实时计算和可热更新的通用规则引擎，搭建一套业务风控系统。
 
-![架构图](//img0.fanhaobai.com/2022/06/risk-rule/08e98b72-3fbd-4c58-a8a4-aa88af950499.png)
+![架构图](//www.fanhaobai.com/2022/06/risk-rule/08e98b72-3fbd-4c58-a8a4-aa88af950499.png)
 
 **业务风险**：刷单（订单）、薅羊毛（活动）、恶意注册和异常登录（用户）
 
@@ -49,7 +49,7 @@ tags:
 
 ## 系统工作流程
 
-![工作流程](//img0.fanhaobai.com/2022/06/risk-rule/6c0c61f3-f53b-4a3e-bc40-caa4e868e981.png)
+![工作流程](//www.fanhaobai.com/2022/06/risk-rule/6c0c61f3-f53b-4a3e-bc40-caa4e868e981.png)
 
 包含 3 个数据流。
 * **实时风控数据流**：由**红线**标识。业务同步调用风控系统，返回风险识别结果，并作相应惩罚，为系统核心链路；
@@ -58,7 +58,7 @@ tags:
 
 ## 风控规则抽象
 
-![风控规则抽象](//img0.fanhaobai.com/2022/06/risk-rule/75345e28-87b4-4b77-8912-606821c5d08d.png)
+![风控规则抽象](//www.fanhaobai.com/2022/06/risk-rule/75345e28-87b4-4b77-8912-606821c5d08d.png)
 
 风控规则通常分 2 种，即统计规则和主体属性规则。都可以抽象为通用公式：
 * 统计规则：{某时间段}，{某主体} 在 {某个统计维度的结果} {比较操作符} {阈值}
@@ -68,7 +68,7 @@ tags:
 
 ## 大数据实时计算引擎
 
-![大数据计算引擎](//img0.fanhaobai.com/2022/06/risk-rule/2cf3e5c4-2a75-4f3b-a51e-f0a206a386e8.png)
+![大数据计算引擎](//www.fanhaobai.com/2022/06/risk-rule/2cf3e5c4-2a75-4f3b-a51e-f0a206a386e8.png)
 
 Flink 输入数据为 JSON 格式，Flink 的数据源有 2 种：
 * **业务事件 -> Kafka -> Flink**，业务事件需要转化为 JSON 消息格式
@@ -104,7 +104,7 @@ ZCOUNT risk:order-patient-id:123456 1652940185 1652853785
 选用 Flink 的 SQL 作业类型，见 创建 SQL 作业。
 形如 **1天内同一患者ID订单数超过5笔** 规则，定义源表和目标表是为了 SQL 中方便使用。
 
-![SQL作业](//img0.fanhaobai.com/2022/06/risk-rule/d50d0ac4-e740-4ee5-a744-b8c9a593a8be.png)
+![SQL作业](//www.fanhaobai.com/2022/06/risk-rule/d50d0ac4-e740-4ee5-a744-b8c9a593a8be.png)
 
 #### 数据源表
 
@@ -196,7 +196,7 @@ CREATE TABLE `risk_input_order` (
 封装规则引擎形成 **risk-service** 服务，供业务直接调用。
 风险识别流程：
 
-![风险识别流程](//img0.fanhaobai.com/2022/06/risk-rule/07072d15-ffc0-434e-9417-cc04fd0ae979.png)
+![风险识别流程](//www.fanhaobai.com/2022/06/risk-rule/07072d15-ffc0-434e-9417-cc04fd0ae979.png)
 
 ### 接口
 
@@ -287,7 +287,7 @@ dataContext.Add("GetData", dataSvc.GetData)
 ### 执行模式
 支持**并行模式**和**混合模式**执行，目前只考虑并行模式。
 
-![执行模式](//img0.fanhaobai.com/2022/06/risk-rule/5d6f4a50-a372-4280-bdef-df106aa1684b.png)
+![执行模式](//www.fanhaobai.com/2022/06/risk-rule/5d6f4a50-a372-4280-bdef-df106aa1684b.png)
 
 ### 规则编译与执行
 
@@ -324,17 +324,17 @@ resMap, _ := eng.GetRulesResultMap()
 
 管理系统包含**惩罚系统**和**分析系统**。系统功能如下：
 
-![管理系统功能图](//img0.fanhaobai.com/2022/06/risk-rule/ccd31bea-13f9-456e-b908-9d682e2bd5c3.png)
+![管理系统功能图](//www.fanhaobai.com/2022/06/risk-rule/ccd31bea-13f9-456e-b908-9d682e2bd5c3.png)
 
 ## 怎样发布一个规则
 
 一个完整的风控规则发布流程：
 
-![风控规则发布流程](//img0.fanhaobai.com/2022/06/risk-rule/cd83c013-eccc-42ce-8075-5fd7267edf3d.png)
+![风控规则发布流程](//www.fanhaobai.com/2022/06/risk-rule/cd83c013-eccc-42ce-8075-5fd7267edf3d.png)
 
 研发工程师可以在管理后台很方便地编写规则，并支持版本管理：
 
-![后台编写规则](//img0.fanhaobai.com/2022/06/risk-rule/c54f0ab7-1a73-4c2e-998c-76d02148c8dc.png)
+![后台编写规则](//www.fanhaobai.com/2022/06/risk-rule/c54f0ab7-1a73-4c2e-998c-76d02148c8dc.png)
 
 ## 怎样接入一个新的业务风险
 

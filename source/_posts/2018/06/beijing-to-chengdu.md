@@ -9,7 +9,7 @@ categories:
 
 今年 3 月从 [自如](http://www.ziroom.com) 离职，然后就回成都并加入了 [聚美](http://www.jumei.com)，我的北漂记忆也就定格在了自如。回来 3 个月，为了这个伟大的决定，一直想写篇文章，今天刚刚好，这篇文章将叙述自己回成都后经历的事和见闻，有想来成都发展的小伙伴可以以此为参考。
 
-![成都](//img1.fanhaobai.com/2018/06/beijing-to-chengdu/234987d5-3dd2-4736-b32c-b843ff42505e.jpg)<!--more-->
+![成都](//www.fanhaobai.com/2018/06/beijing-to-chengdu/234987d5-3dd2-4736-b32c-b843ff42505e.jpg)<!--more-->
 
 ## 公司
 
@@ -17,11 +17,11 @@ categories:
 
 现在的成都，有很多互联网公司入驻，虽说条件比不上北上深，但是在工作和生活平衡点上，是可以安居乐业的；政府也在大力培育“独角兽”企业，未来就业前景也是可期的。至于待遇方面，普遍比北上深低 20~30% 左右，还是那句话：如果你真牛逼，也没有什么是不可能的。
 
-![成都公司](//img3.fanhaobai.com/2018/06/beijing-to-chengdu/6054d4bf-b6fe-4dac-ab25-4f6653bc880f.jpg)
+![成都公司](//www.fanhaobai.com/2018/06/beijing-to-chengdu/6054d4bf-b6fe-4dac-ab25-4f6653bc880f.jpg)
 
 现在来说说聚美。目前我主要负责商品中心和库存中心系统，这两个系统作为核心的基础服务，日调用量最高且系统可靠性要求高。
 
-![聚美](//img4.fanhaobai.com/2018/06/beijing-to-chengdu/745d2ec3-6618-4fc0-9f30-4bee52496670.jpg)
+![聚美](//www.fanhaobai.com/2018/06/beijing-to-chengdu/745d2ec3-6618-4fc0-9f30-4bee52496670.jpg)
 
 * 从 [行业](#) 上来看：
 
@@ -37,7 +37,7 @@ categories:
 
 为了承载你的梦想，首先得有个家。而 2018 的楼市，可谓惨不忍睹。全民炒房，全国房价飞涨，多个城市先后出台了摇号政策，才将这一轮炒房热 Hold 住。整个过程，最受伤的就是刚需。
 
-![楼盘售罄](//img5.fanhaobai.com/2018/06/beijing-to-chengdu/4c7fd01e-91ce-48f5-a47b-5ee6500a5d5d.jpg)
+![楼盘售罄](//www.fanhaobai.com/2018/06/beijing-to-chengdu/4c7fd01e-91ce-48f5-a47b-5ee6500a5d5d.jpg)
 
 成都楼市，在限购限价的政策下，均价控制在 1.5W 左右，当然现在买房，不光得有钱，还得先摇号。攻略如下：
 
@@ -72,7 +72,7 @@ categories:
 
 四川天府新区规划与 2010 年，2014 年正式成为国家级新区。天府新区建成后，将与成都中心城区形成“双核共兴”的局面。如下为天府新区产业规划图：
 
-![新区规划](//img0.fanhaobai.com/2018/06/beijing-to-chengdu/53bc46b9-b1eb-4c3d-88ff-68b44bce5429.jpg)
+![新区规划](//www.fanhaobai.com/2018/06/beijing-to-chengdu/53bc46b9-b1eb-4c3d-88ff-68b44bce5429.jpg)
 
 我在网上看过一句话，说高新区是民营资本的聚集地，而天府新区是国家队资本的聚集地。我觉得应该说，国家队只是起先导引流作用。
 
@@ -80,7 +80,7 @@ categories:
 
 规划这么美的天府新区，交通自然不能拖了后退。从成都地铁规划图中，可以看到新区地铁覆盖率较高，出行较方便。到 2020 年，开通的地铁有 1、5、6、15、18 号线。
 
-![新区地铁](//img1.fanhaobai.com/2018/06/beijing-to-chengdu/0f8ebfc5-3d54-489e-9dc3-ee74bd4d61d0.jpg)
+![新区地铁](//www.fanhaobai.com/2018/06/beijing-to-chengdu/0f8ebfc5-3d54-489e-9dc3-ee74bd4d61d0.jpg)
 
 ### 代表建筑和景观
 
@@ -88,31 +88,31 @@ categories:
 
 习大大说，“绿水青山，就是金山银山”。由于优越的地理位置，决定了天府新区一诞生就是一座“公园城市”。兴隆湖作为天府新区的发展起步区，很好地响应了公园城市理念。
 
-![兴隆湖](//img2.fanhaobai.com/2018/06/beijing-to-chengdu/0149bcaf-f380-4ef3-b6e1-331b452d636a.jpg)
+![兴隆湖](//www.fanhaobai.com/2018/06/beijing-to-chengdu/0149bcaf-f380-4ef3-b6e1-331b452d636a.jpg)
 
 #### 一带一路大厦
 
 曾用名为“熊猫大厦”的 676 米超高地标建筑，正式命名为“一带一路大厦”，这也让人们一直铭记住天府新区是“一带一路”战略的一个重要环节。待“一带一路大厦”旁依附的超高建筑群建成后，成都的天际线将进一步提高，也使得成都的天空具有较强的层次感。
 
-![一带一路大厦](//img3.fanhaobai.com/2018/06/beijing-to-chengdu/8111a4fc-7b66-11e8-adc0-fa7ae01bbebc.jpg)
+![一带一路大厦](//www.fanhaobai.com/2018/06/beijing-to-chengdu/8111a4fc-7b66-11e8-adc0-fa7ae01bbebc.jpg)
 
 #### 独角兽岛
 
 独角兽岛当然是独角兽企业（10 亿美元以上创业公司）的聚集地，建设独角兽岛，体现了成都大力培育独角兽企业的决心。独角兽岛先后分两期建成，一期于 2019 年建成，二期 2019 年开建并于 2022 年建成。
 
-![独角兽岛](//img4.fanhaobai.com/2018/06/beijing-to-chengdu/88d071da-7b6d-11e8-adc0-fa7ae01bbebc.jpg)
+![独角兽岛](//www.fanhaobai.com/2018/06/beijing-to-chengdu/88d071da-7b6d-11e8-adc0-fa7ae01bbebc.jpg)
 
 #### 天府国际机场
 
 天府国际机场造型为“太阳神鸟”，位于高新东区简阳芦葭镇，定位为国家级国际航空枢纽。预计到 2020 年建成使用，届时成都即迈入双机场时代，成为中国大陆地区第三个拥有双国际机场的城市。
 
-![天府机场](//img5.fanhaobai.com/2018/06/beijing-to-chengdu/30121dc4-7b67-11e8-adc0-fa7ae01bbebc.jpg)
+![天府机场](//www.fanhaobai.com/2018/06/beijing-to-chengdu/30121dc4-7b67-11e8-adc0-fa7ae01bbebc.jpg)
 
 #### 西博城
 
 中国西部博览城简称西博城，是我国中西部最大的国际会展中心。由于西博城有着铝制的金属外表，使其看起来很有科技感。
 
-![西博城](//img0.fanhaobai.com/2018/06/beijing-to-chengdu/de39aeb3-5481-4181-a45c-b503ec16cd0a.jpg)
+![西博城](//www.fanhaobai.com/2018/06/beijing-to-chengdu/de39aeb3-5481-4181-a45c-b503ec16cd0a.jpg)
 
 如今 4 年过去了，有的规划已初步建成，有的还在如火如荼的建设中，建设者正在一一将规划图变成一座座楼宇，呈现在人们面前。
 

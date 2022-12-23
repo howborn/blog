@@ -11,7 +11,7 @@ categories:
 
 Redis 从 2.6 版本起，也已开始支持 [Lua 脚本](https://redis.io/commands/eval)，我们可以更加得心应手地使用或扩展 Redis，特别是在高并发场景下 Lua 脚本提供了更高效、可靠的解决方案。
 
-![](//img1.fanhaobai.com/2017/09/lua-in-redis/3916d13312c22d84d29d3860b59544a9.png)<!--more-->
+![](//www.fanhaobai.com/2017/09/lua-in-redis/3916d13312c22d84d29d3860b59544a9.png)<!--more-->
 
 ## 为什么要使用Lua
 
@@ -50,7 +50,7 @@ Redis 中嵌入 Lua 脚本，所具有的几个特性为：
 
 ## 在Redis中嵌入Lua
 
-![](//img2.fanhaobai.com/2017/09/lua-in-redis/3916d13312c22d84d29d3860b59544a9.png)
+![](//www.fanhaobai.com/2017/09/lua-in-redis/3916d13312c22d84d29d3860b59544a9.png)
 
 ### 使用Lua解析器
 
@@ -157,7 +157,7 @@ return f(4);
 
 Redis 创建了用于与 Lua 环境协作的组件—— 伪客户端，它负责执行 Lua 脚本中的 Redis 命令。
 
-![](//img3.fanhaobai.com/2017/09/lua-in-redis/ae7223b50754e37b7cd89cfe24fc13dd.png)
+![](//www.fanhaobai.com/2017/09/lua-in-redis/ae7223b50754e37b7cd89cfe24fc13dd.png)
 
 ### 调用Redis命令
 

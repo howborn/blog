@@ -11,7 +11,7 @@ categories:
 
 我是一个 [线程](#)，我一出生就被编了个号：0x3704。
 
-![](//img1.fanhaobai.com/2016/10/im-thread/fd1WM_W61si6GKLhz1QKjx0v.jpg)<!--more-->
+![](//www.fanhaobai.com/2016/10/im-thread/fd1WM_W61si6GKLhz1QKjx0v.jpg)<!--more-->
 
 # 第一回 初生牛犊
 

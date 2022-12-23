@@ -10,7 +10,7 @@ categories:
 
 我的 [博客](https://www.fanhaobai.com) 停服已经有几个月了，主要原因是使用的 [Google Cloud](https://cloud.google.com/free/) 免费服务器已经到期了，而整个博客系统的迁移成本很大，因此迟迟没有开启服务。
 
-![预览图](//img0.fanhaobai.com/2020/12/hexo-to-docker/704035c6-348e-439b-9048-d05a2a18ef1f.png)<!--more-->
+![预览图](//www.fanhaobai.com/2020/12/hexo-to-docker/704035c6-348e-439b-9048-d05a2a18ef1f.png)<!--more-->
 
 这周末，终于有时间来彻底解决博客迁移问题了。通过改造 Hexo 博客系统，使其支持 Docker 部署，彻底摆脱了运行环境依赖，以后再更换云服务器厂商时，就可以做到快速平滑迁移了。
 

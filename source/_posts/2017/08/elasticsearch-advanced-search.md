@@ -9,7 +9,7 @@ categories:
 
 文章 [Elasticsearch检索实战](https://www.fanhaobai.com/2017/08/elasticsearch-search.html) 已经讲述了 Elasticsearch 基本检索使用，已满足大部分检索场景，但是某些特定项目中会使用到 [聚合](#) 和 [LBS](#) 这类高级检索，以满足检索需求。这里将讲述 Elasticsearch 的聚合和 LBS 检索使用方法。
 
-![](//img4.fanhaobai.com/2017/08/elasticsearch-advanced-search/d758139c-86ce-4472-89e8-7eb385cf7991.jpg)<!--more-->
+![](//www.fanhaobai.com/2017/08/elasticsearch-advanced-search/d758139c-86ce-4472-89e8-7eb385cf7991.jpg)<!--more-->
 
 本文示例的房源数据，[见这里](http://es.fanhaobai.com/rooms/_search)，检索同样使用 Elasticsearch 的 DSL 对比 SQL 来说明。
 

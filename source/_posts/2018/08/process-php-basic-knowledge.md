@@ -10,7 +10,7 @@ categories:
 
 我们工作中接触最多的就是 [进程](https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%A8%8B)，但是我们对它又比较陌生，因为它是业务不需要关心的地方，既有的公有组件和操作系统已经对我们屏蔽了它的复杂性。然后跟它的接触时间一长，我们难免会对它产生好奇：How it works?
 
-![预览图](//img0.fanhaobai.com/2018/08/process-php-basic-knowledge/f6eb7888-6de6-41a4-8d15-4d471825a24e.jpg)<!--more--> 
+![预览图](//www.fanhaobai.com/2018/08/process-php-basic-knowledge/f6eb7888-6de6-41a4-8d15-4d471825a24e.jpg)<!--more--> 
 
 ## 什么是进程
 
@@ -67,7 +67,7 @@ $ nohup php server.php start &
 
 进程的用户空间是相互独立的，一般而言是不能相互访问。但很多情况下，进程间需要互相通信来进行数据传输、共享数据、通知事件、进程控制等，这就必须通过内核实现进程间通信。
 
-![进程间通信模型](//img1.fanhaobai.com/2018/08/process-php-basic-knowledge/dab56833-15dc-405e-b359-4a4fa0e305bc.jpg)
+![进程间通信模型](//www.fanhaobai.com/2018/08/process-php-basic-knowledge/dab56833-15dc-405e-b359-4a4fa0e305bc.jpg)
 
 进程间通信有管道、消息队列、信号、共享内存、套接字等方式，本文只介绍后 3 种。
 
@@ -75,7 +75,7 @@ $ nohup php server.php start &
 
 共享内存是一段被映射到多个进程地址空间的内存，虽然这段共享内存是由一个进程创建，但是多个进程都可以访问。如下图：
 
-![共享内存模型](//img2.fanhaobai.com/2018/08/process-php-basic-knowledge/c18f0a31-dade-49e0-90b3-308b7ce63ef6.jpg)
+![共享内存模型](//www.fanhaobai.com/2018/08/process-php-basic-knowledge/c18f0a31-dade-49e0-90b3-308b7ce63ef6.jpg)
 
 共享内存是最快的进程间通信方式，但是可能会存在竞争，因此需要加锁。Linux 支持三种共享内存：mmap、Posix、以及 System V。
 
@@ -83,7 +83,7 @@ $ nohup php server.php start &
 
 套接字是一个通信链的句柄，可以用域、端口号、协议类型来表示一个套接字，其中域分为 Internet 网络（IP 地址）和 UNIX 文件（Sock 文件）两种。当域为 Internet 网络时，通信流程如下图：
 
-![套接字模型](//img3.fanhaobai.com/2018/08/process-php-basic-knowledge/f85ea400-6623-44ae-88c4-efc9ef1fa315.jpg)
+![套接字模型](//www.fanhaobai.com/2018/08/process-php-basic-knowledge/f85ea400-6623-44ae-88c4-efc9ef1fa315.jpg)
 
 特别的是，当套接字域为 Internet 网络时，可以实现 [跨主机的进程间通信](#)。因此，若要实现跨主机进行进程间通信，则须选用套接字。
 
@@ -91,7 +91,7 @@ $ nohup php server.php start &
 
 信号受事件驱动，是一种异步且最复杂的通信方式，用于通知接受进程有某个事件已经发生，因此常用于事件处理。信号的处理机制，如下图：
 
-![信号模型](//img4.fanhaobai.com/2018/08/process-php-basic-knowledge/0f31694b-b96f-48f2-92f4-56552bded7f4.jpg)
+![信号模型](//www.fanhaobai.com/2018/08/process-php-basic-knowledge/0f31694b-b96f-48f2-92f4-56552bded7f4.jpg)
 
 #### 常用的信号值
 
@@ -209,7 +209,7 @@ PPID   PID  PGID   SID TTY      TIME COMMAND
 
 * 多进程
 
-![信号模型](//img5.fanhaobai.com/2018/08/process-php-basic-knowledge/80e3b1cf-51d8-4342-a08a-976b3a7b3c8c.png)
+![信号模型](//www.fanhaobai.com/2018/08/process-php-basic-knowledge/80e3b1cf-51d8-4342-a08a-976b3a7b3c8c.png)
 
 为了提高程序的并发处理能力，程序由单进程慢慢演变成了多进程，一 个 Master 进程和多个 Worker 进程是多进程常见的构成形态。可以说，现在大部分程序都是多进程模型，其中 Nginx 是典型的代表。
 

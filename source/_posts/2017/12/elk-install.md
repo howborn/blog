@@ -10,7 +10,7 @@ categories:
 
 由于系统日志量还在可控范围，所以选择了 ELK+Beats 的方案，并未引入消息队列，当然后续需要可以对系统升级。鉴于此，只需要在日志平台部署 Elasticsearch 和 Logstash 集群，同时在应用服务器部署 Filebeat。
 
-![](//img2.fanhaobai.com/2017/12/elk-install/0da3b439-5174-4aff-b9dc-f275ebbd9e1f.png)<!--more-->
+![](//www.fanhaobai.com/2017/12/elk-install/0da3b439-5174-4aff-b9dc-f275ebbd9e1f.png)<!--more-->
 
 ## 安装前准备
 
@@ -436,7 +436,7 @@ Filebeat 推送到 Logstash 过滤后，Elasticsearch 存储的数据格式为�
 
 在 Kibana 中呈现效果为：
 
-![](//img3.fanhaobai.com/2017/12/elk-install/a1ff2131-8dd8-4ad1-8ba3-c2d2ebeffc91.png)
+![](//www.fanhaobai.com/2017/12/elk-install/a1ff2131-8dd8-4ad1-8ba3-c2d2ebeffc91.png)
 
 <strong>相关文章 [»](#)</strong>
 

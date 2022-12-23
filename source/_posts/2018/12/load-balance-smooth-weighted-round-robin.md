@@ -10,7 +10,7 @@ categories:
 
 在 [负载均衡算法 — 轮询](https://www.fanhaobai.com/2018/11/load-balance-round-robin.html) 一文中，我们就指出了加权轮询算法一个明显的缺陷。即在某些特殊的权重下，加权轮询调度会生成不均匀的实例序列，这种不平滑的负载可能会使某些实例出现瞬时高负载的现象，导致系统存在宕机的风险。为了解决这个调度缺陷，就提出了 [平滑加权轮询](#) 调度算法。
 
-![预览图](//img1.fanhaobai.com/2018/12/load-balance-smooth-weighted-round-robin/fc16ba37-06b0-4193-9969-7541852dd46c.jpg)<!--more-->
+![预览图](//www.fanhaobai.com/2018/12/load-balance-smooth-weighted-round-robin/fc16ba37-06b0-4193-9969-7541852dd46c.jpg)<!--more-->
 
 ## 待解决的问题
 
