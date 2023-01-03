@@ -62,6 +62,7 @@ docker-compose up --force-recreate --build -d
 
 ### 架构
 
+* [千人千面个性化推荐系统](https://www.fanhaobai.com/2023/01/recommender-system.html)（2023-01-02）
 * [用规则引擎来做决策](https://www.fanhaobai.com/2022/12/rule-engine.html)（2022-12-25）
 * [Flink在用户画像上的应用](https://www.fanhaobai.com/2022/12/user-profile-use-flink.html)（2022-12-23）
 * [基于准实时规则引擎的业务风控方案](https://www.fanhaobai.com/2022/06/risk-rule.html)（2022-06-28）
