@@ -7,7 +7,7 @@ date: 2016-02-10
 
 ## 个人介绍
 
-作者是一个乐于折腾的人，6年互联网后端研发经验，目前专注于分布式系统性能优化。是一名电子 DIY、斯诺克、F1 爱好者。
+作者是一个乐于折腾的人，目前专注于互联网后端系统设计及性能优化。是一名电子 DIY、斯诺克、F1 爱好者。
 
 ### 技术公众号
 
@@ -24,12 +24,6 @@ date: 2016-02-10
 每季度至少读一本书；
 每年至少会一门新技能；
 </pre>
-
-## 本站特性
-
-本站的更新历程，见 [本站特性](https://www.fanhaobai.com/about-site/)。
-
-<div class="row"><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/6e6ade44-bc83-4a25-8b36-b41c5a0186a0.jpg"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/oIvyC4BVfC358zcqI3_8kQua.png"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/7fbbc22c-3a0f-466b-87bb-d8d27367c419.gif"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/1b8RAFgTPJ65AAY7vARIDYLa.jpg"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/9fPXD11M-qsaym50SNAkwFl_.png"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/UtjFTjHOIYx92yaA6wsdh0GD.png"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/fQm_6CQKLTPRYXQ_vPInMijE.jpg"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/8aded4ae-807e-41fa-913d-5f28726a447d.png"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/O_tDRRtwdgwUJGleCTb-fJvl.jpg"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/98857854-705b-4306-a360-a32f78d87390.png"></div><div class="col m3 s4"><img src="https://www.fanhaobai.com/about/index/ffd01abc-1dc8-41b9-b6c4-004f779dddf3.png"></div></div>
 
 ## 版权说明
 
