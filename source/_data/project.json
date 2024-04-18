@@ -36,6 +36,12 @@
         "cover": "//www.fanhaobai.com/project/index/php-server.jpg",
         "review": "",
         "link": "https://github.com/howborn/php-server"
+      },
+      {
+        "title": "smart-car-freescale",
+        "cover": "//www.fanhaobai.com/project/index/smart-car-freescale.png",
+        "review": "",
+        "link": "https://github.com/howborn/smart-car-freescale"
       }
     ]
   }
