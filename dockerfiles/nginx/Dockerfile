@@ -1,6 +1,6 @@
-FROM nginx:latest
+FROM nginx:1.24.0
 
-RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list.d/debian.sources
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt-get update && apt-get install -y cron wget python
 
 ADD nginx.conf /etc/nginx/nginx.conf
