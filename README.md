@@ -58,6 +58,9 @@ docker-compose up --force-recreate --build -d
 
 * [2021年终总结](https://www.fanhaobai.com/2022/01/2021-personal-summary.html)（2022-01-12）
 * [从北京回到成都的这3个月](https://www.fanhaobai.com/2018/06/beijing-to-chengdu.html)（2018-06-27）
+* [使用Charles抓包](https://www.fanhaobai.com/2017/07/charles.html)（2017-07-22）
+* [身份证的编码规则](https://www.fanhaobai.com/2017/08/id-card.html)（2017-08-20）
+* [Robots协议的那些事](https://www.fanhaobai.com/2017/01/robots.html)（2017-01-12）
 
 ### 架构
 
@@ -74,12 +77,11 @@ docker-compose up --force-recreate --build -d
 * [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html)（2017-12-22）
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html)（2017-12-21）
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html)（2017-12-16）
-
-#### 分布式
-
+* [按照奖品概率分布抽奖的实现](https://www.fanhaobai.com/2017/05/draw-by-prob.html)（2017-05-18）
+* [使用Supervisor管理进程](https://www.fanhaobai.com/2017/09/supervisor.html)（2017-09-23）
 * [分布式配置管理Qconf](https://www.fanhaobai.com/2017/11/qconf.html)（2017-11-03）
 
-### 算法与数据结构
+### 算法
 
 * [负载均衡算法 — 平滑加权轮询](https://www.fanhaobai.com/2018/11/load-balance-smooth-weighted-round-robin.html)（2018-12-30）
 * [负载均衡算法 — 轮询](https://www.fanhaobai.com/2018/11/load-balance-round-robin.html)（2018-12-29）
@@ -88,9 +90,7 @@ docker-compose up --force-recreate --build -d
 * [王者编程大赛之三 — 01背包](https://www.fanhaobai.com/2017/12/2017-ziroom-king-3.html)（2017-12-05）
 * [王者编程大赛之二 — 蓄水池](https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html)（2017-12-05）
 * [王者编程大赛之一](https://www.fanhaobai.com/2017/12/2017-ziroom-king-1.html)（2017-12-05）
-* [GeoHash核心原理解析](https://www.fanhaobai.com/2017/08/geohash.html)（2017-08-22）
 * [什么是Bitmap算法？](https://www.fanhaobai.com/2017/08/bitmap.html)（2017-08-16）
-* [从foreach方法引出的PHP内存分析](https://www.fanhaobai.com/2017/07/array-reference.html)（2017-07-16）
 * [按照奖品概率分布抽奖的实现](https://www.fanhaobai.com/2017/05/draw-by-prob.html)（2017-05-18）
 * [求非负元素数组所有元素能组合的最大字符串](https://www.fanhaobai.com/2017/04/array-form-max-string.html)（2017-04-03）
 * [PHP生成随机红包算法](https://www.fanhaobai.com/2017/02/reward.html)（2017-02-13）
@@ -98,43 +98,13 @@ docker-compose up --force-recreate --build -d
 
 ### 语言
 
-#### PHP
-
-* [深入源码剖析PHP-FPM](https://www.fanhaobai.com/2017/10/internal-php-fpm.html)（2017-10-30）
-* [在Docker中使用Xdebug](https://www.fanhaobai.com/2017/09/xdebug-in-docker.html)（2017-09-01）
-* [身份证的编码规则](https://www.fanhaobai.com/2017/08/id-card.html)（2017-08-20）
+* [用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html)（2018-09-02）
+* [用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html)（2018-08-28）
 * [APP接口多版本处理](https://www.fanhaobai.com/2017/08/api-version.html)（2017-08-19）
-* [从foreach方法引出的PHP内存分析](https://www.fanhaobai.com/2017/07/array-reference.html)（2017-07-16）
-* [按照奖品概率分布抽奖的实现](https://www.fanhaobai.com/2017/05/draw-by-prob.html)（2017-05-18）
-* [求非负元素数组所有元素能组合的最大字符串](https://www.fanhaobai.com/2017/04/array-form-max-string.html)（2017-04-03）
-* [PHP生成随机红包算法](https://www.fanhaobai.com/2017/02/reward.html)（2017-02-13）
-
-#### Lua
-
 * [Lua在Nginx的应用](https://www.fanhaobai.com/2017/09/lua-in-nginx.html)（2017-09-09）
 * [Lua在Redis的应用](https://www.fanhaobai.com/2017/09/lua-in-redis.html)（2017-09-04）
 * [进入Lua的世界](https://www.fanhaobai.com/2017/09/lua.html)（2017-09-03）
-
-#### 系统原理
-
 * [异步、并发、协程原理](https://www.fanhaobai.com/2017/11/synchronised-asynchronized-coroutine.html)（2017-11-13）
-
-#### 进程
-
-* [用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html)（2018-09-02）
-* [用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html)（2018-08-28）
-
-#### 协议
-
-* [Robots协议的那些事](https://www.fanhaobai.com/2017/01/robots.html)（2017-01-12）
-* [启用Let's Encrypt免费的HTTPS证书](https://www.fanhaobai.com/2016/12/lets-encrypt.html)（2016-12-08）
-
-### 工具
-
-* [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)（2018-03-03）
-* [使用Supervisor管理进程](https://www.fanhaobai.com/2017/09/supervisor.html)（2017-09-23）
-* [使用Charles抓包](https://www.fanhaobai.com/2017/07/charles.html)（2017-07-22）
-* [Git使用技巧](https://www.fanhaobai.com/2017/04/git-command.html)（2017-04-18）
 
 ### DB
 
@@ -144,7 +114,6 @@ docker-compose up --force-recreate --build -d
 
 #### Redis
 
-* [记录 — Redis与接口签名问题](https://www.fanhaobai.com/2017/09/record-question-1.html)（2017-09-21）
 * [Lua在Redis的应用](https://www.fanhaobai.com/2017/09/lua-in-redis.html)（2017-09-04）
 * [使用Redis管道提升性能](https://www.fanhaobai.com/2017/08/redis-pipelining.html)（2017-08-31）
 
