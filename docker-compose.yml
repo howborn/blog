@@ -1,4 +1,4 @@
-version: '3'
+version: 'prod'
 services:
   nginx:
     restart: always
@@ -16,13 +16,3 @@ services:
     extra_hosts:
       - "raw.githubusercontent.com:199.232.96.133"
     container_name: "nginx"
-  nodejs:
-    restart: always
-    build: ./dockerfiles/nodejs
-    ports:
-      - "4000:4000"
-    volumes:
-      - "/var/www/blog:/var/www/blog"
-    env_file:
-      - docker.env
-    container_name: "nodejs"

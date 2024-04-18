@@ -24,9 +24,26 @@ git clone --recursive https://github.com/howborn/blog.git
 git pull && git submodule foreach git pull origin master
 ```
 
+* 安装 hexo
+
+```bash
+npm install -g hexo-cli
+npm install hexo
+npm install hexo-deployer-git --save
+```
+
+* 发布文章
+
+```bash
+# 本地预览
+hexo s
+# 发布到git仓库托管, 配置见_config.yml的deploy项
+hexo deploy -g
+```
+
 ## 部署环境
 
-本项目采用 docker 管理项目环境，请先安装 [docker-compose](https://docs.docker.com/compose/)。
+支持 docker 部署，请先安装 [docker-compose](https://docs.docker.com/compose/)。
 
 * 配置环境变量
 
@@ -36,13 +53,13 @@ cp docker.example.env docker.env
 
 > 其中，各环境变量意义见`docker.example.env`文件中的注释说明，可以根据实际情况修改各环境变量参数的值。
 
-* 获取HTTPS证书
+* 支持HTTPS协议
 
 ```bash
 /bin/bash dockerfiles/nginx/ssl/init_ssl.sh
 ```
 
-> 注意：如果无需支持HTTPS协议，则跳过此步骤，并将环境变量`ENABLE_SSL`修改为`false`。
+> 注意：如果无需支持HTTPS协议，则跳过此步骤，需要将环境变量`ENABLE_SSL`修改为`true`。
 
 * 启动容器
 
