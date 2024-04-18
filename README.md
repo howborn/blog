@@ -57,21 +57,20 @@ docker-compose up --force-recreate --build -d
 ### 杂谈
 
 * [2021年终总结](https://www.fanhaobai.com/2022/01/2021-personal-summary.html)（2022-01-12）
-* [和她的第一次重庆之旅](https://www.fanhaobai.com/2018/10/journey-chongqing.html)（2018-10-29）
 * [从北京回到成都的这3个月](https://www.fanhaobai.com/2018/06/beijing-to-chengdu.html)（2018-06-27）
 
 ### 架构
 
+* [基于准实时规则引擎的业务风控方案](https://www.fanhaobai.com/2022/06/risk-rule.html)（2022-06-28）
+* [自如2018新年活动系统 — 抢红包](https://www.fanhaobai.com/2018/01/2018-new-year-activity.html)（2018-01-30）
 * [千人千面个性化推荐系统](https://www.fanhaobai.com/2023/01/recommender-system.html)（2023-01-02）
 * [用规则引擎来做决策](https://www.fanhaobai.com/2022/12/rule-engine.html)（2022-12-25）
 * [Flink在用户画像上的应用](https://www.fanhaobai.com/2022/12/user-profile-use-flink.html)（2022-12-23）
-* [基于准实时规则引擎的业务风控方案](https://www.fanhaobai.com/2022/06/risk-rule.html)（2022-06-28）
 * [使用Docker轻松部署Hexo博客系统](https://www.fanhaobai.com/2020/12/hexo-to-docker.html)（2020-12-27）
 * [自建一个简易的OpenAPI网关](https://www.fanhaobai.com/2020/07/openapi.html)（2020-07-15）
 * [在分布式系统使用Kafka](https://www.fanhaobai.com/2020/05/use-kafka.html)（2020-05-12）
 * [商品价格的多币种方案](https://www.fanhaobai.com/2019/02/multi-currency-price.html)（2019-02-28）
 * [我的博客发布上线方案 — Hexo](https://www.fanhaobai.com/2018/03/hexo-deploy.html)（2018-03-03）
-* [自如2018新年活动系统 — 抢红包](https://www.fanhaobai.com/2018/01/2018-new-year-activity.html)（2018-01-30）
 * [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html)（2017-12-22）
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html)（2017-12-21）
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html)（2017-12-16）
@@ -101,7 +100,6 @@ docker-compose up --force-recreate --build -d
 
 #### PHP
 
-* [自如2018新年活动系统 — 抢红包](https://www.fanhaobai.com/2018/01/2018-new-year-activity.html)（2018-01-30）
 * [深入源码剖析PHP-FPM](https://www.fanhaobai.com/2017/10/internal-php-fpm.html)（2017-10-30）
 * [在Docker中使用Xdebug](https://www.fanhaobai.com/2017/09/xdebug-in-docker.html)（2017-09-01）
 * [身份证的编码规则](https://www.fanhaobai.com/2017/08/id-card.html)（2017-08-20）
@@ -157,10 +155,4 @@ docker-compose up --force-recreate --build -d
 * [Solr的使用 — 检索](https://www.fanhaobai.com/2017/08/solr-search.html)（2017-08-13）
 * [Solr的使用 — 部署和数据推送](https://www.fanhaobai.com/2017/08/solr-install-push.html)（2017-08-12）
 
-### 日常
 
-* [启用Hexo开源博客系统](https://www.fanhaobai.com/2017/03/install-hexo.html)（2017-03-01）
-
-### Web服务器
-
-* [Lua在Nginx的应用](https://www.fanhaobai.com/2017/09/lua-in-nginx.html)（2017-09-09）
