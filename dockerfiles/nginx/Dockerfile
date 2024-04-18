@@ -1,7 +1,7 @@
 FROM nginx:latest
 
-RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
-    && apt-get update && apt-get install -y cron wget python
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list.d/debian.sources
+RUN apt-get update && apt-get install -y cron wget python
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
