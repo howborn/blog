@@ -9,7 +9,7 @@ tags:
 
 ![规则引擎](//www.fanhaobai.com/2024/04/design-rule-engine/12805423-37FB-4225-91E3-EC6473BA720C.png)<!--more-->
 
-本文以 [gengine](https://github.com/bilibili/gengine) 为例来探讨如果设计和实现一个自定义规则引擎。
+本文以 [gengine](https://github.com/bilibili/gengine) 来探讨如果设计和实现一个自定义规则引擎。
 
 ## 支持的语义
 
@@ -62,7 +62,7 @@ if Order.Price>= 1000000 {
 
 Antlr4 解析器语法定义文件后缀名为`.g4`，以下内容为解析器的语法定义，解析器根据语法定义去逐行解析生成语法树。
 
-这里省略了一些非核心的语法定义并做了简化，完整内容查看 [gengine.g4](//www.fanhaobai.com/2024/04/design-rule-engine/gengine.g4)]
+这里省略了一些非核心的语法定义并做了简化，完整内容查看 [gengine.g4](//www.fanhaobai.com/2024/04/design-rule-engine/gengine.g4)
 
 ```golang
 grammar gengine;
@@ -143,30 +143,30 @@ end
 
 ```golang
 type gengineListener interface {
-	antlr.ParseTreeListener
-	// 省略了一些只列举了部分方法
-	// EnterRuleEntity is called when entering the ruleEntity production.
-	EnterRuleEntity(c *RuleEntityContext)
+    antlr.ParseTreeListener
+    // 省略了一些只列举了部分方法
+    // EnterRuleEntity is called when entering the ruleEntity production.
+    EnterRuleEntity(c *RuleEntityContext)
     // ExitRuleEntity is called when exiting the ruleEntity production.
     ExitRuleEntity(c *RuleEntityContext)
-	// EnterRuleContent is called when entering the ruleContent production.
-	EnterRuleContent(c *RuleContentContext)
+    // EnterRuleContent is called when entering the ruleContent production.
+    EnterRuleContent(c *RuleContentContext)
     // ExitRuleContent is called when exiting the ruleContent production.
     ExitRuleContent(c *RuleContentContext)
-	// EnterStatement is called when entering the statement production.
-	EnterStatement(c *StatementContext)
+    // EnterStatement is called when entering the statement production.
+    EnterStatement(c *StatementContext)
     // ExitStatement is called when exiting the statement production.
     ExitStatement(c *StatementContext)
     // EnterIfStmt is called when entering the ifStmt production.
     EnterIfStmt(c *IfStmtContext)
     // ExitIfStmt is called when exiting the ifStmt production.
     ExitIfStmt(c *IfStmtContext)
-	// EnterExpression is called when entering the expression production.
-	EnterExpression(c *ExpressionContext)
+    // EnterExpression is called when entering the expression production.
+    EnterExpression(c *ExpressionContext)
     // ExitExpression is called when exiting the expression production.
     ExitExpression(c *ExpressionContext)
-	// EnterInteger is called when entering the integer production.
-	EnterInteger(c *IntegerContext)
+    // EnterInteger is called when entering the integer production.
+    EnterInteger(c *IntegerContext)
     // ExitInteger is called when exiting the integer production.
     ExitInteger(c *IntegerContext)
 }
@@ -497,12 +497,12 @@ func (g *Gengine) ExecuteConcurrent(rb *builder.RuleBuilder) error {
 
 通过业务数据分析，可以抽象出用户异常行为的规则：
 
-![风控规则](//www.fanhaobai.com/2022/12/rule-engine/C0C5B489-90D1-4937-A8D8-55459E951ABC.png)
+![风控规则](//www.fanhaobai.com/2024/04/design-rule-engine/C0C5B489-90D1-4937-A8D8-55459E951ABC.png)
 
 然后，风控系统在判断是否为风险操作时，只需要规则引擎加载并执行风控规则，即可得到结果。
 想要提高风控系统的准确性，只需要不断地迭代完善风控规则。
 
-![风控系统](//www.fanhaobai.com/2022/12/rule-engine/C290970F-D33E-49DF-846B-577E62694709.png)
+![风控系统](//www.fanhaobai.com/2024/04/design-rule-engine/C290970F-D33E-49DF-846B-577E62694709.png)
 
 规则引擎在业务风控的实践，可以参考 [基于准实时规则引擎的业务风控实践](https://www.fanhaobai.com/2022/06/risk-rule.html)。
 
@@ -512,10 +512,10 @@ func (g *Gengine) ExecuteConcurrent(rb *builder.RuleBuilder) error {
 ① 抽奖，不同的人&不同的场景对应不同的奖池（中奖概率与奖品集合规则）；
 ② 做任务，任务领取规则、任务完成指标动态可配（任务规则）；
 
-![运营活动](//www.fanhaobai.com/2022/12/rule-engine/30B59826-F443-4D9A-AC98-42F7E28127D5.png)
+![运营活动](//www.fanhaobai.com/2024/04/design-rule-engine/30B59826-F443-4D9A-AC98-42F7E28127D5.png)
 
 ### 内容分发
 
 针对某些特定的用户或者某种场景的用户，下发特定的展示内容或者推送短信等触达消息，都可以将这些特定用户的逻辑梳理为内容分发规则。
 
-![内容分发](//www.fanhaobai.com/2022/12/rule-engine/E937E855-8B7C-4B4C-9761-0764D563BE42.png)
+![内容分发](//www.fanhaobai.com/2024/04/design-rule-engine/E937E855-8B7C-4B4C-9761-0764D563BE42.png)
