@@ -9,11 +9,11 @@ tags:
 
 ![规则引擎](//www.fanhaobai.com/2024/04/design-rule-engine/12805423-37FB-4225-91E3-EC6473BA720C.png)<!--more-->
 
-本文以 [gengine](https://github.com/bilibili/gengine) 来探讨如果设计和实现一个自定义规则引擎。
+本文以 [gengine](https://github.com/bilibili/gengine) 来探讨如何设计和实现一个自定义规则引擎。
 
-## 支持的语义
+## 支持的语句
 
-为了满足常见的业务规则，规则引擎应该要支持的语义有：
+为了满足基本的业务规则需求，规则引擎应该要支持的语句有：
 
 ### 逻辑与算术运算
 
@@ -26,7 +26,7 @@ tags:
 * 条件（IF ELSE）
 * 循环 (FOR)
 
-### 高级语义
+### 高级语句
 
 * 对象属性访问（对象.属性）
 * 方法调用（func()）
@@ -37,7 +37,7 @@ tags:
 
 ### 定义规则语法
 
-一个规则的 DSL 基本语法格式如下：
+规则的 DSL 基本语法格式如下：
 
 ```golang
 rule "rulename" "rule-describtion" salience  10
@@ -48,7 +48,7 @@ begin
 end
 ```
 
-其中规则体为具体规则语义，由上述的 [逻辑与算术运算](#支持的语义)、[流程控制](#支持的语义)、[高级语义](#支持的语义) 组合而成。 
+其中规则体为具体规则语句，由上述的 [逻辑与算术运算](#支持的语句)、[流程控制](#支持的语句)、[高级语句](#支持的语句) 组合而成。 
 
 例如，**判断为一个大额异常订单**的规则体：
 
@@ -62,7 +62,7 @@ if Order.Price>= 1000000 {
 
 Antlr4 解析器语法定义文件后缀名为`.g4`，以下内容为解析器的语法定义，解析器根据语法定义去逐行解析生成语法树。
 
-这里省略了一些非核心的语法定义并做了简化，完整内容查看 [gengine.g4](//www.fanhaobai.com/2024/04/design-rule-engine/gengine.g4)
+这里省略了一些非核心的语法定义并做了简化，完整内容查看 [gengine.g4](https://github.com/howborn/blog/blob/master/source/_posts/2024/04/design-rule-engine/gengine.g4)。
 
 ```golang
 grammar gengine;
@@ -124,7 +124,7 @@ comparisonOperator : GT | LT | GTE | LTE | EQUALS | NOTEQUALS;
 
 如，**判断为一个大额异常订单**的规则：
 
-```
+```golang
 rule "order-large-price" "订单大额金额" salience 10
 begin
     if Order.Price >= 1000000 {
@@ -139,7 +139,7 @@ end
 
 ### 遍历语法树生成语句表达式
 
-解析器生成语法树之后，只需要遍历语法树即可得到规则完整的语句表达式。 Antlr4 解析器会生成 Listener 接口，这些接口在遍历语法树时会被调用。
+解析器生成语法树之后，只需要遍历语法树即可得到完整的语句表达式。 Antlr4 解析器会生成 Listener 接口，这些接口在遍历语法树时会被调用。
 
 ```golang
 type gengineListener interface {
@@ -178,10 +178,10 @@ type gengineListener interface {
 
 ```golang
 type GengineParserListener struct {
-	parser.BasegengineListener
+    parser.BasegengineListener
 
-	KnowledgeContext *base.KnowledgeContext
-	Stack            *stack.Stack
+    KnowledgeContext *base.KnowledgeContext
+    Stack            *stack.Stack
 }
 
 func (g *GengineParserListener) EnterRuleEntity(ctx *parser.RuleEntityContext) {
@@ -210,29 +210,26 @@ gengine 通过解析器解析规则内容之后，规则的数据结构如下：
 
 ![规则数据结构](//www.fanhaobai.com/2024/04/design-rule-engine/65ebb70a-3e2d-4e20-a1f2-227fc08c0669.png)
 
-全局的 hashmap 以规则名为 key，规则体为 value，规则体中的 ruleContent 为该规则所有的语句表达式列表，列表中的值指向具体的语句表达式实体，
-
-语句表达式实体由**逻辑与算术运算**、**流程控制（IF、FOR）**等基本语句组成。
+全局的 hashmap 以规则名为 key，规则体为 value，规则体中的 ruleContent 为该规则所有的语句表达式列表，列表中的值指向具体的语句表达式实体，语句表达式实体由 **逻辑与算术运算**、**流程控制（IF、FOR）**等基本语句组成。
 
 ## 规则语法的执行
 
-其实遍历语法树的过程中，将规则的执行逻辑也放入 ExitXXX() 方法，这样就能完成规则的解析和执行。但是 gengine 没有这么做，而是将规则的解析和执行解耦，
-因为规则的解析往往只需要初始化一次，或者在规则有变更时热更新解析规则，而规则的执行则是在需要校验规则的时候。
+其实遍历语法树的过程中，将规则的执行逻辑也放入 ExitXXX() 方法，这样就能一并完成规则的解析和执行。但是 gengine 没有这么做，而是将规则的解析和执行解耦，因为规则的解析往往只需要初始化一次，或者在规则有变更时热更新解析，而规则的执行则是在需要校验规则的时候。
 
 从 gengine 的规则数据结构可知，只需要遍历全局的 hashmap，即可按顺序执行所有的规则（顺序模式），执行每一个规则后会通过`addResult()`方法记录执行结果：
 
 ```golang
 // 顺序模式
 func (g *Gengine) Execute(rb *builder.RuleBuilder, b bool) error {
-	for _, r := range rb.Kc.RuleEntities {
-		v, err, bx := r.Execute(rb.Dc)
-		if bx {
-			// 记录每个规则执行结果
-			g.addResult(r.RuleName, v)
-		}
-	}
+    for _, r := range rb.Kc.RuleEntities {
+        v, err, bx := r.Execute(rb.Dc)
+        if bx {
+            // 记录每个规则执行结果
+            g.addResult(r.RuleName, v)
+        }
+    }
     // 省略部分
-	...
+    ...
 }
 ```
 
@@ -240,21 +237,21 @@ func (g *Gengine) Execute(rb *builder.RuleBuilder, b bool) error {
 
 ```golang
 func (s *Statements) Evaluate(dc *context.DataContext, Vars map[string]reflect.Value) (reflect.Value, error, bool) {
-	for _, statement := range s.StatementList {
-		v, err, b := statement.Evaluate(dc, Vars)
-		if err != nil {
-			return reflect.ValueOf(nil), err, false
-		}
+    for _, statement := range s.StatementList {
+        v, err, b := statement.Evaluate(dc, Vars)
+        if err != nil {
+            return reflect.ValueOf(nil), err, false
+        }
 
-		if b {
-			// return的情况不需要继续执行
-			return v, nil, b
-		}
-	}
-	if s.ReturnStatement != nil {
-		return s.ReturnStatement.Evaluate(dc, Vars)
-	}
-	return reflect.ValueOf(nil), nil, false
+        if b {
+            // return的情况不需要继续执行
+            return v, nil, b
+        }
+    }
+    if s.ReturnStatement != nil {
+        return s.ReturnStatement.Evaluate(dc, Vars)
+    }
+    return reflect.ValueOf(nil), nil, false
 }
 ```
 
@@ -262,26 +259,26 @@ gengine 为每个语句类型都实现了 Evaluate() 方法，这里只讨论 IF
 
 ```golang
 type IfStmt struct {
-	Expression     *Expression
-	StatementList  *Statements
-	ElseIfStmtList []*ElseIfStmt
-	ElseStmt       *ElseStmt
+    Expression     *Expression
+    StatementList  *Statements
+    ElseIfStmtList []*ElseIfStmt
+    ElseStmt       *ElseStmt
 }
 
 func (i *IfStmt) Evaluate(dc *context.DataContext, Vars map[string]reflect.Value) (reflect.Value, error, bool) {
-	// 执行条件表达式
-	it, err := i.Expression.Evaluate(dc, Vars)
-	if err != nil {
-		return reflect.ValueOf(nil), err, false
-	}
+    // 执行条件表达式
+    it, err := i.Expression.Evaluate(dc, Vars)
+    if err != nil {
+        return reflect.ValueOf(nil), err, false
+    }
     // 执行条件为真时的语句
-	if it.Bool() {
-		if i.StatementList == nil {
-			return reflect.ValueOf(nil), nil, false
-		} else {
-			return i.StatementList.Evaluate(dc, Vars)
-		}
-	}
+    if it.Bool() {
+        if i.StatementList == nil {
+            return reflect.ValueOf(nil), nil, false
+        } else {
+            return i.StatementList.Evaluate(dc, Vars)
+        }
+    }
 
     return reflect.ValueOf(nil), nil, false
 }
@@ -291,32 +288,32 @@ func (i *IfStmt) Evaluate(dc *context.DataContext, Vars map[string]reflect.Value
 
 ```golang
 func (e *Expression) Evaluate(dc *context.DataContext, Vars map[string]reflect.Value) (reflect.Value, error) {
-	// 原子表达式
-	var atom reflect.Value
-	if e.ExpressionAtom != nil {
-		evl, err := e.ExpressionAtom.Evaluate(dc, Vars)
-		if err != nil {
-			return reflect.ValueOf(nil), err
-		}
-		atom = evl
-	}
-	
-	// 比较操作
-	if e.ComparisonOperator != "" {
-		// 计算左值
-		lv, err := e.ExpressionLeft.Evaluate(dc, Vars)
-		if err != nil {
-			return reflect.ValueOf(nil), err
-		}
-		// 计算右值
-		rv, err := e.ExpressionRight.Evaluate(dc, Vars)
-		if err != nil {
-			return reflect.ValueOf(nil), err
-		}
+    // 原子表达式
+    var atom reflect.Value
+    if e.ExpressionAtom != nil {
+        evl, err := e.ExpressionAtom.Evaluate(dc, Vars)
+        if err != nil {
+            return reflect.ValueOf(nil), err
+        }
+        atom = evl
+    }
+    
+    // 比较操作
+    if e.ComparisonOperator != "" {
+        // 计算左值
+        lv, err := e.ExpressionLeft.Evaluate(dc, Vars)
+        if err != nil {
+            return reflect.ValueOf(nil), err
+        }
+        // 计算右值
+        rv, err := e.ExpressionRight.Evaluate(dc, Vars)
+        if err != nil {
+            return reflect.ValueOf(nil), err
+        }
         // 省略了类型转化
         switch e.ComparisonOperator {
         case "==":
-			b = reflect.ValueOf(lv == rv)
+            b = reflect.ValueOf(lv == rv)
             break
         case "!=":
             b = reflect.ValueOf(lv != rv)
@@ -334,22 +331,22 @@ func (e *Expression) Evaluate(dc *context.DataContext, Vars map[string]reflect.V
             b = reflect.ValueOf(lv <= rv)
             break
         }
-	}
+    }
 }
 ```
 
-递归执行到`ExpressionAtom.Evaluate()`原子表达式时，则可以得到该原子表达式的值以结束递归：
+递归执行到`ExpressionAtom.Evaluate()`原子表达式时，就可以得到该原子表达式的值以结束递归：
 
 ```golang
 func (e *ExpressionAtom) Evaluate(dc *context.DataContext, Vars map[string]reflect.Value) (reflect.Value, error) {
-	if len(e.Variable) > 0 {
-		// 是变量则取变量值，通过反射获取注入的自定义对象值
-		return dc.GetValue(Vars, e.Variable)
-	} else if e.Constant != nil {
-		// 是常量就返回值
-		return e.Constant.Evaluate(dc, Vars)
-	}
-	// 省略部分
+    if len(e.Variable) > 0 {
+        // 是变量则取变量值，通过反射获取注入的自定义对象值
+        return dc.GetValue(Vars, e.Variable)
+    } else if e.Constant != nil {
+        // 是常量就返回值
+        return e.Constant.Evaluate(dc, Vars)
+    }
+    // 省略部分
 }
 ```
 
@@ -376,9 +373,9 @@ dataContext.Add("Order", Order)
 
 ```golang
 func (dc *DataContext) Add(key string, obj interface{}) {
-	dc.lockBase.Lock()
-	defer dc.lockBase.Unlock()
-	dc.base[key] = reflect.ValueOf(obj)
+    dc.lockBase.Lock()
+    defer dc.lockBase.Unlock()
+    dc.base[key] = reflect.ValueOf(obj)
 }
 ```
 
@@ -387,21 +384,21 @@ gengine 解析规则时会将自定义对象标记为`variable`类型，通过 G
 ```golang
 // 获取变量值
 func (dc *DataContext) GetValue(Vars map[string]reflect.Value, variable string) (reflect.Value, error) {
-	if strings.Contains(variable, ".") {
+    if strings.Contains(variable, ".") {
         // 对象a.b
-		structAndField := strings.Split(variable, ".")
-		if len(structAndField) == 2 {
-			a := structAndField[0]
-			b := structAndField[1]
-			// 获取注入的对象
-			dc.lockBase.Lock()
-			v, ok := dc.base[a]
-			dc.lockBase.Unlock()
-			if ok {
-				return core.GetStructAttributeValue(v, b)
-			}
-		}
-	}
+        structAndField := strings.Split(variable, ".")
+        if len(structAndField) == 2 {
+            a := structAndField[0]
+            b := structAndField[1]
+            // 获取注入的对象
+            dc.lockBase.Lock()
+            v, ok := dc.base[a]
+            dc.lockBase.Unlock()
+            if ok {
+                return core.GetStructAttributeValue(v, b)
+            }
+        }
+    }
 }
 
 // 反射获取对象属性值
@@ -419,7 +416,7 @@ func GetStructAttributeValue(obj reflect.Value, fieldName string) (reflect.Value
 
 ## 支持自定义方法注入
 
-同样在上下文中注入自定义方法后，就可以在规则中使用注入的方法。使用例子：
+同样在上下文中注入自定义方法后，也可以在规则中使用注入的方法。使用例子：
 
 ```golang
 // 规则体
@@ -427,12 +424,12 @@ rule "test-func" "测试自定义方法" salience 10
 begin
     // 自定义方法GetCount获取指标数据（患者当天的订单数量）
     num = GetCount("order-patient-id", Order.PatientId)
-	if num >= 5 {
+    if num >= 5 {
         return
     }
 end
 
-// 注入自定义方法GetData
+// 注入自定义方法GetCount
 dataSvc := s.indicatorDao.NewDataService(ctx)
 dataContext := gctx.NewDataContext()
 dataContext.Add("GetCount", dataSvc.GetCount)
@@ -450,7 +447,7 @@ func (dc *DataContext) ExecFunc(Vars map[string]reflect.Value, funcName string, 
     dc.lockBase.Unlock()
     if ok {
         args := core.ParamsTypeChange(v, parameters)
-		// 调用方法
+        // 调用方法
         res := v.Call(args)
         raw, e := core.GetRawTypeValue(res)
         if e != nil {
@@ -463,35 +460,35 @@ func (dc *DataContext) ExecFunc(Vars map[string]reflect.Value, funcName string, 
 
 ## 支持并发执行
 
-通常情况下顺序模式执行即可满足要求，但是当规则量比较大时，顺序执行的耗时就会比较长。
+通常情况下顺序模式执行即可满足要求，但是当规则数量比较大时，顺序执行的耗时就会比较长。
 
 ![顺序模式](//www.fanhaobai.com/2024/04/design-rule-engine/36E0B373-95A2-4E26-AFE2-ED9522CCB708.png)
 
-规则引擎在执行所有规则的时候，其实是遍历全局的 hashmap 然后再顺序执行每一个规则，且每个规则之间没有依赖关系，因此可以每一个规则一个协程来并发执行。
+规则引擎在执行所有规则的时候，其实是遍历全局的 hashmap 然后再顺序执行每一个规则，由于每个规则之间没有依赖关系，因此可以用每一个规则一个协程来并发执行。
 
 ```golang
 func (g *Gengine) ExecuteConcurrent(rb *builder.RuleBuilder) error {
-	var wg sync.WaitGroup
-	wg.Add(len(rb.Kc.RuleEntities))
-	for _, r := range rb.Kc.RuleEntities {
-		rr := r
-		// 协程并发
-		go func() {
-			v, e, bx := rr.Execute(rb.Dc)
-			if bx {
-				g.addResult(rr.RuleName, v)
-			}
-			wg.Done()
-		}()
-	}
-	wg.Wait()
-	// 省略部分
+    var wg sync.WaitGroup
+    wg.Add(len(rb.Kc.RuleEntities))
+    for _, r := range rb.Kc.RuleEntities {
+        rr := r
+        // 协程并发
+        go func() {
+            v, e, bx := rr.Execute(rb.Dc)
+            if bx {
+                g.addResult(rr.RuleName, v)
+            }
+            wg.Done()
+        }()
+    }
+    wg.Wait()
+    // 省略部分
 }
 ```
 
 ## 使用场景
 
-有了规则引擎之后，很多在业务代码中的 if-else、switch 硬编码，都能抽象为规则并使用规则引擎，这样能极大地缩短需求开发周期。
+有了规则引擎之后，很多在业务代码中的 if-else、switch 硬编码，都能抽象为规则并使用规则引擎，这样能通过配置规则代替硬编码，能极大地缩短变更上线时间。
 
 ### 业务风控
 
