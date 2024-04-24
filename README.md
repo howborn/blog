@@ -94,8 +94,6 @@ docker-compose up --force-recreate --build -d
 * [ELK集中式日志平台之三 — 进阶](https://www.fanhaobai.com/2017/12/elk-advanced.html)（2017-12-22）
 * [ELK集中式日志平台之二 — 部署](https://www.fanhaobai.com/2017/12/elk-install.html)（2017-12-21）
 * [ELK集中式日志平台之一 — 平台架构](https://www.fanhaobai.com/2017/12/elk.html)（2017-12-16）
-* [按照奖品概率分布抽奖的实现](https://www.fanhaobai.com/2017/05/draw-by-prob.html)（2017-05-18）
-* [使用Supervisor管理进程](https://www.fanhaobai.com/2017/09/supervisor.html)（2017-09-23）
 * [分布式配置管理Qconf](https://www.fanhaobai.com/2017/11/qconf.html)（2017-11-03）
 
 ### 算法
@@ -117,6 +115,7 @@ docker-compose up --force-recreate --build -d
 
 * [用PHP玩转进程之二 — 多进程PHPServer](https://www.fanhaobai.com/2018/09/process-php-multiprocess-server.html)（2018-09-02）
 * [用PHP玩转进程之一 — 基础](https://www.fanhaobai.com/2018/08/process-php-basic-knowledge.html)（2018-08-28）
+* [使用Supervisor管理进程](https://www.fanhaobai.com/2017/09/supervisor.html)（2017-09-23）
 * [APP接口多版本处理](https://www.fanhaobai.com/2017/08/api-version.html)（2017-08-19）
 * [Lua在Nginx的应用](https://www.fanhaobai.com/2017/09/lua-in-nginx.html)（2017-09-09）
 * [Lua在Redis的应用](https://www.fanhaobai.com/2017/09/lua-in-redis.html)（2017-09-04）
